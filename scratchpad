@@ -1,0 +1,182 @@
+keyboard -> zone information -> layer information -> key information
+
+Keyboard
+--------
+Name
+Id
+Description
+QMK Configuration info
+layout template (zone information)
+num layers
+
+QMK Configuration info
+----------------------
+
+Zone Information
+----------------
+Name
+Id
+Description
+Key layout template
+  Array of key positions
+    row, col
+    key size/shape
+
+Layer information
+-----------------
+layer index
+keys
+
+Key information
+---------------
+key position
+value
+type
+secondary
+
+
+
+
+// register
+Vue.component('key-component', {
+  props: ['key-info'],
+  template: '<div v-on:click="updateKey" class="row{{key-info.row}} column{{key-info.column}}">{{key-info.value}} {{key-info.type}} {{key-info.secondary}}</div>',
+  data: function() {
+    return key-info;
+  },
+  methods: {
+    updateKey: function() {
+      // show context menu and allow updating of key values
+      this.key-info.value = 'B';
+    }
+  }
+})
+// create a root instance
+new Vue({
+  el: '<key>'
+})
+
+
+
+
+{
+  name: 'BananaSplit',
+  id: 'bananasplit_rev1',
+  description: 'First revision of the banana split 60',
+  layoutTemplate: [
+    {
+      name: 'Backspace',
+      id: 'backspace',
+      description: 'backspace can be configured as standard or hhkb',
+      options: [
+        {
+          name: 'Standard',
+          id: 'standard',
+          keys: [
+            {
+              row: 0,
+              column: 13,
+              width: 2,
+              height: 1,
+              default: 'BACKSPACE'
+            }
+          ]
+        },
+        {
+          name: 'HHKB',
+          id: 'hhkb',
+          keys: [
+            {
+              row: 0,
+              column: 13,
+              width: 1,
+              height: 1,
+              default: 'PRINT'
+            },
+            {
+              row: 0,
+              column: 14,
+              width: 1,
+              height: 1,
+              default: 'DELETE'
+            }
+          ]
+        }
+      ]
+    },
+    layers: [
+      [
+        {
+          row: 0,
+          column: 0,
+          value: 'ESC',
+          type: 'normal',
+          secondary: null
+        },
+        {
+          row: 0,
+          column: 1,
+          value: '1',
+          type: 'normal',
+          secondary: null
+        },
+        {
+          row: 0,
+          column: 2,
+          value: '2',
+          type: 'normal',
+          secondary: null
+        },
+        {
+          row: 0,
+          column: 3,
+          value: '3',
+          type: 'normal',
+          secondary: null
+        },
+        {
+          row: 0,
+          column: 4,
+          value: '4',
+          type: 'normal',
+          secondary: null
+        },
+        {
+          row: 0,
+          column: 5,
+          value: '5',
+          type: 'normal',
+          secondary: null
+        },
+        {
+          row: 0,
+          column: 6,
+          value: '6',
+          type: 'normal',
+          secondary: null
+        },
+        {
+          row: 0,
+          column: 7,
+          value: '7',
+          type: 'normal',
+          secondary: null
+        },
+        {
+          row: 0,
+          column: 8,
+          value: '8',
+          type: 'normal',
+          secondary: null
+        },
+        {
+          row: 0,
+          column: 9,
+          value: '9',
+          type: 'normal',
+          secondary: null
+        }
+      ]
+    ]
+  ]
+}
