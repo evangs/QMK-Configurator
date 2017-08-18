@@ -10,7 +10,7 @@ Vue.component('key-component', {
     updateKey: function(newVal) {
       // show context menu and allow updating of key values
       this.keyInfo.value = newVal;
-      this.showMenu = false;
+      this.showMenu = toggleMenu();
     },
     toggleMenu: function() {
     	this.showMenu = !this.showMenu;
@@ -88,3 +88,10 @@ new Vue({
   </div>
 </div>
 
+
+.context-menu {
+  position: absolute;
+  background-color: gray;
+  border-radius: 5px;
+  padding: 10px;
+}
