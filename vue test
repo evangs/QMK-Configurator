@@ -1,0 +1,90 @@
+Vue.component('key-component', {
+  props: ['keyInfo'],
+  template: '<div><div v-on:click="toggleMenu">{{keyInfo.value}} {{keyInfo.type}}</div><context-menu v-if="showMenu" v-bind:key-val="keyInfo.value" v-on:updatekey="updateKey"></context-menu></div>',
+  data: function() {
+    return {
+    	showMenu: false
+     }
+  },
+  methods: {
+    updateKey: function(newVal) {
+      // show context menu and allow updating of key values
+      this.keyInfo.value = newVal;
+      this.showMenu = false;
+    },
+    toggleMenu: function() {
+    	this.showMenu = !this.showMenu;
+    }
+  }
+})
+Vue.component('context-menu', {
+  props: ['keyVal'],
+  template: '<div><label>Character:<select v-model="keyValue"><option v-for="num in numbers" v-bind:value="num">{{ num }}</option></select></label></div></div>',
+  data: function() {
+    return {
+    	numbers: ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+      keyValue: this.keyVal
+     }
+  },
+  watch: {
+    // whenever question changes, this function will run
+    keyValue: function (newVal) {
+    	console.log('key change ' + newVal);
+      this.$emit('updatekey', newVal);
+    }
+  }
+})
+new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue.js!',
+    keyInfo: [
+      {
+        row: 0,
+        column: 0,
+        value: 'Q',
+        type: 'normal',
+        secondary: null
+      },
+      {
+      	row: 0,
+        column: 1,
+        value: 'W',
+        type: 'normal',
+        secondary: null
+      },
+      {
+      	row: 0,
+        column: 2,
+        value: 'E',
+        type: 'normal',
+        secondary: null
+      },
+      {
+      	row: 0,
+        column: 3,
+        value: 'R',
+        type: 'normal',
+        secondary: null
+      },
+      {
+      	row: 0,
+        column: 4,
+        value: 'T',
+        type: 'normal',
+        secondary: null
+      }
+    ]
+  }
+})
+
+
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+  <p>{{ message }}</p>
+  <div v-for="kf in keyInfo">
+    <key-component v-bind:key-info="kf"></key-component>
+  </div>
+</div>
+
