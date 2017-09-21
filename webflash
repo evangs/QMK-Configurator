@@ -1,0 +1,7 @@
+web flash
+
+https://developer.chrome.com/apps/usb
+https://github.com/dfu-programmer/dfu-programmer/tree/master/src
+
+
+need to create a javascript version of dfu-programmer and then combine that with a chrome extension
