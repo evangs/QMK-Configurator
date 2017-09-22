@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/app.css">
+  </head>
+  <body>
+
+    <div id="app">
+        <keyboard-selector-component v-on:keyboard="onKeyboardChange" :keyboards="keyboards" :active-keyboard="activeKeyboard"></keyboard-selector-component>
+        <zone-selector-component v-on:zone="onZoneChange" :zones="zones"></zone-selector-component>
+      <button v-on:click="addLayer()">
+        Add Layer
+      </button>
+      <div v-for="(layer, index) in layers">
+        <h2 v-if="index > 0">
+          Layer {{index}}
+        </h2>
+        <button v-if="index > 0" v-on:click="deleteLayer(index)">
+          Delete Layer
+        </button>
+        <layer :key-info="layer">
+        </layer>
+      </div>
+      <raw-output :layer-data="layers" v-on:updatelayerdata="updateLayers"></raw-output>
+      <button v-on:click="buildFirmware()">Build Firmware</button>
+    </div>
+
+    <script src="assets/js/keyboards/bananasplit/configuration.js"></script>
+    <script src="assets/js/keyboards/lowwriter/configuration.js"></script>
+    <script src="assets/js/zoneSelectorComponent.js"></script>
+    <script src="assets/js/keyboardSelectorComponent.js"></script>
+    <script src="assets/js/keyboard.js"></script>
+  </body>
+</html>
