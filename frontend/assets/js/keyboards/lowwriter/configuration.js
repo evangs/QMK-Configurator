@@ -310,7 +310,8 @@ lowwriter.keySections = [
                   type: 'tapkey',
                   secondary: 'L1',
                   showMenu: false,
-                  shape: 'k150'
+                  shape: 'k150',
+                  zone: 'Enter'
                 }
             ],
             [
@@ -320,7 +321,8 @@ lowwriter.keySections = [
                   type: 'tapkey',
                   secondary: 'L1',
                   showMenu: false,
-                  shape: 'kJIS'
+                  shape: 'kJIS',
+                  zone: 'Enter'
                 }
             ]
         ],
@@ -422,7 +424,8 @@ lowwriter.keySections = [
                   type: 'momentary',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k100'
+                  shape: 'k100',
+                  zone: 'Enter'
                 }
             ],
             [
@@ -441,7 +444,8 @@ lowwriter.keySections = [
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k125'
+                  shape: 'k125',
+                  zone: 'Left Hand'
                 },
                 {
                   id: 'k31',
@@ -449,7 +453,8 @@ lowwriter.keySections = [
                   type: 'momentary',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k150'
+                  shape: 'k150',
+                  zone: 'Left Hand'
                 },
                 {
                   id: 'k34',
@@ -462,7 +467,8 @@ lowwriter.keySections = [
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k125'
+                  shape: 'k125',
+                  zone: 'Left Hand'
                 }
             ],
             [
@@ -472,7 +478,8 @@ lowwriter.keySections = [
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k100'
+                  shape: 'k100',
+                  zone: 'Left Hand'
                 },
                 {
                   id: 'k31',
@@ -480,7 +487,8 @@ lowwriter.keySections = [
                   type: 'momentary',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k100'
+                  shape: 'k100',
+                  zone: 'Left Hand'
                 },
                 {
                   id: 'k34',
@@ -488,7 +496,8 @@ lowwriter.keySections = [
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k100'
+                  shape: 'k100',
+                  zone: 'Left Hand'
                 },
                 {
                   id: 'k32',
@@ -496,7 +505,8 @@ lowwriter.keySections = [
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k100'
+                  shape: 'k100',
+                  zone: 'Left Hand'
                 }
             ]
         ],
@@ -526,7 +536,8 @@ lowwriter.keySections = [
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k125'
+                  shape: 'k125',
+                  zone: 'Right Hand'
                 },
                 {
                   id: 'k39',
@@ -534,7 +545,8 @@ lowwriter.keySections = [
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k150'
+                  shape: 'k150',
+                  zone: 'Right Hand'
                 },
                 {
                   id: 'k3A',
@@ -547,7 +559,8 @@ lowwriter.keySections = [
                   type: 'toggle',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k175'
+                  shape: 'k175',
+                  zone: 'Right Hand'
                 }
             ],
             [
@@ -557,7 +570,8 @@ lowwriter.keySections = [
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k150'
+                  shape: 'k150',
+                  zone: 'Right Hand'
                 },
                 {
                   id: 'k39',
@@ -565,7 +579,8 @@ lowwriter.keySections = [
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k100'
+                  shape: 'k100',
+                  zone: 'Right Hand'
                 },
                 {
                   id: 'k3A',
@@ -573,7 +588,8 @@ lowwriter.keySections = [
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k100'
+                  shape: 'k100',
+                  zone: 'Right Hand'
                 },
                 {
                   id: 'k3B',
@@ -581,7 +597,8 @@ lowwriter.keySections = [
                   type: 'toggle',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k100'
+                  shape: 'k100',
+                  zone: 'Right Hand'
                 }
             ],
         ]

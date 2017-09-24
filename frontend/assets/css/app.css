@@ -102,6 +102,7 @@ body {
 .active.k175stepped:after {
   background-color: #B3B3B3;
 }
+/* tapkey */
 .tapkey.k175stepped:after {
   background-color: #7BCB7B;
 }
@@ -111,6 +112,7 @@ body {
 .active.tapkey.k175stepped:after {
   background-color: #5E9B5E;
 }
+/* toggle */
 .toggle.k175stepped:after {
   background-color: #D9D9BF;
 }
@@ -120,6 +122,7 @@ body {
 .active.toggle.k175stepped:after {
   background-color: #A6A692;
 }
+/* momentary */
 .momentary.k175stepped:after {
   background-color: #D9A3AD;
 }
@@ -129,6 +132,7 @@ body {
 .active.momentary.k175stepped:after {
   background-color: #A67D84;
 }
+/* modkey */
 .modkey.k175stepped:after {
   background-color: #C4C4D5;
 }
@@ -137,6 +141,46 @@ body {
 }
 .active.modkey.k175stepped:after {
   background-color: #9696A3;
+}
+/* combokey */
+.combokey.k175stepped:after {
+  background-color: #93B8C4;
+}
+.combokey.k175stepped:hover:after {
+  background-color: #82A2AC;
+}
+.active.combokey.k175stepped:after {
+  background-color: #718D96;
+}
+/* direct */
+.direct.k175stepped:after {
+  background-color: #CC6D6D;
+}
+.direct.k175stepped:hover:after {
+  background-color: #B46060;
+}
+.active.direct.k175stepped:after {
+  background-color: #9C5353;
+}
+/* taptoggle */
+.taptoggle.k175stepped:after {
+  background-color: #6CD9B4;
+}
+.taptoggle.k175stepped:hover:after {
+  background-color: #5FBF9F;
+}
+.active.taptoggle.k175stepped:after {
+  background-color: #53A68A;
+}
+/* setdefaultlayer */
+.setdefaultlayer.k175stepped:after {
+  background-color: #D9BA9D;
+}
+.setdefaultlayer.k175stepped:hover:after {
+  background-color: #BFA38B;
+}
+.active.setdefaultlayer.k175stepped:after {
+  background-color: #A68E78;
 }
 
 .k200 {
@@ -232,6 +276,18 @@ body {
 .tapkey.kISO:hover:after, .tapkey.kJIS:hover:after {
     background-color: #7BCB7B;
 }
+.combokey.kISO:hover:after, .combokey.kJIS:hover:after {
+    background-color: #93B8C4;
+}
+.direct.kISO:hover:after, .direct.kJIS:hover:after {
+    background-color: #CC6D6D;
+}
+.taptoggle.kISO:hover:after, .taptoggle.kJIS:hover:after {
+    background-color: #6CD9B4;
+}
+.setdefaultlayer.kISO:hover:after, .setdefaultlayer.kJIS:hover:after {
+    background-color: #D9BA9D;
+}
 
 .active.kISO:after, .active.kJIS:after {
     background-color: #BFBFBF;
@@ -248,6 +304,18 @@ body {
 .active.tapkey.kISO:after, .active.tapkey.kJIS:after {
     background-color: #6CB26C;
 }
+.active.combokey.kISO:after, .active.combokey.kJIS:after {
+    background-color: #82A2AC;
+}
+.active.direct.kISO:after, .active.direct.kJIS:after {
+    background-color: #B46060;
+}
+.active.taptoggle.kISO:after, .active.taptoggle.kJIS:after {
+    background-color: #5FBF9F;
+}
+.active.setdefaultlayer.kISO:after, .active.setdefaultlayer.kJIS:after {
+    background-color: #BFA38B;
+}
 
 .kISO:hover:before, .active.kISO:before, .kJIS:hover:before, .active.kJIS:before {
   border-radius: 7px 7px 0 7px;
@@ -259,8 +327,9 @@ body {
   border: 1px solid gray;
   padding: 0 10px;
   z-index: 10;
-  width: 400px;
+  width: 700px;
   height: 300px;
+  left: 10px;
   background-color: #eee;
 }
 .context-menu {
@@ -271,7 +340,7 @@ body {
   margin-top: -24px;
 }
 
-.context-shell:focus {
+.context-menu-shell:focus {
   outline: none;
 }
 
@@ -330,7 +399,10 @@ body {
     border-radius: 5px;
     z-index: 10;
     position: absolute;
+    width: 410px;
     color: #333;
+    top:-1px;
+    left:-1px;
 }
 
 .tooltiptext {
@@ -357,6 +429,22 @@ body {
   background-color: lavender;
 }
 
+.combokey, .combokey:after {
+  background-color: lightblue;
+}
+
+.direct, .direct:after {
+  background-color: lightcoral;
+}
+
+.taptoggle, .taptoggle:after {
+  background-color: aquamarine;
+}
+
+.setdefaultlayer, .setdefaultlayer:after {
+  background-color: peachpuff;
+}
+
 .split-panel {
   width: 50%;
   display: inline-block;
@@ -377,4 +465,39 @@ body {
 textarea {
   width: 100%;
   height: 400px;
+}
+
+.zonebox {
+    width: 700px;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+.zonebox select {
+    width: 150px;
+}
+.zone {
+    padding: 5px 5px 5px 1%;
+}
+.zone label {
+    width: 20%;
+    display: inline-block;
+}
+.subzone {
+    padding: 5px 5px 5px 6%;
+}
+.subzone label {
+    width: 15%;
+    display: inline-block;
+}
+.zone-hover, .zone-hover.kISO:after, .zone-hover.kJIS:after, .zone-hover.k175stepped:after {
+    background-color: #333;
+}
+.zonebox span {
+    float: right;
+}
+.zonebox h3 {
+    background-color: lightgray;
+    padding: 5px;
+    margin: 0;
 }

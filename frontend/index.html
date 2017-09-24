@@ -14,6 +14,9 @@
         Add Layer
       </button>
       <div v-for="(layer, index) in layers">
+        <h2 v-if="index === 0">
+          Default Layer (Layer 0)
+        </h2>
         <h2 v-if="index > 0">
           Layer {{index}}
         </h2>
@@ -29,8 +32,15 @@
 
     <script src="assets/js/keyboards/bananasplit/configuration.js"></script>
     <script src="assets/js/keyboards/lowwriter/configuration.js"></script>
+    <script src="assets/js/keyboards/roadkit/configuration.js"></script>
+    <script src="assets/js/eventHub.js"></script>
+    <script src="assets/js/keys.js"></script>
     <script src="assets/js/zoneSelectorComponent.js"></script>
     <script src="assets/js/keyboardSelectorComponent.js"></script>
+    <script src="assets/js/rawOutputComponent.js"></script>
+    <script src="assets/js/keyComponent.js"></script>
+    <script src="assets/js/contextMenuComponent.js"></script>
+    <script src="assets/js/layerComponent.js"></script>
     <script src="assets/js/keyboard.js"></script>
   </body>
 </html>

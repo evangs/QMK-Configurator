@@ -340,7 +340,8 @@ bananasplit.keySections = {
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k200'
+              shape: 'k200',
+              zone: 'Backspace'
             },
             {
               id: 'k2D',
@@ -355,7 +356,8 @@ bananasplit.keySections = {
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              zone: 'Backspace'
           },
           {
             id: 'k2D',
@@ -363,7 +365,8 @@ bananasplit.keySections = {
             type: 'normal',
             secondary: null,
             showMenu: false,
-            shape: 'k100'
+            shape: 'k100',
+            zone: 'Backspace'
           }
         ]
     ],
@@ -481,7 +484,8 @@ bananasplit.keySections = {
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k150'
+              shape: 'k150',
+              zone: 'Enter'
             }
         ],
         [
@@ -491,7 +495,8 @@ bananasplit.keySections = {
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'kISO'
+              shape: 'kISO',
+              zone: 'Enter'
             }
         ]
     ],
@@ -503,7 +508,8 @@ bananasplit.keySections = {
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k175'
+              shape: 'k175',
+              zone: 'Caps Lock'
             }
         ],
         [
@@ -513,7 +519,8 @@ bananasplit.keySections = {
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k175stepped'
+              shape: 'k175stepped',
+              zone: 'Caps Lock'
             },
         ]
     ],
@@ -615,7 +622,8 @@ bananasplit.keySections = {
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k225'
+              shape: 'k225',
+              zone: 'Enter'
             }
         ],
         [
@@ -625,7 +633,8 @@ bananasplit.keySections = {
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              zone: 'Enter'
             }
         ]
     ],
@@ -637,7 +646,8 @@ bananasplit.keySections = {
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k225'
+              shape: 'k225',
+              zone: 'Left Shift'
             },
             {
               id: 'k31',
@@ -652,7 +662,8 @@ bananasplit.keySections = {
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k125'
+              shape: 'k125',
+              zone: 'Left Shift'
             },
             {
               id: 'k31',
@@ -660,7 +671,8 @@ bananasplit.keySections = {
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              zone: 'Left Shift'
             }
         ]
     ],
@@ -746,7 +758,8 @@ bananasplit.keySections = {
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              zone: 'Right Shift'
             },
             {
               id: 'k3C',
@@ -754,7 +767,8 @@ bananasplit.keySections = {
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k275'
+              shape: 'k275',
+              zone: 'Right Shift'
             },
             {
               id: 'k3D',
@@ -769,7 +783,8 @@ bananasplit.keySections = {
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              zone: 'Right Shift'
             },
             {
               id: 'k3C',
@@ -777,7 +792,8 @@ bananasplit.keySections = {
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k175'
+              shape: 'k175',
+              zone: 'Right Shift'
             },
             {
               id: 'k3D',
@@ -785,7 +801,8 @@ bananasplit.keySections = {
               type: 'momentary',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              zone: 'Right Shift'
             }
         ],
         [
@@ -795,7 +812,8 @@ bananasplit.keySections = {
               type: 'tapkey',
               secondary: 'RSFT',
               showMenu: false,
-              shape: 'k175'
+              shape: 'k175',
+              zone: 'Right Shift'
             },
             {
               id: 'k3C',
@@ -803,7 +821,8 @@ bananasplit.keySections = {
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              zone: 'Right Shift'
             },
             {
               id: 'k3D',
@@ -811,7 +830,8 @@ bananasplit.keySections = {
               type: 'momentary',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              zone: 'Right Shift'
             }
         ]
     ],
@@ -823,7 +843,8 @@ bananasplit.keySections = {
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k125'
+              shape: 'k125',
+              zone: 'Bottom Row'
             },
             {
               id: 'k41',
@@ -831,7 +852,8 @@ bananasplit.keySections = {
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k125'
+              shape: 'k125',
+              zone: 'Bottom Row'
             },
             {
               id: 'k42',
@@ -839,7 +861,8 @@ bananasplit.keySections = {
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k125'
+              shape: 'k125',
+              zone: 'Bottom Row'
             }
         ],
         [
@@ -849,7 +872,8 @@ bananasplit.keySections = {
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k150'
+              shape: 'k150',
+              zone: 'Bottom Row'
             },
             {
               id: 'k41',
@@ -857,7 +881,8 @@ bananasplit.keySections = {
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              zone: 'Bottom Row'
             },
             {
               id: 'k42',
@@ -865,7 +890,8 @@ bananasplit.keySections = {
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k150'
+              shape: 'k150',
+              zone: 'Bottom Row'
             }
         ]
     ],
@@ -883,7 +909,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k625'
+                  shape: 'k625',
+                  zone: 'Space'
               },
               {
                 id: 'k46',
@@ -898,7 +925,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k275'
+                  shape: 'k275',
+                  zone: 'Space'
                 },
                 {
                   id: 'k45',
@@ -906,7 +934,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k125'
+                  shape: 'k125',
+                  zone: 'Space'
                 },
                 {
                   id: 'k46',
@@ -914,7 +943,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k225'
+                  shape: 'k225',
+                  zone: 'Space'
                 }
             ],
             [
@@ -924,7 +954,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k225'
+                  shape: 'k225',
+                  zone: 'Space'
                 },
                 {
                   id: 'k45',
@@ -932,7 +963,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k125'
+                  shape: 'k125',
+                  zone: 'Space'
                 },
                 {
                   id: 'k46',
@@ -940,7 +972,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k275'
+                  shape: 'k275',
+                  zone: 'Space'
                 }
             ]
         ],
@@ -957,7 +990,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k700'
+                  shape: 'k700',
+                  zone: 'Space'
               },
               {
                 id: 'k46',
@@ -972,7 +1006,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k275'
+                  shape: 'k275',
+                  zone: 'Space'
                 },
                 {
                   id: 'k45',
@@ -980,7 +1015,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k150'
+                  shape: 'k150',
+                  zone: 'Space'
                 },
                 {
                   id: 'k46',
@@ -988,7 +1024,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k275'
+                  shape: 'k275',
+                  zone: 'Space'
                 }
             ]
         ]
@@ -1002,7 +1039,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k125'
+                  shape: 'k125',
+                  zone: 'Bottom Right'
                 },
                 {
                   id: 'k49',
@@ -1010,7 +1048,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k125'
+                  shape: 'k125',
+                  zone: 'Bottom Right'
                 },
                 {
                   id: 'k4A',
@@ -1023,7 +1062,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k125'
+                  shape: 'k125',
+                  zone: 'Bottom Right'
                 },
                 {
                   id: 'k4C',
@@ -1031,7 +1071,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k125'
+                  shape: 'k125',
+                  zone: 'Bottom Right'
                 }
             ],
             [
@@ -1041,7 +1082,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k100'
+                  shape: 'k100',
+                  zone: 'Bottom Right'
                 },
                 {
                   id: 'k49',
@@ -1049,7 +1091,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k100'
+                  shape: 'k100',
+                  zone: 'Bottom Right'
                 },
                 {
                   id: 'k4A',
@@ -1057,7 +1100,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k100'
+                  shape: 'k100',
+                  zone: 'Bottom Right'
                 },
                 {
                   id: 'k4B',
@@ -1065,7 +1109,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k100'
+                  shape: 'k100',
+                  zone: 'Bottom Right'
                 },
                 {
                   id: 'k4C',
@@ -1073,7 +1118,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k100'
+                  shape: 'k100',
+                  zone: 'Bottom Right'
                 }
             ]
         ],
@@ -1090,7 +1136,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k150'
+                  shape: 'k150',
+                  zone: 'Bottom Right'
                 },
                 {
                   id: 'k4A',
@@ -1103,7 +1150,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k100'
+                  shape: 'k100',
+                  zone: 'Bottom Right'
                 },
                 {
                   id: 'k4C',
@@ -1111,7 +1159,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k150'
+                  shape: 'k150',
+                  zone: 'Bottom Right'
                 }
             ],
             [
@@ -1126,7 +1175,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k100'
+                  shape: 'k100',
+                  zone: 'Bottom Right'
                 },
                 {
                   id: 'k4A',
@@ -1134,7 +1184,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k100'
+                  shape: 'k100',
+                  zone: 'Bottom Right'
                 },
                 {
                   id: 'k4B',
@@ -1142,7 +1193,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k100'
+                  shape: 'k100',
+                  zone: 'Bottom Right'
                 },
                 {
                   id: 'k4C',
@@ -1150,7 +1202,8 @@ bananasplit.keySections = {
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
-                  shape: 'k100'
+                  shape: 'k100',
+                  zone: 'Bottom Right'
                 }
             ]
         ]

@@ -1,0 +1,1 @@
+var eventHub = new Vue();
