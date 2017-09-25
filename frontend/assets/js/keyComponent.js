@@ -108,6 +108,9 @@ Vue.component('key-component', {
       	classes.push('active');
       }
       classes.push(this.keyInfo.type);
+      if (this.keyInfo.spacer) {
+          classes.push(this.keyInfo.spacer);
+      }
       if (this.activeZone && this.activeZone === this.keyInfo.zone) {
         classes.push('zone-hover');
       }

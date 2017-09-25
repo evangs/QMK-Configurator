@@ -501,3 +501,23 @@ textarea {
     padding: 5px;
     margin: 0;
 }
+
+.s025 {
+    margin-right: 12.5px;
+}
+
+.s050 {
+    margin-right: 25px;
+}
+
+.s100 {
+    margin-right: 50px;
+}
+
+.s125 {
+    margin-right: 62.5px;
+}
+
+.vs050 {
+    margin-top: 25px;
+}

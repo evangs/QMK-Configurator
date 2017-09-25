@@ -14,7 +14,7 @@ lowwriter.config = {
     description: 'LowWriter MiniVan 40%',
     matrixRowPins: ['D7', 'B5', 'F7', 'D4'],
     matrixColumnPins: ['D2', 'D3', 'D5', 'D6', 'B4', 'B6', 'F6', 'F5', 'F4', 'F1', 'F0', 'B3'],
-    diodeDirection: 'ROW2COL',
+    diodeDirection: 'COL2ROW',
     matrixHasGhost: false,
     backlightLevels: 1,
     backlightPin: 'B7',

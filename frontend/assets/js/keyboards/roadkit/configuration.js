@@ -14,7 +14,7 @@ roadkit.config = {
     description: 'USB C Roadkit',
     matrixRowPins: ['F0', 'F5', 'D7', 'B4'],
     matrixColumnPins: ['F1', 'F4', 'D6', 'D4'],
-    diodeDirection: 'ROW2COL',
+    diodeDirection: 'COL2ROW',
     matrixHasGhost: false,
     backlightLevels: 1,
     backlightPin: 'B5',
