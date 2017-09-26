@@ -352,7 +352,7 @@ bananasplit.keySections = {
         [
             {
               id: 'k0D',
-              value: 'PRINT',
+              value: 'PSCR',
               type: 'normal',
               secondary: null,
               showMenu: false,
@@ -361,7 +361,7 @@ bananasplit.keySections = {
           },
           {
             id: 'k2D',
-            value: 'PAUSE',
+            value: 'PAUS',
             type: 'normal',
             secondary: null,
             showMenu: false,
@@ -629,7 +629,7 @@ bananasplit.keySections = {
         [
             {
               id: 'k2C',
-              value: 'NONUS_HASH',
+              value: 'NUHS',
               type: 'normal',
               secondary: null,
               showMenu: false,
@@ -667,7 +667,7 @@ bananasplit.keySections = {
             },
             {
               id: 'k31',
-              value: 'NONUS_BSLASH',
+              value: 'NUBS',
               type: 'normal',
               secondary: null,
               showMenu: false,
@@ -930,7 +930,7 @@ bananasplit.keySections = {
                 },
                 {
                   id: 'k45',
-                  value: 'LED',
+                  value: 'BL_TOGG',
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
@@ -959,7 +959,7 @@ bananasplit.keySections = {
                 },
                 {
                   id: 'k45',
-                  value: 'LED',
+                  value: 'BL_TOGG',
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
@@ -1011,7 +1011,7 @@ bananasplit.keySections = {
                 },
                 {
                   id: 'k45',
-                  value: 'LED',
+                  value: 'BL_TOGG',
                   type: 'normal',
                   secondary: null,
                   showMenu: false,

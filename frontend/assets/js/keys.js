@@ -221,17 +221,16 @@ var KEYS = [
   },
   {
       label: 'Media',
-    cssClass: 'large-context-key',
     updateType: 'primary',
     visible: ['normal', 'tapkey', 'combokey'],
     keys: [
-      {value: 'MSTP', display: 'Stop'},
-      {value: 'MPLY', display: 'Play'},
-      {value: 'MPRV', display: 'Prev'},
-      {value: 'MNXT', display: 'Next'},
-      {value: 'MUTE', display: 'Mute'},
-      {value: 'VOLD', display: 'Vol -'},
-      {value: 'VOLU', display: 'Vol +'}
+      {value: 'MSTP', display: '<i class="fa fa-stop" aria-hidden="true"></i>'},
+      {value: 'MPLY', display: '<i class="fa fa-play" aria-hidden="true"></i>'},
+      {value: 'MPRV', display: '<i class="fa fa-fast-backward" aria-hidden="true"></i>'},
+      {value: 'MNXT', display: '<i class="fa fa-fast-forward" aria-hidden="true"></i>'},
+      {value: 'MUTE', display: '<i class="fa fa-volume-off" aria-hidden="true"></i>'},
+      {value: 'VOLD', display: '<i class="fa fa-volume-down" aria-hidden="true"></i>'},
+      {value: 'VOLU', display: '<i class="fa fa-volume-up" aria-hidden="true"></i>'}
     ]
   },
   {

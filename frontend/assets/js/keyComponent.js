@@ -84,13 +84,10 @@ Vue.component('key-component', {
   },
   methods: {
     hoverZone: function(zone) {
-      console.log(zone);
       this.activeZone = zone;
     },
     updateKey: function(newVal) {
-      // show context menu and allow updating of key values
       this.keyInfo.value = newVal;
-      //this.toggleMenu();
     },
     updateKeyType: function(newType) {
     	this.keyInfo.type = newType;

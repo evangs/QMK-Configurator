@@ -1,6 +1,40 @@
 Vue.component('context-menu', {
   props: ['keyVal'],
-  template: '<div tabindex="-1" :id="\'context\' + keyVal.id" class="context-menu-shell" v-on:keyup.esc="closeMenu"><button class="close-button" v-on:click="closeMenu">✕</button><div class="context-menu"><div class="context-panel keytype"><span v-for="keyset in getKeyTypeKeysets()"><h3>{{keyset.label}}</h3><div v-for="key in keyset.keys" v-on:click="updateValue(key.value, keyset.updateType)" :class="setClasses(key.value, keyset.cssClass)">{{key.display}}<span v-if="key.tooltip" class="tooltiptext">{{key.tooltip}}</span></div></span></div><div class="context-panel" :class="isSplitPanel()"><h3 class="section-header">Primary</h3><span v-for="keyset in getPrimaryKeysets()"><h3 v-if="keyset.label">{{keyset.label}}</h3><div v-for="key in keyset.keys" v-on:click="updateValue(key.value, keyset.updateType)" :class="setClasses(key.value, keyset.cssClass)">{{key.display}}<span v-if="key.tooltip" class="tooltiptext">{{key.tooltip}}</span></div></span></div><div class="context-panel split-panel" v-if="getSecondaryKeysets().length > 0"><h3 class="section-header">Secondary</h3><span v-for="keyset in getSecondaryKeysets()"><h3>{{keyset.label}}</h3><div v-for="key in keyset.keys" v-on:click="updateValue(key.value, keyset.updateType)" :class="setClasses(key.value, keyset.cssClass)">{{key.display}}<span v-if="key.tooltip" class="tooltiptext">{{key.tooltip}}</span></div></span></div></div></div>',
+  template: `
+  <div tabindex="-1" :id="\'context\' + keyVal.id" class="context-menu-shell" v-on:keyup.esc="closeMenu">
+    <button class="close-button" v-on:click="closeMenu">✕</button>
+    <div class="context-menu">
+        <div class="context-panel keytype">
+            <span v-for="keyset in getKeyTypeKeysets()">
+                <h3>{{keyset.label}}</h3>
+                <div v-for="key in keyset.keys" v-on:click="updateValue(key.value, keyset.updateType)" :class="setClasses(key.value, keyset.cssClass)">
+                    <span v-html="key.display"></span>
+                    <span v-if="key.tooltip" class="tooltiptext">{{key.tooltip}}</span>
+                </div>
+            </span>
+        </div>
+        <div class="context-panel" :class="isSplitPanel()">
+            <h3 class="section-header">Primary</h3>
+            <span v-for="keyset in getPrimaryKeysets()">
+                <h3 v-if="keyset.label">{{keyset.label}}</h3>
+                <div v-for="key in keyset.keys" v-on:click="updateValue(key.value, keyset.updateType)" :class="setClasses(key.value, keyset.cssClass)">
+                    <span v-html="key.display"></span>
+                    <span v-if="key.tooltip" class="tooltiptext">{{key.tooltip}}</span>
+                </div>
+            </span>
+        </div>
+        <div class="context-panel split-panel" v-if="getSecondaryKeysets().length > 0">
+            <h3 class="section-header">Secondary</h3>
+            <span v-for="keyset in getSecondaryKeysets()">
+                <h3>{{keyset.label}}</h3>
+                <div v-for="key in keyset.keys" v-on:click="updateValue(key.value, keyset.updateType)" :class="setClasses(key.value, keyset.cssClass)">
+                    <span v-html="key.display"></span>
+                    <span v-if="key.tooltip" class="tooltiptext">{{key.tooltip}}</span>
+                </div>
+            </span>
+        </div>
+    </div>
+  </div>`,
   data: function() {
     return {
       allKeys: KEYS,
@@ -13,10 +47,6 @@ Vue.component('context-menu', {
         var eid = 'context' + this.keyVal.id;
       	var element = document.getElementById(eid);
         element.focus();
-        // element.addEventListener('blur', function(e) {
-        // 	component.$emit('updatemenu', component.keyVal);
-        //   //component.keyVal.showMenu = false;
-        // }, true);
     },
   	getUpdateType: function(updateType) {
     	if (typeof updateType !== 'string') {

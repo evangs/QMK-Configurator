@@ -6,30 +6,37 @@
     <script src="assets/js/vue.min.js"></script> -->
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/app.css">
+    <script src="https://use.fontawesome.com/b5e3762aca.js"></script>
   </head>
   <body>
 
     <div id="app">
-        <keyboard-selector-component v-on:keyboard="onKeyboardChange" :keyboards="keyboards" :active-keyboard="activeKeyboard"></keyboard-selector-component>
+        <keyboard-selector-component v-model="activeKeyboard" :keyboards="keyboards"></keyboard-selector-component>
         <zone-selector-component v-on:zone="onZoneChange" :zones="zones"></zone-selector-component>
-      <button v-on:click="addLayer()">
-        Add Layer
-      </button>
-      <div v-for="(layer, index) in layers">
-        <h2 v-if="index === 0">
-          Default Layer (Layer 0)
-        </h2>
-        <h2 v-if="index > 0">
-          Layer {{index}}
-        </h2>
-        <button v-if="index > 0" v-on:click="deleteLayer(index)">
-          Delete Layer
+        <saved-layout-selector-component v-model="activeKeyboard" :keyboards="keyboards" :saved-layouts="savedLayouts" v-on:delete-layout="deleteSavedLayout"></saved-layout-selector-component>
+
+        <label>Layout Name</label>
+        <input type="text" v-model="layoutName" />
+        <button :disabled="!layoutName.trim()" v-on:click="saveLayout()" class="btn-primary">
+            <i class="fa fa-save" aria-hidden="true"></i> Save Layout
         </button>
-        <layer :key-info="layer">
-        </layer>
-      </div>
-      <raw-output :layer-data="layers" v-on:updatelayerdata="updateLayers"></raw-output>
-      <button v-on:click="buildFirmware()">Build Firmware</button>
+
+        <button v-on:click="addLayer()" class="btn-primary">
+            <i class="fa fa-plus" aria-hidden="true"></i> Add Layer
+        </button>
+
+        <div v-for="(layer, index) in layers">
+            <h2 v-if="index === 0">Default Layer (Layer 0)</h2>
+            <h2 v-if="index > 0">Layer {{index}}</h2>
+            <button v-if="index > 0" v-on:click="deleteLayer(index)" class="btn-warning">
+                <i class="fa fa-trash-o" aria-hidden="true"></i> Delete Layer
+            </button>
+            <layer :key-info="layer"></layer>
+        </div>
+
+        <raw-output :layer-data="layers" v-on:updatelayerdata="updateLayers"></raw-output>
+
+        <button :disabled="buildInProgress" v-on:click="buildFirmware()" class="btn-primary"><i class="fa fa-download" aria-hidden="true"></i> Build Firmware</button>
     </div>
 
     <script src="assets/js/keyboards/bananasplit/configuration.js"></script>
@@ -40,6 +47,7 @@
     <script src="assets/js/keys.js"></script>
     <script src="assets/js/zoneSelectorComponent.js"></script>
     <script src="assets/js/keyboardSelectorComponent.js"></script>
+    <script src="assets/js/savedLayoutSelectorComponent.js"></script>
     <script src="assets/js/rawOutputComponent.js"></script>
     <script src="assets/js/keyComponent.js"></script>
     <script src="assets/js/contextMenuComponent.js"></script>
