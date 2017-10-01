@@ -12,6 +12,7 @@
 
     <div id="app">
         <keyboard-selector-component v-model="activeKeyboard" :keyboards="keyboards"></keyboard-selector-component>
+        <advanced-settings-component :active-keyboard="activeKeyboard"></advanced-settings-component>
         <zone-selector-component v-on:zone="onZoneChange" :zones="zones"></zone-selector-component>
         <saved-layout-selector-component v-model="activeKeyboard" :keyboards="keyboards" :saved-layouts="savedLayouts" v-on:delete-layout="deleteSavedLayout"></saved-layout-selector-component>
 
@@ -45,6 +46,8 @@
     <script src="assets/js/keyboards/fullsize/configuration.js"></script>
     <script src="assets/js/eventHub.js"></script>
     <script src="assets/js/keys.js"></script>
+    <script src="assets/js/toggleComponent.js"></script>
+    <script src="assets/js/advancedSettingsComponent.js"></script>
     <script src="assets/js/zoneSelectorComponent.js"></script>
     <script src="assets/js/keyboardSelectorComponent.js"></script>
     <script src="assets/js/savedLayoutSelectorComponent.js"></script>

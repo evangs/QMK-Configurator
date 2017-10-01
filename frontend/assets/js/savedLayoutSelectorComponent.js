@@ -21,6 +21,7 @@ Vue.component('saved-layout-selector-component', {
     	var keyboard = this.keyboards.find(function(keeb) {
       	return keeb.id === layout.id;
       });
+      keyboard.config = layout.config;
       keyboard.zones = layout.zones;
       keyboard.keySections = layout.keySections;
       this.$emit('input', keyboard);

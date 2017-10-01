@@ -446,7 +446,7 @@ body {
 }
 
 .split-panel {
-  width: 50%;
+  width: 49%;
   display: inline-block;
   vertical-align: top;
 }
@@ -583,12 +583,34 @@ button[disabled], button[disabled]:hover {
   background-color: #bc4543;
 }
 
-input[type="text"] {
+input[type="text"], input[type="number"] {
     border-radius: 5px;
     border: 1px solid lightgray;
     height: 20px;
 }
-input[type="text"]:focus {
+input[type="text"]:focus, input[type="number"]:focus {
     outline: none;
     border-color: #428bca;
+}
+
+.form-control {
+    padding: 5px 5px 5px 1%;
+}
+
+.form-control label {
+    width: 20%;
+    display: inline-block;
+}
+
+.toggle-control {
+    width: 16px;
+    height: 16px;
+    border-radius: 10px;
+    border: 1px solid #428bca;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.toggle-control.active {
+    background-color: #428bca;
 }
