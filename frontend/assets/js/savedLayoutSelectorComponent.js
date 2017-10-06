@@ -1,7 +1,7 @@
 Vue.component('saved-layout-selector-component', {
   props: ['keyboards', 'savedLayouts', 'value'],
   template: `
-  <div class="zonebox" v-if="savedLayouts.length > 0">
+  <div class="zonebox" v-if="Object.keys(savedLayouts).length > 0">
     <h3 v-on:click="visible = !visible">Saved Layouts <span v-if="visible"><i class="fa fa-chevron-down" aria-hidden="true"></i></span><span v-if="!visible"><i class="fa fa-chevron-up" aria-hidden="true"></i></span></h3>
     <ul class="saved-layouts" v-if="visible">
     	<li v-for="layout in savedLayouts">
@@ -21,13 +21,13 @@ Vue.component('saved-layout-selector-component', {
     	var keyboard = this.keyboards.find(function(keeb) {
       	return keeb.id === layout.id;
       });
-      keyboard.config = layout.config;
-      keyboard.zones = layout.zones;
-      keyboard.keySections = layout.keySections;
+      keyboard.config = JSON.parse(JSON.stringify(layout.config));
+      keyboard.zones = JSON.parse(JSON.stringify(layout.zones));
+      keyboard.keySections = JSON.parse(JSON.stringify(layout.keySections));
       this.$emit('input', keyboard);
     },
     deleteLayout: function (layout) {
-      this.$emit('delete-layout', layout.layoutName + layout.timestamp);
+      this.$emit('delete-layout', layout.layoutName);
     }
   },
 });

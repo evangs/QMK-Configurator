@@ -614,3 +614,7 @@ input[type="text"]:focus, input[type="number"]:focus {
 .toggle-control.active {
     background-color: #428bca;
 }
+
+.keyboard-key span {
+    display: block;
+}

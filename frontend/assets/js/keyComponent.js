@@ -1,78 +1,13 @@
 Vue.component('key-component', {
   props: ['keyInfo'],
-  template: '<div v-if="displayKey()" class="inline-block"><div class="keyboard-key" :class="setClasses()" v-on:click="toggleMenu">{{generateKeyText()}}</div><context-menu v-if="keyInfo.showMenu" v-on:closemenu="toggleMenu" v-bind:key-val="keyInfo" v-on:updatekey="updateKey" v-on:updatekeytype="updateKeyType" v-on:updatesecondary="updateSecondary"></context-menu></div>',
+  template: `
+  <div v-if="displayKey()" class="inline-block">
+    <div class="keyboard-key" :class="setClasses()" v-on:click="toggleMenu" v-html="generateKeyText()"></div>
+    <context-menu v-if="keyInfo.showMenu" v-on:closemenu="toggleMenu" v-bind:key-val="keyInfo" v-on:updatekey="updateKey" v-on:updatekeytype="updateKeyType" v-on:updatesecondary="updateSecondary"></context-menu>
+  </div>`,
   data: function() {
     return {
-      keyDisplayMap: {
-      	'BSPC': '⌫',
-        'DEL': '⌦',
-        'TAB': '↹',
-        'ESC': '⎋',
-        'ENT': '↵',
-        'LSFT': '⇧',
-        'RSFT': '⇧',
-        'CAPS': '⇪',
-        'UP': '↑',
-        'DOWN': '↓',
-        'LEFT': '←',
-        'RIGHT': '→',
-        'LALT': '⎇',
-        'RALT': '⎇',
-        'LCTL': '⌃',
-        'RCTL': '⌃',
-        'LGUI': '⌘',
-        'RGUI': '⌘',
-        'APP': '▤',
-        'SPC': ' ',
-        'SCLN': ';',
-        'QUOT': '\'',
-        'LBRC': '[',
-        'RBRC': ']',
-        'MINS': '-',
-        'EQL': '=',
-        'BSLS': '\\',
-        'COMM': ',',
-        'DOT': '.',
-        'SLSH': '/',
-        'BL_TOGG': 'Led Toggle',
-        'NO': 'No Action',
-        'RESET': 'Reset',
-        'NUM': 'Num Lock',
-        'GRV': '`',
-        'NUHS': '#',
-        'NUBS': '|',
-        'TILD': '~',
-        'EXLM': '!',
-        'AT': '@',
-        'HASH': '#',
-        'DLR': '$',
-        'PERC': '%',
-        'CIRC': '^',
-        'AMPR': '&',
-        'ASTR': '*',
-        'LPRN': '(',
-        'RPRN': ')',
-        'UNDS': '_',
-        'PLUS': '+',
-        'LCBR': '{',
-        'RCBR': '}',
-        'LT': '<',
-        'GT': '>',
-        'COLN': ':',
-        'DQT': '"',
-        'PIPE': '|',
-        'QUES': '?',
-        '1SFT': '!',
-        '2SFT': '@',
-        '3SFT': '#',
-        '4SFT': '$',
-        '5SFT': '%',
-        '6SFT': '^',
-        '7SFT': '&',
-        '8SFT': '*',
-        '9SFT': '(',
-        '0SFT': ')'
-      },
+      keyDisplayMap: KEY_DISPLAY_MAP,
       activeZone: undefined
     }
   },
@@ -140,7 +75,7 @@ Vue.component('key-component', {
         case 'modkey':
           return this.translateDualValue(this.keyInfo.value, this.keyInfo.secondary) || ((this.translateValue(this.keyInfo.value) || '') + ' + ' + (this.translateValue(this.keyInfo.secondary) || ''));
         case 'tapkey':
-          return 'Tap: ' + (this.translateValue(this.keyInfo.value) || '') + ' Hold: ' + (this.translateValue(this.keyInfo.secondary) || '');
+          return '<span>Tap: ' + (this.translateValue(this.keyInfo.value) || '') + '</span><span>Hold: ' + (this.translateValue(this.keyInfo.secondary) || '') + '</span>';
         default:
           return this.translateValue(this.keyInfo.value);
       }

@@ -225,7 +225,7 @@ bananasplit.zones = [
 ]
 
 // ui keymap
-bananasplit.keySections = {
+bananasplit.keySections = [{
     row1: [
       {
         id: 'k00',
@@ -1208,19 +1208,26 @@ bananasplit.keySections = {
             ]
         ]
     ]
-};
+}];
 
 bananasplit.keymap = function() {
     var keymap = [];
-    var ks = bananasplit.keySections;
+    var layer = [];
+    var ks;
     var zones = bananasplit.zones;
     var bottomRow = zones[5].value;
+    var i;
 
-    keymap.push(ks.row1.concat(ks.backspace[zones[0].value]));
-    keymap.push(ks.row2.concat(ks.row2pipe[zones[1].value]));
-    keymap.push(ks.caps[zones[2].value].concat(ks.row3).concat(ks.enter[zones[1].value]));
-    keymap.push(ks.leftShift[zones[3].value].concat(ks.row4).concat(ks.rightShift[zones[4].value]));
-    keymap.push(ks.row5[bottomRow].concat(ks.space[bottomRow][zones[5].subZones[0][bottomRow].value]).concat(ks.bottomRight[bottomRow][zones[5].subZones[1][bottomRow].value]));
+    for (i in bananasplit.keySections) {
+        ks = bananasplit.keySections[i];
+        layer = new Array();
+        layer.push(ks.row1.concat(ks.backspace[zones[0].value]));
+        layer.push(ks.row2.concat(ks.row2pipe[zones[1].value]));
+        layer.push(ks.caps[zones[2].value].concat(ks.row3).concat(ks.enter[zones[1].value]));
+        layer.push(ks.leftShift[zones[3].value].concat(ks.row4).concat(ks.rightShift[zones[4].value]));
+        layer.push(ks.row5[bottomRow].concat(ks.space[bottomRow][zones[5].subZones[0][bottomRow].value]).concat(ks.bottomRight[bottomRow][zones[5].subZones[1][bottomRow].value]));
+        keymap.push(layer);
+    }
 
-    return [keymap];
+    return keymap;
 };
