@@ -105,7 +105,7 @@ new Vue({
     },
     deleteSavedLayout: function(layoutName) {
     	if (confirm('Are you sure you want to delete? This action cannot be undone.')) {
-      	delete this.savedLayouts[layoutName];
+      	Vue.delete(this.savedLayouts, layoutName);
         localStorage.setItem('savedKeyboardLayouts', JSON.stringify(this.savedLayouts));
       }
     }
