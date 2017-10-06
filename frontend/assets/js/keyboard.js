@@ -13,6 +13,10 @@ new Vue({
   },
   created: function() {
   	this.savedLayouts = JSON.parse(localStorage.getItem('savedKeyboardLayouts')) || {};
+    if (Array.isArray(this.savedLayouts)) {
+      localStorage.setItem('savedKeyboardLayouts', JSON.stringify({}));
+      this.savedLayouts = {};
+    }
   },
   methods: {
     clearKey: function(key) {
