@@ -241,6 +241,7 @@ var KEYS = [
     keys: [
       {value: 'TRNS', display: 'Trns'},
       {value: 'BL_TOGG', display: 'Toggle Led'},
+      {value: 'BL_STEP', display: 'Step Led'},
       {value: 'RESET', display: 'Reset'},
       {value: 'NO', display: 'No Action'}
     ]
@@ -350,6 +351,7 @@ var KEY_DISPLAY_MAP = {
   'DOT': '.',
   'SLSH': '/',
   'BL_TOGG': 'Led Toggle',
+  'BL_STEP': 'LED Step',
   'NO': 'No Action',
   'RESET': 'Reset',
   'NUM': 'Num Lock',
