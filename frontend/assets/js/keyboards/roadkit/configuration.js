@@ -913,7 +913,7 @@ roadkit.keySections = [
                 {
                   id: 'k31',
                   value: 'NO',
-                  type: 'toggle',
+                  type: 'normal',
                   secondary: null,
                   showMenu: false,
                   shape: 'k100'
