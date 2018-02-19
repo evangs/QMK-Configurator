@@ -143,7 +143,7 @@ def buildConfig(config):
         template += '#define NO_ACTION_TAPPING\n'
 
     if not config.get('actionOneShotEnabled'):
-        template += '#define NO_ACTION_ONESHOT'
+        template += '#define NO_ACTION_ONESHOT\n'
 
     if not config.get('actionMacroEnabled'):
         template += '#define NO_ACTION_MACRO\n'
@@ -186,7 +186,7 @@ def buildRules(rules):
         template += 'NKRO_ENABLE = yes\n'
 
     if rules.get('backlightEnabled'):
-        template += 'BACKLIGHT_ENABLE = yes'
+        template += 'BACKLIGHT_ENABLE = yes\n'
 
     return template
 

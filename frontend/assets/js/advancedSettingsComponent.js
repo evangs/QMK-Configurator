@@ -52,6 +52,38 @@ Vue.component('advanced-settings-component', {
             <label>Action Function:</label>
             <toggle v-model="activeKeyboard.config.actionFunctionEnabled"></toggle>
         </div>
+        <div class="form-control">
+            <label>Bootmagic:</label>
+            <toggle v-model="activeKeyboard.rules.bootmagicEnabled"></toggle>
+        </div>
+        <div class="form-control">
+            <label>Mouse Key:</label>
+            <toggle v-model="activeKeyboard.rules.mousekeyEnabled"></toggle>
+        </div>
+        <div class="form-control">
+            <label>Extra Key:</label>
+            <toggle v-model="activeKeyboard.rules.extrakeyEnabled"></toggle>
+        </div>
+        <div class="form-control">
+            <label>Console:</label>
+            <toggle v-model="activeKeyboard.rules.consoleEnabled"></toggle>
+        </div>
+        <div class="form-control">
+            <label>Command:</label>
+            <toggle v-model="activeKeyboard.rules.commandEnabled"></toggle>
+        </div>
+        <div class="form-control">
+            <label>Sleep LED:</label>
+            <toggle v-model="activeKeyboard.rules.sleepLedEnabled"></toggle>
+        </div>
+        <div class="form-control">
+            <label>NKRO:</label>
+            <toggle v-model="activeKeyboard.rules.nkroEnabled"></toggle>
+        </div>
+        <div class="form-control">
+            <label>Backlight:</label>
+            <toggle v-model="activeKeyboard.rules.backlightEnabled"></toggle>
+        </div>
     </div>
   </div>`,
   data: function() {
