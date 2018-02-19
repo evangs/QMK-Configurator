@@ -224,7 +224,9 @@ def prepKeyForTemplate(key):
     EXEMPT_CODES = {
         'RESET': True,
         'BL_TOGG': True,
-        'BL_STEP': True
+        'BL_STEP': True,
+        'BL_INC': True,
+        'BL_DEC': True
     }
 
     if key_type == 'normal':

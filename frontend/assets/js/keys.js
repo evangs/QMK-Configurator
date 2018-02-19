@@ -246,6 +246,8 @@ var KEYS = [
     keys: [
       {value: 'TRNS', display: 'Trns'},
       {value: 'BL_STEP', display: 'Toggle Led'},
+      {value: 'BL_INC', display: 'LED +', tooltip: 'Increase LED Brightness'},
+      {value: 'BL_DEC', display: 'LED -', tooltip: 'Decrease LED Brightness'},
       {value: 'RESET', display: 'Reset'},
       {value: 'NO', display: 'No Action'}
     ]
