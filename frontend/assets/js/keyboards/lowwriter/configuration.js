@@ -833,7 +833,7 @@ lowwriter.keySections = [
             },
             {
               id: 'k22',
-              value: 'BL_TOGG',
+              value: 'BL_STEP',
               type: 'normal',
               secondary: null,
               showMenu: false,

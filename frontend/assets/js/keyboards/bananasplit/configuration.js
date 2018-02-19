@@ -930,7 +930,7 @@ bananasplit.keySections = [{
                 },
                 {
                   id: 'k45',
-                  value: 'BL_TOGG',
+                  value: 'BL_STEP',
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
@@ -959,7 +959,7 @@ bananasplit.keySections = [{
                 },
                 {
                   id: 'k45',
-                  value: 'BL_TOGG',
+                  value: 'BL_STEP',
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
@@ -1011,7 +1011,7 @@ bananasplit.keySections = [{
                 },
                 {
                   id: 'k45',
-                  value: 'BL_TOGG',
+                  value: 'BL_STEP',
                   type: 'normal',
                   secondary: null,
                   showMenu: false,

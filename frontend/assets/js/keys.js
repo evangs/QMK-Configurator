@@ -109,7 +109,10 @@ var KEYS = [
       {value: 'LEFT', display: '←'},
       {value: 'RIGHT', display: '→'},
       {value: 'NUHS', display: '#', tooltip: 'ISO Hash'},
-      {value: 'NUBS', display: '|', tooltip: 'ISO Back Slash'}
+      {value: 'NUBS', display: '|', tooltip: 'ISO Back Slash'},
+      {value: 'INT1', display: 'RO', tooltip: 'JIS \\ and |'},
+      {value: 'INT2', display: 'KANA', tooltip: 'JIS Katakana/Hiragana'},
+      {value: 'INT3', display: 'JYEN', tooltip: 'JIS ¥'}
     ]
   },
   {
@@ -216,7 +219,9 @@ var KEYS = [
       {value: 'RGUI', display: 'R⌘'},
       {value: 'LSFT', display: 'L⇧'},
       {value: 'RSFT', display: 'R⇧'},
-      {value: 'APP', display: '▤'}
+      {value: 'APP', display: '▤'},
+      {value: 'HYPR', display: 'HYPER', tooltip: 'Hold Left Control, Shift, Alt and GUI'},
+      {value: 'MEH', display: 'MEH', tooltip: 'Hold Left Control, Shift and Alt'}
     ]
   },
   {
@@ -240,8 +245,7 @@ var KEYS = [
     visible: ['normal'],
     keys: [
       {value: 'TRNS', display: 'Trns'},
-      {value: 'BL_TOGG', display: 'Toggle Led'},
-      {value: 'BL_STEP', display: 'Step Led'},
+      {value: 'BL_STEP', display: 'Toggle Led'},
       {value: 'RESET', display: 'Reset'},
       {value: 'NO', display: 'No Action'}
     ]

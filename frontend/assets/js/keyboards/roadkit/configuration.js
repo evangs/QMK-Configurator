@@ -889,7 +889,7 @@ roadkit.keySections = [
             [
                 {
                   id: 'k30',
-                  value: 'BL_TOGG',
+                  value: 'BL_STEP',
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
@@ -904,7 +904,7 @@ roadkit.keySections = [
             [
                 {
                   id: 'k30',
-                  value: 'BL_TOGG',
+                  value: 'BL_STEP',
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
