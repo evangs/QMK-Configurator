@@ -66,6 +66,9 @@ new Vue({
       this.activeKeyboard.keySections.push(copy);
       this.layers = this.activeKeyboard.keymap();
     },
+    updateActiveKeyboard: function(data) {
+      this.activeKeyboard = data;
+    },
     deleteLayer: function(index) {
     	this.activeKeyboard.keySections.splice(index, 1);
         this.layers = this.activeKeyboard.keymap();

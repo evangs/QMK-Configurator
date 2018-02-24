@@ -35,7 +35,7 @@
         <layer :key-info="layer"></layer>
       </div>
 
-      <raw-output :layer-data="layers" v-on:updatelayerdata="updateLayers"></raw-output>
+      <raw-output :active-keyboard="activeKeyboard" :keyboards="keyboards" v-on:updateactivekeyboard="updateActiveKeyboard"></raw-output>
 
       <button :disabled="buildInProgress" v-on:click="buildFirmware()" class="btn-primary"><i class="fa fa-download" aria-hidden="true"></i> Build Firmware</button>
     </div>
