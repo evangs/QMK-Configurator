@@ -65,6 +65,28 @@ lowwriter.configKeymap.positions = [
     ["K30", "K31", "K32", "K33", "K34", "KC_NO", "KC_NO", "K37", "K38", "K39", "K3A", "K3B"]
 ]
 
+//indicators
+lowwriter.indicators = [
+    {
+        key: L1,
+        r: 20,
+        g: 100,
+        b: 20
+    },
+    {
+        key: L2,
+        r: 100,
+        g: 20,
+        b: 20
+    },
+    {
+        key: L3,
+        r: 20,
+        g: 20,
+        b: 100
+    }
+];
+
 // zones
 lowwriter.zones = [
     {
