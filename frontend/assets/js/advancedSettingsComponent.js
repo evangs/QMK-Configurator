@@ -9,6 +9,10 @@ Vue.component('advanced-settings-component', {
             <input type="number" v-model="activeKeyboard.config.backlightLevels" />
         </div>
         <div class="form-control">
+            <label>Max Power Consumption:</label>
+            <input type="number" v-model="activeKeyboard.config.usbMaxPowerConsumption" />
+        </div>
+        <div class="form-control">
             <label>Debouncing Delay:</label>
             <input type="number" v-model="activeKeyboard.config.debouncingDelay" />
         </div>

@@ -118,6 +118,9 @@ def buildConfig(config):
     template += '#define BACKLIGHT_LEVELS  {}\n'.format(config.get('backlightLevels'))
     template += '#define BACKLIGHT_PIN {}\n'.format(config.get('backlightPin'))
 
+    if config.get('usbMaxPowerConsumption'):
+        template += '#define USB_MAX_POWER_CONSUMPTION {}\n'.format(config.get('usbMaxPowerConsumption'))
+        
     template += '#define DEBOUNCING_DELAY  {}\n'.format(config.get('debouncingDelay'))
     template += '#define TAPPING_TERM      {}\n'.format(config.get('tappingTerm'))
 

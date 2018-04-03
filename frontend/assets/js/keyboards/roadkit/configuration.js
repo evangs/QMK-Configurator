@@ -18,6 +18,7 @@ roadkit.config = {
     matrixHasGhost: false,
     backlightLevels: 1,
     backlightPin: 'B5',
+    usbMaxPowerConsumption: 100,
     debouncingDelay: 5,
     tappingTerm: 175,
     lockingSupportEnabled: true,
