@@ -574,6 +574,10 @@ button {
     font-size: 14px;
 }
 
+a.btn {
+  text-decoration: none;
+}
+
 .btn {
     border-radius: 5px;
     border: none;

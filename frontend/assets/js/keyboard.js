@@ -9,9 +9,14 @@ new Vue({
     zones: KEYBOARDS[0].zones,
     savedLayouts: undefined,
     layoutName: '',
-    buildInProgress: false
+    buildInProgress: false,
+    exportLink: '',
+    exportFileName: ''
   },
   created: function() {
+    this.exportLink = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.activeKeyboard));
+    this.exportFileName = this.activeKeyboard.config.product + '-' + new Date().getTime() + ".json"
+    
   	this.savedLayouts = JSON.parse(localStorage.getItem('savedKeyboardLayouts')) || {};
     if (Array.isArray(this.savedLayouts)) {
       localStorage.setItem('savedKeyboardLayouts', JSON.stringify({}));
@@ -97,14 +102,14 @@ new Vue({
         context.buildInProgress = false;
       });
     },
-    exportLayout: function() {
-      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.activeKeyboard));
-      var downloadAnchorNode = document.createElement('a');
-      downloadAnchorNode.setAttribute("href", dataStr);
-      downloadAnchorNode.setAttribute("download", this.activeKeyboard.config.product + '-' + new Date().getTime() + ".json");
-      downloadAnchorNode.click();
-      downloadAnchorNode.remove();
-    },
+    // exportLayout: function() {
+    //   var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.activeKeyboard));
+    //   var downloadAnchorNode = document.createElement('a');
+    //   downloadAnchorNode.setAttribute("href", dataStr);
+    //   downloadAnchorNode.setAttribute("download", this.activeKeyboard.config.product + '-' + new Date().getTime() + ".json");
+    //   downloadAnchorNode.click();
+    //   downloadAnchorNode.remove();
+    // },
     fileChange: function(fileList) {
       var context = this;
       var formData = new FormData();
@@ -147,6 +152,8 @@ new Vue({
       handler: function() {
         this.layers = this.activeKeyboard.keymap();
         this.zones = this.activeKeyboard.zones;
+        this.exportLink = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.activeKeyboard));
+        this.exportFileName = this.activeKeyboard.config.product + '-' + new Date().getTime() + ".json"
       },
       deep: true
     }
