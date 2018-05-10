@@ -97,6 +97,35 @@ new Vue({
         context.buildInProgress = false;
       });
     },
+    exportLayout: function() {
+      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.activeKeyboard));
+      var downloadAnchorNode = document.createElement('a');
+      downloadAnchorNode.setAttribute("href", dataStr);
+      downloadAnchorNode.setAttribute("download", this.activeKeyboard.config.product + '-' + new Date().getTime() + ".json");
+      downloadAnchorNode.click();
+      downloadAnchorNode.remove();
+    },
+    fileChange: function(fileList) {
+      var context = this;
+      var formData = new FormData();
+      formData.append('file', fileList[0]);
+
+      this.$http.put('/import', formData)
+      .then(function(response) {
+        var layout = response.data;
+
+        context.activeKeyboard = context.keyboards.find(function(keeb) {
+        	return keeb.id === layout.id;
+        });
+
+        context.activeKeyboard.config = layout.config;
+        context.activeKeyboard.zones = layout.zones;
+        context.activeKeyboard.keySections = layout.keySections;
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    },
     saveLayout: function() {
       if (this.layoutName.trim()) {
       	this.activeKeyboard.layoutName = this.layoutName.trim();

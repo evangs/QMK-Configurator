@@ -2,6 +2,8 @@
 import os, subprocess, datetime, fileinput
 from flask import Flask, flash, request, redirect, url_for, send_from_directory, jsonify
 
+ALLOWED_EXTENSIONS = set(['json'])
+
 
 app = Flask(__name__)
 
@@ -10,6 +12,18 @@ app = Flask(__name__)
 def download_file(filename):
     return send_from_directory("/app/qmk_firmware", filename, as_attachment=True)
 
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/import/', methods=['PUT'])
+def import_layout():
+    if 'file' not in request.files:
+        flash('No file part')
+        return redirect(request.url)
+
+    file = request.files['file']
+
+    return file.read()
 
 # This is our main routine. it allows GET and POST requests. If we get a GET request, we just send our template file
 # to the browser (at the very end of the function) If it's a POST request, it means the browser already has our
@@ -72,6 +86,7 @@ def setupFirmware(config, rules, configKeymap, keymap):
     return firmware_directory
 
 def buildProductC(firmware_directory):
+    #TODO build indicator
     template =  '#include "{}.h"\n'.format(firmware_directory)
     template += 'void matrix_init_kb(void) {\n'
     template += '	matrix_init_user();\n'
@@ -120,7 +135,7 @@ def buildConfig(config):
 
     if config.get('usbMaxPowerConsumption'):
         template += '#define USB_MAX_POWER_CONSUMPTION {}\n'.format(config.get('usbMaxPowerConsumption'))
-        
+
     template += '#define DEBOUNCING_DELAY  {}\n'.format(config.get('debouncingDelay'))
     template += '#define TAPPING_TERM      {}\n'.format(config.get('tappingTerm'))
 
@@ -282,5 +297,17 @@ def buildKeymap(keyData, firmware_directory):
     template += 'const uint16_t PROGMEM fn_actions[] = {\n'
     template += '\n'
     template += '};'
+
+    # template += 'uint32_t layer_state_set_kb(uint32_t state) {\n'
+    # for indicator in fnIndicators:
+    #     template += 'if (state & (1<<{})){\n'.format(indicator.action)
+    #     tempalte += 'rgblight_setrgb_at({},{},{}, {});\n'.format(indicator.red, indicator.green, indicator.blue, indicator.id)
+    #     template += '}\n'
+    #     template += 'else{\n'
+    #     template += 'rgblight_setrgb_at(0,0,0, {});\n'.format(indicator.id)
+    #     template += '}\n'
+    #
+    # template += 'return state;\n'
+    # template += '};'
 
     return template

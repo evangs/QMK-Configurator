@@ -22,6 +22,18 @@
         <i class="fa fa-save" aria-hidden="true"></i> Save Layout
       </button>
 
+      <button v-on:click="exportLayout()" class="btn-primary">
+        <i class="fa fa-sign-out" aria-hidden="true"></i> Export Layout
+      </button>
+
+      <!-- <button v-on:click="importLayout()" class="btn-primary">
+        <i class="fa fa-sign-in" aria-hidden="true"></i> Import Layout
+      </button> -->
+      <form enctype="multipart/form-data">
+        <label for="file" class="btn btn-primary"><i class="fa fa-sign-in" aria-hidden="true"></i> Import Layout</label>
+        <input class="inputfile" type="file" name="file" id="file" v-on:change="fileChange($event.target.files);" accept=".json" />
+      </form>
+
       <button v-on:click="addLayer()" class="btn-primary">
         <i class="fa fa-plus" aria-hidden="true"></i> Add Layer
       </button>
