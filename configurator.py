@@ -38,7 +38,9 @@ def main():
                 keyboard.get('config'),
                 keyboard.get('rules'),
                 keyboard.get('configKeymap'),
-                keyboard.get('keymap'))
+                keyboard.get('keymap'),
+                keyboard.get('indicators', []),
+                keyboard.get('fnIndicators', []))
 
         buildFirmware(firmware_directory)
 
@@ -53,7 +55,7 @@ def buildFirmware(firmware_directory):
     callstring = 'make {}'.format(firmware_directory)
     subprocess.call(callstring, shell=True, cwd="/app/qmk_firmware/")
 
-def setupFirmware(config, rules, configKeymap, keymap):
+def setupFirmware(config, rules, configKeymap, keymap, indicators, fnIndicators):
     now = str(datetime.datetime.now()).replace('-', '').replace(' ', '').replace(':', '').split(".")[0]
 
     firmware_directory = '{}{}'.format(config.get('product').replace(' ', ''), now)
@@ -72,7 +74,7 @@ def setupFirmware(config, rules, configKeymap, keymap):
         rulesfile.close()
 
     with open("/app/qmk_firmware/keyboards/{}/{}".format(firmware_directory, '{}.c'.format(firmware_directory)), "w+") as keyboardcfile:
-        keyboardcfile.write(buildProductC(firmware_directory))
+        keyboardcfile.write(buildProductC(indicators, firmware_directory))
         keyboardcfile.close()
 
     with open("/app/qmk_firmware/keyboards/{}/{}".format(firmware_directory, '{}.h'.format(firmware_directory)), "w+") as keyboardhfile:
@@ -80,12 +82,12 @@ def setupFirmware(config, rules, configKeymap, keymap):
         keyboardhfile.close()
 
     with open("/app/qmk_firmware/keyboards/{}/keymaps/default/keymap.c".format(firmware_directory), "w+") as keymapfile:
-        keymapfile.write(buildKeymap(keymap, firmware_directory))
+        keymapfile.write(buildKeymap(keymap, fnIndicators, firmware_directory))
         keymapfile.close()
 
     return firmware_directory
 
-def buildProductC(firmware_directory):
+def buildProductC(indicators, firmware_directory):
     #TODO build indicator
     template =  '#include "{}.h"\n'.format(firmware_directory)
     template += 'void matrix_init_kb(void) {\n'
@@ -102,6 +104,18 @@ def buildProductC(firmware_directory):
     template += 'void led_set_kb(uint8_t usb_led) {\n'
     template += '	led_set_user(usb_led);\n'
     template += '}'
+
+    # template += 'uint32_t layer_state_set_kb(uint32_t state) {\n'
+    # for indicator in fnIndicators:
+    #     template += 'if (state & (1<<{})){\n'.format(indicator.action)
+    #     tempalte += 'rgblight_setrgb_at({},{},{}, {});\n'.format(indicator.red, indicator.green, indicator.blue, indicator.id)
+    #     template += '}\n'
+    #     template += 'else{\n'
+    #     template += 'rgblight_setrgb_at(0,0,0, {});\n'.format(indicator.id)
+    #     template += '}\n'
+    #
+    # template += 'return state;\n'
+    # template += '};'
 
     return template
 
@@ -276,7 +290,7 @@ def prepKeyForTemplate(key):
         return 'KC_NO'
 
 
-def buildKeymap(keyData, firmware_directory):
+def buildKeymap(keyData, fnIndicators, firmware_directory):
     layers = []
 
     for layer in keyData:
@@ -296,18 +310,18 @@ def buildKeymap(keyData, firmware_directory):
 
     template += 'const uint16_t PROGMEM fn_actions[] = {\n'
     template += '\n'
-    template += '};'
+    template += '}\n'
 
-    # template += 'uint32_t layer_state_set_kb(uint32_t state) {\n'
-    # for indicator in fnIndicators:
-    #     template += 'if (state & (1<<{})){\n'.format(indicator.action)
-    #     tempalte += 'rgblight_setrgb_at({},{},{}, {});\n'.format(indicator.red, indicator.green, indicator.blue, indicator.id)
-    #     template += '}\n'
-    #     template += 'else{\n'
-    #     template += 'rgblight_setrgb_at(0,0,0, {});\n'.format(indicator.id)
-    #     template += '}\n'
-    #
-    # template += 'return state;\n'
-    # template += '};'
+    template += 'uint32_t layer_state_set_kb(uint32_t state) {\n'
+    for indicator in fnIndicators:
+        template += 'if (state & (1<<{})){\n'.format(indicator.layer)
+        tempalte += 'rgblight_setrgb_at({},{},{}, {});\n'.format(indicator.red, indicator.green, indicator.blue, indicator.id)
+        template += '}\n'
+        template += 'else{\n'
+        template += 'rgblight_setrgb_at(0,0,0, {});\n'.format(indicator.id)
+        template += '}\n'
+
+    template += 'return state;\n'
+    template += '};'
 
     return template
