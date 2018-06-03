@@ -16,7 +16,7 @@ new Vue({
   created: function() {
     this.exportLink = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.activeKeyboard));
     this.exportFileName = this.activeKeyboard.config.product + '-' + new Date().getTime() + ".json"
-    
+
   	this.savedLayouts = JSON.parse(localStorage.getItem('savedKeyboardLayouts')) || {};
     if (Array.isArray(this.savedLayouts)) {
       localStorage.setItem('savedKeyboardLayouts', JSON.stringify({}));
@@ -91,7 +91,8 @@ new Vue({
         config: this.activeKeyboard.config,
         rules: this.activeKeyboard.rules,
         configKeymap: this.activeKeyboard.configKeymap,
-        keymap: this.layers
+        keymap: this.layers,
+        indicators: this.activeKeyboard.indicators
       })
       .then(function (response) {
         window.location.href = response.data.hex_url;

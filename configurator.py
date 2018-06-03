@@ -38,7 +38,8 @@ def main():
                 keyboard.get('config'),
                 keyboard.get('rules'),
                 keyboard.get('configKeymap'),
-                keyboard.get('keymap'))
+                keyboard.get('keymap'),
+                keyboard.get('indicators'))
 
         buildFirmware(firmware_directory)
 
@@ -53,7 +54,7 @@ def buildFirmware(firmware_directory):
     callstring = 'make {}'.format(firmware_directory)
     subprocess.call(callstring, shell=True, cwd="/app/qmk_firmware/")
 
-def setupFirmware(config, rules, configKeymap, keymap):
+def setupFirmware(config, rules, configKeymap, keymap, indicators):
     now = str(datetime.datetime.now()).replace('-', '').replace(' ', '').replace(':', '').split(".")[0]
 
     firmware_directory = '{}{}'.format(config.get('product').replace(' ', ''), now)
@@ -80,13 +81,12 @@ def setupFirmware(config, rules, configKeymap, keymap):
         keyboardhfile.close()
 
     with open("/app/qmk_firmware/keyboards/{}/keymaps/default/keymap.c".format(firmware_directory), "w+") as keymapfile:
-        keymapfile.write(buildKeymap(keymap, firmware_directory))
+        keymapfile.write(buildKeymap(keymap, indicators, firmware_directory))
         keymapfile.close()
 
     return firmware_directory
 
 def buildProductC(firmware_directory):
-    #TODO build indicator
     template =  '#include "{}.h"\n'.format(firmware_directory)
     template += 'void matrix_init_kb(void) {\n'
     template += '	matrix_init_user();\n'
@@ -169,6 +169,21 @@ def buildConfig(config):
     if not config.get('actionFunctionEnabled'):
         template += '#define NO_ACTION_FUNCTION\n'
 
+    if config.get('rgbDiPin'):
+        template += '#define RGB_DI_PIN {}\n'.format(config.get('rgbDiPin'))
+
+    if config.get('rgbLedNum'):
+        template += '#define RGBLED_NUM {}\n'.format(config.get('rgbLedNum'))
+
+    if config.get('defaultRgbH'):
+        template += '#define DEFAULT_RGB_H {}\n'.format(config.get('defaultRgbH'))
+
+    if config.get('defaultRgbS'):
+        template += '#define DEFAULT_RGB_S {}\n'.format(config.get('defaultRgbS'))
+
+    if config.get('defaultRgbV'):
+        template += '#define DEFAULT_RGB_V {}\n'.format(config.get('defaultRgbV'))
+
     template += '#endif'
 
     return template;
@@ -206,6 +221,9 @@ def buildRules(rules):
     if rules.get('backlightEnabled'):
         template += 'BACKLIGHT_ENABLE = yes\n'
 
+    if rules.get('rgbLightEnabled'):
+        template += 'RGBLIGHT_ENABLE = yes\n'
+
     return template
 
 
@@ -221,7 +239,8 @@ def buildKeyboardHeader(configKeymap, firmware_directory):
     for row in configKeymap.get('positions'):
         template += '{{ {} }}, \\\n'.format(', '.join(row))
 
-    template += '}\n#endif'
+    template += '}\n#endif\n'
+    template += 'void process_indicator_update(void);'
 
     return template
 
@@ -276,7 +295,7 @@ def prepKeyForTemplate(key):
         return 'KC_NO'
 
 
-def buildKeymap(keyData, firmware_directory):
+def buildKeymap(keyData, fn_indicators, firmware_directory):
     layers = []
 
     for layer in keyData:
@@ -296,18 +315,67 @@ def buildKeymap(keyData, firmware_directory):
 
     template += 'const uint16_t PROGMEM fn_actions[] = {\n'
     template += '\n'
-    template += '};'
+    template += '};\n'
 
-    # template += 'uint32_t layer_state_set_kb(uint32_t state) {\n'
-    # for indicator in fnIndicators:
-    #     template += 'if (state & (1<<{})){\n'.format(indicator.action)
-    #     tempalte += 'rgblight_setrgb_at({},{},{}, {});\n'.format(indicator.red, indicator.green, indicator.blue, indicator.id)
-    #     template += '}\n'
-    #     template += 'else{\n'
-    #     template += 'rgblight_setrgb_at(0,0,0, {});\n'.format(indicator.id)
-    #     template += '}\n'
-    #
-    # template += 'return state;\n'
-    # template += '};'
+    if fn_indicators:
+        #init
+        template += 'void matrix_init_user(void) {\n'
+        template += 'process_indicator_update();\n'
+        template += '_delay_ms(1000);\n'
+        template += '};\n'
+
+        #keyboard indicators trigger
+        template += 'void led_set_user(uint8_t usb_led) {\n'
+        template += 'process_indicator_update();\n'
+        template += '};\n'
+
+        #layer indicators trigger
+        template += 'uint32_t layer_state_set_kb(uint32_t state) {\n'
+        template += 'process_indicator_update();\n'
+        template += 'return state;\n'
+        template += '};\n'
+
+        #process indicator update
+        template += 'void process_indicator_update(void) {\n'
+        template += 'LED_TYPE indicators[{}] = {{\n'.format(len(fn_indicators))
+        for index in range(len(fn_indicators)):
+            template += '{.r = 0, .g = 0, .b = 0},\n'
+        template = template[:-2]
+        template += '\n};\n'
+
+        template += 'uint8_t indexes[{}] = {{\n'.format(len(fn_indicators))
+        for index in range(len(fn_indicators)):
+            template += '{},\n'.format(index)
+        template = template[:-2]
+        template += '\n};\n'
+
+        for index, led in enumerate(fn_indicators):
+            for trigger in led:
+                if trigger.get('type') == 'layer':
+                    template += 'if (layer_state & (1<<{})){{\n'.format(trigger.get('action')[1:])
+                    template += 'indicators[{}].r = {};\n'.format(index, trigger.get('red'))
+                    template += 'indicators[{}].g = {};\n'.format(index, trigger.get('green'))
+                    template += 'indicators[{}].b = {};\n'.format(index, trigger.get('blue'))
+                    template += '}\n'
+
+                elif trigger.get('type') == 'keyboard':
+                    template += 'if (host_keyboard_leds() & (1<<{})){{\n'.format(trigger.get('action'))
+                    template += 'if (indicators[{index}].r > 0) {{indicators[{index}].r = (indicators[{index}].r + {new}) / 2;}}\n'.format(index=index, new=trigger.get('red'))
+                    template += 'else {{indicators[{}].r = {};}}\n'.format(index, trigger.get('red'))
+                    template += 'if (indicators[{index}].g > 0) {{indicators[{index}].g = (indicators[{index}].g + {new}) / 2;}}\n'.format(index=index, new=trigger.get('green'))
+                    template += 'else {{indicators[{}].g = {};}}\n'.format(index, trigger.get('green'))
+                    template += 'if (indicators[{index}].b > 0) {{indicators[{index}].b = (indicators[{index}].b + {new}) / 2;}}\n'.format(index=index, new=trigger.get('blue'))
+                    template += 'else {{indicators[{}].b = {};}}\n'.format(index, trigger.get('blue'))
+                    template += '}\n'
+
+                elif trigger.get('type') == 'power':
+                    template += 'indicators[{}].r = {};\n'.format(index, trigger.get('red'))
+                    template += 'indicators[{}].g = {};\n'.format(index, trigger.get('green'))
+                    template += 'indicators[{}].b = {};\n'.format(index, trigger.get('blue'))
+
+        template += 'rgblight_setrgb_many(indicators, indexes, {});\n'.format(len(fn_indicators))
+        template += '};'
+
+
 
     return template
