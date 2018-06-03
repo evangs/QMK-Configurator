@@ -112,7 +112,9 @@ var KEYS = [
       {value: 'NUBS', display: '|', tooltip: 'ISO Back Slash'},
       {value: 'INT1', display: 'RO', tooltip: 'JIS \\ and |'},
       {value: 'INT2', display: 'KANA', tooltip: 'JIS Katakana/Hiragana'},
-      {value: 'INT3', display: 'JYEN', tooltip: 'JIS ¥'}
+      {value: 'INT3', display: 'JYEN', tooltip: 'JIS ¥'},
+      {value: 'INT4', display: 'HENK', tooltip: 'JIS Henkan'},
+      {value: 'INT5', display: 'MHEN', tooltip: 'JIS Muhenkan'}
     ]
   },
   {
