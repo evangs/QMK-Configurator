@@ -200,7 +200,7 @@ var KEYS = [
       {value: 'P6', display: '6'},
       {value: 'P7', display: '7'},
       {value: 'P8', display: '8'},
-      {value: 'P8', display: '9'}
+      {value: 'P9', display: '9'}
     ]
   },
   {
