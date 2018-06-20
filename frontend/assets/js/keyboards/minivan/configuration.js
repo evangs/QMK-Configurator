@@ -1,4 +1,5 @@
 var KEYBOARDS = KEYBOARDS || [];
+<<<<<<< HEAD
 minivan = {};
 KEYBOARDS.push(minivan);
 
@@ -6,12 +7,26 @@ minivan.id = 'minivan_hs_rev1';
 
 // config
 minivan.config = {
+=======
+minivan_hotswap = {};
+KEYBOARDS.push(minivan_hotswap);
+
+minivan_hotswap.id = 'minivan_rev_hs1';
+
+// config
+minivan_hotswap.config = {
+>>>>>>> ac3173b4ae86ce1af726b2728f59465b16d6f8d7
     vendorId: '0xFEAE',
     productId: '0x8847',
     deviceVersion: '0x0001',
     manufacturer: 'TheVan Keyboards',
+<<<<<<< HEAD
     product: 'MiniVan',
     description: 'Hotswap MiniVan 40%',
+=======
+    product: 'MiniVan Hotswap',
+    description: 'MiniVan Hotswap 40%',
+>>>>>>> ac3173b4ae86ce1af726b2728f59465b16d6f8d7
     matrixRowPins: ['D7', 'B5', 'F7', 'D4'],
     matrixColumnPins: ['D2', 'D3', 'D5', 'D6', 'B4', 'B6', 'F6', 'F5', 'F4', 'F1', 'F0', 'B3'],
     diodeDirection: 'COL2ROW',
@@ -30,6 +45,7 @@ minivan.config = {
     actionTappingEnabled: true,
     actionOneShotEnabled: true,
     actionMacroEnabled: true,
+<<<<<<< HEAD
     actionFunctionEnabled: true,
     rgbDiPin: 'D0',
     rgbLedNum: 3,
@@ -40,6 +56,40 @@ minivan.config = {
 
 // rules
 minivan.rules = {
+=======
+    actionFunctionEnabled: true
+};
+
+minivan_hotswap.indicators = [
+];
+
+minivan_hotswap.fnIndicators = [
+  {
+    layer: 1,
+    red: 100,
+    green: 240,
+    blue: 240,
+    id: 0
+  },
+  {
+    layer: 2,
+    red: 240,
+    green: 100,
+    blue: 240,
+    id: 1
+  },
+  {
+    layer: 3,
+    red: 240,
+    green: 240,
+    blue: 100,
+    id: 2
+  }
+];
+
+// rules
+minivan_hotswap.rules = {
+>>>>>>> ac3173b4ae86ce1af726b2728f59465b16d6f8d7
     mcu: 'atmega32u4',
     processorFrequency: 16000000,
     architecture: 'AVR8',
@@ -52,6 +102,7 @@ minivan.rules = {
     commandEnabled: true,
     sleepLedEnabled: false,
     nkroEnabled: true,
+<<<<<<< HEAD
     backlightEnabled: false,
     rgbLightEnabled: true
 };
@@ -80,13 +131,25 @@ minivan.indicators = [
 // keymap
 minivan.configKeymap = {};
 minivan.configKeymap.keys = [
+=======
+    backlightEnabled: false
+};
+
+// keymap
+minivan_hotswap.configKeymap = {};
+minivan_hotswap.configKeymap.keys = [
+>>>>>>> ac3173b4ae86ce1af726b2728f59465b16d6f8d7
     "K00", "K01", "K02", "K03", "K04", "K05", "K06", "K07", "K08", "K09", "K0A", "K0B",
     "K10", "K11", "K12", "K13", "K14", "K15", "K16", "K17", "K18", "K19", "K1A", "K1B",
     "K20", "K21", "K22", "K23", "K24", "K25", "K26", "K27", "K28", "K29", "K2A", "K2B",
     "K30", "K31", "K34", "K32", "K33", "K37", "K38", "K39", "K3A", "K3B"
 ];
 
+<<<<<<< HEAD
 minivan.configKeymap.positions = [
+=======
+minivan_hotswap.configKeymap.positions = [
+>>>>>>> ac3173b4ae86ce1af726b2728f59465b16d6f8d7
     ["K00", "K01", "K02", "K03", "K04", "K05", "K06", "K07", "K08", "K09", "K0A", "K0B"],
     ["K10", "K11", "K12", "K13", "K14", "K15", "K16", "K17", "K18", "K19", "K1A", "K1B"],
     ["K20", "K21", "K22", "K23", "K24", "K25", "K26", "K27", "K28", "K29", "K2A", "K2B"],
@@ -94,7 +157,25 @@ minivan.configKeymap.positions = [
 ];
 
 // zones
+<<<<<<< HEAD
 minivan.zones = [
+=======
+minivan_hotswap.zones = [
+    {
+        label: 'Enter',
+        value: 0,
+        choices: [
+            {
+                code: 0,
+                name: 'Standard'
+            },
+            {
+                code: 1,
+                name: 'JIS'
+            }
+        ]
+    },
+>>>>>>> ac3173b4ae86ce1af726b2728f59465b16d6f8d7
     {
         label: 'Left Hand',
         value: 0,
@@ -126,7 +207,11 @@ minivan.zones = [
 ]
 
 // ui keymap
+<<<<<<< HEAD
 minivan.keySections = [
+=======
+minivan_hotswap.keySections = [
+>>>>>>> ac3173b4ae86ce1af726b2728f59465b16d6f8d7
     { // DEFAULT LAYER ==========================================
         row1: [
           {
@@ -314,6 +399,7 @@ minivan.keySections = [
               secondary: null,
               showMenu: false,
               shape: 'k100'
+<<<<<<< HEAD
             },
             {
               id: 'k1B',
@@ -324,6 +410,34 @@ minivan.keySections = [
               shape: 'k150'
             }
         ],
+=======
+            }
+        ],
+        enter: [
+            [
+                {
+                  id: 'k1B',
+                  value: 'QUOT',
+                  type: 'tapkey',
+                  secondary: 'L1',
+                  showMenu: false,
+                  shape: 'k150',
+                  zone: 'Enter'
+                }
+            ],
+            [
+                {
+                  id: 'k1B',
+                  value: 'QUOT',
+                  type: 'tapkey',
+                  secondary: 'L1',
+                  showMenu: false,
+                  shape: 'kJIS',
+                  zone: 'Enter'
+                }
+            ]
+        ],
+>>>>>>> ac3173b4ae86ce1af726b2728f59465b16d6f8d7
         row3: [
             {
               id: 'k20',
@@ -412,6 +526,7 @@ minivan.keySections = [
               secondary: null,
               showMenu: false,
               shape: 'k100'
+<<<<<<< HEAD
             },
             {
               id: 'k2B',
@@ -422,6 +537,30 @@ minivan.keySections = [
               shape: 'k100'
             }
         ],
+=======
+            }
+        ],
+        fn2: [
+            [
+                {
+                  id: 'k2B',
+                  value: 'L2',
+                  type: 'momentary',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100',
+                  zone: 'Enter'
+                }
+            ],
+            [
+                {
+                  id: 'k2B',
+                  value: 'NO',
+                  type: 'nodisplay',
+                }
+            ]
+        ],
+>>>>>>> ac3173b4ae86ce1af726b2728f59465b16d6f8d7
         leftHand: [
             [
                 {
@@ -776,6 +915,7 @@ minivan.keySections = [
               secondary: null,
               showMenu: false,
               shape: 'k100'
+<<<<<<< HEAD
             },
             {
               id: 'k1B',
@@ -786,6 +926,32 @@ minivan.keySections = [
               shape: 'k150'
             }
         ],
+=======
+            }
+        ],
+        enter: [
+            [
+                {
+                  id: 'k1B',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k150'
+                }
+            ],
+            [
+                {
+                  id: 'k1B',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'kJIS'
+                }
+            ]
+        ],
+>>>>>>> ac3173b4ae86ce1af726b2728f59465b16d6f8d7
         row3: [
             {
               id: 'k20',
@@ -874,6 +1040,7 @@ minivan.keySections = [
               secondary: null,
               showMenu: false,
               shape: 'k100'
+<<<<<<< HEAD
             },
             {
               id: 'k2B',
@@ -884,6 +1051,29 @@ minivan.keySections = [
               shape: 'k100'
             }
         ],
+=======
+            }
+        ],
+        fn2: [
+            [
+                {
+                  id: 'k2B',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                }
+            ],
+            [
+                {
+                  id: 'k2B',
+                  value: 'NO',
+                  type: 'nodisplay',
+                }
+            ]
+        ],
+>>>>>>> ac3173b4ae86ce1af726b2728f59465b16d6f8d7
         leftHand: [
             [
                 {
@@ -1224,6 +1414,7 @@ minivan.keySections = [
               secondary: null,
               showMenu: false,
               shape: 'k100'
+<<<<<<< HEAD
             },
             {
               id: 'k1B',
@@ -1234,6 +1425,32 @@ minivan.keySections = [
               shape: 'k150'
             }
         ],
+=======
+            }
+        ],
+        enter: [
+            [
+                {
+                  id: 'k1B',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k150'
+                }
+            ],
+            [
+                {
+                  id: 'k1B',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'kJIS'
+                }
+            ]
+        ],
+>>>>>>> ac3173b4ae86ce1af726b2728f59465b16d6f8d7
         row3: [
             {
               id: 'k20',
@@ -1322,6 +1539,7 @@ minivan.keySections = [
               secondary: null,
               showMenu: false,
               shape: 'k100'
+<<<<<<< HEAD
             },
             {
               id: 'k2B',
@@ -1332,6 +1550,29 @@ minivan.keySections = [
               shape: 'k100'
             }
         ],
+=======
+            }
+        ],
+        fn2: [
+            [
+                {
+                  id: 'k2B',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                }
+            ],
+            [
+                {
+                  id: 'k2B',
+                  value: 'NO',
+                  type: 'nodisplay',
+                }
+            ]
+        ],
+>>>>>>> ac3173b4ae86ce1af726b2728f59465b16d6f8d7
         leftHand: [
             [
                 {
@@ -1672,6 +1913,7 @@ minivan.keySections = [
               secondary: null,
               showMenu: false,
               shape: 'k100'
+<<<<<<< HEAD
             },
             {
               id: 'k1B',
@@ -1682,6 +1924,32 @@ minivan.keySections = [
               shape: 'k150'
             }
         ],
+=======
+            }
+        ],
+        enter: [
+            [
+                {
+                  id: 'k1B',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k150'
+                }
+            ],
+            [
+                {
+                  id: 'k1B',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'kJIS'
+                }
+            ]
+        ],
+>>>>>>> ac3173b4ae86ce1af726b2728f59465b16d6f8d7
         row3: [
             {
               id: 'k20',
@@ -1770,6 +2038,7 @@ minivan.keySections = [
               secondary: null,
               showMenu: false,
               shape: 'k100'
+<<<<<<< HEAD
             },
             {
               id: 'k2B',
@@ -1780,6 +2049,29 @@ minivan.keySections = [
               shape: 'k100'
             }
         ],
+=======
+            }
+        ],
+        fn2: [
+            [
+                {
+                  id: 'k2B',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                }
+            ],
+            [
+                {
+                  id: 'k2B',
+                  value: 'NO',
+                  type: 'nodisplay',
+                }
+            ]
+        ],
+>>>>>>> ac3173b4ae86ce1af726b2728f59465b16d6f8d7
         leftHand: [
             [
                 {
@@ -1935,6 +2227,7 @@ minivan.keySections = [
     }
 ];
 
+<<<<<<< HEAD
 minivan.keymap = function() {
     var keymap = [];
     var layer = [];
@@ -1949,6 +2242,22 @@ minivan.keymap = function() {
         layer.push(ks.row2);
         layer.push(ks.row3);
         layer.push(ks.leftHand[zones[0].value].concat(ks.row4).concat(ks.rightHand[zones[1].value]));
+=======
+minivan_hotswap.keymap = function() {
+    var keymap = [];
+    var layer = [];
+    var ks;
+    var zones = minivan_hotswap.zones;
+    var i;
+
+    for (i in minivan_hotswap.keySections) {
+        ks = minivan_hotswap.keySections[i];
+        layer = new Array();
+        layer.push(ks.row1);
+        layer.push(ks.row2.concat(ks.enter[zones[0].value]));
+        layer.push(ks.row3.concat(ks.fn2[zones[0].value]));
+        layer.push(ks.leftHand[zones[1].value].concat(ks.row4).concat(ks.rightHand[zones[2].value]));
+>>>>>>> ac3173b4ae86ce1af726b2728f59465b16d6f8d7
         keymap.push(layer);
     }
 
