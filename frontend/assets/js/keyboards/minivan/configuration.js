@@ -58,7 +58,7 @@ minivan.rules = {
 
 minivan.indicators = [
   [
-    {red: 0, green: 0, blue: 255, type: 'power'},
+    {red: 0, green: 0, blue: 255, action: 'power', type: 'power'},
     {red: 125, green: 30, blue: 125, action: 'L1', type: 'layer'},
     {red: 125, green: 10, blue: 255, action: 'L2', type: 'layer'},
     {red: 125, green: 30, blue: 125, action: 'L3', type: 'layer'}

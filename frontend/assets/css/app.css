@@ -534,14 +534,14 @@ textarea:focus {
 }
 
 .saved-layouts li {
-    padding: 5px;
-    width: 100%;
+  padding: 5px;
+  width: 100%;
 }
 
 .saved-layouts span {
-    float: none;
-    width: 70%;
-    display: inline-block;
+  float: none;
+  width: 70%;
+  display: inline-block;
 }
 
 .saved-layouts button {
@@ -549,9 +549,9 @@ textarea:focus {
 }
 
 .saved-layouts {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .inputfile {
@@ -568,10 +568,10 @@ form {
 }
 
 button {
-    border-radius: 5px;
-    border: none;
-    height: 26px;
-    font-size: 14px;
+  border-radius: 5px;
+  border: none;
+  height: 26px;
+  font-size: 14px;
 }
 
 a.btn {
@@ -579,11 +579,11 @@ a.btn {
 }
 
 .btn {
-    border-radius: 5px;
-    border: none;
-    height: 26px;
-    font-size: 14px;
-    padding: 3px 7px 4px;
+  border-radius: 5px;
+  border: none;
+  height: 26px;
+  font-size: 14px;
+  padding: 3px 7px 4px;
 }
 
 button[disabled], button[disabled]:hover {
@@ -592,8 +592,8 @@ button[disabled], button[disabled]:hover {
 }
 
 .btn-primary {
-    background-color: #428bca;
-    color: #eee;
+  background-color: #428bca;
+  color: #eee;
 }
 .btn-primary:hover {
   background-color: #3a7cb2
@@ -609,31 +609,31 @@ button[disabled], button[disabled]:hover {
 }
 
 input[type="text"], input[type="number"] {
-    border-radius: 5px;
-    border: 1px solid lightgray;
-    height: 20px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  height: 20px;
 }
 input[type="text"]:focus, input[type="number"]:focus {
-    outline: none;
-    border-color: #428bca;
+  outline: none;
+  border-color: #428bca;
 }
 
 .form-control {
-    padding: 5px 5px 5px 1%;
+  padding: 5px 5px 5px 1%;
 }
 
 .form-control label {
-    width: 20%;
-    display: inline-block;
+  width: 20%;
+  display: inline-block;
 }
 
 .toggle-control {
-    width: 16px;
-    height: 16px;
-    border-radius: 10px;
-    border: 1px solid #428bca;
-    display: inline-block;
-    vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  border-radius: 10px;
+  border: 1px solid #428bca;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .toggle-control.active {
@@ -642,4 +642,32 @@ input[type="text"]:focus, input[type="number"]:focus {
 
 .keyboard-key span {
     display: block;
+}
+
+.led-preview {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.indicator-description {
+  display: inline-block;
+}
+
+.col-4 {
+  display: inline-block;
+  width: 33.33%;
+  vertical-align: top;
+  padding: 5px 15px;
+  box-sizing: border-box;
+}
+
+.btn-link {
+  background-color: transparent;
+}
+
+h4 {
+  display: inline-block;
 }

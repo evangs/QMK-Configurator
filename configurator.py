@@ -184,6 +184,8 @@ def buildConfig(config):
     if config.get('defaultRgbV'):
         template += '#define DEFAULT_RGB_V {}\n'.format(config.get('defaultRgbV'))
 
+    template += '#define RGBLIGHT_SLEEP\n'
+
     template += '#endif'
 
     return template;

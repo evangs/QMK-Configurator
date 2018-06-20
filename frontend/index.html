@@ -14,6 +14,7 @@
       <keyboard-selector-component v-model="activeKeyboard" :keyboards="keyboards"></keyboard-selector-component>
       <advanced-settings-component :active-keyboard="activeKeyboard"></advanced-settings-component>
       <zone-selector-component v-on:zone="onZoneChange" :zones="zones"></zone-selector-component>
+      <indicators :indicators="activeKeyboard.indicators"></indicators>
       <saved-layout-selector-component v-model="activeKeyboard" :keyboards="keyboards" :saved-layouts="savedLayouts" v-on:delete-layout="deleteSavedLayout"></saved-layout-selector-component>
 
       <label>Layout Name</label>
@@ -60,6 +61,8 @@
     <script src="assets/js/zoneSelectorComponent.js"></script>
     <script src="assets/js/keyboardSelectorComponent.js"></script>
     <script src="assets/js/savedLayoutSelectorComponent.js"></script>
+    <script src="assets/js/colorPickerComponent.js"></script>
+    <script src="assets/js/indicatorsComponent.js"></script>
     <script src="assets/js/rawOutputComponent.js"></script>
     <script src="assets/js/keyComponent.js"></script>
     <script src="assets/js/contextMenuComponent.js"></script>
