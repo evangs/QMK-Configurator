@@ -73,7 +73,7 @@ def setupFirmware(config, rules, configKeymap, keymap, indicators):
         rulesfile.close()
 
     with open("/app/qmk_firmware/keyboards/{}/{}".format(firmware_directory, '{}.c'.format(firmware_directory)), "w+") as keyboardcfile:
-        keyboardcfile.write(buildProductC(indicators, firmware_directory))
+        keyboardcfile.write(buildProductC(firmware_directory))
         keyboardcfile.close()
 
     with open("/app/qmk_firmware/keyboards/{}/{}".format(firmware_directory, '{}.h'.format(firmware_directory)), "w+") as keyboardhfile:
@@ -102,18 +102,6 @@ def buildProductC(firmware_directory):
     template += 'void led_set_kb(uint8_t usb_led) {\n'
     template += '	led_set_user(usb_led);\n'
     template += '}'
-
-    # template += 'uint32_t layer_state_set_kb(uint32_t state) {\n'
-    # for indicator in fnIndicators:
-    #     template += 'if (state & (1<<{})){\n'.format(indicator.action)
-    #     tempalte += 'rgblight_setrgb_at({},{},{}, {});\n'.format(indicator.red, indicator.green, indicator.blue, indicator.id)
-    #     template += '}\n'
-    #     template += 'else{\n'
-    #     template += 'rgblight_setrgb_at(0,0,0, {});\n'.format(indicator.id)
-    #     template += '}\n'
-    #
-    # template += 'return state;\n'
-    # template += '};'
 
     return template
 
@@ -327,9 +315,9 @@ def buildKeymap(keyData, fn_indicators, firmware_directory):
 
     template += '};\n'
 
-    template += 'const uint16_t PROGMEM fn_actions[] = {\n'
-    template += '\n'
-    template += '};\n'
+    # template += 'const uint16_t PROGMEM fn_actions[] = {\n'
+    # template += '\n'
+    # template += '};\n'
 
     if fn_indicators:
         #init
@@ -389,10 +377,5 @@ def buildKeymap(keyData, fn_indicators, firmware_directory):
 
         template += 'rgblight_setrgb_many(indicators, indexes, {});\n'.format(len(fn_indicators))
         template += '};'
-
-
-
-    template += 'return state;\n'
-    template += '};'
 
     return template

@@ -70,7 +70,7 @@ Vue.component('color-picker', {
   },
   template: `
   <div>
-    <div class="led-preview" :style="{backgroundColor: previewColor}" v-on:click="edit = !edit"></div>
+    <div class="led-preview" :style="{backgroundColor: 'rgb('+this.value.red+','+this.value.green+','+this.value.blue+')'}" v-on:click="edit = !edit"></div>
 
     <div class="colorpicker" v-if="edit">
       <div class="controls">
