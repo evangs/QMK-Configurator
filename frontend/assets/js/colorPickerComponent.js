@@ -74,10 +74,9 @@ Vue.component('color-picker', {
 
     <div class="colorpicker" v-if="edit">
       <div class="controls">
-        <div><label>R</label> <input type="range" min="0" max="255" id="rVal" v-model="value.red" @input="updatePreviewStyle" /></div>
-        <div><label>G</label> <input type="range" min="0" max="255" id="gVal" v-model="value.green" @input="updatePreviewStyle" /></div>
-        <div><label>B</label> <input type="range" min="0" max="255" id="bVal" v-model="value.blue" @input="updatePreviewStyle" /></div>
-        <input type="color" v-model="colorPickerModel" @change="updateRGB">
+        <div><label>R</label> <input type="range" min="0" max="255" id="rVal" v-model="value.red" @input="updatePreviewStyle" /><input type="number" min="0" max="255" id="rValText" v-model="value.red" @input="updatePreviewStyle" /></div>
+        <div><label>G</label> <input type="range" min="0" max="255" id="gVal" v-model="value.green" @input="updatePreviewStyle" /><input type="number" min="0" max="255" id="gValText" v-model="value.green" @input="updatePreviewStyle" /></div>
+        <div><label>B</label> <input type="range" min="0" max="255" id="bVal" v-model="value.blue" @input="updatePreviewStyle" /><input type="number" min="0" max="255" id="bValText" v-model="value.blue" @input="updatePreviewStyle" /></div>
       </div>
     </div>
   </div>
