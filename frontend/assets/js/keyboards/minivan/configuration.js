@@ -58,21 +58,13 @@ minivan.rules = {
 
 minivan.indicators = [
   [
-    {red: 0, green: 0, blue: 255, action: 'power', type: 'power'},
-    {red: 125, green: 30, blue: 125, action: 'L1', type: 'layer'},
-    {red: 125, green: 10, blue: 255, action: 'L2', type: 'layer'},
-    {red: 125, green: 30, blue: 125, action: 'L3', type: 'layer'}
+    {red: 218, green: 23, blue: 180, action: 'power', type: 'power'},
+    {red: 215, green: 30, blue: 125, action: 'L3', type: 'layer'}
   ],
   [
-    {red: 125, green: 30, blue: 125, action: 'L1', type: 'layer'},
-    {red: 125, green: 10, blue: 255, action: 'L2', type: 'layer'},
-    {red: 125, green: 10, blue: 255, action: 'L3', type: 'layer'},
-    {red: 0, green: 0, blue: 255, action: 'USB_LED_NUM_LOCK', type: 'keyboard'},
-    {red: 255, green: 0, blue: 0, action: 'USB_LED_CAPS_LOCK', type: 'keyboard'}
+    {red: 112, green: 10, blue: 255, action: 'L3', type: 'layer'}
   ],
   [
-    {red: 125, green: 30, blue: 125, action: 'L1', type: 'layer'},
-    {red: 125, green: 10, blue: 255, action: 'L2', type: 'layer'},
     {red: 10, green: 255, blue: 125, action: 'L3', type: 'layer'}
   ]
 ];
