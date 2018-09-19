@@ -73,7 +73,7 @@ def setupFirmware(config, rules, configKeymap, keymap, indicators):
         rulesfile.close()
 
     with open("/app/qmk_firmware/keyboards/{}/{}".format(firmware_directory, '{}.c'.format(firmware_directory)), "w+") as keyboardcfile:
-        keyboardcfile.write(buildProductC(firmware_directory))
+        keyboardcfile.write(buildProductC(firmware_directory, indicators))
         keyboardcfile.close()
 
     with open("/app/qmk_firmware/keyboards/{}/{}".format(firmware_directory, '{}.h'.format(firmware_directory)), "w+") as keyboardhfile:
@@ -86,10 +86,10 @@ def setupFirmware(config, rules, configKeymap, keymap, indicators):
 
     return firmware_directory
 
-def buildProductC(firmware_directory):
+def buildProductC(firmware_directory, hasIndicators):
     template =  '#include "{}.h"\n'.format(firmware_directory)
     template += 'void matrix_init_kb(void) {\n'
-    template += '	matrix_init_user();\n'
+    template += 'matrix_init_user();\n'
     template += '}\n'
     template += 'void matrix_scan_kb(void) {\n'
     template += '  	matrix_scan_user();\n'
@@ -174,17 +174,8 @@ def buildConfig(config):
 
     if config.get('rgbLedNum'):
         template += '#define RGBLED_NUM {}\n'.format(config.get('rgbLedNum'))
-
-    if config.get('defaultRgbH'):
-        template += '#define DEFAULT_RGB_H {}\n'.format(config.get('defaultRgbH'))
-
-    if config.get('defaultRgbS'):
-        template += '#define DEFAULT_RGB_S {}\n'.format(config.get('defaultRgbS'))
-
-    if config.get('defaultRgbV'):
-        template += '#define DEFAULT_RGB_V {}\n'.format(config.get('defaultRgbV'))
-
-    template += '#define RGBLIGHT_SLEEP\n'
+        template += '#define RGBLIGHT_CUSTOM_LED_INIT\n'
+        template += '#define RGBLIGHT_SLEEP\n'
 
     template += '#endif'
 
@@ -315,15 +306,13 @@ def buildKeymap(keyData, fn_indicators, firmware_directory):
 
     template += '};\n'
 
-    # template += 'const uint16_t PROGMEM fn_actions[] = {\n'
-    # template += '\n'
-    # template += '};\n'
-
     if fn_indicators:
         #init
         template += 'void matrix_init_user(void) {\n'
+        template += 'rgblight_init();\n'
+        template += '};\n'
+        template += 'void rgblight_init_leds(void) {\n'
         template += 'process_indicator_update();\n'
-        template += '_delay_ms(1000);\n'
         template += '};\n'
 
         #keyboard indicators trigger
