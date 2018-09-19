@@ -28,15 +28,15 @@ def getInitialLedStates(indicators):
     led_states = []
     
     for ind in indicators:
-        led_states.append({h: 0, s: 0; v: 0})
+        led_states.append({'h': 0, 's': 0; 'v': 0})
         
     for index, led in enumerate(indicators):
         for trigger in led:
             if trigger.get('type') == 'power':
                 h, s, v = rgb2hsv(trigger.get('red'), trigger.get('green'), trigger.get('blue'))
-                led_states[index].h = h
-                led_states[index].s = s
-                led_states[index].v = v
+                led_states[index]['h'] = h
+                led_states[index]['s'] = s
+                led_states[index]['v'] = v
                 
     return led_states
 
@@ -358,7 +358,7 @@ def buildKeymap(keyData, fn_indicators, firmware_directory):
         template += 'rgblight_enable();\n'
         
         for index, state in enumerate(initial_state):
-            template += 'rgblight_sethsv_at({},{},{},{});\n'.format(state.h, state.s, state.v, index)
+            template += 'rgblight_sethsv_at({},{},{},{});\n'.format(state.get('h'), state.get('s'), state.get('v'), index)
            
         template += 'rgblight_mode(3);\n'
         template += '};\n'
