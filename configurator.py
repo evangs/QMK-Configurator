@@ -34,9 +34,9 @@ def getInitialLedStates(indicators):
         for trigger in led:
             if trigger.get('type') == 'power':
                 h, s, v = rgb2hsv(trigger.get('red'), trigger.get('green'), trigger.get('blue'))
-                led_states[index]['h'] = h
-                led_states[index]['s'] = s
-                led_states[index]['v'] = v
+                led_states[index]['h'] = int(round(h))
+                led_states[index]['s'] = int(round(s * 255))
+                led_states[index]['v'] = int(round(v * 255))
                 
     return led_states
 
