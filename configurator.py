@@ -28,7 +28,7 @@ def getInitialLedStates(indicators):
     led_states = []
     
     for ind in indicators:
-        led_states.append({'h': 0, 's': 0; 'v': 0})
+        led_states.append({'h': 0, 's': 0, 'v': 0})
         
     for index, led in enumerate(indicators):
         for trigger in led:
