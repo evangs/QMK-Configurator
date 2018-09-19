@@ -357,8 +357,9 @@ def buildKeymap(keyData, fn_indicators, firmware_directory):
         template += 'void matrix_init_user(void) {\n'
         template += 'rgblight_enable();\n'
         
-        for index, state in enumerate(initial_state):
-            template += 'rgblight_sethsv_at({},{},{},{});\n'.format(state.get('h'), state.get('s'), state.get('v'), index)
+        #for index, state in enumerate(initial_state):
+        #    template += 'rgblight_sethsv_at({},{},{},{});\n'.format(state.get('h'), state.get('s'), state.get('v'), index)
+        template += 'rgblight_sethsv({},{},{});\n'.format(initial_state[0].get('h'), initial_state[0].get('s'), initial_state[0].get('v'))
            
         template += 'rgblight_mode(3);\n'
         template += '};\n'
