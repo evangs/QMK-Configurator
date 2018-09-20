@@ -59,7 +59,7 @@ minivan.indicators = [
     {red: 215, green: 30, blue: 125, action: 'L3', type: 'layer'}
   ],
   [
-    {red: 112, green: 10, blue: 255, action: 'L3', type: 'layer'}
+    {red: 70, green: 122, blue: 255, action: 'L3', type: 'layer'}
   ],
   [
     {red: 10, green: 255, blue: 125, action: 'L3', type: 'layer'}
