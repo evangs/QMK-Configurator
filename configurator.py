@@ -316,7 +316,7 @@ def buildKeymap(keyData, fn_indicators, firmware_directory):
     template += 'return false;\n'
     template += '}\n'
     template += '}\n'
-    template += 'else if (record->event.released) {\n'
+    template += 'else {\n'
     template += 'switch(keycode) {\n'
     template += 'case M_IME:\n'
     template += 'SEND_STRING(SS_UP(X_LSHIFT)SS_UP(X_LALT));\n'
