@@ -266,7 +266,7 @@ def prepKeyForTemplate(key):
             return key_value
         
         if key_value == 'IME':
-            return 'LSFT(KC_LALT)'
+            return 'M_IME'
 
         return 'KC_{}'.format(key_value)
 
@@ -305,19 +305,26 @@ def buildKeymap(keyData, fn_indicators, firmware_directory):
         layers.append(layer_keys)
 
     template =  '#include "{}.h"\n'.format(firmware_directory)
-#     template += 'enum custom_keycodes {\n'
-#     template += 'M_IME = SAFE_RANGE\n'
-#     template += '};\n'
-#     template += 'bool process_record_user(uint16_t keycode, keyrecord_t *record) {\n'
-#     template += 'if (record->event.pressed) {\n'
-#     template += 'switch(keycode) {\n'
-#     template += 'case M_IME:\n'
-#     template += 'SEND_STRING(SS_DOWN(X_LSHIFT)SS_DOWN(X_LALT));\n'
-#     template += 'return false;\n'
-#     template += '}\n'
-#     template += '}\n'
-#     template += 'return true;\n'
-#     template += '};\n'
+    template += 'enum custom_keycodes {\n'
+    template += 'M_IME = SAFE_RANGE\n'
+    template += '};\n'
+    template += 'bool process_record_user(uint16_t keycode, keyrecord_t *record) {\n'
+    template += 'if (record->event.pressed) {\n'
+    template += 'switch(keycode) {\n'
+    template += 'case M_IME:\n'
+    template += 'SEND_STRING(SS_DOWN(X_LSHIFT)SS_DOWN(X_LALT));\n'
+    template += 'return false;\n'
+    template += '}\n'
+    template += '}\n'
+    template += 'else if (record->event.released) {\n'
+    template += 'switch(keycode) {\n'
+    template += 'case M_IME:\n'
+    template += 'SEND_STRING(SS_UP(X_LSHIFT)SS_UP(X_LALT));\n'
+    template += 'return false;\n'
+    template += '}\n'
+    template += '}\n'
+    template += 'return true;\n'
+    template += '};\n'
     template += 'const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {\n'
     for index, layer in enumerate(layers):
         template += '[{}] = KEYMAP({}),\n'.format(index, ', '.join(layer))
