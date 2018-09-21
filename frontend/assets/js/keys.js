@@ -50,6 +50,14 @@ var KEYS = [
     ]
   },
   {
+    label: ' ',
+    updateType: 'primary',
+    visible: ['modkey'],
+    keys: [
+      {value: 'LALT', display: 'L⎇', tooltip: 'Left Alt'}
+    ]
+  },
+  {
       label: ' ',
     updateType: 'primary',
     visible: ['normal', 'tapkey', 'modkey', 'combokey'],
