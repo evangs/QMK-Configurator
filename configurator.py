@@ -312,7 +312,7 @@ def buildKeymap(keyData, fn_indicators, firmware_directory):
     template += 'if (record->event.pressed) {\n'
     template += 'switch(keycode) {\n'
     template += 'case M_IME:\n'
-    template += 'SEND_STRING(SS_DOWN(X_LSFT)SS_DOWN(X_LALT));\n'
+    template += 'SEND_STRING(SS_DOWN(X_LSHIFT)SS_DOWN(X_LALT));\n'
     template += 'return false;\n'
     template += '}\n'
     template += '}\n'
