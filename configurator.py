@@ -256,7 +256,9 @@ def prepKeyForTemplate(key):
         'BL_TOGG': True,
         'BL_STEP': True,
         'BL_INC': True,
-        'BL_DEC': True
+        'BL_DEC': True,
+        'RGB_VAI': True,
+        'RGB_VAD': True
     }
 
     if key_type == 'normal':
