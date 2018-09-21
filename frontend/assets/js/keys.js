@@ -50,14 +50,6 @@ var KEYS = [
     ]
   },
   {
-    label: ' ',
-    updateType: 'primary',
-    visible: ['modkey'],
-    keys: [
-      {value: 'LALT', display: 'L⎇', tooltip: 'Left Alt'}
-    ]
-  },
-  {
       label: ' ',
     updateType: 'primary',
     visible: ['normal', 'tapkey', 'modkey', 'combokey'],
@@ -122,7 +114,8 @@ var KEYS = [
       {value: 'INT2', display: 'KANA', tooltip: 'JIS Katakana/Hiragana'},
       {value: 'INT3', display: 'JYEN', tooltip: 'JIS ¥'},
       {value: 'INT4', display: 'HENK', tooltip: 'JIS Henkan'},
-      {value: 'INT5', display: 'MHEN', tooltip: 'JIS Muhenkan'}
+      {value: 'INT5', display: 'MHEN', tooltip: 'JIS Muhenkan'},
+      {value: 'IME', display: 'IME', tooltip: 'IME'}
     ]
   },
   {
