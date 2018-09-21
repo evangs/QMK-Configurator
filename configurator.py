@@ -266,7 +266,7 @@ def prepKeyForTemplate(key):
             return key_value
         
         if key_value == 'IME':
-            return 'LSFT(KC_LALT)'
+            return 'M_IME'
 
         return 'KC_{}'.format(key_value)
 
@@ -305,10 +305,21 @@ def buildKeymap(keyData, fn_indicators, firmware_directory):
         layers.append(layer_keys)
 
     template =  '#include "{}.h"\n'.format(firmware_directory)
+    template += '#define M_IME M(0)\n'
     template += 'const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {\n'
     for index, layer in enumerate(layers):
         template += '[{}] = KEYMAP({}),\n'.format(index, ', '.join(layer))
 
+    template += '};\n'
+    
+    template += 'const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {\n'
+    template += 'if (record->event.pressed) {\n'
+    template += 'switch(id) {\n'
+    template += 'case 0:\n'
+    template += 'return MACRO(D(LSFT), D(LALT), END);\n'
+    template += '}\n'
+    template += '}\n'
+    template += 'return MACRO_NONE;\n'
     template += '};\n'
 
     if fn_indicators:
