@@ -258,6 +258,8 @@ var KEYS = [
       {value: 'BL_STEP', display: 'Toggle Led'},
       {value: 'BL_INC', display: 'LED +', tooltip: 'Increase LED Brightness'},
       {value: 'BL_DEC', display: 'LED -', tooltip: 'Decrease LED Brightness'},
+      {value: 'RGB_VAI', display: 'RGB +', tooltip: 'Increase RGB Brightness'},
+      {value: 'RGB_VAD', display: 'RGB -', tooltip: 'Decrease RGB Brightness'},
       {value: 'RESET', display: 'Reset'},
       {value: 'NO', display: 'No Action'}
     ]
