@@ -264,6 +264,9 @@ def prepKeyForTemplate(key):
     if key_type == 'normal':
         if key_value in EXEMPT_CODES:
             return key_value
+        
+        if key_value === 'IME':
+            return 'LSFT(KC_LALT)'
 
         return 'KC_{}'.format(key_value)
 
