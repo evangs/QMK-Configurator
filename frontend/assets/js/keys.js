@@ -115,7 +115,11 @@ var KEYS = [
       {value: 'INT3', display: 'JYEN', tooltip: 'JIS ¥'},
       {value: 'INT4', display: 'HENK', tooltip: 'JIS Henkan'},
       {value: 'INT5', display: 'MHEN', tooltip: 'JIS Muhenkan'},
-      {value: 'IME', display: 'IME', tooltip: 'IME'}
+      {value: 'IME', display: 'IME', tooltip: 'IME'},
+      {value: 'LANG1', display: 'LANG1'},
+      {value: 'LANG2', display: 'LANG2'},
+      {value: 'LANG3', display: 'LANG3'},
+      {value: 'LANG4', display: 'LANG4'}
     ]
   },
   {
