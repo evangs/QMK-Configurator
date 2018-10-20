@@ -305,7 +305,6 @@ def buildKeymap(keyData, fn_indicators, firmware_directory):
         layers.append(layer_keys)
 
     template =  '#include "{}.h"\n'.format(firmware_directory)
-    template += '#include <util/delay.h>\n'
     template += 'enum custom_keycodes {\n'
     template += 'M_IME = SAFE_RANGE\n'
     template += '};\n'
@@ -343,13 +342,11 @@ def buildKeymap(keyData, fn_indicators, firmware_directory):
 
         #keyboard indicators trigger
         template += 'void led_set_user(uint8_t usb_led) {\n'
-        template += '_delay_us(5);\n'
         template += 'process_indicator_update();\n'
         template += '};\n'
 
         #layer indicators trigger
         template += 'uint32_t layer_state_set_kb(uint32_t state) {\n'
-        template += '_delay_us(5);\n'
         template += 'process_indicator_update();\n'
         template += 'return state;\n'
         template += '};\n'
