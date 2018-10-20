@@ -233,7 +233,7 @@ def buildKeyboardHeader(configKeymap, firmware_directory):
         template += '{{ {} }}, \\\n'.format(', '.join(row))
 
     template += '}\n#endif\n'
-    template += 'void process_indicator_update(void);'
+    template += 'void process_indicator_update(uint32_t, uint8_t);'
 
     return template
 
@@ -337,7 +337,7 @@ def buildKeymap(keyData, fn_indicators, firmware_directory):
         template += 'rgblight_init();\n'
         template += '};\n'
         template += 'void rgblight_init_leds(void) {\n'
-        template += 'process_indicator_update();\n'
+        template += 'process_indicator_update(layer_state, host_keyboard_leds());\n'
         template += '};\n'
 
         #keyboard indicators trigger
