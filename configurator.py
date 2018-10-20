@@ -368,7 +368,7 @@ def buildKeymap(keyData, fn_indicators, firmware_directory):
         for index, led in enumerate(fn_indicators):
             for trigger in led:
                 if trigger.get('type') == 'layer':
-                    template += 'if (layer_state & (0<<{})){{\n'.format(trigger.get('action')[1:])
+                    template += 'if (layer_state & (1<<{})){{\n'.format(trigger.get('action')[1:])
                     template += 'indicators[{}].r = {};\n'.format(index, trigger.get('red'))
                     template += 'indicators[{}].g = {};\n'.format(index, trigger.get('green'))
                     template += 'indicators[{}].b = {};\n'.format(index, trigger.get('blue'))
