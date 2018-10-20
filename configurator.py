@@ -342,17 +342,17 @@ def buildKeymap(keyData, fn_indicators, firmware_directory):
 
         #keyboard indicators trigger
         template += 'void led_set_user(uint8_t usb_led) {\n'
-        template += 'process_indicator_update();\n'
+        template += 'process_indicator_update(layer_state, usb_led);\n'
         template += '};\n'
 
         #layer indicators trigger
-        template += 'uint32_t layer_state_set_kb(uint32_t state) {\n'
-        template += 'process_indicator_update();\n'
+        template += 'uint32_t layer_state_set_user(uint32_t state) {\n'
+        template += 'process_indicator_update(state, host_keyboard_leds());\n'
         template += 'return state;\n'
         template += '};\n'
 
         #process indicator update
-        template += 'void process_indicator_update(void) {\n'
+        template += 'void process_indicator_update(uint32_t state, uint8_t usb_led) {\n'
         template += 'LED_TYPE indicators[{}] = {{\n'.format(len(fn_indicators))
         for index in range(len(fn_indicators)):
             template += '{.r = 0, .g = 0, .b = 0},\n'
@@ -368,14 +368,14 @@ def buildKeymap(keyData, fn_indicators, firmware_directory):
         for index, led in enumerate(fn_indicators):
             for trigger in led:
                 if trigger.get('type') == 'layer':
-                    template += 'if (layer_state & (1<<{})){{\n'.format(trigger.get('action')[1:])
+                    template += 'if (state & (1<<{})){{\n'.format(trigger.get('action')[1:])
                     template += 'indicators[{}].r = {};\n'.format(index, trigger.get('red'))
                     template += 'indicators[{}].g = {};\n'.format(index, trigger.get('green'))
                     template += 'indicators[{}].b = {};\n'.format(index, trigger.get('blue'))
                     template += '}\n'
 
                 elif trigger.get('type') == 'keyboard':
-                    template += 'if (host_keyboard_leds() & (1<<{})){{\n'.format(trigger.get('action'))
+                    template += 'if (usb_led & (1<<{})){{\n'.format(trigger.get('action'))
                     template += 'if (indicators[{index}].r > 0) {{indicators[{index}].r = (indicators[{index}].r + {new}) / 2;}}\n'.format(index=index, new=trigger.get('red'))
                     template += 'else {{indicators[{}].r = {};}}\n'.format(index, trigger.get('red'))
                     template += 'if (indicators[{index}].g > 0) {{indicators[{index}].g = (indicators[{index}].g + {new}) / 2;}}\n'.format(index=index, new=trigger.get('green'))
