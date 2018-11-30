@@ -1,0 +1,79 @@
+$key-unit-size: 75px;
+$key-border-color: #0f1010;
+$key-background-color: #4f5254;
+
+.key {
+  display: inline-block;
+  padding: $key-unit-size / 3.125;
+  font-size: $key-unit-size / 2.678571429;
+  border-radius: 10px;
+  box-sizing: border-box;
+  border: 3px solid $key-border-color;
+  background: $key-background-color;
+  cursor: pointer;
+}
+
+.key.k100 {
+  width: $key-unit-size;
+  height: $key-unit-size;
+}
+
+.key.k125 {
+  width: $key-unit-size + ($key-unit-size * 0.25);
+  height: $key-unit-size;
+}
+
+.key.k150 {
+  width: $key-unit-size + ($key-unit-size * 0.5);
+  height: $key-unit-size;
+}
+
+.key.k175 {
+  width: $key-unit-size + ($key-unit-size * 0.75);
+  height: $key-unit-size;
+}
+
+.key.k175stepped {
+  width: $key-unit-size + ($key-unit-size * 0.75);
+  height: $key-unit-size;
+  margin-right: 25px;
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+}
+
+.key.k200 {
+  width: $key-unit-size * 2;
+  height: $key-unit-size;
+}
+
+.key.k225 {
+  width: $key-unit-size + ($key-unit-size * 1.25);
+  height: $key-unit-size;
+}
+
+.key.k275 {
+  width: $key-unit-size + ($key-unit-size * 1.75);
+  height: $key-unit-size;
+}
+
+.key.k200v {
+  width: $key-unit-size;
+  height: $key-unit-size * 2;
+  margin-bottom: -56px
+}
+
+.key.k625 {
+  width: $key-unit-size + ($key-unit-size * 3.25);
+  height: $key-unit-size;
+}
+
+.key.k700 {
+    width: $key-unit-size + ($key-unit-size * 4);
+    height: $key-unit-size;
+}
+
+.key.kISO {
+  width: $key-unit-size + ($key-unit-size * 0.25);
+  height: $key-unit-size;
+  border-radius: 10px 10px 0 10px;
+}
