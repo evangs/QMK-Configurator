@@ -16,15 +16,6 @@ export default class extends Component {
       return clone.filter(function(x){ return x.shape !== undefined })
     })
 
-    // // Transform shape data into integer
-    // data = data.map(function(d) {
-    //   const clone = d.slice(0)
-    //   return clone.map(function(e) {
-    //     e.shape = e.shape.substr(1)
-    //     e.shape = parseInt(e.shape, 10)
-    //     return e
-    //   })
-    // })
     const getShape = shape => {
       shape = shape.substr(1)
       return parseInt(shape, 10)
@@ -86,7 +77,7 @@ export default class extends Component {
     const { layerId } = this.props
     return (
       <svg
-        id={`layer-${this.props.layerId}`}
+        id={`layer-${layerId}`}
         width='200px'
         height='75px'>
       </svg>

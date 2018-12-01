@@ -4,13 +4,20 @@ $key-background-color: #4f5254;
 
 .key {
   display: inline-block;
-  padding: $key-unit-size / 3.125;
   font-size: $key-unit-size / 2.678571429;
   border-radius: 10px;
   box-sizing: border-box;
   border: 3px solid $key-border-color;
   background: $key-background-color;
+  vertical-align: bottom;
   cursor: pointer;
+
+  p {
+    height: '100%';
+    line-height: '50px';
+    overflow-wrap: 'break-word';
+    line-height: $key-unit-size - 6; 
+  }
 }
 
 .key.k100 {

@@ -16,7 +16,7 @@ export default ({ fixed, boards, activeBoard }) => {
     <Menu inverted style={{ margin: 0 }}>
       <Container>
         <Menu.Item as='div'>
-          <Image size='mini' src={logo} style={{ marginRight: '1.5em' }} />
+          <Image size='mini' src={logo} style={{ marginRight: '1.5em', filter: 'brightness(10)' }} />
         </Menu.Item>
 
         <Menu.Menu position='right'>

@@ -12,6 +12,8 @@ import './theme/semantic.less'
 import Canvas from './components/canvas'
 import Nav from './components/nav'
 import KeyTypeMenu from './components/key-type-menu'
+import Settings from './components/settings'
+import './shake.scss'
 
 export default class extends Component {
 
@@ -25,6 +27,7 @@ export default class extends Component {
       exportFileName: ''
     }, initialState)
     this.toggleLayers = this._toggleLayers.bind(this)
+    this.setActiveKeyType = this._setActiveKeyType.bind(this)
   }
 
   render () {
@@ -33,55 +36,68 @@ export default class extends Component {
       boards,
       activeBoard,
       activeLayer,
+      activeKeyType,
       layoutName,
       layers,
       layersVisible,
-      keymap
+      keymap,
+      zones
     } = this.state
 
     return (
-      <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-       <Visibility
-         once={false}
-         onBottomPassed={this.showFixedMenu}
-         onBottomPassedReverse={this.hideFixedMenu}
-       >
-         <Segment
-           inverted
-           textAlign='center'
-           style={{
-             padding: 0,
-             margin: 0
-           }}
-           vertical
+      <div>
+        <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+         <Visibility
+           once={false}
+           onBottomPassed={this.showFixedMenu}
+           onBottomPassedReverse={this.hideFixedMenu}
          >
-           <Nav
-            boards={boards}
-            fixed={fixed}
-            activeBoard={activeBoard}
-          />
-          <Canvas
-            layers={layers}
-            activeLayer={activeLayer}
-            layersVisible={layersVisible}
-            toggleLayers={this.toggleLayers}
-            manufacturer={config[activeBoard].config.manufacturer}
-            product={config[activeBoard].config.product}
-            description={config[activeBoard].config.description}
-            keymaps={keymap}
-            layoutName={layoutName}
-          />
-         </Segment>
+           <Segment
+             inverted
+             textAlign='center'
+             style={{
+               padding: 0,
+               margin: 0
+             }}
+             vertical
+           >
+             <Nav
+              boards={boards}
+              fixed={fixed}
+              activeBoard={activeBoard}
+            />
+            <Canvas
+              layers={layers}
+              activeLayer={activeLayer}
+              activeKeyType={activeKeyType}
+              layersVisible={layersVisible}
+              toggleLayers={this.toggleLayers}
+              manufacturer={config[activeBoard].config.manufacturer}
+              product={config[activeBoard].config.product}
+              description={config[activeBoard].config.description}
+              keymaps={keymap}
+              layoutName={layoutName}
+            />
+           </Segment>
 
-         <Container>
-          <KeyTypeMenu />
-         </Container>
-       </Visibility>
-     </Responsive>
+           <Container>
+            <KeyTypeMenu
+              setActiveKeyType={this.setActiveKeyType}
+              activeKeyType={activeKeyType}
+            />
+            <Settings activeKeyType={activeKeyType} zones={zones}/>
+           </Container>
+         </Visibility>
+       </Responsive>
+      </div>
     )
   }
 
   _toggleLayers () {
     this.setState({ layersVisible: !this.state.layersVisible })
+  }
+
+  _setActiveKeyType (activeKeyType) {
+    this.setState({ activeKeyType })
   }
 }

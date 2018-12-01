@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Table, Icon } from 'semantic-ui-react'
+import { Table, Icon } from 'semantic-ui-react'
 
 export default ({
   manufacturer,
@@ -8,7 +8,6 @@ export default ({
   layoutName,
   layerName
 }) => {
-  console.log(manufacturer, product, description, layoutName, layerName)
   return (
     <Table basic celled collapsing inverted style={{
       position: 'absolute',

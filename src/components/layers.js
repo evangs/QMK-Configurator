@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { Container, Header, Divider, Icon } from 'semantic-ui-react'
 import Layer from './layer'
+import colors from '../utils/colors'
 
 // Reordering function
 const reorder = (list, startIndex, endIndex) => {
@@ -44,7 +45,6 @@ export default class Layers extends Component {
 
   render () {
     const { keymaps } = this.props
-    console.log(this.state.layers)
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="droppable">
@@ -75,7 +75,7 @@ export default class Layers extends Component {
                               margin: 0,
                               textAlign: 'left'
                             }}>
-                              {layer.layerName}
+                              <span style={{ color: colors.grey }}>({i})  </span> {layer.layerName}
                             </Header>
                           </div>
                           <div style={{ float: 'right' }}>

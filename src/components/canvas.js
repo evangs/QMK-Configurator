@@ -23,6 +23,7 @@ export default ({
   description,
   layoutName,
   activeLayer,
+  activeKeyType,
   toggleLayers
 }) => (
 
@@ -72,7 +73,7 @@ export default ({
       />
       <Container>
         <div style={{ marginTop: 100 }} />
-        <Keyboard keymap={keymaps[activeLayer]} />
+        <Keyboard keymap={keymaps[activeLayer]} activeKeyType={activeKeyType}/>
       </Container>
     </Sidebar.Pusher>
   </Sidebar.Pushable>
