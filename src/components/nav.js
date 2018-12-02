@@ -11,7 +11,7 @@ import Layouts from './layouts'
 import { config } from '../data/config'
 import logo from '../logo.png'
 
-export default ({ fixed, boards, activeBoard }) => {
+export default ({ fixed, boards, activeBoard, layouts }) => {
   return (
     <Menu inverted style={{ margin: 0 }}>
       <Container>
@@ -31,7 +31,7 @@ export default ({ fixed, boards, activeBoard }) => {
             <Button inverted color='green'>Save</Button>
           </Menu.Item>
           <Menu.Item>
-            <Layouts />
+            <Layouts layouts={layouts} activeBoard={activeBoard} />
           </Menu.Item>
           <Menu.Item>
             <Button icon inverted basic color='green'>

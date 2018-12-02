@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './key.scss'
+import { Textfit } from 'react-textfit'
 import { Container,
   Segment,
   Modal,
@@ -9,23 +9,23 @@ import { Container,
 } from 'semantic-ui-react'
 import { KEYS, KEY_DISPLAY_MAP, KEY_ACTIONS, KEYBOARD_INPUT_MAP } from '../data/keys'
 import colors from '../utils/colors'
+import './key.scss'
+
+const KEY_UNIT_SIZE = 75
+const KEY_BORDER_SIZE = 3
+const KEY_MARGIN_SIZE = 10
 
 export default class extends Component {
 
   constructor (props) {
     super(props)
-    console.log(props)
-    const { type, value, secondary, activeKeyType } = props
+    const { activeKeyType } = props
     this.state = {
       hover: false,
       open: false,
       shake: false,
-      keyType: type,
-      primaryDisplay: KEY_DISPLAY_MAP[value] || value,
-      primaryValue: value,
       primarySet: false,
-      secondaryDisplay: KEY_DISPLAY_MAP[secondary] || secondary || '',
-      secondaryValue: secondary || ''
+      tmp: null
     }
 
     this.keys = KEYS.filter(k => k.visible.indexOf(activeKeyType) > -1)
@@ -50,38 +50,36 @@ export default class extends Component {
     this.onKeyClick = this._onKeyClick.bind(this)
   }
 
-  componentWillReceiveProps (nextProps) {
-    const { activeKeyType } = nextProps
-    this.keys = KEYS.filter(k => k.visible.indexOf(activeKeyType) > -1)
-    this.action = KEY_ACTIONS.find(a => a.value === activeKeyType)
+  componentWillReceiveProps ({ activeKeyType }) {
+    if (activeKeyType !== this.props.activeKeyType) {
+      this.keys = KEYS.filter(k => k.visible.indexOf(activeKeyType) > -1)
+      this.action = KEY_ACTIONS.find(a => a.value === activeKeyType)
 
-    this.primaryKeys = filterByType('primary', this.keys, activeKeyType)
-    this.secondaryKeys = filterByType('secondary', this.keys, activeKeyType)
+      this.primaryKeys = filterByType('primary', this.keys, activeKeyType)
+      this.secondaryKeys = filterByType('secondary', this.keys, activeKeyType)
 
-    this.allPrimaryKeys = this.primaryKeys.reduce((a, k) => {
-      return a = a.concat(k.keys.map(j => j.value))
-    }, [])
+      this.allPrimaryKeys = this.primaryKeys.reduce((a, k) => {
+        return a = a.concat(k.keys.map(j => j.value))
+      }, [])
 
-    this.allSecondaryKeys = this.secondaryKeys.reduce((a, k) => {
-      return a = a.concat(k.keys.map(j => j.value))
-    }, [])
+      this.allSecondaryKeys = this.secondaryKeys.reduce((a, k) => {
+        return a = a.concat(k.keys.map(j => j.value))
+      }, [])
+    }
   }
 
   render () {
-    const { shape, value, activeKeyType } = this.props
+    const { type, shape, value, secondary, activeKeyType } = this.props
     const {
       hover,
       open,
       shake,
-      keyType,
-      primaryDisplay,
-      secondaryDisplay,
       primarySet,
-      primaryValue
+      tmp
     } = this.state
 
     let background
-    switch (keyType) {
+    switch (type) {
       case 'momentary':
         background = colors.teal
         break
@@ -113,6 +111,7 @@ export default class extends Component {
 
     let activeKeyColor
     let selectedColor
+    let errorColor = 'red'
     switch (activeKeyType) {
       case 'momentary':
         activeKeyColor = colors.teal
@@ -133,6 +132,7 @@ export default class extends Component {
       case 'combokey':
         activeKeyColor = colors.orange
         selectedColor = 'orange'
+        errorColor = undefined
         break
       case 'direct':
         activeKeyColor = colors.purple
@@ -145,12 +145,16 @@ export default class extends Component {
       case 'setdefaultlayer':
         activeKeyColor = colors.red
         selectedColor = 'red'
+        errorColor = undefined
         break
       case 'normal':
       default:
         activeKeyColor = colors.grey
         selectedColor = 'grey'
     }
+
+    let primaryDisplay = KEY_DISPLAY_MAP[value] || value
+    let secondaryDisplay = KEY_DISPLAY_MAP[secondary] || secondary || ''
 
     return (
       <Modal
@@ -167,32 +171,53 @@ export default class extends Component {
             onMouseEnter={this.onMouseEnter}
             onMouseOut={this.onMouseOut}
             onClick={this.openModal}>
-            <p>
-              {primaryDisplay[0] === '!' && primaryDisplay[1] === '!' ? <Icon name={primaryDisplay.replace('!!', '')} /> : primaryDisplay}
-            </p>
+            <div style={{
+              lineHeight: `${KEY_UNIT_SIZE - (KEY_BORDER_SIZE * 2) - (KEY_MARGIN_SIZE * 2)}px`,
+              margin: KEY_MARGIN_SIZE,
+              pointerEvents: 'none'
+            }}>
+              <Textfit
+                mode='single'
+                max={28}
+                min={8}>
+                {primaryDisplay[0] === '!' && primaryDisplay[1] === '!' ? <Icon name={primaryDisplay.replace('!!', '')} /> : primaryDisplay}
+                {secondaryDisplay && ' + ' }
+                {secondaryDisplay && (
+                   secondaryDisplay[0] === '!' && secondaryDisplay[1] === '!' ? <Icon name={secondaryDisplay.replace('!!', '')} /> : secondaryDisplay
+                )}
+              </Textfit>
+            </div>
           </div>
         }
       >
         <style dangerouslySetInnerHTML={{__html: `
           .ui.dimmer { background-color: ${activeKeyColor}!important }
       `}} />
-        <Modal.Content className={shake ? 'shake' : ''}>
-          <Container textAlign="center" style={{ marginBottom: 50 }}>
+        <Modal.Content className={shake ? 'shake' : ''} style={{ justifyContent: 'flex-start' }}>
+          <div style={{ position: 'absolute', left: 0, top: 0, display: 'flex' }}>
+            <h1>{this.action.display}</h1>
+            <p style={{ marginLeft: 10, lineHeight: '48px' }}>{this.action.tooltip}</p>
+          </div>
+          <div style={{ position: 'absolute', right: 0, top: 0 }}>
+            <Button icon inverted basic color='red' onClick={this.closeModal}>
+              <Icon name='close' />
+            </Button>
+          </div>
+          <Container textAlign="center" style={{
+            marginBottom: 50,
+            marginTop: 50 
+          }}>
             <div style={{
               textAlign: 'center',
-              opacity: 0.5
+              opacity: shake ? 1 : 0.5
             }}>
-              <Icon name='keyboard outline' size='massive' />
-              <p>Press a key or select one below</p>
-            </div>
-            <div style={{ position: 'absolute', left: 0, top: 0, display: 'flex' }}>
-              <h1>{this.action.display}</h1>
-              <p style={{ marginLeft: 10, lineHeight: '48px' }}>{this.action.tooltip}</p>
-            </div>
-            <div style={{ position: 'absolute', right: 0, top: 0 }}>
-              <Button icon inverted basic color='red' onClick={this.closeModal}>
-                <Icon name='close' />
-              </Button>
+              <Icon name={shake ? 'close' : 'keyboard outline'} size='massive' color={shake ? errorColor : undefined} />
+              <Header inverted
+                color={shake ? errorColor : undefined}
+                style={{ marginTop: 0 }}
+              >
+                {shake ? 'Key not available' : 'Press a key or select one below'}
+              </Header>
             </div>
           </Container>
           <div style={{ display: 'flex' }}>
@@ -203,7 +228,8 @@ export default class extends Component {
               onClick={this.onKeyClick}
               color={selectedColor}
               disabled={primarySet}
-              primaryValue={primaryValue}
+              value={value}
+              tmp={tmp}
             />}
             {this.secondaryKeys.length > 0 && <Column
               type='secondary'
@@ -211,6 +237,8 @@ export default class extends Component {
               activeKeyType={activeKeyType}
               onClick={this.onKeyClick}
               color={selectedColor}
+              value={secondary}
+              tmp={tmp}
             />}
           </div>
         </Modal.Content>
@@ -232,53 +260,62 @@ export default class extends Component {
   }
 
   _closeModal () {
-    this.setState({ open: false })
+    this.setState({
+      hover: false,
+      open: false,
+      shake: false,
+      primarySet: false,
+      tmp: null
+    })
     window.removeEventListener('keyup', this.onKeyUp)
   }
 
   _onKeyUp (e) {
-    const value = KEYBOARD_INPUT_MAP[parseInt(`${e.keyCode}${e.location}${e.shiftKey ? 1 : 0}`, 10)]
-    if (!value) {
+    const inputValue = KEYBOARD_INPUT_MAP[parseInt(`${e.keyCode}${e.location}${e.shiftKey ? 1 : 0}`, 10)]
+    if (!inputValue) {
       this.badKey()
       return
     }
 
-    const display = KEY_DISPLAY_MAP[value] || value
     const { primarySet } = this.state
-    const { activeKeyType } = this.props
+    const {
+      id,
+      shape,
+      value,
+      activeKeyType,
+      setKey
+    } = this.props
+
+    const key = {
+      id,
+      shape,
+      value: null,
+      secondary: null,
+      type: activeKeyType
+    }
 
     if (this.secondaryKeys.length === 0) {
-      if (this.allPrimaryKeys.indexOf(value) > -1) {
-        this.setState({
-          primaryDisplay: display,
-          primaryValue: value,
-          keyType: activeKeyType
-        })
+      if (this.allPrimaryKeys.indexOf(inputValue) > -1) {
+        key.value = inputValue
+        setKey(key)
         this.closeModal()
       } else {
         this.badKey()
       }
     } else {
       if (primarySet) {
-        if (this.allSecondaryKeys.indexOf(value) > -1) {
-          this.setState({
-            secondaryDisplay: display,
-            secondaryValue: value,
-            primarySet: false,
-            keyType: activeKeyType
-          })
+        if (this.allSecondaryKeys.indexOf(inputValue) > -1) {
+          this.setState({ primarySet: false, tmp: null })
+          key.value = value
+          key.secondary = inputValue
+          setKey(key)
           this.closeModal()
         } else {
           this.badKey()
         }
       } else {
-        if (this.allPrimaryKeys.indexOf(value) > -1) {
-          this.setState({
-            primaryDisplay: display,
-            primaryValue: value,
-            primarySet: true,
-            keyType: activeKeyType
-          })
+        if (this.allPrimaryKeys.indexOf(inputValue) > -1) {
+          this.setState({ primarySet: true, tmp: inputValue })
         } else {
           this.badKey()
         }
@@ -286,32 +323,37 @@ export default class extends Component {
     }
   }
 
-  _onKeyClick (e, key) {
-    const { primarySet } = this.state
-    const { activeKeyType } = this.props
+  _onKeyClick (e, k) {
+    const { primarySet, tmp } = this.state
+    const {
+      id,
+      shape,
+      value,
+      activeKeyType,
+      setKey
+    } = this.props
+
+    const key = {
+      id,
+      shape,
+      value: null,
+      secondary: null,
+      type: activeKeyType
+    }
+
     if (this.secondaryKeys.length === 0) {
-      this.setState({
-        primaryDisplay: key.display,
-        primaryValue: key.value,
-        keyType: activeKeyType
-      })
+      key.value = k.value
+      setKey(key)
       this.closeModal()
     } else {
       if (primarySet) {
-        this.setState({
-          secondaryDisplay: key.display,
-          secondaryValue: key.value,
-          primarySet: false,
-          keyType: activeKeyType
-        })
+        key.value = tmp
+        key.secondary = k.value
+        setKey(key)
+        this.setState({ primarySet: false, tmp: null })
         this.closeModal()
       } else {
-        this.setState({
-          primaryDisplay: key.display,
-          primaryValue: key.value,
-          primarySet: true,
-          keyType: activeKeyType
-        })
+        this.setState({ primarySet: true, tmp: k.value })
       }
     }
   }
@@ -320,7 +362,7 @@ export default class extends Component {
     this.setState({ shake: true }, () => {
       setTimeout(() => {
         this.setState({ shake: false })
-      }, 200)
+      }, 400)
     })
   }
 }
@@ -342,10 +384,9 @@ const Column = ({
   onClick,
   disabled,
   color,
-  primaryValue,
-  secondaryValue
+  value,
+  tmp
 }) => {
-
   return (
     <div style={{ padding: 20, flex: '1 1 0' }}>
       <Segment inverted>
@@ -356,20 +397,11 @@ const Column = ({
           <h3>{g.label}</h3>
             {g.keys.map((k, j) => {
               // Calculate button color
-              console.log(type, k.value, secondaryValue)
-              let buttonColor = false
-              switch (type) {
-                case 'primary':
-                  buttonColor = primaryValue === k.value ? color : false
-                  break
-                case 'secondary':
-                  buttonColor = secondaryValue === k.value ? color : false
-                  break
-              }
+              let buttonColor = (value === k.value && !tmp) || tmp === k.value ? color : undefined
               return (
                 <Button icon
                   key={`key-${j}`}
-                  disabled={disabled || primaryValue === k.value}
+                  disabled={disabled || value === k.value}
                   color={buttonColor}
                   style={{
                     minWidth: 50,

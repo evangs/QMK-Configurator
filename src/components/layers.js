@@ -43,8 +43,14 @@ export default class Layers extends Component {
     this.onDragEnd = this._onDragEnd.bind(this)
   }
 
+  componentWillReceiveProps (nextProps) {
+    if(JSON.stringify(this.props.layers) !== JSON.stringify(nextProps.layers)) {
+      this.setState({ layers: nextProps.layers })
+    }
+  }
+
   render () {
-    const { keymaps } = this.props
+    console.log(this.props)
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="droppable">
@@ -65,7 +71,7 @@ export default class Layers extends Component {
                         provided.draggableProps.style
                       )}
                     >
-                      <Layer keymap={keymaps[i]} layerId={layer.layerNumber} scaleFactor={7} />
+                      <Layer keymap={layer.keymap} layerId={layer.id} scaleFactor={7} />
                       <Container fluid>
                         <div style={{ float: 'left' }}>
                           <Header
@@ -75,12 +81,12 @@ export default class Layers extends Component {
                               margin: 0,
                               textAlign: 'left'
                             }}>
-                              <span style={{ color: colors.grey }}>({i})  </span> {layer.layerName}
+                              <span style={{ color: colors.grey }}>({i})  </span> {layer.name}
                             </Header>
                           </div>
                           <div style={{ float: 'right' }}>
-                            <Icon name='clone' size="small" />
-                            <Icon name='edit' size="small" />
+                            <Icon style={{ cursor: 'pointer' }} name='clone' size="small" onClick={() => console.log('hi')}/>
+                            <Icon style={{ cursor: 'pointer' }} name='edit' size="small" />
                           </div>
                           <div style={{ clear: 'both' }} />
                         </Container>

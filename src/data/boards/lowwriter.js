@@ -1,4 +1,7 @@
 
+/**
+* LowWriter config
+*/
 const lowwriter = {}
 
 // ID
@@ -114,15 +117,13 @@ lowwriter.zones = [
 
 // UI Keymap
 lowwriter.keySections = [
-  {  // DEFAULT LAYER ===============================================
-    layerName: 'Default',
+  {
     row1: [
       {
         id: 'k00',
         value: 'TAB',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -130,7 +131,6 @@ lowwriter.keySections = [
         value: 'Q',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -138,7 +138,6 @@ lowwriter.keySections = [
         value: 'W',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -146,7 +145,6 @@ lowwriter.keySections = [
         value: 'E',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -154,7 +152,6 @@ lowwriter.keySections = [
         value: 'R',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -162,7 +159,6 @@ lowwriter.keySections = [
         value: 'T',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -170,7 +166,6 @@ lowwriter.keySections = [
         value: 'Y',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -178,7 +173,6 @@ lowwriter.keySections = [
         value: 'U',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -186,7 +180,6 @@ lowwriter.keySections = [
         value: 'I',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -194,7 +187,6 @@ lowwriter.keySections = [
         value: 'O',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -202,7 +194,6 @@ lowwriter.keySections = [
         value: 'P',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -210,7 +201,6 @@ lowwriter.keySections = [
         value: 'BSPC',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k175'
       }
     ],
@@ -220,7 +210,6 @@ lowwriter.keySections = [
         value: 'ESC',
         type: 'tapkey',
         secondary: 'L1',
-        showMenu: false,
         shape: 'k125'
       },
       {
@@ -228,7 +217,6 @@ lowwriter.keySections = [
         value: 'A',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -236,7 +224,6 @@ lowwriter.keySections = [
         value: 'S',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -244,7 +231,6 @@ lowwriter.keySections = [
         value: 'D',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -252,7 +238,6 @@ lowwriter.keySections = [
         value: 'F',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -260,7 +245,6 @@ lowwriter.keySections = [
         value: 'G',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -268,7 +252,6 @@ lowwriter.keySections = [
         value: 'H',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -276,7 +259,6 @@ lowwriter.keySections = [
         value: 'J',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -284,7 +266,6 @@ lowwriter.keySections = [
         value: 'K',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -292,7 +273,6 @@ lowwriter.keySections = [
         value: 'L',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -300,7 +280,6 @@ lowwriter.keySections = [
         value: 'SCLN',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       }
     ],
@@ -311,7 +290,6 @@ lowwriter.keySections = [
           value: 'QUOT',
           type: 'tapkey',
           secondary: 'L1',
-          showMenu: false,
           shape: 'k150',
           zone: 'Enter'
         }
@@ -322,7 +300,6 @@ lowwriter.keySections = [
           value: 'QUOT',
           type: 'tapkey',
           secondary: 'L1',
-          showMenu: false,
           shape: 'kJIS',
           zone: 'Enter'
         }
@@ -334,7 +311,6 @@ lowwriter.keySections = [
         value: 'LSFT',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k175'
       },
       {
@@ -342,7 +318,6 @@ lowwriter.keySections = [
         value: 'Z',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -350,7 +325,6 @@ lowwriter.keySections = [
         value: 'X',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -358,7 +332,6 @@ lowwriter.keySections = [
         value: 'C',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -366,7 +339,6 @@ lowwriter.keySections = [
         value: 'V',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -374,7 +346,6 @@ lowwriter.keySections = [
         value: 'B',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -382,7 +353,6 @@ lowwriter.keySections = [
         value: 'N',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -390,7 +360,6 @@ lowwriter.keySections = [
         value: 'M',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -398,7 +367,6 @@ lowwriter.keySections = [
         value: 'COMM',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -406,7 +374,6 @@ lowwriter.keySections = [
         value: 'DOT',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -414,7 +381,6 @@ lowwriter.keySections = [
         value: 'SLSH',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       }
     ],
@@ -425,7 +391,6 @@ lowwriter.keySections = [
           value: 'L2',
           type: 'momentary',
           secondary: null,
-          showMenu: false,
           shape: 'k100',
           zone: 'Enter'
         }
@@ -445,7 +410,6 @@ lowwriter.keySections = [
           value: 'LCTL',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k125',
           zone: 'Left Hand'
         },
@@ -454,7 +418,6 @@ lowwriter.keySections = [
           value: 'L2',
           type: 'momentary',
           secondary: null,
-          showMenu: false,
           shape: 'k150',
           zone: 'Left Hand'
         },
@@ -468,7 +431,6 @@ lowwriter.keySections = [
           value: 'LGUI',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k125',
           zone: 'Left Hand'
         }
@@ -479,7 +441,6 @@ lowwriter.keySections = [
           value: 'LCTL',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100',
           zone: 'Left Hand'
         },
@@ -488,7 +449,6 @@ lowwriter.keySections = [
           value: 'L2',
           type: 'momentary',
           secondary: null,
-          showMenu: false,
           shape: 'k100',
           zone: 'Left Hand'
         },
@@ -497,7 +457,6 @@ lowwriter.keySections = [
           value: 'LALT',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100',
           zone: 'Left Hand'
         },
@@ -506,7 +465,6 @@ lowwriter.keySections = [
           value: 'LGUI',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100',
           zone: 'Left Hand'
         }
@@ -518,7 +476,6 @@ lowwriter.keySections = [
         value: 'ENT',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k225'
       },
       {
@@ -526,7 +483,6 @@ lowwriter.keySections = [
         value: 'SPC',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k200'
       }
     ],
@@ -537,7 +493,6 @@ lowwriter.keySections = [
           value: 'RALT',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k125',
           zone: 'Right Hand'
         },
@@ -546,7 +501,6 @@ lowwriter.keySections = [
           value: 'RSFT',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k150',
           zone: 'Right Hand'
         },
@@ -560,7 +514,6 @@ lowwriter.keySections = [
           value: 'L3',
           type: 'toggle',
           secondary: null,
-          showMenu: false,
           shape: 'k175',
           zone: 'Right Hand'
         }
@@ -571,7 +524,6 @@ lowwriter.keySections = [
           value: 'RALT',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k150',
           zone: 'Right Hand'
         },
@@ -580,7 +532,6 @@ lowwriter.keySections = [
           value: 'RSFT',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100',
           zone: 'Right Hand'
         },
@@ -589,7 +540,6 @@ lowwriter.keySections = [
           value: 'RCTL',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100',
           zone: 'Right Hand'
         },
@@ -598,7 +548,446 @@ lowwriter.keySections = [
           value: 'L3',
           type: 'toggle',
           secondary: null,
-          showMenu: false,
+          shape: 'k100',
+          zone: 'Right Hand'
+        }
+      ],
+    ]
+  }
+]
+
+lowwriter.defaultKeySections = [
+  { // DEFAULT LAYER ==========================================
+    row1: [
+      {
+        id: 'k00',
+        value: 'TAB',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k01',
+        value: 'Q',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k02',
+        value: 'W',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k03',
+        value: 'E',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k04',
+        value: 'R',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k05',
+        value: 'T',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k06',
+        value: 'Y',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k07',
+        value: 'U',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k08',
+        value: 'I',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k09',
+        value: 'O',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k0A',
+        value: 'P',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k0B',
+        value: 'BSPC',
+        type: 'normal',
+        secondary: null,
+        shape: 'k175'
+      }
+    ],
+    row2: [
+      {
+        id: 'k10',
+        value: 'ESC',
+        type: 'tapkey',
+        secondary: 'L1',
+        shape: 'k125'
+      },
+      {
+        id: 'k11',
+        value: 'A',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k12',
+        value: 'S',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k13',
+        value: 'D',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k14',
+        value: 'F',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k15',
+        value: 'G',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k16',
+        value: 'H',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k17',
+        value: 'J',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k18',
+        value: 'K',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k19',
+        value: 'L',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k1A',
+        value: 'SCLN',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      }
+    ],
+    enter: [
+      [
+        {
+          id: 'k1B',
+          value: 'QUOT',
+          type: 'tapkey',
+          secondary: 'L1',
+          shape: 'k150',
+          zone: 'Enter'
+        }
+      ],
+      [
+        {
+          id: 'k1B',
+          value: 'QUOT',
+          type: 'tapkey',
+          secondary: 'L1',
+          shape: 'kJIS',
+          zone: 'Enter'
+        }
+      ]
+    ],
+    row3: [
+      {
+        id: 'k20',
+        value: 'LSFT',
+        type: 'normal',
+        secondary: null,
+        shape: 'k175'
+      },
+      {
+        id: 'k21',
+        value: 'Z',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k22',
+        value: 'X',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k23',
+        value: 'C',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k24',
+        value: 'V',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k25',
+        value: 'B',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k26',
+        value: 'N',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k27',
+        value: 'M',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k28',
+        value: 'COMM',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k29',
+        value: 'DOT',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      },
+      {
+        id: 'k2A',
+        value: 'SLSH',
+        type: 'normal',
+        secondary: null,
+        shape: 'k100'
+      }
+    ],
+    fn2: [
+      [
+        {
+          id: 'k2B',
+          value: 'L2',
+          type: 'momentary',
+          secondary: null,
+          shape: 'k100',
+          zone: 'Enter'
+        }
+      ],
+      [
+        {
+          id: 'k2B',
+          value: 'NO',
+          type: 'nodisplay',
+        }
+      ]
+    ],
+    leftHand: [
+      [
+        {
+          id: 'k30',
+          value: 'LCTL',
+          type: 'normal',
+          secondary: null,
+          shape: 'k125',
+          zone: 'Left Hand'
+        },
+        {
+          id: 'k31',
+          value: 'L2',
+          type: 'momentary',
+          secondary: null,
+          shape: 'k150',
+          zone: 'Left Hand'
+        },
+        {
+          id: 'k34',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
+          id: 'k32',
+          value: 'LGUI',
+          type: 'normal',
+          secondary: null,
+          shape: 'k125',
+          zone: 'Left Hand'
+        }
+      ],
+      [
+        {
+          id: 'k30',
+          value: 'LCTL',
+          type: 'normal',
+          secondary: null,
+          shape: 'k100',
+          zone: 'Left Hand'
+        },
+        {
+          id: 'k31',
+          value: 'L2',
+          type: 'momentary',
+          secondary: null,
+          shape: 'k100',
+          zone: 'Left Hand'
+        },
+        {
+          id: 'k34',
+          value: 'LALT',
+          type: 'normal',
+          secondary: null,
+          shape: 'k100',
+          zone: 'Left Hand'
+        },
+        {
+          id: 'k32',
+          value: 'LGUI',
+          type: 'normal',
+          secondary: null,
+          shape: 'k100',
+          zone: 'Left Hand'
+        }
+      ]
+    ],
+    row4: [
+      {
+        id: 'k33',
+        value: 'ENT',
+        type: 'normal',
+        secondary: null,
+        shape: 'k225'
+      },
+      {
+        id: 'k37',
+        value: 'SPC',
+        type: 'normal',
+        secondary: null,
+        shape: 'k200'
+      }
+    ],
+    rightHand: [
+      [
+        {
+          id: 'k38',
+          value: 'RALT',
+          type: 'normal',
+          secondary: null,
+          shape: 'k125',
+          zone: 'Right Hand'
+        },
+        {
+          id: 'k39',
+          value: 'RSFT',
+          type: 'normal',
+          secondary: null,
+          shape: 'k150',
+          zone: 'Right Hand'
+        },
+        {
+          id: 'k3A',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
+          id: 'k3B',
+          value: 'L3',
+          type: 'toggle',
+          secondary: null,
+          shape: 'k175',
+          zone: 'Right Hand'
+        }
+      ],
+      [
+        {
+          id: 'k38',
+          value: 'RALT',
+          type: 'normal',
+          secondary: null,
+          shape: 'k150',
+          zone: 'Right Hand'
+        },
+        {
+          id: 'k39',
+          value: 'RSFT',
+          type: 'normal',
+          secondary: null,
+          shape: 'k100',
+          zone: 'Right Hand'
+        },
+        {
+          id: 'k3A',
+          value: 'RCTL',
+          type: 'normal',
+          secondary: null,
+          shape: 'k100',
+          zone: 'Right Hand'
+        },
+        {
+          id: 'k3B',
+          value: 'L3',
+          type: 'toggle',
+          secondary: null,
           shape: 'k100',
           zone: 'Right Hand'
         }
@@ -606,14 +995,12 @@ lowwriter.keySections = [
     ]
   },
   {  // LAYER 1 ===============================================
-    layerName: 'Layer 1',
     row1: [
       {
         id: 'k00',
         value: 'GRV',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -621,7 +1008,6 @@ lowwriter.keySections = [
         value: 'EXLM',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -629,7 +1015,6 @@ lowwriter.keySections = [
         value: 'AT',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -637,7 +1022,6 @@ lowwriter.keySections = [
         value: 'HASH',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -645,7 +1029,6 @@ lowwriter.keySections = [
         value: 'DLR',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -653,7 +1036,6 @@ lowwriter.keySections = [
         value: 'PERC',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -661,7 +1043,6 @@ lowwriter.keySections = [
         value: 'CIRC',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -669,7 +1050,6 @@ lowwriter.keySections = [
         value: 'AMPR',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -677,7 +1057,6 @@ lowwriter.keySections = [
         value: 'ASTR',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -685,7 +1064,6 @@ lowwriter.keySections = [
         value: 'LPRN',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -693,7 +1071,6 @@ lowwriter.keySections = [
         value: 'RPRN',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -701,7 +1078,6 @@ lowwriter.keySections = [
         value: 'DEL',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k175'
       }
     ],
@@ -711,7 +1087,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k125'
       },
       {
@@ -719,7 +1094,6 @@ lowwriter.keySections = [
         value: 'BSLS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -727,7 +1101,6 @@ lowwriter.keySections = [
         value: 'QUOT',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -735,7 +1108,6 @@ lowwriter.keySections = [
         value: 'MINS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -743,7 +1115,6 @@ lowwriter.keySections = [
         value: 'EQL',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -751,7 +1122,6 @@ lowwriter.keySections = [
         value: 'LBRC',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -759,7 +1129,6 @@ lowwriter.keySections = [
         value: 'RBRC',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -767,7 +1136,6 @@ lowwriter.keySections = [
         value: 'DOWN',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -775,7 +1143,6 @@ lowwriter.keySections = [
         value: 'UP',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -783,7 +1150,6 @@ lowwriter.keySections = [
         value: 'LEFT',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -791,7 +1157,6 @@ lowwriter.keySections = [
         value: 'RIGHT',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       }
     ],
@@ -802,7 +1167,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k150'
         }
       ],
@@ -812,7 +1176,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'kJIS'
         }
       ]
@@ -823,7 +1186,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k175'
       },
       {
@@ -831,7 +1193,6 @@ lowwriter.keySections = [
         value: 'ESC',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -839,7 +1200,6 @@ lowwriter.keySections = [
         value: 'BL_STEP',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -847,7 +1207,6 @@ lowwriter.keySections = [
         value: 'PSCR',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -855,7 +1214,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -863,7 +1221,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -871,7 +1228,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -879,7 +1235,6 @@ lowwriter.keySections = [
         value: 'MSTP',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -887,7 +1242,6 @@ lowwriter.keySections = [
         value: 'MPLY',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -895,7 +1249,6 @@ lowwriter.keySections = [
         value: 'MPRV',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -903,7 +1256,6 @@ lowwriter.keySections = [
         value: 'MNXT',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       }
     ],
@@ -914,7 +1266,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         }
       ],
@@ -933,7 +1284,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k125'
         },
         {
@@ -941,7 +1291,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k150'
         },
         {
@@ -954,7 +1303,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k125'
         }
       ],
@@ -964,7 +1312,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         },
         {
@@ -972,7 +1319,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         },
         {
@@ -980,7 +1326,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         },
         {
@@ -988,7 +1333,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         }
       ]
@@ -999,7 +1343,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k225'
       },
       {
@@ -1007,7 +1350,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k200'
       }
     ],
@@ -1018,7 +1360,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k125'
         },
         {
@@ -1026,7 +1367,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k150'
         },
         {
@@ -1039,7 +1379,6 @@ lowwriter.keySections = [
           value: 'RESET',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k175'
         }
       ],
@@ -1049,7 +1388,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k150'
         },
         {
@@ -1057,7 +1395,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         },
         {
@@ -1065,7 +1402,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         },
         {
@@ -1073,21 +1409,18 @@ lowwriter.keySections = [
           value: 'RESET',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         }
       ],
     ]
   },
   {  // LAYER 2 ===============================================
-    layerName: 'Layer 2',
     row1: [
       {
         id: 'k00',
         value: 'TILD',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1095,7 +1428,6 @@ lowwriter.keySections = [
         value: '1',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1103,7 +1435,6 @@ lowwriter.keySections = [
         value: '2',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1111,7 +1442,6 @@ lowwriter.keySections = [
         value: '3',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1119,7 +1449,6 @@ lowwriter.keySections = [
         value: '4',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1127,7 +1456,6 @@ lowwriter.keySections = [
         value: '5',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1135,7 +1463,6 @@ lowwriter.keySections = [
         value: '6',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1143,7 +1470,6 @@ lowwriter.keySections = [
         value: '7',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1151,7 +1477,6 @@ lowwriter.keySections = [
         value: '8',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1159,7 +1484,6 @@ lowwriter.keySections = [
         value: '9',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1167,7 +1491,6 @@ lowwriter.keySections = [
         value: '0',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1175,7 +1498,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k175'
       }
     ],
@@ -1185,7 +1507,6 @@ lowwriter.keySections = [
         value: 'ESC',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k125'
       },
       {
@@ -1193,7 +1514,6 @@ lowwriter.keySections = [
         value: 'PIPE',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1201,7 +1521,6 @@ lowwriter.keySections = [
         value: 'DQT',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1209,7 +1528,6 @@ lowwriter.keySections = [
         value: 'UNDS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1217,7 +1535,6 @@ lowwriter.keySections = [
         value: 'PLUS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1225,7 +1542,6 @@ lowwriter.keySections = [
         value: 'LCBR',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1233,7 +1549,6 @@ lowwriter.keySections = [
         value: 'RCBR',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1241,7 +1556,6 @@ lowwriter.keySections = [
         value: '4',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1249,7 +1563,6 @@ lowwriter.keySections = [
         value: '5',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1257,7 +1570,6 @@ lowwriter.keySections = [
         value: '6',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1265,7 +1577,6 @@ lowwriter.keySections = [
         value: 'VOLU',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       }
     ],
@@ -1276,7 +1587,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k150'
         }
       ],
@@ -1286,7 +1596,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'kJIS'
         }
       ]
@@ -1297,7 +1606,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k175'
       },
       {
@@ -1305,7 +1613,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1313,7 +1620,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1321,7 +1627,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1329,7 +1634,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1337,7 +1641,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1345,7 +1648,6 @@ lowwriter.keySections = [
         value: '0',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1353,7 +1655,6 @@ lowwriter.keySections = [
         value: '1',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1361,7 +1662,6 @@ lowwriter.keySections = [
         value: '2',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1369,7 +1669,6 @@ lowwriter.keySections = [
         value: '3',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1377,7 +1676,6 @@ lowwriter.keySections = [
         value: 'VOLD',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       }
     ],
@@ -1388,7 +1686,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         }
       ],
@@ -1407,7 +1704,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k125'
         },
         {
@@ -1415,7 +1711,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k150'
         },
         {
@@ -1428,7 +1723,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k125'
         }
       ],
@@ -1438,7 +1732,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         },
         {
@@ -1446,7 +1739,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         },
         {
@@ -1454,7 +1746,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         },
         {
@@ -1462,7 +1753,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         }
       ]
@@ -1473,7 +1763,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k225'
       },
       {
@@ -1481,7 +1770,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k200'
       }
     ],
@@ -1492,7 +1780,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k125'
         },
         {
@@ -1500,7 +1787,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k150'
         },
         {
@@ -1513,7 +1799,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k175'
         }
       ],
@@ -1523,7 +1808,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k150'
         },
         {
@@ -1531,7 +1815,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         },
         {
@@ -1539,7 +1822,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         },
         {
@@ -1547,21 +1829,18 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         }
       ],
     ]
   },
-  {  // LAYER 3 LOCK ===============================================
-    layerName: 'Game Lock Layer',
+  {  // LAYER 3 GAME LOCK =====================================
     row1: [
       {
         id: 'k00',
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1569,7 +1848,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1577,7 +1855,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1585,7 +1862,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1593,7 +1869,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1601,7 +1876,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1609,7 +1883,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1617,7 +1890,6 @@ lowwriter.keySections = [
         value: 'F1',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1625,7 +1897,6 @@ lowwriter.keySections = [
         value: 'F2',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1633,7 +1904,6 @@ lowwriter.keySections = [
         value: 'F3',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1641,7 +1911,6 @@ lowwriter.keySections = [
         value: 'F4',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1649,7 +1918,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k175'
       }
     ],
@@ -1659,7 +1927,6 @@ lowwriter.keySections = [
         value: 'ESC',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k125'
       },
       {
@@ -1667,7 +1934,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1675,7 +1941,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1683,7 +1948,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1691,7 +1955,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1699,7 +1962,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1707,7 +1969,6 @@ lowwriter.keySections = [
         value: 'TRNS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1715,7 +1976,6 @@ lowwriter.keySections = [
         value: 'F5',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1723,7 +1983,6 @@ lowwriter.keySections = [
         value: 'F6',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1731,7 +1990,6 @@ lowwriter.keySections = [
         value: 'F7',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1739,7 +1997,6 @@ lowwriter.keySections = [
         value: 'F8',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       }
     ],
@@ -1750,7 +2007,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k150'
         }
       ],
@@ -1760,7 +2016,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'kJIS'
         }
       ]
@@ -1771,7 +2026,6 @@ lowwriter.keySections = [
         value: 'LSFT',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k175'
       },
       {
@@ -1779,7 +2033,6 @@ lowwriter.keySections = [
         value: '1',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1787,7 +2040,6 @@ lowwriter.keySections = [
         value: '2',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1795,7 +2047,6 @@ lowwriter.keySections = [
         value: '3',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1803,7 +2054,6 @@ lowwriter.keySections = [
         value: '4',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1811,7 +2061,6 @@ lowwriter.keySections = [
         value: '5',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1819,7 +2068,6 @@ lowwriter.keySections = [
         value: '6',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1827,7 +2075,6 @@ lowwriter.keySections = [
         value: 'F9',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1835,7 +2082,6 @@ lowwriter.keySections = [
         value: 'F10',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1843,7 +2089,6 @@ lowwriter.keySections = [
         value: 'F11',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       },
       {
@@ -1851,7 +2096,6 @@ lowwriter.keySections = [
         value: 'F12',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100'
       }
     ],
@@ -1862,7 +2106,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         }
       ],
@@ -1881,7 +2124,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k125'
         },
         {
@@ -1889,7 +2131,6 @@ lowwriter.keySections = [
           value: 'LALT',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k150'
         },
         {
@@ -1902,7 +2143,6 @@ lowwriter.keySections = [
           value: 'B',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k125'
         }
       ],
@@ -1912,7 +2152,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         },
         {
@@ -1920,7 +2159,6 @@ lowwriter.keySections = [
           value: 'LSFT',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         },
         {
@@ -1928,7 +2166,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         },
         {
@@ -1936,7 +2173,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         }
       ]
@@ -1947,7 +2183,6 @@ lowwriter.keySections = [
         value: 'SPC',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k225'
       },
       {
@@ -1955,7 +2190,6 @@ lowwriter.keySections = [
         value: 'C',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k200'
       }
     ],
@@ -1966,7 +2200,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k125'
         },
         {
@@ -1974,7 +2207,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k150'
         },
         {
@@ -1987,7 +2219,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k175'
         }
       ],
@@ -1997,7 +2228,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k150'
         },
         {
@@ -2005,7 +2235,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         },
         {
@@ -2013,7 +2242,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         },
         {
@@ -2021,7 +2249,6 @@ lowwriter.keySections = [
           value: 'TRNS',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100'
         }
       ],
@@ -2029,31 +2256,47 @@ lowwriter.keySections = [
   }
 ]
 
-lowwriter.layers = function() {
-  let layers = []
-  for (let i in lowwriter.keySections) {
-    const ks = lowwriter.keySections[i]
-    layers.push({ layerName: ks.layerName, layerNumber: i })
-  }
-  return layers
-}
-
-lowwriter.keymap = function() {
+// Default Keymap
+lowwriter.keymap = function(ks, z1, z2, z3, z4) {
   const keymap = []
-  let layer = []
   const zones = lowwriter.zones
 
-  for (let i in lowwriter.keySections) {
-    const ks = lowwriter.keySections[i]
-    layer = []
-    layer.push(ks.row1)
-    layer.push(ks.row2.concat(ks.enter[zones[0].value]))
-    layer.push(ks.row3.concat(ks.fn2[zones[0].value]))
-    layer.push(ks.leftHand[zones[1].value].concat(ks.row4).concat(ks.rightHand[zones[2].value]))
-    keymap.push(layer)
-  }
+  keymap.push(ks.row1)
+  keymap.push(ks.row2.concat(ks.enter[zones[z1].value]))
+  keymap.push(ks.row3.concat(ks.fn2[zones[z3].value]))
+  keymap.push(ks.leftHand[zones[z3].value].concat(ks.row4).concat(ks.rightHand[zones[z4].value]))
 
   return keymap
 }
+
+// Default Layout
+lowwriter.layouts = [{
+  id: 0,
+  name: 'Default',
+  immutable: true
+}]
+
+// Default Layers
+lowwriter.layers = [{
+  id: 0,
+  layoutId: 0,
+  name: 'Default',
+  keymap: lowwriter.keymap(lowwriter.defaultKeySections[0], 0, 0, 1, 2)
+}, {
+  id: 1,
+  layoutId: 0,
+  name: 'Shifted',
+  keymap: lowwriter.keymap(lowwriter.defaultKeySections[1], 0, 0, 1, 2)
+}, {
+  id: 2,
+  layoutId: 0,
+  name: 'Numerics',
+  keymap: lowwriter.keymap(lowwriter.defaultKeySections[2], 0, 0, 1, 2)
+}, {
+  id: 3,
+  layoutId: 0,
+  name: 'Game Lock Layer',
+  keymap: lowwriter.keymap(lowwriter.defaultKeySections[3], 0, 0, 1, 2)
+}]
 
 export default lowwriter

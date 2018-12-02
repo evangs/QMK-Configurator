@@ -10,21 +10,21 @@ import {
 import Keyboard from './keyboard'
 import Layers from './layers'
 import Info from './info'
+import { config } from '../data/config'
 
 import colors from '../utils/colors'
 
 export default ({
   mobile,
-  layers,
   layersVisible,
-  keymaps,
-  manufacturer,
-  product,
-  description,
-  layoutName,
+  layers,
+  layouts,
+  activeBoard,
+  activeLayout,
   activeLayer,
   activeKeyType,
-  toggleLayers
+  toggleLayers,
+  setKey
 }) => (
 
   <Sidebar.Pushable
@@ -39,7 +39,6 @@ export default ({
       as={Segment}
       animation='overlay'
       inverted
-      onHide={()=>{}}
       vertical
       visible={layersVisible}
       style={{
@@ -50,7 +49,7 @@ export default ({
     >
       <Container fluid style={{ padding: 14 }}>
         <ToggleButton onClick={toggleLayers} add />
-        <Layers layers={layers} keymaps={keymaps} />
+        <Layers layers={layers} />
       </Container>
     </Sidebar>
 
@@ -64,16 +63,19 @@ export default ({
       }}>
       <ToggleButton onClick={toggleLayers} />
       <Info
-        manufacturer={manufacturer}
-        product={product}
-        description={description}
-        layoutName={layoutName}
-        layerName={layers[activeLayer].layerName}
-
+        manufacturer={config[activeBoard].config.manufacturer}
+        product={config[activeBoard].config.product}
+        description={config[activeBoard].config.description}
+        layoutName={layouts[activeLayout].name}
+        layerName={layers[activeLayer].name}
       />
       <Container>
         <div style={{ marginTop: 100 }} />
-        <Keyboard keymap={keymaps[activeLayer]} activeKeyType={activeKeyType}/>
+        <Keyboard
+          keymap={layers[activeLayer].keymap}
+          activeKeyType={activeKeyType}
+          setKey={setKey}
+        />
       </Container>
     </Sidebar.Pusher>
   </Sidebar.Pushable>

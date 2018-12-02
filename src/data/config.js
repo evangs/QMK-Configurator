@@ -1,5 +1,7 @@
+import { get, set } from '../utils/localstorage'
+
 function mapFiles(context) {
-  const keys = context.keys();
+  const keys = context.keys()
   const values = keys.map(context);
   return keys.reduce((accumulator, key, index) => ({
     ...accumulator,
@@ -9,23 +11,27 @@ function mapFiles(context) {
 
 export const config = mapFiles(require.context('./boards', true, /\.js$/))
 // TODO: add localstorage
-const activeBoard = Object.keys(config)[0]
-const activeLayer = 0
-const activeKeyType = 'normal'
-const layoutName = 'Default'
-const keymap = config[activeBoard].keymap()
-const layers = config[activeBoard].layers()
-const zones = config[activeBoard].zones
-const advanced = config[activeBoard].config
+const activeBoard = localStorage.getItem('activeBoard') || Object.keys(config)[0]
+const activeLayer = localStorage.getItem('activeLayer') || 0
+const activeKeyType = localStorage.getItem('activeKeyType') || 'normal'
+const activeLayout = localStorage.getItem('activeLayout') || 0
+
+const layouts = get(activeBoard, 'layouts') || config[activeBoard].layouts
+const layers = get(activeBoard, 'layers') || config[activeBoard].layers
+
+const zones = get(activeBoard, 'zones') || config[activeBoard].zones
+const settings = get(activeBoard, 'advanced') || config[activeBoard].config
+const rules = get(activeBoard, 'rules') || config[activeBoard].rules
 
 export const initialState = {
   boards: Object.keys(config),
   activeBoard,
   activeLayer,
   activeKeyType,
-  layoutName,
+  activeLayout,
+  layouts,
   layers,
-  keymap,
   zones,
-  advanced
+  settings,
+  rules
 }

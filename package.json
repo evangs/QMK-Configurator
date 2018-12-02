@@ -12,6 +12,7 @@
     "react-beautiful-dnd": "^10.0.2",
     "react-dom": "^16.6.3",
     "react-scripts": "2.1.1",
+    "react-textfit": "^1.1.0",
     "semantic-ui-less": "^2.4.1",
     "semantic-ui-react": "^0.83.0"
   },
@@ -29,5 +30,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "standard": {
+    "parser": "babel-eslint"
+  }
 }
