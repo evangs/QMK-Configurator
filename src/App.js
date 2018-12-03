@@ -89,6 +89,7 @@ export default class extends Component {
               selectBoard={this.selectBoard}
               deleteLayout={this.deleteLayout}
               selectLayout={this.selectLayout}
+              cloneLayout={this.cloneLayout}
             />
             <Canvas
               layers={layers}
@@ -177,27 +178,33 @@ export default class extends Component {
   }
 
   _newLayout (name) {
-    const { activeBoard, zones, layouts } = this.state
+    const { activeBoard, zones, layouts, layers } = this.state
+
+    const layoutId = layouts.length
+    const layerId = layers.length
+
     const layout = {
-      id: layouts.length,
-      name,
+      id: layoutId,
+      name
     }
-
-    const layers = [{
-      id: 0,
-      layoutId: layouts.length,
-      name: 'Default',
-      keys: config[activeBoard].keySections[0]
-    }]
-
     const clonedLayouts = layouts.slice(0)
     clonedLayouts.push(layout)
 
+    const layer = {
+      id: layerId,
+      layoutId: layoutId,
+      name: 'Default',
+      keys: config[activeBoard].keySections[0]
+    }
+
+    const clonedLayers = layers.slice(0)
+    clonedLayers.push(layer)
+
     this.setState({
-      activeLayout: layouts.length,
-      activeLayer: 0,
+      activeLayout: layoutId,
+      activeLayer: layerId,
       layouts: clonedLayouts,
-      layers
+      layers: clonedLayers
     })
   }
 
@@ -219,7 +226,42 @@ export default class extends Component {
 
   _newLayer (layer) {}
 
-  _cloneLayout (layout) {}
+  _cloneLayout (id, name) {
+
+    const { activeBoard } = this.state
+    const layouts = this.state.layouts.slice(0)
+    const layout = Object.assign({}, this.state.layouts.slice(0).find(l => l.id === id))
+    const layoutId = layouts.length
+
+    // Set new layout props
+    layout.id = layoutId
+    layout.immutable = false
+    if (name) {
+      layout.name = name
+    }
+
+    layouts.push(layout)
+
+    let layers = this.state.layers.slice(0)
+    const layerId = layers.length
+    const filtered = layers.filter(l => l.layoutId === id)
+    const mapped = filtered.map((l, i) => {
+      const layer = Object.assign({}, l)
+      layer.layoutId = layoutId
+      layer.id = layerId + i
+      return layer
+    })
+
+    layers = layers.concat(mapped)
+
+    this.setState({
+      activeLayout: layoutId,
+      activeLayer: layerId,
+      layouts,
+      layers
+    })
+
+  }
 
   _cloneLayer (layer) {}
 
@@ -232,7 +274,7 @@ export default class extends Component {
     const activeLayout = this.state.layouts.length - 2
     const activeLayer = 0
 
-    const layers = get(activeBoard, 'layers') || config[activeBoard].layers
+    const layers = this.state.layers.slice(0).filter(l => l.layoutId !== layout.id)
 
     this.setState({ layouts, layers, activeLayout, activeLayer })
   }

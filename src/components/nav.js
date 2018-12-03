@@ -22,6 +22,7 @@ export default ({
   newLayout,
   selectLayout,
   deleteLayout,
+  cloneLayout,
   newLayer
 }) => {
   return (
@@ -60,6 +61,7 @@ export default ({
               newLayout={newLayout}
               activeBoard={activeBoard}
               selectLayout={selectLayout}
+              cloneLayout={cloneLayout}
               deleteLayout={deleteLayout} />
           </Menu.Item>
           <Menu.Item>

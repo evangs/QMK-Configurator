@@ -4,10 +4,10 @@ import colors from '../utils/colors'
 import { config } from '../data/config'
 
 const initialState = {
-  createMode: false,
+  name: '',
+  createMode: '',
   confirmDelete: false,
   open: false,
-  name: '',
   selected: {}
 }
 
@@ -19,10 +19,11 @@ export default class extends Component {
     this.state = initialState
     this.state.selected = layouts[activeLayout]
 
-    this.createLayout = this._createLayout.bind(this)
     this.onRowSelect = this._onRowSelect.bind(this)
+    this.newLayout = this._newLayout.bind(this)
     this.editLayout = this._editLayout.bind(this)
-    this.removeLayer = this._removeLayer.bind(this)
+    this.cloneLayout = this._cloneLayout.bind(this)
+    this.removeLayout = this._removeLayout.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -34,11 +35,7 @@ export default class extends Component {
     const {
       layouts,
       activeBoard,
-      activeLayout,
-      newLayout,
-      selectedLayout,
-      selectLayout,
-      deleteLayout
+      activeLayout
     } = this.props
 
     const { createMode, name, open, selected, confirmDelete } = this.state
@@ -47,7 +44,7 @@ export default class extends Component {
         <Header content={`Layouts for ${config[activeBoard].config.product}`} textAlign='center' style={{ marginTop: 50 }} />
         <Modal.Content>
           <div style={{ position: 'absolute', right: 0, top: 0 }}>
-            <Button icon inverted basic color='red' onClick={() => this.setState({ open: false })}>
+            <Button icon inverted basic color='red' onClick={() => this.setState(initialState)}>
               <Icon name='close' />
             </Button>
           </div>
@@ -86,29 +83,58 @@ export default class extends Component {
             color='red'
             inverted={!confirmDelete}
             disabled={!Object.keys(selected).length || selected.immutable}
-            onClick={this.removeLayer}>
+            onClick={this.removeLayout}>
             <Icon name={ confirmDelete ? 'check' : 'remove' } /> { confirmDelete ? 'Confirm' : 'Delete' }
           </Button>
           <Button
-            color='teal'
+            basic
             inverted
+            color='teal'
             disabled={!Object.keys(selected).length || selected.id === activeLayout}
             onClick={this.editLayout}>
             <Icon name='edit' /> Edit
           </Button>
-            <Button
-              basic={!createMode}
-              color='green'
-              inverted={!createMode}
-              onClick={ createMode ? () => {
-                newLayout(name)
-                this.setState(initialState)
-              } : this.createLayout }>
-              <Icon name={ createMode ? 'check' : 'plus' } /> { createMode ? 'Create' : 'New' }
-            </Button>
+          <Button
+            color='blue'
+            basic={createMode !== 'clone'}
+            inverted={createMode !== 'clone'}
+            disabled={createMode === 'new'}
+            onClick={this.cloneLayout}>
+            <Icon name={ createMode === 'clone' ? 'check' : 'clone' } /> { createMode === 'clone' ? 'Create' : 'Clone' }
+          </Button>
+          <Button
+            color='green'
+            disabled={createMode === 'clone'}
+            basic={createMode !== 'new'}
+            inverted={createMode !== 'new'}
+            onClick={this.newLayout}>
+            <Icon name={ createMode === 'new' ? 'check' : 'plus' } /> { createMode === 'new' ? 'Create' : 'New' }
+          </Button>
         </Modal.Actions>
       </Modal>
     )
+  }
+
+  _newLayout () {
+    const { name, createMode } = this.state
+    const { newLayout } = this.props
+    if (createMode) {
+      newLayout(name)
+      this.setState(initialState)
+    } else {
+      this.setState({ createMode: 'new' })
+    }
+  }
+
+  _cloneLayout () {
+    const { name, createMode, selected } = this.state
+    const { cloneLayout } = this.props
+    if (createMode) {
+      cloneLayout(selected.id, name)
+      this.setState(initialState)
+    } else {
+      this.setState({ createMode: 'clone' })
+    }
   }
 
   _editLayout () {
@@ -118,7 +144,7 @@ export default class extends Component {
     this.setState(initialState)
   }
 
-  _removeLayer () {
+  _removeLayout () {
     const { confirmDelete, selected } = this.state
     const { deleteLayout } = this.props
     if (confirmDelete) {
@@ -133,7 +159,4 @@ export default class extends Component {
     this.setState({ selected: layout })
   }
 
-  _createLayout () {
-    this.setState({ createMode: true })
-  }
 }

@@ -35,17 +35,20 @@ const background = (shape, type) => ({
 
 const k100 = unitSize => ({
   width: unitSize,
-  height: unitSize
+  height: unitSize,
+  borderRight: `${KEY_BORDER_SIZE}px solid ${KEY_BORDER_COLOR}`
 })
 
 const k125 = unitSize => ({
   width: unitSize + (unitSize * 0.25),
-  height: unitSize
+  height: unitSize,
+  borderRight: `${KEY_BORDER_SIZE}px solid ${KEY_BORDER_COLOR}`
 })
 
 const k150 = unitSize => ({
   width: unitSize + (unitSize * 0.50),
-  height: unitSize
+  height: unitSize,
+  borderRight: `${KEY_BORDER_SIZE}px solid ${KEY_BORDER_COLOR}`
 })
 
 const k175 = unitSize => ({
@@ -56,17 +59,20 @@ const k175 = unitSize => ({
 
 const k200 = unitSize => ({
   width: unitSize * 2,
-  height: unitSize
+  height: unitSize,
+  borderRight: `${KEY_BORDER_SIZE}px solid ${KEY_BORDER_COLOR}`
 })
 
 const k225 = unitSize => ({
   width: unitSize + (unitSize * 1.25),
-  height: unitSize
+  height: unitSize,
+  borderRight: `${KEY_BORDER_SIZE}px solid ${KEY_BORDER_COLOR}`
 })
 
 const k275 = unitSize => ({
   width: unitSize + (unitSize * 1.75),
-  height: unitSize
+  height: unitSize,
+  borderRight: `${KEY_BORDER_SIZE}px solid ${KEY_BORDER_COLOR}`
 })
 
 const k200v = unitSize => ({
@@ -77,12 +83,14 @@ const k200v = unitSize => ({
 
 const k625 = unitSize => ({
   width: unitSize + (unitSize * 5.25),
-  height: unitSize
+  height: unitSize,
+  borderRight: `${KEY_BORDER_SIZE}px solid ${KEY_BORDER_COLOR}`
 })
 
 const k700 = unitSize => ({
   width: unitSize * 7,
-  height: unitSize
+  height: unitSize,
+  borderRight: `${KEY_BORDER_SIZE}px solid ${KEY_BORDER_COLOR}`
 })
 
 const kISO = unitSize => ({
