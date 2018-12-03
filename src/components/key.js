@@ -10,7 +10,6 @@ import { Container,
 import { KEYS, KEY_DISPLAY_MAP, KEY_ACTIONS, KEYBOARD_INPUT_MAP } from '../data/keys'
 import colors, { getColor } from '../utils/colors'
 import getKeyStyle from '../utils/key-styles'
-import './key.scss'
 
 const KEY_UNIT_SIZE = 75
 const KEY_BORDER_SIZE = 3
@@ -70,7 +69,7 @@ export default class extends Component {
   }
 
   render () {
-    const { type, shape, value, secondary, activeKeyType } = this.props
+    const { type, shape, value, secondary, activeKeyType, scaleFactor } = this.props
     const {
       hover,
       open,
@@ -94,7 +93,7 @@ export default class extends Component {
       case 'kISO':
       case 'kJIS':
       case 'k175stepped':
-        afterElement = <div style={getKeyStyle(`${shape}After`, type, hover)} />
+        afterElement = <div style={getKeyStyle(`${shape}After`, type, hover, scaleFactor)} />
         break
       default:
         // NO-OP
@@ -107,7 +106,7 @@ export default class extends Component {
         open={open}
         trigger={
           <div
-            style={getKeyStyle(shape, type, hover)}
+            style={getKeyStyle(shape, type, hover, scaleFactor)}
             onMouseEnter={() => this.onMouseEnter(shape)}
             onMouseMove={() => this.onMouseEnter(shape)}
             onMouseOut={() => this.onMouseOut(shape)}
@@ -133,6 +132,9 @@ export default class extends Component {
         }
       >
         <Modal.Content className={shake ? 'shake' : ''} style={{ justifyContent: 'flex-start' }}>
+          <style dangerouslySetInnerHTML={{__html: `
+            .ui.dimmer { background-color: ${getColor(activeKeyType).hex}!important }
+          `}} />
           <div style={{ position: 'absolute', left: 0, top: 0, display: 'flex' }}>
             <h1>{this.action.display}</h1>
             <p style={{ marginLeft: 10, lineHeight: '48px' }}>{this.action.tooltip}</p>

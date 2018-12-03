@@ -14,7 +14,8 @@ export default ({
       top: 0,
       right: 14,
       border: '1px solid rgba(255, 255, 255, 0.1)',
-      borderRadius: 0
+      borderRadius: 0,
+      maxWidth: 350
     }}>
       <Table.Body>
         <Table.Row>

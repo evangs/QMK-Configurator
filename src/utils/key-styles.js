@@ -50,7 +50,8 @@ const k150 = unitSize => ({
 
 const k175 = unitSize => ({
   width: unitSize + (unitSize * 0.75),
-  height: unitSize
+  height: unitSize,
+  borderRight: `${KEY_BORDER_SIZE}px solid ${KEY_BORDER_COLOR}`
 })
 
 const k200 = unitSize => ({
@@ -122,7 +123,6 @@ const kJISAfter = unitSize => ({
 const k175stepped = unitSize => ({
   width: unitSize + (unitSize * 0.75),
   height: unitSize,
-  borderRight: 'none',
   paddingRight: unitSize / 2,
   zIndex: 0
 })
@@ -133,7 +133,6 @@ const k175steppedAfter = unitSize => ({
   top: 0,
   left: unitSize + (unitSize * 0.25) - KEY_BORDER_SIZE,
   position: 'absolute',
-  borderRight: `${KEY_BORDER_SIZE} solid ${KEY_BORDER_COLOR}`,
   borderLeft: 0,
   borderRadius: '0 10px 10px 0',
   zIndex: 1

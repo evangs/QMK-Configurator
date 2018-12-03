@@ -8,12 +8,8 @@ export default ({ layers, zones, activeBoard, activeLayer, activeKeyType, setKey
   const keymap = config[activeBoard].keymap
   const keys = keymap(layers[activeLayer].keys, zones)
 
-
   return (
     <div style={{ maxWidth: 'fit-content' }}>
-      <style dangerouslySetInnerHTML={{__html: `
-        .ui.dimmer { background-color: ${getColor(activeKeyType).hex}!important }
-      `}} />
       {keys.map((r, i) => {
         return (
           <div key={`r${i}`} style={{
@@ -26,6 +22,7 @@ export default ({ layers, zones, activeBoard, activeLayer, activeKeyType, setKey
                   key={k.id}
                   activeKeyType={activeKeyType}
                   setKey={setKey}
+                  scaleFactor={config[activeBoard].ui.scale}
                   {...k} />
               )
             })}

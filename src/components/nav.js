@@ -32,8 +32,7 @@ export default ({
         <Menu.Menu position='right'>
           <Dropdown
             item
-            simple
-            closeOnChange
+            closeOnBlur
             text={config[activeBoard].config.product}>
             <Dropdown.Menu>
               {boards.map(b => {

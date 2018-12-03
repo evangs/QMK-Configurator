@@ -3,11 +3,35 @@ import * as d3 from 'd3'
 import colors from '../utils/colors'
 import { config } from '../data/config'
 
-
 export default class extends Component {
 
+  componentWillReceiveProps (nextProps) {
+    const { activeBoard, keys, zones } = nextProps
+    const keymap = config[activeBoard].keymap
+    let data = keymap(keys, zones)
+
+    // Filter unused keys
+    data = data.map(d => {
+      const clone = d.slice(0)
+      return clone.filter(function(x){ return x.shape !== undefined })
+    })
+
+    const getShape = shape => {
+      shape = shape.substr(1)
+      return parseInt(shape, 10)
+    }
+
+    this.svg.remove()
+    this.update(nextProps)
+  }
+
   componentDidMount() {
-    const { layerId, scaleFactor, keys, activeBoard, zones } = this.props
+    this.update(this.props)
+  }
+
+  update (props) {
+    const { layerId, keys, activeBoard, zones } = props
+    const scaleFactor = config[activeBoard].ui.thumbScale
     const padding = 0
     const svg = d3.select(`#layer-${layerId}`)
 
@@ -27,7 +51,7 @@ export default class extends Component {
 
     // Create svg
     let pxFromLeft = 0
-    svg.selectAll('rect')
+    this.svg = svg.selectAll('rect')
       .data(data)
       .enter()
       .append('g')

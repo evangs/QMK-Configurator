@@ -7,6 +7,12 @@ const lowwriter = {}
 // ID
 lowwriter.id = 'lowwriter_rev2'
 
+// UI Config
+lowwriter.ui = {
+  scale: 75,
+  thumbScale: 7
+}
+
 // Config
 lowwriter.config = {
   vendorId: '0xFEAE',
@@ -118,7 +124,8 @@ lowwriter.zones = [
 // UI Keymap
 lowwriter.keySections = [
   {
-    row1: [
+    rows: {
+      row1: [
       {
         id: 'k00',
         value: 'TAB',
@@ -204,7 +211,7 @@ lowwriter.keySections = [
         shape: 'k175'
       }
     ],
-    row2: [
+      row2: [
       {
         id: 'k10',
         value: 'ESC',
@@ -283,29 +290,7 @@ lowwriter.keySections = [
         shape: 'k100'
       }
     ],
-    enter: [
-      [
-        {
-          id: 'k1B',
-          value: 'QUOT',
-          type: 'tapkey',
-          secondary: 'L1',
-          shape: 'k150',
-          zone: 'Enter'
-        }
-      ],
-      [
-        {
-          id: 'k1B',
-          value: 'QUOT',
-          type: 'tapkey',
-          secondary: 'L1',
-          shape: 'kJIS',
-          zone: 'Enter'
-        }
-      ]
-    ],
-    row3: [
+      row3: [
       {
         id: 'k20',
         value: 'LSFT',
@@ -384,93 +369,7 @@ lowwriter.keySections = [
         shape: 'k100'
       }
     ],
-    fn2: [
-      [
-        {
-          id: 'k2B',
-          value: 'L2',
-          type: 'momentary',
-          secondary: null,
-          shape: 'k100',
-          zone: 'Enter'
-        }
-      ],
-      [
-        {
-          id: 'k2B',
-          value: 'NO',
-          type: 'nodisplay',
-        }
-      ]
-    ],
-    leftHand: [
-      [
-        {
-          id: 'k30',
-          value: 'LCTL',
-          type: 'normal',
-          secondary: null,
-          shape: 'k125',
-          zone: 'Left Hand'
-        },
-        {
-          id: 'k31',
-          value: 'L2',
-          type: 'momentary',
-          secondary: null,
-          shape: 'k150',
-          zone: 'Left Hand'
-        },
-        {
-          id: 'k34',
-          value: 'NO',
-          type: 'nodisplay'
-        },
-        {
-          id: 'k32',
-          value: 'LGUI',
-          type: 'normal',
-          secondary: null,
-          shape: 'k125',
-          zone: 'Left Hand'
-        }
-      ],
-      [
-        {
-          id: 'k30',
-          value: 'LCTL',
-          type: 'normal',
-          secondary: null,
-          shape: 'k100',
-          zone: 'Left Hand'
-        },
-        {
-          id: 'k31',
-          value: 'L2',
-          type: 'momentary',
-          secondary: null,
-          shape: 'k100',
-          zone: 'Left Hand'
-        },
-        {
-          id: 'k34',
-          value: 'LALT',
-          type: 'normal',
-          secondary: null,
-          shape: 'k100',
-          zone: 'Left Hand'
-        },
-        {
-          id: 'k32',
-          value: 'LGUI',
-          type: 'normal',
-          secondary: null,
-          shape: 'k100',
-          zone: 'Left Hand'
-        }
-      ]
-    ],
-    row4: [
+      row4: [
       {
         id: 'k33',
         value: 'ENT',
@@ -485,8 +384,118 @@ lowwriter.keySections = [
         secondary: null,
         shape: 'k200'
       }
-    ],
-    rightHand: [
+    ]
+    },
+    zones: {
+      enter: [
+        [
+          {
+            id: 'k1B',
+            value: 'QUOT',
+            type: 'tapkey',
+            secondary: 'L1',
+            shape: 'k150',
+            zone: 'Enter'
+          }
+        ],
+        [
+          {
+            id: 'k1B',
+            value: 'QUOT',
+            type: 'tapkey',
+            secondary: 'L1',
+            shape: 'kJIS',
+            zone: 'Enter'
+          }
+        ]
+      ],
+      fn2: [
+        [
+          {
+            id: 'k2B',
+            value: 'L2',
+            type: 'momentary',
+            secondary: null,
+            shape: 'k100',
+            zone: 'Enter'
+          }
+        ],
+        [
+          {
+            id: 'k2B',
+            value: 'NO',
+            type: 'nodisplay',
+          }
+        ]
+      ],
+      leftHand: [
+        [
+          {
+            id: 'k30',
+            value: 'LCTL',
+            type: 'normal',
+            secondary: null,
+            shape: 'k125',
+            zone: 'Left Hand'
+          },
+          {
+            id: 'k31',
+            value: 'L2',
+            type: 'momentary',
+            secondary: null,
+            shape: 'k150',
+            zone: 'Left Hand'
+          },
+          {
+            id: 'k34',
+            value: 'NO',
+            type: 'nodisplay'
+          },
+          {
+            id: 'k32',
+            value: 'LGUI',
+            type: 'normal',
+            secondary: null,
+            shape: 'k125',
+            zone: 'Left Hand'
+          }
+        ],
+        [
+          {
+            id: 'k30',
+            value: 'LCTL',
+            type: 'normal',
+            secondary: null,
+            shape: 'k100',
+            zone: 'Left Hand'
+          },
+          {
+            id: 'k31',
+            value: 'L2',
+            type: 'momentary',
+            secondary: null,
+            shape: 'k100',
+            zone: 'Left Hand'
+          },
+          {
+            id: 'k34',
+            value: 'LALT',
+            type: 'normal',
+            secondary: null,
+            shape: 'k100',
+            zone: 'Left Hand'
+          },
+          {
+            id: 'k32',
+            value: 'LGUI',
+            type: 'normal',
+            secondary: null,
+            shape: 'k100',
+            zone: 'Left Hand'
+          }
+        ]
+      ],
+      rightHand: [
       [
         {
           id: 'k38',
@@ -553,6 +562,7 @@ lowwriter.keySections = [
         }
       ],
     ]
+    }
   }
 ]
 

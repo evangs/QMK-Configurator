@@ -128,7 +128,6 @@ export default class extends Component {
   }
 
   _selectBoard (e, data) {
-    console.log(initialState(data.value))
     this.setState(initialState(data.value))
   }
 
@@ -151,12 +150,18 @@ export default class extends Component {
       lastSave
     } = this.state
 
-    const clone = layers.slice(0)
-    clone[activeLayer].keymap = layers[activeLayer].keymap.slice(0).map(row => {
-      return row.map(k => {
+    let clone = layers.slice(0)
+    const rows = clone[activeLayer].keys.rows
+    const newRows = {}
+
+    Object.keys(rows).forEach(r => {
+      const keys = rows[r]
+      newRows[r] = keys.map(k => {
         return k.id === key.id ? key : k
       })
     })
+
+    clone[activeLayer].keys.rows = newRows
 
     this.setState({
       layers: clone,

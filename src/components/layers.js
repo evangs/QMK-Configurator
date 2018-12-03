@@ -60,7 +60,7 @@ export default class Layers extends Component {
               style={getListStyle(snapshot.isDraggingOver)}
             >
               {this.state.layers.map((layer, i) => (
-                <Draggable key={`layer-${i}`} draggableId={`dnd-${i}`} index={i}>
+                <Draggable key={layer.id} draggableId={`dnd-${layer.id}`} index={i}>
                   {(provided, snapshot) => (
                     <div
                       ref={provided.innerRef}
@@ -76,7 +76,6 @@ export default class Layers extends Component {
                         zones={zones}
                         keys={layer.keys}
                         layerId={layer.id}
-                        scaleFactor={7}
                       />
                       <Container fluid>
                         <div style={{ float: 'left' }}>

@@ -52,7 +52,7 @@ export default ({
       }}
     >
       <Container fluid style={{ padding: 14 }}>
-        <ToggleButton onClick={toggleLayers} add />
+        <ToggleButton name={layers[activeLayer].name} onClick={toggleLayers} add />
         <Layers
           activeBoard={activeBoard}
           zones={zones}
@@ -71,7 +71,7 @@ export default ({
         minHeight: 600,
         background: colors.dark
       }}>
-      <ToggleButton onClick={toggleLayers} />
+      <ToggleButton name={layers[activeLayer].name} onClick={toggleLayers} />
       <Info
         manufacturer={config[activeBoard].config.manufacturer}
         product={config[activeBoard].config.product}
@@ -98,7 +98,7 @@ export default ({
   </Sidebar.Pushable>
 )
 
-const ToggleButton = ({ onClick, add }) => (
+const ToggleButton = ({ onClick, add, name }) => (
   <div>
     <div style={{
       textAlign: 'left'
@@ -110,7 +110,7 @@ const ToggleButton = ({ onClick, add }) => (
         fontSize: 20,
         marginLeft: 10,
         verticalAlign: 'text-bottom'
-      }}>Layers</span>
+      }}>{name}</span>
       {add &&
         <div style={{ float: 'right' }}>
           <Button icon inverted basic color='green' onClick={onClick}>
