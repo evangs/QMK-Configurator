@@ -5,7 +5,8 @@ import { Container,
   Modal,
   Header,
   Button,
-  Icon
+  Icon,
+  Popup
 } from 'semantic-ui-react'
 import { KEYS, KEY_DISPLAY_MAP, KEY_ACTIONS, KEYBOARD_INPUT_MAP } from '../data/keys'
 import colors, { getColor } from '../utils/colors'
@@ -342,18 +343,23 @@ const Column = ({
             {g.keys.map((k, j) => {
               // Calculate button color
               let buttonColor = (value === k.value && !tmp) || tmp === k.value ? color : undefined
-              return (
+              const button = (
                 <Button icon
-                  key={`key-${j}`}
-                  disabled={disabled || value === k.value}
-                  color={buttonColor}
-                  style={{
-                    minWidth: 50,
-                    marginBottom: 5
+                key={`key-${j}`}
+                disabled={disabled || value === k.value}
+                color={buttonColor}
+                style={{
+                  minWidth: 50,
+                  marginBottom: 5
                 }} onClick={(e) => onClick(e, k)}>
-                  {k.display[0] === '!' && k.display[1] === '!' ? <Icon name={k.display.replace('!!', '')} color='black' /> : k.display}
+                {k.display[0] === '!' && k.display[1] === '!' ? <Icon name={k.display.replace('!!', '')} color='black' /> : k.display}
                 </Button>
               )
+              if (k.tooltip) {
+                return <Popup inverted trigger={button} content={k.tooltip}/>
+              } else {
+                return button
+              }
             })}
           </div>
         ))}

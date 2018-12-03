@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Popup } from 'semantic-ui-react'
 import { KEY_ACTIONS } from '../data/keys'
+import { getColor } from '../utils/colors'
 
 export default class extends Component {
 
@@ -13,41 +14,29 @@ export default class extends Component {
       }}>
 
         {KEY_ACTIONS.map(k => {
-          let color = 'grey'
-          switch (k.value) {
-            case 'momentary':
-              color = 'teal'
-              break
-            case 'toggle':
-              color = 'violet'
-              break
-            case 'tapkey':
-              color = 'green'
-              break
-            case 'modkey':
-              color = 'yellow'
-              break
-            case 'combokey':
-              color = 'orange'
-              break
-            case 'direct':
-              color = 'purple'
-              break
-            case 'taptoggle':
-              color = 'olive'
-              break
-            case 'setdefaultlayer':
-              color = 'red'
-              break
-            case 'normal':
-            default:
-              color = 'grey'
-          }
-          return (
-            <Menu.Item key={k.value} color={color} name={k.value} active={activeKeyType === k.value} onClick={setActiveKeyType.bind(this, k.value)}>
-              {k.display}
+          let color = getColor(k.value).color
+          const item = (
+            <Menu.Item
+            key={k.value}
+            color={color}
+            name={k.value}
+            active={activeKeyType === k.value}
+            onClick={setActiveKeyType.bind(this, k.value)}>
+            {k.display}
             </Menu.Item>
           )
+          if (k.tooltip) {
+            return (
+              <Popup
+                inverted
+                key={k.value}
+                position='bottom center'
+                trigger={item}
+                content={k.tooltip}
+              />
+            )
+          }
+          return item
         })}
 
       </Menu>

@@ -50,7 +50,9 @@ export default class Layers extends Component {
   }
 
   render () {
-    const { selectLayer, activeBoard, zones } = this.props
+    const { layers } = this.state
+    const { selectLayer, activeBoard, activeLayer, activeLayout, zones } = this.props
+    const filteredLayers = layers.filter(l => l.layoutId === activeLayout)
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="droppable">
@@ -59,7 +61,7 @@ export default class Layers extends Component {
               ref={provided.innerRef}
               style={getListStyle(snapshot.isDraggingOver)}
             >
-              {this.state.layers.map((layer, i) => (
+              {filteredLayers.map((layer, i) => (
                 <Draggable key={layer.id} draggableId={`dnd-${layer.id}`} index={i}>
                   {(provided, snapshot) => (
                     <div
@@ -82,13 +84,16 @@ export default class Layers extends Component {
                           <Header
                             as='h4'
                             inverted
-                            onClick={() => { selectLayer(layer.id) }}
+                            onClick={() => selectLayer(layer.id) }
                             style={{
                               margin: 0,
                               textAlign: 'left',
                               cursor: 'pointer'
                             }}>
-                              <span style={{ color: colors.grey }}>({i})  </span> {layer.name}
+                              <span style={{ color: colors.grey }}>({i})  </span>
+                              <span style={{
+                                color: layer.id === activeLayer ? colors.white : colors.secondaryColor
+                              }}>{layer.name}</span>
                             </Header>
                           </div>
                           <div style={{ float: 'right' }}>

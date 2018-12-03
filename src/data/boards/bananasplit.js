@@ -241,7 +241,6 @@ bananasplit.keySections = [{
       value: 'GRV',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -249,7 +248,6 @@ bananasplit.keySections = [{
       value: '1',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -257,7 +255,6 @@ bananasplit.keySections = [{
       value: '2',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -265,7 +262,6 @@ bananasplit.keySections = [{
       value: '3',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -273,7 +269,6 @@ bananasplit.keySections = [{
       value: '4',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -281,7 +276,6 @@ bananasplit.keySections = [{
       value: '5',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -289,7 +283,6 @@ bananasplit.keySections = [{
       value: '6',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -297,7 +290,6 @@ bananasplit.keySections = [{
       value: '7',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -305,7 +297,6 @@ bananasplit.keySections = [{
       value: '8',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -313,7 +304,6 @@ bananasplit.keySections = [{
       value: '9',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -321,7 +311,6 @@ bananasplit.keySections = [{
       value: '0',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -329,7 +318,6 @@ bananasplit.keySections = [{
       value: 'MINS',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -337,7 +325,6 @@ bananasplit.keySections = [{
       value: 'EQL',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     }
   ],
@@ -348,7 +335,6 @@ bananasplit.keySections = [{
         value: 'BSPC',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k200',
         zone: 'Backspace'
       },
@@ -364,7 +350,6 @@ bananasplit.keySections = [{
         value: 'PSCR',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100',
         zone: 'Backspace'
       },
@@ -373,7 +358,6 @@ bananasplit.keySections = [{
         value: 'PAUS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100',
         zone: 'Backspace'
       }
@@ -385,7 +369,6 @@ bananasplit.keySections = [{
       value: 'TAB',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k150'
     },
     {
@@ -393,7 +376,6 @@ bananasplit.keySections = [{
       value: 'Q',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -401,7 +383,6 @@ bananasplit.keySections = [{
       value: 'W',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -409,7 +390,6 @@ bananasplit.keySections = [{
       value: 'E',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -417,7 +397,6 @@ bananasplit.keySections = [{
       value: 'R',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -425,7 +404,6 @@ bananasplit.keySections = [{
       value: 'T',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -433,7 +411,6 @@ bananasplit.keySections = [{
       value: 'Y',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -441,7 +418,6 @@ bananasplit.keySections = [{
       value: 'U',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -449,7 +425,6 @@ bananasplit.keySections = [{
       value: 'I',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -457,7 +432,6 @@ bananasplit.keySections = [{
       value: 'O',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -465,7 +439,6 @@ bananasplit.keySections = [{
       value: 'P',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -473,7 +446,6 @@ bananasplit.keySections = [{
       value: 'LBRC',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -481,7 +453,6 @@ bananasplit.keySections = [{
       value: 'RBRC',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     }
   ],
@@ -492,7 +463,6 @@ bananasplit.keySections = [{
         value: 'BSLS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k150',
         zone: 'Enter'
       }
@@ -503,7 +473,6 @@ bananasplit.keySections = [{
         value: 'ENT',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'kISO',
         zone: 'Enter'
       }
@@ -516,7 +485,6 @@ bananasplit.keySections = [{
         value: 'CAPS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k175',
         zone: 'Caps Lock'
       }
@@ -527,7 +495,6 @@ bananasplit.keySections = [{
         value: 'CAPS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k175stepped',
         zone: 'Caps Lock'
       },
@@ -539,7 +506,6 @@ bananasplit.keySections = [{
       value: 'A',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -547,7 +513,6 @@ bananasplit.keySections = [{
       value: 'S',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -555,7 +520,6 @@ bananasplit.keySections = [{
       value: 'D',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -563,7 +527,6 @@ bananasplit.keySections = [{
       value: 'F',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -571,7 +534,6 @@ bananasplit.keySections = [{
       value: 'G',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -579,7 +541,6 @@ bananasplit.keySections = [{
       value: 'H',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -587,7 +548,6 @@ bananasplit.keySections = [{
       value: 'J',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -595,7 +555,6 @@ bananasplit.keySections = [{
       value: 'K',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -603,7 +562,6 @@ bananasplit.keySections = [{
       value: 'L',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -611,7 +569,6 @@ bananasplit.keySections = [{
       value: 'SCLN',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -619,7 +576,6 @@ bananasplit.keySections = [{
       value: 'QUOT',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     }
   ],
@@ -630,7 +586,6 @@ bananasplit.keySections = [{
         value: 'ENT',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k225',
         zone: 'Enter'
       }
@@ -641,7 +596,6 @@ bananasplit.keySections = [{
         value: 'NUHS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100',
         zone: 'Enter'
       }
@@ -654,7 +608,6 @@ bananasplit.keySections = [{
         value: 'LSFT',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k225',
         zone: 'Left Shift'
       },
@@ -670,7 +623,6 @@ bananasplit.keySections = [{
         value: 'LSFT',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k125',
         zone: 'Left Shift'
       },
@@ -679,7 +631,6 @@ bananasplit.keySections = [{
         value: 'NUBS',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100',
         zone: 'Left Shift'
       }
@@ -691,7 +642,6 @@ bananasplit.keySections = [{
       value: 'Z',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -699,7 +649,6 @@ bananasplit.keySections = [{
       value: 'X',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -707,7 +656,6 @@ bananasplit.keySections = [{
       value: 'C',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -715,7 +663,6 @@ bananasplit.keySections = [{
       value: 'V',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -723,7 +670,6 @@ bananasplit.keySections = [{
       value: 'B',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -731,7 +677,6 @@ bananasplit.keySections = [{
       value: 'N',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -739,7 +684,6 @@ bananasplit.keySections = [{
       value: 'M',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -747,7 +691,6 @@ bananasplit.keySections = [{
       value: 'COMM',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     },
     {
@@ -755,7 +698,6 @@ bananasplit.keySections = [{
       value: 'DOT',
       type: 'normal',
       secondary: null,
-      showMenu: false,
       shape: 'k100'
     }
   ],
@@ -766,7 +708,6 @@ bananasplit.keySections = [{
         value: 'SLSH',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100',
         zone: 'Right Shift'
       },
@@ -775,7 +716,6 @@ bananasplit.keySections = [{
         value: 'RSFT',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k275',
         zone: 'Right Shift'
       },
@@ -791,7 +731,6 @@ bananasplit.keySections = [{
         value: 'SLSH',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100',
         zone: 'Right Shift'
       },
@@ -800,7 +739,6 @@ bananasplit.keySections = [{
         value: 'RSFT',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k175',
         zone: 'Right Shift'
       },
@@ -809,7 +747,6 @@ bananasplit.keySections = [{
         value: 'L1',
         type: 'momentary',
         secondary: null,
-        showMenu: false,
         shape: 'k100',
         zone: 'Right Shift'
       }
@@ -820,7 +757,6 @@ bananasplit.keySections = [{
         value: 'SLSH',
         type: 'tapkey',
         secondary: 'RSFT',
-        showMenu: false,
         shape: 'k175',
         zone: 'Right Shift'
       },
@@ -829,7 +765,6 @@ bananasplit.keySections = [{
         value: 'UP',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100',
         zone: 'Right Shift'
       },
@@ -838,7 +773,6 @@ bananasplit.keySections = [{
         value: 'L1',
         type: 'momentary',
         secondary: null,
-        showMenu: false,
         shape: 'k100',
         zone: 'Right Shift'
       }
@@ -851,7 +785,6 @@ bananasplit.keySections = [{
         value: 'LCTL',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k125',
         zone: 'Bottom Row'
       },
@@ -860,7 +793,6 @@ bananasplit.keySections = [{
         value: 'LGUI',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k125',
         zone: 'Bottom Row'
       },
@@ -869,7 +801,6 @@ bananasplit.keySections = [{
         value: 'LALT',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k125',
         zone: 'Bottom Row'
       }
@@ -880,7 +811,6 @@ bananasplit.keySections = [{
         value: 'LCTL',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k150',
         zone: 'Bottom Row'
       },
@@ -889,7 +819,6 @@ bananasplit.keySections = [{
         value: 'LGUI',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k100',
         zone: 'Bottom Row'
       },
@@ -898,7 +827,6 @@ bananasplit.keySections = [{
         value: 'LALT',
         type: 'normal',
         secondary: null,
-        showMenu: false,
         shape: 'k150',
         zone: 'Bottom Row'
       }
@@ -917,7 +845,6 @@ bananasplit.keySections = [{
           value: 'SPC',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k625',
           zone: 'Space'
         },
@@ -933,7 +860,6 @@ bananasplit.keySections = [{
           value: 'ENT',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k275',
           zone: 'Space'
         },
@@ -942,7 +868,6 @@ bananasplit.keySections = [{
           value: 'BL_STEP',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k125',
           zone: 'Space'
         },
@@ -951,7 +876,6 @@ bananasplit.keySections = [{
           value: 'SPC',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k225',
           zone: 'Space'
         }
@@ -962,7 +886,6 @@ bananasplit.keySections = [{
           value: 'ENT',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k225',
           zone: 'Space'
         },
@@ -971,7 +894,6 @@ bananasplit.keySections = [{
           value: 'BL_STEP',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k125',
           zone: 'Space'
         },
@@ -980,7 +902,6 @@ bananasplit.keySections = [{
           value: 'SPC',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k275',
           zone: 'Space'
         }
@@ -998,7 +919,6 @@ bananasplit.keySections = [{
           value: 'SPC',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k700',
           zone: 'Space'
         },
@@ -1014,7 +934,6 @@ bananasplit.keySections = [{
           value: 'ENT',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k275',
           zone: 'Space'
         },
@@ -1023,7 +942,6 @@ bananasplit.keySections = [{
           value: 'BL_STEP',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k150',
           zone: 'Space'
         },
@@ -1032,7 +950,6 @@ bananasplit.keySections = [{
           value: 'SPC',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k275',
           zone: 'Space'
         }
@@ -1047,7 +964,6 @@ bananasplit.keySections = [{
           value: 'RGUI',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k125',
           zone: 'Bottom Right'
         },
@@ -1056,7 +972,6 @@ bananasplit.keySections = [{
           value: 'RALT',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k125',
           zone: 'Bottom Right'
         },
@@ -1070,7 +985,6 @@ bananasplit.keySections = [{
           value: 'APP',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k125',
           zone: 'Bottom Right'
         },
@@ -1079,7 +993,6 @@ bananasplit.keySections = [{
           value: 'RCTL',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k125',
           zone: 'Bottom Right'
         }
@@ -1090,7 +1003,6 @@ bananasplit.keySections = [{
           value: 'RGUI',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100',
           zone: 'Bottom Right'
         },
@@ -1099,7 +1011,6 @@ bananasplit.keySections = [{
           value: 'RALT',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100',
           zone: 'Bottom Right'
         },
@@ -1108,7 +1019,6 @@ bananasplit.keySections = [{
           value: 'LEFT',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100',
           zone: 'Bottom Right'
         },
@@ -1117,7 +1027,6 @@ bananasplit.keySections = [{
           value: 'DOWN',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100',
           zone: 'Bottom Right'
         },
@@ -1126,7 +1035,6 @@ bananasplit.keySections = [{
           value: 'RIGHT',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100',
           zone: 'Bottom Right'
         }
@@ -1144,7 +1052,6 @@ bananasplit.keySections = [{
           value: 'RALT',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k150',
           zone: 'Bottom Right'
         },
@@ -1158,7 +1065,6 @@ bananasplit.keySections = [{
           value: 'APP',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100',
           zone: 'Bottom Right'
         },
@@ -1167,7 +1073,6 @@ bananasplit.keySections = [{
           value: 'RCTL',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k150',
           zone: 'Bottom Right'
         }
@@ -1183,7 +1088,6 @@ bananasplit.keySections = [{
           value: 'RALT',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100',
           zone: 'Bottom Right'
         },
@@ -1192,7 +1096,6 @@ bananasplit.keySections = [{
           value: 'LEFT',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100',
           zone: 'Bottom Right'
         },
@@ -1201,7 +1104,6 @@ bananasplit.keySections = [{
           value: 'DOWN',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100',
           zone: 'Bottom Right'
         },
@@ -1210,7 +1112,6 @@ bananasplit.keySections = [{
           value: 'RIGHT',
           type: 'normal',
           secondary: null,
-          showMenu: false,
           shape: 'k100',
           zone: 'Bottom Right'
         }

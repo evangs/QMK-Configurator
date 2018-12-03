@@ -55,6 +55,8 @@ export default ({
         <ToggleButton name={layers[activeLayer].name} onClick={toggleLayers} add />
         <Layers
           activeBoard={activeBoard}
+          activeLayer={activeLayer}
+          activeLayout={activeLayout}
           zones={zones}
           layers={layers}
           selectLayer={selectLayer}

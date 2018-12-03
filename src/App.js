@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { config, initialState } from './data/config'
+import { get } from './utils/localstorage'
 import {
   Container,
   Responsive,
@@ -80,11 +81,14 @@ export default class extends Component {
               fixed={fixed}
               boards={boards}
               activeBoard={activeBoard}
+              activeLayout={activeLayout}
               layouts={layouts}
               dirty={dirty}
               newLayout={this.newLayout}
               newLayer={this.newLayer}
               selectBoard={this.selectBoard}
+              deleteLayout={this.deleteLayout}
+              selectLayout={this.selectLayout}
             />
             <Canvas
               layers={layers}
@@ -164,8 +168,6 @@ export default class extends Component {
       })
     })
 
-    console.log(newKeys)
-
     clone[activeLayer].keys = newKeys
 
     this.setState({
@@ -174,31 +176,28 @@ export default class extends Component {
     })
   }
 
-  _newLayout (name, layers) {
+  _newLayout (name) {
     const { activeBoard, zones, layouts } = this.state
     const layout = {
-      id: this.state.layouts.length,
+      id: layouts.length,
       name,
     }
-    const layer = [{
+
+    const layers = [{
       id: 0,
-      layoutId: this.state.layouts.length,
+      layoutId: layouts.length,
       name: 'Default',
-      keymap: config[activeBoard].keymap(
-        config[activeBoard].keySections,
-        zones[0].value,
-        zones[1].value,
-        zones[2].value
-      )
+      keys: config[activeBoard].keySections[0]
     }]
 
-    const clonedLayouts = layouts.slice(0).push(layout)
+    const clonedLayouts = layouts.slice(0)
+    clonedLayouts.push(layout)
 
     this.setState({
-      activeLayout: this.state.layouts.length,
+      activeLayout: layouts.length,
       activeLayer: 0,
       layouts: clonedLayouts,
-      layers: layer
+      layers
     })
   }
 
@@ -226,7 +225,17 @@ export default class extends Component {
 
   _deleteLayer (layer) {}
 
-  _deleteLayout (layout) {}
+  _deleteLayout (layout) {
+    const { activeBoard } = this.state
+    const layouts = this.state.layouts.slice(0).filter(l => l.id !== layout.id)
+
+    const activeLayout = this.state.layouts.length - 2
+    const activeLayer = 0
+
+    const layers = get(activeBoard, 'layers') || config[activeBoard].layers
+
+    this.setState({ layouts, layers, activeLayout, activeLayer })
+  }
 
   _save () {}
 

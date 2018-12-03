@@ -15,10 +15,13 @@ export default ({
   fixed,
   boards,
   activeBoard,
+  activeLayout,
   layouts,
   dirty,
   selectBoard,
   newLayout,
+  selectLayout,
+  deleteLayout,
   newLayer
 }) => {
   return (
@@ -53,8 +56,11 @@ export default ({
           <Menu.Item>
             <Layouts
               layouts={layouts}
+              activeLayout={activeLayout}
               newLayout={newLayout}
-              activeBoard={activeBoard} />
+              activeBoard={activeBoard}
+              selectLayout={selectLayout}
+              deleteLayout={deleteLayout} />
           </Menu.Item>
           <Menu.Item>
             <Button icon inverted basic color='green'>
