@@ -8,7 +8,8 @@ import { Container,
   Icon
 } from 'semantic-ui-react'
 import { KEYS, KEY_DISPLAY_MAP, KEY_ACTIONS, KEYBOARD_INPUT_MAP } from '../data/keys'
-import colors from '../utils/colors'
+import colors, { getColor } from '../utils/colors'
+import getKeyStyle from '../utils/key-styles'
 import './key.scss'
 
 const KEY_UNIT_SIZE = 75
@@ -78,83 +79,26 @@ export default class extends Component {
       tmp
     } = this.state
 
-    let background
-    switch (type) {
-      case 'momentary':
-        background = colors.teal
-        break
-      case 'toggle':
-        background = colors.violet
-        break
-      case 'tapkey':
-        background = colors.green
-        break
-      case 'modkey':
-        background = colors.yellow
-        break
-      case 'combokey':
-        background = colors.orange
-        break
-      case 'direct':
-        background = colors.purple
-        break
-      case 'taptoggle':
-        background = colors.olive
-        break
-      case 'setdefaultlayer':
-        background = colors.red
-        break
-      case 'normal':
-      default:
-        background = colors.grey
-    }
+    const background = getColor(type).hex
+    const activeColor = getColor(activeKeyType)
 
-    let activeKeyColor
-    let selectedColor
-    let errorColor = 'red'
-    switch (activeKeyType) {
-      case 'momentary':
-        activeKeyColor = colors.teal
-        selectedColor = 'teal'
-        break
-      case 'toggle':
-        activeKeyColor = colors.violet
-        selectedColor = 'violet'
-        break
-      case 'tapkey':
-        activeKeyColor = colors.green
-        selectedColor = 'green'
-        break
-      case 'modkey':
-        activeKeyColor = colors.yellow
-        selectedColor = 'yellow'
-        break
-      case 'combokey':
-        activeKeyColor = colors.orange
-        selectedColor = 'orange'
-        errorColor = undefined
-        break
-      case 'direct':
-        activeKeyColor = colors.purple
-        selectedColor = 'purple'
-        break
-      case 'taptoggle':
-        activeKeyColor = colors.olive
-        selectedColor = 'olive'
-        break
-      case 'setdefaultlayer':
-        activeKeyColor = colors.red
-        selectedColor = 'red'
-        errorColor = undefined
-        break
-      case 'normal':
-      default:
-        activeKeyColor = colors.grey
-        selectedColor = 'grey'
-    }
+    let activeKeyColor = activeColor.hex
+    let selectedColor = activeColor.color
+    let errorColor = activeColor.errorColor
 
     let primaryDisplay = KEY_DISPLAY_MAP[value] || value
     let secondaryDisplay = KEY_DISPLAY_MAP[secondary] || secondary || ''
+
+    let afterElement
+    switch (shape) {
+      case 'kISO':
+      case 'kJIS':
+      case 'k175stepped':
+        afterElement = <div style={getKeyStyle(`${shape}After`, type, hover)} />
+        break
+      default:
+        // NO-OP
+    }
 
     return (
       <Modal
@@ -163,13 +107,10 @@ export default class extends Component {
         open={open}
         trigger={
           <div
-            className={`key ${shape}`}
-            style={{
-              background,
-              borderColor: hover ? colors.secondaryColor : colors.dark
-            }}
-            onMouseEnter={this.onMouseEnter}
-            onMouseOut={this.onMouseOut}
+            style={getKeyStyle(shape, type, hover)}
+            onMouseEnter={() => this.onMouseEnter(shape)}
+            onMouseMove={() => this.onMouseEnter(shape)}
+            onMouseOut={() => this.onMouseOut(shape)}
             onClick={this.openModal}>
             <div style={{
               lineHeight: `${KEY_UNIT_SIZE - (KEY_BORDER_SIZE * 2) - (KEY_MARGIN_SIZE * 2)}px`,
@@ -187,12 +128,10 @@ export default class extends Component {
                 )}
               </Textfit>
             </div>
+            {afterElement && afterElement}
           </div>
         }
       >
-        <style dangerouslySetInnerHTML={{__html: `
-          .ui.dimmer { background-color: ${activeKeyColor}!important }
-      `}} />
         <Modal.Content className={shake ? 'shake' : ''} style={{ justifyContent: 'flex-start' }}>
           <div style={{ position: 'absolute', left: 0, top: 0, display: 'flex' }}>
             <h1>{this.action.display}</h1>
@@ -205,7 +144,7 @@ export default class extends Component {
           </div>
           <Container textAlign="center" style={{
             marginBottom: 50,
-            marginTop: 50 
+            marginTop: 50
           }}>
             <div style={{
               textAlign: 'center',
@@ -237,6 +176,7 @@ export default class extends Component {
               activeKeyType={activeKeyType}
               onClick={this.onKeyClick}
               color={selectedColor}
+              disabled={!primarySet}
               value={secondary}
               tmp={tmp}
             />}
@@ -246,11 +186,13 @@ export default class extends Component {
     )
   }
 
-  _onMouseEnter () {
-    this.setState({ hover: true })
+  _onMouseEnter (shape) {
+    if (!this.state.hover) {
+      this.setState({ hover: true })
+    }
   }
 
-  _onMouseOut () {
+  _onMouseOut (shape) {
     this.setState({ hover: false })
   }
 
@@ -288,10 +230,10 @@ export default class extends Component {
 
     const key = {
       id,
-      shape,
       value: null,
+      type: activeKeyType,
       secondary: null,
-      type: activeKeyType
+      shape
     }
 
     if (this.secondaryKeys.length === 0) {
@@ -335,10 +277,10 @@ export default class extends Component {
 
     const key = {
       id,
-      shape,
       value: null,
+      type: activeKeyType,
       secondary: null,
-      type: activeKeyType
+      shape
     }
 
     if (this.secondaryKeys.length === 0) {

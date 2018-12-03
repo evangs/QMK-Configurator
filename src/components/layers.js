@@ -50,7 +50,7 @@ export default class Layers extends Component {
   }
 
   render () {
-    console.log(this.props)
+    const { selectLayer, activeBoard, zones } = this.props
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="droppable">
@@ -71,22 +71,30 @@ export default class Layers extends Component {
                         provided.draggableProps.style
                       )}
                     >
-                      <Layer keymap={layer.keymap} layerId={layer.id} scaleFactor={7} />
+                      <Layer
+                        activeBoard={activeBoard}
+                        zones={zones}
+                        keys={layer.keys}
+                        layerId={layer.id}
+                        scaleFactor={7}
+                      />
                       <Container fluid>
                         <div style={{ float: 'left' }}>
                           <Header
                             as='h4'
                             inverted
+                            onClick={() => { selectLayer(layer.id) }}
                             style={{
                               margin: 0,
-                              textAlign: 'left'
+                              textAlign: 'left',
+                              cursor: 'pointer'
                             }}>
                               <span style={{ color: colors.grey }}>({i})  </span> {layer.name}
                             </Header>
                           </div>
                           <div style={{ float: 'right' }}>
                             <Icon style={{ cursor: 'pointer' }} name='clone' size="small" onClick={() => console.log('hi')}/>
-                            <Icon style={{ cursor: 'pointer' }} name='edit' size="small" />
+                            <Icon style={{ cursor: 'pointer' }} name='close' size="small" />
                           </div>
                           <div style={{ clear: 'both' }} />
                         </Container>

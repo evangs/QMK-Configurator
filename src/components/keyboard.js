@@ -1,13 +1,26 @@
 import React from 'react'
 import Key from './key'
+import { config } from '../data/config'
+import colors, { getColor } from '../utils/colors'
 
-export default ({ keymap, activeKeyType, setKey }) => {
+export default ({ layers, zones, activeBoard, activeLayer, activeKeyType, setKey }) => {
+
+  const keymap = config[activeBoard].keymap
+  const keys = keymap(layers[activeLayer].keys, zones)
+
+
   return (
-    <div className='keyboard'>
-      {keymap.map((r, i) => {
+    <div style={{ maxWidth: 'fit-content' }}>
+      <style dangerouslySetInnerHTML={{__html: `
+        .ui.dimmer { background-color: ${getColor(activeKeyType).hex}!important }
+      `}} />
+      {keys.map((r, i) => {
         return (
-          <div className='row' key={`r${i}`}>
-            {keymap[i].map(k => {
+          <div key={`r${i}`} style={{
+            textAlign: 'left',
+            position: 'relative'
+          }}>
+            {keys[i].map(k => {
               return k.type !== 'nodisplay' && (
                 <Key
                   key={k.id}

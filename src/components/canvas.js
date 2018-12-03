@@ -19,12 +19,16 @@ export default ({
   layersVisible,
   layers,
   layouts,
+  zones,
   activeBoard,
   activeLayout,
   activeLayer,
   activeKeyType,
   toggleLayers,
-  setKey
+  setKey,
+  selectLayer,
+  cloneLayer,
+  deleteLayer
 }) => (
 
   <Sidebar.Pushable
@@ -49,7 +53,13 @@ export default ({
     >
       <Container fluid style={{ padding: 14 }}>
         <ToggleButton onClick={toggleLayers} add />
-        <Layers layers={layers} />
+        <Layers
+          activeBoard={activeBoard}
+          zones={zones}
+          layers={layers}
+          selectLayer={selectLayer}
+          cloneLayer={cloneLayer}
+          deleteLayer={deleteLayer} />
       </Container>
     </Sidebar>
 
@@ -69,10 +79,17 @@ export default ({
         layoutName={layouts[activeLayout].name}
         layerName={layers[activeLayer].name}
       />
-      <Container>
-        <div style={{ marginTop: 100 }} />
+      <Container fluid style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 490
+      }}>
         <Keyboard
-          keymap={layers[activeLayer].keymap}
+          layers={layers}
+          zones={zones}
+          activeBoard={activeBoard}
+          activeLayer={activeLayer}
           activeKeyType={activeKeyType}
           setKey={setKey}
         />

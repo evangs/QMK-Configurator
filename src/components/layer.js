@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
-import colors from '../utils/colors'
 import * as d3 from 'd3'
+import colors from '../utils/colors'
+import { config } from '../data/config'
+
 
 export default class extends Component {
 
   componentDidMount() {
-    const { layerId, scaleFactor } = this.props
+    const { layerId, scaleFactor, keys, activeBoard, zones } = this.props
     const padding = 0
     const svg = d3.select(`#layer-${layerId}`)
-    let data = this.props.keymap.slice(0)
+
+    const keymap = config[activeBoard].keymap
+    let data = keymap(keys, zones)
 
     // Filter unused keys
     data = data.map(d => {

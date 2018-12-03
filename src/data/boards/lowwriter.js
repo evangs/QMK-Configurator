@@ -730,8 +730,7 @@ lowwriter.defaultKeySections = [
           value: 'QUOT',
           type: 'tapkey',
           secondary: 'L1',
-          shape: 'k150',
-          zone: 'Enter'
+          shape: 'k150'
         }
       ],
       [
@@ -740,8 +739,7 @@ lowwriter.defaultKeySections = [
           value: 'QUOT',
           type: 'tapkey',
           secondary: 'L1',
-          shape: 'kJIS',
-          zone: 'Enter'
+          shape: 'kJIS'
         }
       ]
     ],
@@ -2257,14 +2255,13 @@ lowwriter.defaultKeySections = [
 ]
 
 // Default Keymap
-lowwriter.keymap = function(ks, z1, z2, z3, z4) {
+lowwriter.keymap = function(ks, zones) {
   const keymap = []
-  const zones = lowwriter.zones
 
   keymap.push(ks.row1)
-  keymap.push(ks.row2.concat(ks.enter[zones[z1].value]))
-  keymap.push(ks.row3.concat(ks.fn2[zones[z3].value]))
-  keymap.push(ks.leftHand[zones[z3].value].concat(ks.row4).concat(ks.rightHand[zones[z4].value]))
+  keymap.push(ks.row2.concat(ks.enter[zones[0].value]))
+  keymap.push(ks.row3.concat(ks.fn2[zones[0].value]))
+  keymap.push(ks.leftHand[zones[1].value].concat(ks.row4).concat(ks.rightHand[zones[2].value]))
 
   return keymap
 }
@@ -2281,22 +2278,22 @@ lowwriter.layers = [{
   id: 0,
   layoutId: 0,
   name: 'Default',
-  keymap: lowwriter.keymap(lowwriter.defaultKeySections[0], 0, 0, 1, 2)
+  keys: lowwriter.defaultKeySections[0]
 }, {
   id: 1,
   layoutId: 0,
   name: 'Shifted',
-  keymap: lowwriter.keymap(lowwriter.defaultKeySections[1], 0, 0, 1, 2)
+  keys: lowwriter.defaultKeySections[1]
 }, {
   id: 2,
   layoutId: 0,
   name: 'Numerics',
-  keymap: lowwriter.keymap(lowwriter.defaultKeySections[2], 0, 0, 1, 2)
+  keys: lowwriter.defaultKeySections[2]
 }, {
   id: 3,
   layoutId: 0,
   name: 'Game Lock Layer',
-  keymap: lowwriter.keymap(lowwriter.defaultKeySections[3], 0, 0, 1, 2)
+  keys: lowwriter.defaultKeySections[3]
 }]
 
 export default lowwriter

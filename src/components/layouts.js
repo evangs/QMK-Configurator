@@ -4,7 +4,7 @@ import { config } from '../data/config'
 
 export default class extends Component {
   render () {
-    const { layouts, activeBoard } = this.props
+    const { layouts, activeBoard, newLayout } = this.props
     return (
       <Modal trigger={<Button inverted>My Layouts</Button>} basic size='small'>
         <Header content={`Layouts for ${config[activeBoard].config.product}`} textAlign='center' />
@@ -12,7 +12,9 @@ export default class extends Component {
           <Table inverted selectable>
             <Table.Body>
               {layouts.map((l, i) => (
-                <Table.Row key={`layout-${i}`} style={{ cursor: 'pointer' }}>
+                <Table.Row key={`layout-${i}`} disabled={l.immutable} style={{
+                  cursor: 'pointer'
+                }}>
                   <Table.Cell>{l.name}</Table.Cell>
                 </Table.Row>
               ))}
@@ -26,7 +28,7 @@ export default class extends Component {
           <Button color='teal' inverted>
             <Icon name='edit' /> Edit
           </Button>
-          <Button color='green' inverted>
+          <Button color='green' inverted onClick={newLayout}>
             <Icon name='plus' /> New
           </Button>
         </Modal.Actions>

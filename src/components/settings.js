@@ -3,9 +3,13 @@ import { Tab, Table, Input, Checkbox, Select } from 'semantic-ui-react'
 
 import settings from '../data/settings'
 
-export default ({ activeKeyType, zones }) => {
+export default ({ activeKeyType, zones, updateZone }) => {
   const panes = [
-    { menuItem: 'Zones', render: () => <Zones zones={zones}/> },
+    { menuItem: 'Zones', render: () => (
+      <Zones
+        zones={zones}
+        updateZone={updateZone}/>
+    )},
     { menuItem: 'Advanced', render: () => <Advanced /> },
   ]
   return (
@@ -13,7 +17,7 @@ export default ({ activeKeyType, zones }) => {
   )
 }
 
-const Zones = ({ zones }) => {
+const Zones = ({ zones, updateZone }) => {
   return (
     <Table>
       <Table.Body>
@@ -25,7 +29,11 @@ const Zones = ({ zones }) => {
                   {z.label}
                 </Table.Cell>
                 <Table.Cell textAlign='right'>
-                  <Select placeholder={z.label} options={opts} value={z.value} />
+                  <Select
+                    placeholder={z.label}
+                    options={opts}
+                    value={z.value}
+                    onChange={updateZone}/>
                 </Table.Cell>
               </Table.Row>
             )
