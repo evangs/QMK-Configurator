@@ -151,17 +151,22 @@ export default class extends Component {
     } = this.state
 
     let clone = layers.slice(0)
-    const rows = clone[activeLayer].keys.rows
-    const newRows = {}
+    const keys = clone[activeLayer].keys
+    const newKeys = {}
 
-    Object.keys(rows).forEach(r => {
-      const keys = rows[r]
-      newRows[r] = keys.map(k => {
+    Object.keys(keys).forEach(r => {
+      const ks = keys[r]
+      newKeys[r] = ks.map(k => {
+        if(Array.isArray(k)) {
+          return k.map(j => j.id === key.id ? key : j)
+        }
         return k.id === key.id ? key : k
       })
     })
 
-    clone[activeLayer].keys.rows = newRows
+    console.log(newKeys)
+
+    clone[activeLayer].keys = newKeys
 
     this.setState({
       layers: clone,
