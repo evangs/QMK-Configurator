@@ -29,6 +29,7 @@ export default ({
   selectLayer,
   cloneLayer,
   deleteLayer,
+  editLayout,
   editLayer
 }) => (
 
@@ -80,8 +81,10 @@ export default ({
         manufacturer={config[activeBoard].config.manufacturer}
         product={config[activeBoard].config.product}
         description={config[activeBoard].config.description}
-        layoutName={layouts.find(l => l.id === activeLayout).name}
-        layerName={layers.find(l => l.id === activeLayer).name}
+        layout={layouts.find(l => l.id === activeLayout)}
+        layer={layers.find(l => l.id === activeLayer)}
+        editLayout={editLayout}
+        editLayer={editLayer}
       />
       <Container fluid style={{
         display: 'flex',

@@ -1834,30 +1834,30 @@ lowwriter.keymap = function(ks, zones) {
 
 // Default Layout
 lowwriter.layouts = [{
-  id: 0,
+  id: '0',
   name: 'Default',
   immutable: true
 }]
 
 // Default Layers
 lowwriter.layers = [{
-  id: 0,
-  layoutId: 0,
+  id: '0',
+  layoutId: '0',
   name: 'Default',
   keys: lowwriter.keySections[0]
 }, {
-  id: 1,
-  layoutId: 0,
+  id: '1',
+  layoutId: '0',
   name: 'Shifted',
   keys: lowwriter.keySections[1]
 }, {
-  id: 2,
-  layoutId: 0,
+  id: '2',
+  layoutId: '0',
   name: 'Numerics',
   keys: lowwriter.keySections[2]
 }, {
-  id: 3,
-  layoutId: 0,
+  id: '3',
+  layoutId: '0',
   name: 'Game Lock Layer',
   keys: lowwriter.keySections[3]
 }]

@@ -6,7 +6,7 @@ export const set = (board, key, value) => {
   try {
     data = JSON.parse(data)
     data[key] = value
-    localStorage.setItem(data, JSON.stringify(data))
+    localStorage.setItem(board, JSON.stringify(data))
     return true
   } catch (err) {
     return false

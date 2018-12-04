@@ -96,7 +96,8 @@ const k700 = unitSize => ({
 const kISO = unitSize => ({
   width: unitSize + (unitSize * 0.50),
   height: unitSize,
-  borderRadius: '10px 10px 0 10px'
+  borderRadius: '10px 10px 0 10px',
+  borderRight: `${KEY_BORDER_SIZE}px solid ${KEY_BORDER_COLOR}`
 })
 
 const kISOAfter = unitSize => ({
@@ -114,7 +115,8 @@ const kISOAfter = unitSize => ({
 const kJIS = unitSize => ({
   width: unitSize + (unitSize * 0.50),
   height: unitSize,
-  borderRadius: '10px 10px 0 10px'
+  borderRadius: '10px 10px 0 10px',
+  borderRight: `${KEY_BORDER_SIZE}px solid ${KEY_BORDER_COLOR}`
 })
 
 const kJISAfter = unitSize => ({

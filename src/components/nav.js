@@ -38,7 +38,10 @@ export default class extends Component {
       selectLayout,
       deleteLayout,
       cloneLayout,
-      newLayer
+      newLayer,
+      save,
+      download,
+      flash
     } = this.props
     const { name, open } = this.state
 
@@ -69,7 +72,12 @@ export default class extends Component {
             </Dropdown.Menu>
           </Dropdown>
           <Menu.Item>
-            <Button inverted color={dirty ? 'green' : 'teal'}>{dirty ? 'Save' : 'Download'}</Button>
+            <Button
+              inverted
+              color={dirty ? 'green' : 'teal'}
+              onClick={dirty ? save : download}>
+                {dirty ? 'Save' : 'Download'}
+              </Button>
           </Menu.Item>
           <Menu.Item>
             <Layouts

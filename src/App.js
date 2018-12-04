@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { config, initialState } from './data/config'
+import { config, initialState, getLastSave, persistState } from './data/config'
 import { get } from './utils/localstorage'
 import { v4 } from 'uuid'
 import {
@@ -49,8 +49,14 @@ export default class extends Component {
     this.cloneLayer = this._cloneLayer.bind(this)
     this.deleteLayer = this._deleteLayer.bind(this)
     this.deleteLayout = this._deleteLayout.bind(this)
-    this.editLayer = this._editLayer.bind(this)
     this.updateSetting = this._updateSetting.bind(this)
+    this.editLayer = this._editLayer.bind(this)
+    this.editLayout = this._editLayout.bind(this)
+    this.save = this._save.bind(this)
+    this.reset = this._reset.bind(this)
+    this.revert = this._revert.bind(this)
+    this.download = this._download.bind(this)
+    this.flash = this._flash.bind(this)
   }
 
   render () {
@@ -102,6 +108,11 @@ export default class extends Component {
               deleteLayout={this.deleteLayout}
               selectLayout={this.selectLayout}
               cloneLayout={this.cloneLayout}
+              save={this.save}
+              reset={this.reset}
+              revert={this.revert}
+              download={this.download}
+              flash={this.flash}
             />
             <Canvas
               layers={layers}
@@ -117,6 +128,7 @@ export default class extends Component {
               selectLayer={this.selectLayer}
               cloneLayer={this.cloneLayer}
               deleteLayer={this.deleteLayer}
+              editLayout={this.editLayout}
               editLayer={this.editLayer}
             />
            </Segment>
@@ -155,7 +167,10 @@ export default class extends Component {
                   basic
                   inverted
                   color='green'
-                  onClick={this.save}>
+                  onClick={() => {
+                    this.save()
+                    this.setState({ nextAction: null })
+                  }}>
                   <Icon name='save' /> Save
                 </Button>
               </Modal.Actions>
@@ -168,8 +183,8 @@ export default class extends Component {
   }
 
   checkSaveState () {
-    const { lastSave, layers, dirty } = this.state
-    const d = lastSave !== JSON.stringify(layers)
+    const { lastSave, dirty } = this.state
+    const d = lastSave !== getLastSave(this.state)
     if(dirty !== d) {
       this.setState({ dirty: d })
     }
@@ -181,8 +196,8 @@ export default class extends Component {
 
   _selectBoard (e, data) {
     // TODO: Check save state and fire modal
-    const { lastSave, layers } = this.state
-    if (lastSave !== JSON.stringify(layers)) {
+    const { lastSave } = this.state
+    if (lastSave !== getLastSave(this.state)) {
       this.setState({ nextAction: () => {
         this.setState(Object.assign({}, initialState(data.value), {
           nextAction: null,
@@ -231,9 +246,7 @@ export default class extends Component {
 
     clone[activeLayer].keys = newKeys
 
-    this.setState({
-      layers: clone
-    }, this.checkSaveState)
+    this.setState({ layers: clone }, this.checkSaveState)
   }
 
   _newLayout (name) {
@@ -282,7 +295,6 @@ export default class extends Component {
   }
 
   _updateSetting (e, data) {
-    console.log(data)
     switch (data.kind) {
       case 'config':{
         const settings = Object.assign({}, this.state.settings)
@@ -291,7 +303,7 @@ export default class extends Component {
         } else {
           settings[data.setting] = parseInt(data.value, 10)
         }
-        this.setState({ settings }, () => console.log(this.state))
+        this.setState({ settings }, this.checkSaveState)
         break
       }
       case 'rule': {
@@ -301,7 +313,7 @@ export default class extends Component {
         } else {
           rules[data.setting] = parseInt(data.value, 10)
         }
-        this.setState({ rules })
+        this.setState({ rules }, this.checkSaveState)
         break
       }
     }
@@ -403,6 +415,17 @@ export default class extends Component {
     this.setState({ layers }, this.checkSaveState)
   }
 
+  _editLayout (name, layout) {
+    if (!name) return
+    const layouts = this.state.layouts.slice(0).map(l => {
+      if (l.id === layout.id) {
+        l.name = name
+        return l
+      }
+    })
+    this.setState({ layout }, this.checkSaveState)
+  }
+
   _deleteLayout (layout) {
     const { activeBoard } = this.state
     const layouts = this.state.layouts.slice(0).filter(l => l.id !== layout.id)
@@ -415,12 +438,20 @@ export default class extends Component {
     this.setState({ layouts, layers, activeLayout, activeLayer }, this.checkSaveState)
   }
 
-  _save () {}
+  _save () {
+    persistState(this.state)
+    const lastSave = getLastSave(this.state)
+    this.setState({ lastSave, dirty: false })
+  }
 
   _reset () {}
 
   _revert () {}
 
   _download () {}
+
+  _flash () {
+
+  }
 
 }

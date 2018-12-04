@@ -1133,15 +1133,15 @@ bananasplit.keymap = function (ks, zones) {
 
 // Default Layout
 bananasplit.layouts = [{
-  id: 0,
+  id: '0',
   name: 'Default',
   immutable: true
 }]
 
 // Default Layers
 bananasplit.layers = [{
-  id: 0,
-  layoutId: 0,
+  id: '0',
+  layoutId: '0',
   name: 'Default',
   keys: bananasplit.keySections[0]
 }]
