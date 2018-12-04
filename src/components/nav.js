@@ -1,31 +1,47 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {
   Menu,
   Container,
   Button,
   Dropdown,
   Image,
-  Icon
+  Icon,
+  Modal,
+  Input,
+  Table
 } from 'semantic-ui-react'
 import Layouts from './layouts'
 import { config } from '../data/config'
 import logo from '../logo.png'
 
-export default ({
-  fixed,
-  boards,
-  activeBoard,
-  activeLayout,
-  layouts,
-  dirty,
-  selectBoard,
-  newLayout,
-  selectLayout,
-  deleteLayout,
-  cloneLayout,
-  newLayer
-}) => {
-  return (
+export default class extends Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      open: false,
+      name: ''
+    }
+  }
+
+  render() {
+    const {
+      fixed,
+      boards,
+      activeBoard,
+      activeLayout,
+      layouts,
+      dirty,
+      selectBoard,
+      newLayout,
+      selectLayout,
+      deleteLayout,
+      cloneLayout,
+      newLayer
+    } = this.props
+    const { name, open } = this.state
+
+    return (
     <Menu inverted style={{ margin: 0 }}>
       <Container>
 
@@ -65,13 +81,62 @@ export default ({
               deleteLayout={deleteLayout} />
           </Menu.Item>
           <Menu.Item>
-            <Button icon inverted basic color='green'>
-              <Icon name='plus' />
-            </Button>
+            <Modal basic open={open} size='small' trigger={
+              <Button
+                icon
+                inverted
+                basic
+                color='green'
+                onClick={() => this.setState({ open: true })}>
+                <Icon name='plus' />
+              </Button>
+            }>
+              <Modal.Content>
+                <div style={{ position: 'absolute', right: '1rem', top: 0 }}>
+                  <Button
+                    icon
+                    inverted
+                    basic
+                    color='red'
+                    onClick={() => this.setState({ open: false, name: '' })}>
+                    <Icon name='close' />
+                  </Button>
+                </div>
+                <Table inverted style={{ marginTop: 50 }}>
+                  <Table.Body>
+                    <Table.Row>
+                      <Table.Cell>
+                        <Input
+                          fluid
+                          inverted
+                          transparent
+                          onChange={(e, data) => { this.setState({ name: data.value }) }}
+                          placeholder='Enter a name'
+                        />
+                      </Table.Cell>
+                    </Table.Row>
+                  </Table.Body>
+                </Table>
+              </Modal.Content>
+              <Modal.Actions>
+                <Button color='grey' inverted onClick={() => {
+                  newLayout(name)
+                  this.setState({ name: '', open: false })
+                }}>
+                  <Icon name='keyboard outline' /> Create Layout
+                </Button>
+                <Button color='teal' inverted onClick={() => {
+                  newLayer(name)
+                  this.setState({ name: '', open: false })
+                }}>
+                  <Icon name='sticky note outline' /> Create Layer
+                </Button>
+              </Modal.Actions>
+            </Modal>
           </Menu.Item>
         </Menu.Menu>
-
       </Container>
     </Menu>
   )
+  }
 }

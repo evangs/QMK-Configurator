@@ -6,6 +6,10 @@ import {
   Responsive,
   Segment,
   Visibility,
+  Modal,
+  Button,
+  Icon,
+  Header
 } from 'semantic-ui-react'
 
 import './theme/semantic.less'
@@ -25,6 +29,7 @@ export default class extends Component {
       dirty: false,
       layersVisible: false,
       buildInProgress: false,
+      nextAction: null,
       exportLink: '',
       exportFileName: ''
     }, initialState())
@@ -54,6 +59,7 @@ export default class extends Component {
       activeLayout,
       activeLayer,
       activeKeyType,
+      nextAction,
       layouts,
       layers,
       zones,
@@ -117,6 +123,33 @@ export default class extends Component {
               activeKeyType={activeKeyType}
               zones={zones}
               updateZone={this.updateZone}/>
+
+            <Modal open={Boolean(nextAction)} basic>
+              <Header
+                content='You have unsaved changes. Would you like to save or discard them?'
+                style={{ marginTop: 50 }} />
+              <div style={{ position: 'absolute', right: '1rem', top: 0 }}>
+                <Button icon inverted basic color='red' onClick={() => this.setState({ nextAction: null })}>
+                  <Icon name='close' />
+                </Button>
+              </div>
+              <Modal.Actions>
+                <Button
+                  basic
+                  color='red'
+                  inverted
+                  onClick={nextAction}>
+                  <Icon name='cancel' /> Discard
+                </Button>
+                <Button
+                  basic
+                  inverted
+                  color='green'
+                  onClick={this.save}>
+                  <Icon name='save' /> Save
+                </Button>
+              </Modal.Actions>
+            </Modal>
            </Container>
          </Visibility>
        </Responsive>
@@ -133,7 +166,21 @@ export default class extends Component {
   }
 
   _selectBoard (e, data) {
-    this.setState(initialState(data.value))
+    // TODO: Check save state and fire modal
+    const { lastSave, layers } = this.state
+    if (lastSave !== JSON.stringify(layers)) {
+      this.setState({ nextAction: () => {
+        this.setState(Object.assign({}, initialState(data.value), {
+          nextAction: null,
+          dirty: false
+        }))
+      }})
+    } else {
+      this.setState(Object.assign({}, initialState(data.value), {
+        nextAction: null,
+        dirty: false
+      }))
+    }
   }
 
   _setActiveKeyType (activeKeyType) {
@@ -224,7 +271,19 @@ export default class extends Component {
     })
   }
 
-  _newLayer (layer) {}
+  _newLayer (name) {
+    const { activeLayout, activeBoard } = this.state
+    const layers = this.state.layers.slice(0)
+    const layerId = layers.length
+    const layer = {
+      id: layerId,
+      layoutId: activeLayout,
+      name,
+      keys: config[activeBoard].keySections[0]
+    }
+    layers.push(layer)
+    this.setState({ layers, activeLayer: layerId })
+  }
 
   _cloneLayout (id, name) {
 
@@ -282,6 +341,8 @@ export default class extends Component {
   _save () {}
 
   _reset () {}
+
+  _revert () {}
 
   _download () {}
 

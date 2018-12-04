@@ -140,7 +140,7 @@ export default class extends Component {
             <h1>{this.action.display}</h1>
             <p style={{ marginLeft: 10, lineHeight: '48px' }}>{this.action.tooltip}</p>
           </div>
-          <div style={{ position: 'absolute', right: 0, top: 0 }}>
+          <div style={{ position: 'absolute', right: '1rem', top: 0 }}>
             <Button icon inverted basic color='red' onClick={this.closeModal}>
               <Icon name='close' />
             </Button>
@@ -352,11 +352,11 @@ const Column = ({
                   minWidth: 50,
                   marginBottom: 5
                 }} onClick={(e) => onClick(e, k)}>
-                {k.display[0] === '!' && k.display[1] === '!' ? <Icon name={k.display.replace('!!', '')} color='black' /> : k.display}
+                  {k.display[0] === '!' && k.display[1] === '!' ? <Icon name={k.display.replace('!!', '')} color='black' /> : k.display}
                 </Button>
               )
               if (k.tooltip) {
-                return <Popup inverted trigger={button} content={k.tooltip}/>
+                return <Popup key={`key-${j}`} inverted trigger={button} content={k.tooltip}/>
               } else {
                 return button
               }

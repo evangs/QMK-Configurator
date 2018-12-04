@@ -43,7 +43,7 @@ export default class extends Component {
       <Modal open={open} trigger={<Button inverted onClick={() => this.setState({ open: true })}>My Layouts</Button>} basic size='small'>
         <Header content={`Layouts for ${config[activeBoard].config.product}`} textAlign='center' style={{ marginTop: 50 }} />
         <Modal.Content>
-          <div style={{ position: 'absolute', right: 0, top: 0 }}>
+          <div style={{ position: 'absolute', right: '1rem', top: 0 }}>
             <Button icon inverted basic color='red' onClick={() => this.setState(initialState)}>
               <Icon name='close' />
             </Button>
