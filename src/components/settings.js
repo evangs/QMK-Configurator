@@ -1,5 +1,12 @@
 import React from 'react'
-import { Tab, Table, Input, Checkbox, Select } from 'semantic-ui-react'
+import {
+  Tab,
+  Table,
+  Input,
+  Checkbox,
+  Select,
+  Button
+} from 'semantic-ui-react'
 
 import settings from '../data/settings'
 
@@ -9,7 +16,9 @@ export default ({
   updateZone,
   updateSetting,
   settings,
-  rules
+  rules,
+  reset,
+  revert
 }) => {
   const panes = [
     { menuItem: 'Zones', render: () => (
@@ -22,6 +31,11 @@ export default ({
         settings={settings}
         rules={rules}
         updateSetting={updateSetting} />
+    )},
+    { menuItem: 'Reset', render: () => (
+      <Reset
+        reset={reset}
+        revert={revert} />
     )}
   ]
   return (
@@ -111,6 +125,31 @@ const Advanced = props => {
                 return
             }
           })}
+      </Table.Body>
+    </Table>
+  )
+}
+
+const Reset = ({ reset, revert }) => {
+  return (
+    <Table>
+      <Table.Body>
+        <Table.Row>
+          <Table.Cell>
+            Revert to last save
+          </Table.Cell>
+          <Table.Cell textAlign='right'>
+            <Button fluid color='grey' onClick={revert}>Revert</Button>
+          </Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>
+            Reset to factory defaults
+          </Table.Cell>
+          <Table.Cell textAlign='right'>
+            <Button fluid inverted color='red' onClick={reset}>Reset</Button>
+          </Table.Cell>
+        </Table.Row>
       </Table.Body>
     </Table>
   )

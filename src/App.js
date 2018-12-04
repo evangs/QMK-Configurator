@@ -109,8 +109,6 @@ export default class extends Component {
               selectLayout={this.selectLayout}
               cloneLayout={this.cloneLayout}
               save={this.save}
-              reset={this.reset}
-              revert={this.revert}
               download={this.download}
               flash={this.flash}
             />
@@ -144,7 +142,9 @@ export default class extends Component {
               settings={settings}
               rules={rules}
               updateZone={this.updateZone}
-              updateSetting={this.updateSetting}/>
+              updateSetting={this.updateSetting}
+              reset={this.reset}
+              revert={this.revert}/>
 
             <Modal open={Boolean(nextAction)} basic>
               <Header
@@ -441,12 +441,26 @@ export default class extends Component {
   _save () {
     persistState(this.state)
     const lastSave = getLastSave(this.state)
-    this.setState({ lastSave, dirty: false })
+    this.setState({ lastSave }, this.checkSaveState)
   }
 
-  _reset () {}
+  _reset () {
+    const { activeBoard } = this.state
+    localStorage.removeItem('activeLayout')
+    localStorage.removeItem('activeLayer')
+    localStorage.removeItem(activeBoard)
+    this.setState(initialState(activeBoard))
+  }
 
-  _revert () {}
+  _revert () {
+    const { dirty, lastSave, layouts, layers } = this.state
+    if (dirty) {
+      this.setState(Object.assign({}, {
+        activeLayout: layouts[0].id,
+        activeLayer: layers[0].id
+      }, JSON.parse(lastSave)), this.checkSaveState)
+    }
+  }
 
   _download () {}
 

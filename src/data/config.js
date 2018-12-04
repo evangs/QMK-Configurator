@@ -26,19 +26,6 @@ export const initialState = (activeBoard) => {
   const settings = get(activeBoard, 'advanced') || config[activeBoard].config
   const rules = get(activeBoard, 'rules') || config[activeBoard].rules
 
-console.log({
-  boards: Object.keys(config),
-  activeBoard,
-  activeLayer,
-  activeKeyType,
-  activeLayout,
-  layouts,
-  layers,
-  zones,
-  settings,
-  rules
-})
-
   return {
     lastSave: getLastSave({
       layouts,
