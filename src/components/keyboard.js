@@ -6,7 +6,7 @@ import colors, { getColor } from '../utils/colors'
 export default ({ layers, zones, activeBoard, activeLayer, activeKeyType, setKey }) => {
 
   const keymap = config[activeBoard].keymap
-  const keys = keymap(layers[activeLayer].keys, zones)
+  const keys = keymap(layers.find(l => l.id === activeLayer).keys, zones)
 
   return (
     <div style={{ maxWidth: 'fit-content' }}>

@@ -3,14 +3,26 @@ import { Tab, Table, Input, Checkbox, Select } from 'semantic-ui-react'
 
 import settings from '../data/settings'
 
-export default ({ activeKeyType, zones, updateZone }) => {
+export default ({
+  activeKeyType,
+  zones,
+  updateZone,
+  updateSetting,
+  settings,
+  rules
+}) => {
   const panes = [
     { menuItem: 'Zones', render: () => (
       <Zones
         zones={zones}
         updateZone={updateZone}/>
     )},
-    { menuItem: 'Advanced', render: () => <Advanced /> },
+    { menuItem: 'Advanced', render: () => (
+      <Advanced
+        settings={settings}
+        rules={rules}
+        updateSetting={updateSetting} />
+    )}
   ]
   return (
     <Tab menu={{ fluid: true, vertical: true, tabular: true }} panes={panes} />
@@ -43,24 +55,56 @@ const Zones = ({ zones, updateZone }) => {
   )
 }
 
-const Advanced = () => {
+const Advanced = props => {
+  const { updateSetting } = props
   return (
     <Table>
       <Table.Body>
           {settings.map((s, i) => {
+            let value
+            console.log(s)
+            switch (s.type) {
+              case 'config':
+                value = props.settings[s.value]
+                break
+              case 'rule':
+                value = props.rules[s.value]
+              default:
+                return
+            }
             switch (s.component) {
               case 'input':
                 return (
                   <Table.Row key={`row-${i}`}>
                     <Table.Cell>{s.description}</Table.Cell>
-                    <Table.Cell><Input label={s.display} placeholder={s.default} value={s.default} labelPosition='right' fluid/></Table.Cell>
+                    <Table.Cell>
+                      <Input
+                        label={s.display}
+                        placeholder={s.default}
+                        default={s.default}
+                        value={value}
+                        setting={s.value}
+                        kind={s.type}
+                        type='number'
+                        labelPosition='right'
+                        onChange={updateSetting}
+                        fluid />
+                    </Table.Cell>
                   </Table.Row>
                 )
               case 'checkbox':
                 return (
                   <Table.Row key={`row-${i}`}>
                     <Table.Cell>{s.description}</Table.Cell>
-                    <Table.Cell><Checkbox label={s.display} checked={s.default} /></Table.Cell>
+                    <Table.Cell>
+                      <Checkbox
+                        label={s.display}
+                        default={s.default}
+                        checked={value}
+                        setting={s.value}
+                        kind={s.type}
+                        onChange={updateSetting}/>
+                    </Table.Cell>
                   </Table.Row>
                 )
               default:

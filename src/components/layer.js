@@ -6,21 +6,6 @@ import { config } from '../data/config'
 export default class extends Component {
 
   componentWillReceiveProps (nextProps) {
-    const { activeBoard, keys, zones } = nextProps
-    const keymap = config[activeBoard].keymap
-    let data = keymap(keys, zones)
-
-    // Filter unused keys
-    data = data.map(d => {
-      const clone = d.slice(0)
-      return clone.filter(function(x){ return x.shape !== undefined })
-    })
-
-    const getShape = shape => {
-      shape = shape.substr(1)
-      return parseInt(shape, 10)
-    }
-
     this.svg.remove()
     this.update(nextProps)
   }

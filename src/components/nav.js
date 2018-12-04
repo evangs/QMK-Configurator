@@ -31,6 +31,7 @@ export default class extends Component {
       activeBoard,
       activeLayout,
       layouts,
+      layers,
       dirty,
       selectBoard,
       newLayout,
@@ -125,7 +126,7 @@ export default class extends Component {
                 }}>
                   <Icon name='keyboard outline' /> Create Layout
                 </Button>
-                <Button color='teal' inverted onClick={() => {
+                <Button disabled={layers.length >= 16} color='teal' inverted onClick={() => {
                   newLayer(name)
                   this.setState({ name: '', open: false })
                 }}>

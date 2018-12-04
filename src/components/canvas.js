@@ -28,7 +28,8 @@ export default ({
   setKey,
   selectLayer,
   cloneLayer,
-  deleteLayer
+  deleteLayer,
+  editLayer
 }) => (
 
   <Sidebar.Pushable
@@ -52,7 +53,7 @@ export default ({
       }}
     >
       <Container fluid style={{ padding: 14 }}>
-        <ToggleButton name={layers[activeLayer].name} onClick={toggleLayers} add />
+        <ToggleButton name={layers.find(l => l.id === activeLayer).name} onClick={toggleLayers} />
         <Layers
           activeBoard={activeBoard}
           activeLayer={activeLayer}
@@ -61,7 +62,8 @@ export default ({
           layers={layers}
           selectLayer={selectLayer}
           cloneLayer={cloneLayer}
-          deleteLayer={deleteLayer} />
+          deleteLayer={deleteLayer}
+          editLayer={editLayer} />
       </Container>
     </Sidebar>
 
@@ -73,13 +75,13 @@ export default ({
         minHeight: 600,
         background: colors.dark
       }}>
-      <ToggleButton name={layers[activeLayer].name} onClick={toggleLayers} />
+      <ToggleButton name={layers.find(l => l.id === activeLayer).name} onClick={toggleLayers} />
       <Info
         manufacturer={config[activeBoard].config.manufacturer}
         product={config[activeBoard].config.product}
         description={config[activeBoard].config.description}
-        layoutName={layouts[activeLayout].name}
-        layerName={layers[activeLayer].name}
+        layoutName={layouts.find(l => l.id === activeLayout).name}
+        layerName={layers.find(l => l.id === activeLayer).name}
       />
       <Container fluid style={{
         display: 'flex',
@@ -100,7 +102,7 @@ export default ({
   </Sidebar.Pushable>
 )
 
-const ToggleButton = ({ onClick, add, name }) => (
+const ToggleButton = ({ onClick, name }) => (
   <div>
     <div style={{
       textAlign: 'left'
@@ -111,15 +113,13 @@ const ToggleButton = ({ onClick, add, name }) => (
       <span style={{
         fontSize: 20,
         marginLeft: 10,
-        verticalAlign: 'text-bottom'
+        verticalAlign: 'middle',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        width: 150,
+        display: 'inline-block'
       }}>{name}</span>
-      {add &&
-        <div style={{ float: 'right' }}>
-          <Button icon inverted basic color='green' onClick={onClick}>
-            <Icon name='plus' />
-          </Button>
-        </div>
-      }
     </div>
   </div>
 )

@@ -17,7 +17,7 @@ export default class extends Component {
     super(props)
     const { layouts, activeLayout } = props
     this.state = initialState
-    this.state.selected = layouts[activeLayout]
+    this.state.selected = layouts.find(l => l.id === activeLayout)
 
     this.onRowSelect = this._onRowSelect.bind(this)
     this.newLayout = this._newLayout.bind(this)
@@ -28,7 +28,7 @@ export default class extends Component {
 
   componentWillReceiveProps (nextProps) {
     const { layouts, activeLayout } = nextProps
-    this.setState({ selected: layouts[activeLayout]})
+    this.setState({ selected: layouts.find(l => l.id === activeLayout)})
   }
 
   render () {
@@ -68,7 +68,6 @@ export default class extends Component {
                       fluid
                       inverted
                       transparent
-                      size='small'
                       placeholder='Enter a layout name'
                       onChange={(e, data) => this.setState({ name: data.value })}/>
                     </Table.Cell>
@@ -92,7 +91,7 @@ export default class extends Component {
             color='teal'
             disabled={!Object.keys(selected).length || selected.id === activeLayout}
             onClick={this.editLayout}>
-            <Icon name='edit' /> Edit
+            <Icon name='keyboard outline' /> Layout
           </Button>
           <Button
             color='blue'

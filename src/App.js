@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { config, initialState } from './data/config'
 import { get } from './utils/localstorage'
+import { v4 } from 'uuid'
 import {
   Container,
   Responsive,
@@ -48,6 +49,8 @@ export default class extends Component {
     this.cloneLayer = this._cloneLayer.bind(this)
     this.deleteLayer = this._deleteLayer.bind(this)
     this.deleteLayout = this._deleteLayout.bind(this)
+    this.editLayer = this._editLayer.bind(this)
+    this.updateSetting = this._updateSetting.bind(this)
   }
 
   render () {
@@ -63,7 +66,9 @@ export default class extends Component {
       layouts,
       layers,
       zones,
-      dirty
+      dirty,
+      settings,
+      rules
     } = this.state
 
     return (
@@ -89,6 +94,7 @@ export default class extends Component {
               activeBoard={activeBoard}
               activeLayout={activeLayout}
               layouts={layouts}
+              layers={layers}
               dirty={dirty}
               newLayout={this.newLayout}
               newLayer={this.newLayer}
@@ -111,6 +117,7 @@ export default class extends Component {
               selectLayer={this.selectLayer}
               cloneLayer={this.cloneLayer}
               deleteLayer={this.deleteLayer}
+              editLayer={this.editLayer}
             />
            </Segment>
 
@@ -122,7 +129,10 @@ export default class extends Component {
             <Settings
               activeKeyType={activeKeyType}
               zones={zones}
-              updateZone={this.updateZone}/>
+              settings={settings}
+              rules={rules}
+              updateZone={this.updateZone}
+              updateSetting={this.updateSetting}/>
 
             <Modal open={Boolean(nextAction)} basic>
               <Header
@@ -136,8 +146,8 @@ export default class extends Component {
               <Modal.Actions>
                 <Button
                   basic
-                  color='red'
                   inverted
+                  color='red'
                   onClick={nextAction}>
                   <Icon name='cancel' /> Discard
                 </Button>
@@ -158,7 +168,11 @@ export default class extends Component {
   }
 
   checkSaveState () {
-
+    const { lastSave, layers, dirty } = this.state
+    const d = lastSave !== JSON.stringify(layers)
+    if(dirty !== d) {
+      this.setState({ dirty: d })
+    }
   }
 
   _toggleLayers () {
@@ -198,8 +212,7 @@ export default class extends Component {
   _setKey (key) {
     const {
       layers,
-      activeLayer,
-      lastSave
+      activeLayer
     } = this.state
 
     let clone = layers.slice(0)
@@ -219,16 +232,16 @@ export default class extends Component {
     clone[activeLayer].keys = newKeys
 
     this.setState({
-      layers: clone,
-      dirty: lastSave !== JSON.stringify(clone)
-    })
+      layers: clone
+    }, this.checkSaveState)
   }
 
   _newLayout (name) {
+    if (!name) return
     const { activeBoard, zones, layouts, layers } = this.state
 
-    const layoutId = layouts.length
-    const layerId = layers.length
+    const layoutId = v4()
+    const layerId = v4()
 
     const layout = {
       id: layoutId,
@@ -252,11 +265,11 @@ export default class extends Component {
       activeLayer: layerId,
       layouts: clonedLayouts,
       layers: clonedLayers
-    })
+    }, this.checkSaveState)
   }
 
   _updateZone (e, data) {
-    const { zones, lastSave, activeBoard } = this.state
+    const { zones, activeBoard } = this.state
     let clone = zones.slice(0)
     clone = clone.map(z => {
       if (z.label === data.placeholder) {
@@ -265,16 +278,43 @@ export default class extends Component {
       return z
     })
 
-    this.setState({
-      zones: clone,
-      dirty: lastSave !== JSON.stringify(clone)
-    })
+    this.setState({ zones: clone }, this.checkSaveState)
+  }
+
+  _updateSetting (e, data) {
+    console.log(data)
+    switch (data.kind) {
+      case 'config':{
+        const settings = Object.assign({}, this.state.settings)
+        if (data.type === 'checkbox') {
+          settings[data.setting] = data.checked
+        } else {
+          settings[data.setting] = parseInt(data.value, 10)
+        }
+        this.setState({ settings }, () => console.log(this.state))
+        break
+      }
+      case 'rule': {
+        const rules = Object.assign({}, this.state.rules)
+        if (data.type === 'checkbox') {
+          rules[data.setting] = data.checked
+        } else {
+          rules[data.setting] = parseInt(data.value, 10)
+        }
+        this.setState({ rules })
+        break
+      }
+    }
   }
 
   _newLayer (name) {
+    if (!name) {
+      name = `Layer (New)`
+    }
+
     const { activeLayout, activeBoard } = this.state
     const layers = this.state.layers.slice(0)
-    const layerId = layers.length
+    const layerId = v4()
     const layer = {
       id: layerId,
       layoutId: activeLayout,
@@ -282,16 +322,19 @@ export default class extends Component {
       keys: config[activeBoard].keySections[0]
     }
     layers.push(layer)
-    this.setState({ layers, activeLayer: layerId })
+    this.setState({ layers, activeLayer: layerId }, this.checkSaveState)
   }
 
   _cloneLayout (id, name) {
-
     const { activeBoard } = this.state
     const layouts = this.state.layouts.slice(0)
     const layout = Object.assign({}, this.state.layouts.slice(0).find(l => l.id === id))
-    const layoutId = layouts.length
+    const layoutId = v4()
+    const layerId = v4()
 
+    if (!name) {
+      name = `${layout.name} (Clone)`
+    }
     // Set new layout props
     layout.id = layoutId
     layout.immutable = false
@@ -302,12 +345,11 @@ export default class extends Component {
     layouts.push(layout)
 
     let layers = this.state.layers.slice(0)
-    const layerId = layers.length
     const filtered = layers.filter(l => l.layoutId === id)
     const mapped = filtered.map((l, i) => {
       const layer = Object.assign({}, l)
       layer.layoutId = layoutId
-      layer.id = layerId + i
+      layer.id = layerId
       return layer
     })
 
@@ -320,22 +362,57 @@ export default class extends Component {
       layers
     })
 
+    this.checkSaveState()
+
   }
 
-  _cloneLayer (layer) {}
+  _cloneLayer (name, data) {
+    if (!name) {
+      name = `${data.name} (Clone)`
+    }
+    const layers = this.state.layers.slice(0)
+    const id = v4()
+    const layer = Object.assign({}, data, { name, id })
+    layers.push(layer)
+    this.setState({ layers, activeLayer: id }, this.checkSaveState)
+  }
 
-  _deleteLayer (layer) {}
+  _deleteLayer (layer) {
+    console.log(layer)
+    let activeLayer = this.state.activeLayer
+    const layers = this.state.layers
+
+    if (activeLayer === layer.id) {
+      activeLayer = layers[0].id
+    }
+
+    if (this.state.layers.length > 1) {
+      const layers = this.state.layers.slice(0).filter(l => l.id !== layer.id)
+      this.setState({ layers, activeLayer }, this.checkSaveState)
+    }
+  }
+
+  _editLayer (name, layer) {
+    if (!name) return
+    const layers = this.state.layers.slice(0).map(l => {
+      if (l.id === layer.id) {
+        l.name = name
+      }
+      return l
+    })
+    this.setState({ layers }, this.checkSaveState)
+  }
 
   _deleteLayout (layout) {
     const { activeBoard } = this.state
     const layouts = this.state.layouts.slice(0).filter(l => l.id !== layout.id)
 
     const activeLayout = this.state.layouts.length - 2
-    const activeLayer = 0
+    const activeLayer = this.state.layers[0].id
 
     const layers = this.state.layers.slice(0).filter(l => l.layoutId !== layout.id)
 
-    this.setState({ layouts, layers, activeLayout, activeLayer })
+    this.setState({ layouts, layers, activeLayout, activeLayer }, this.checkSaveState)
   }
 
   _save () {}
