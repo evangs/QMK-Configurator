@@ -76,7 +76,8 @@ export default ({
       style={{
         margin: 0,
         minHeight: 600,
-        background: colors.dark
+        background: colors.dark,
+        borderRadius: 0
       }}>
       <ToggleButton name={layersVisible ? '' : layers.find(l => l.id === activeLayer).name} onClick={toggleLayers} />
       <Info

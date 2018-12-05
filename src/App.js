@@ -13,13 +13,22 @@ import {
   Header
 } from 'semantic-ui-react'
 
-import './theme/semantic.less'
 
 import Canvas from './components/canvas'
 import Nav from './components/nav'
 import KeyTypeMenu from './components/key-type-menu'
 import Settings from './components/settings'
+import { isElectron } from './utils/env'
+import './theme/semantic.less'
 import './shake.scss'
+
+let flashFirmware
+if (isElectron()) {
+  const ipc = require('./utils/ipc')
+  flashFirmware = ipc.flashFirmware
+} else {
+  flashFirmware = () => {}
+}
 
 const API_URL = 'http://qmk.thevankeyboards.com'
 
@@ -58,7 +67,8 @@ export default class extends Component {
     this.save = this._save.bind(this)
     this.reset = this._reset.bind(this)
     this.revert = this._revert.bind(this)
-    this.download = this._download.bind(this)
+    this.download = this._flash.bind(this)
+    // this.download = this._download.bind(this)
     this.flash = this._flash.bind(this)
   }
 
@@ -115,6 +125,7 @@ export default class extends Component {
               download={this.download}
               flash={this.flash}
             />
+            <div style={{ marginTop: 60 }} />
             <Canvas
               layers={layers}
               layouts={layouts}
@@ -511,7 +522,8 @@ export default class extends Component {
   }
 
   _flash () {
-
+    console.log('here')
+    flashFirmware({  hello: 'hi' })
   }
 
 }

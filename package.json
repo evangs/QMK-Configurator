@@ -2,10 +2,23 @@
   "name": "qmk",
   "version": "0.1.0",
   "private": true,
+  "main": "public/electron.js",
+  "homepage": "./",
+  "build": {
+    "appId": "com.thevankeyboards.qmk",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
   "dependencies": {
     "@craco/craco": "^3.1.1",
     "chroma-js": "^1.4.1",
     "d3": "^5.7.0",
+    "electron-is-dev": "^1.0.1",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "node-sass": "^4.10.0",
@@ -22,7 +35,10 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "predist": "yarn build",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --mwl"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,5 +51,11 @@
   ],
   "standard": {
     "parser": "babel-eslint"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "electron": "^3.0.10",
+    "electron-builder": "^20.38.2",
+    "wait-on": "^3.2.0"
   }
 }

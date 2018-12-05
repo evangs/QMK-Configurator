@@ -1,5 +1,15 @@
+const { ExternalsPlugin } = require('webpack')
 // Use less loader
 module.exports = {
+
+  webpack: {
+    plugins: [
+      new ExternalsPlugin('commonjs', [
+        'electron'
+      ])
+    ]
+  },
+
   plugins: [
     {
       plugin: {

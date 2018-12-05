@@ -46,7 +46,10 @@ export default class extends Component {
     const { name, open } = this.state
 
     return (
-    <Menu inverted style={{ margin: 0 }}>
+    <Menu inverted fixed='top' style={{
+      margin: 0,
+      WebkitAppRegion: 'drag'
+    }}>
       <Container>
 
         <Menu.Item as='div'>
