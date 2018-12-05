@@ -462,7 +462,9 @@ export default class extends Component {
     }
   }
 
-  _download () {}
+  _download () {
+    
+  }
 
   _flash () {
 

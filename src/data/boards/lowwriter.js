@@ -10,7 +10,7 @@ lowwriter.id = 'lowwriter_rev2'
 // UI Config
 lowwriter.ui = {
   scale: 75,
-  thumbScale: 7
+  thumbScale: 6.5
 }
 
 // Config

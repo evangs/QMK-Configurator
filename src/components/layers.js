@@ -26,7 +26,7 @@ const reorder = (list, startIndex, endIndex) => {
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the layers look a bit nicer
   userSelect: 'none',
-  padding: '20px 10px 0 20px',
+  padding: '20px 10px 0 10px',
   margin: `0 0 10px 0`,
 
   // change background colour if dragging
