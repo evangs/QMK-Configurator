@@ -21,6 +21,8 @@ import KeyTypeMenu from './components/key-type-menu'
 import Settings from './components/settings'
 import './shake.scss'
 
+const API_URL = 'http://qmk.thevankeyboards.com'
+
 export default class extends Component {
 
   constructor (props) {
@@ -469,7 +471,43 @@ export default class extends Component {
   }
 
   _download () {
+    const { activeBoard, layers, zones, settings, rules } = this.state
+    this.setState({ buildInProgress: true })
 
+    const fullMap = []
+    layers.forEach(l => {
+      fullMap.push(config[activeBoard].keymap(l.keys, zones))
+    })
+
+    fetch(API_URL, {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8'
+        },
+        redirect: 'follow',
+        referrer: 'no-referrer',
+        body: JSON.stringify({
+          config: settings,
+          rules,
+          configKeymap: config[activeBoard].configKeymap,
+          keymap: fullMap
+        })
+    })
+    .then(res => res.json())
+    .then(res => {
+      this.setState({ buildInProgress: false })
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+      this.setState({
+        buildInProgress: false,
+        error: err
+      })
+    })
   }
 
   _flash () {

@@ -93,8 +93,6 @@ export default class extends Component {
         let pxFromLeft = ((200 * scaleFactor) - rowLength) / 2
         let pxFromTop = 0
 
-        console.log(pxFromTop)
-
         d3.select(this)
           .selectAll('rect')
           .data(d)

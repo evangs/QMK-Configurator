@@ -8,7 +8,6 @@ export default ({ layers, zones, activeBoard, activeLayer, activeKeyType, setKey
   const keymap = config[activeBoard].keymap
   const keys = keymap(layers.find(l => l.id === activeLayer).keys, zones)
   const trnsKeys = keymap(layers[0].keys, zones)
-  console.log(trnsKeys)
 
   return (
     <div style={{ maxWidth: 'fit-content' }}>
