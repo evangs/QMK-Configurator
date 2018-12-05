@@ -5,13 +5,14 @@ const KEY_BORDER_SIZE = 3
 const KEY_BORDER_COLOR = colors.dark
 const KEY_BORDER_ACTIVE = colors.secondaryColor
 
-export default function (shape, type, hover, unitSize = 75) {
+export default function (shape, type, hover, spacer, unitSize = 75) {
   return Object.assign(
     {},
     key(),
     shapes[shape](unitSize),
     background(shape, type),
-    keyHover(hover)
+    keyHover(hover),
+    margin(unitSize, spacer)
   )
 }
 
@@ -28,6 +29,37 @@ const key = () => ({
 export const keyHover = (hover) => ({
   borderColor: hover ? KEY_BORDER_ACTIVE : KEY_BORDER_COLOR
 })
+
+const margin = (unitSize, spacer) => {
+  if (!spacer) return {}
+
+  const styles = {}
+  spacer.trim().split(' ').forEach(spacer => {
+    switch (spacer) {
+      case 's025':
+        Object.assign(styles, { marginRight: (unitSize / 4) })
+        break
+      case 's050':
+        Object.assign(styles, { marginRight: unitSize / 2 })
+        break
+      case 's100':
+        Object.assign(styles, { marginRight: unitSize })
+        break
+      case 's125':
+        Object.assign(styles, { marginRight: unitSize * 1.25 })
+        break
+      case 's350':
+        Object.assign(styles, { marginRight: unitSize * 3.5 })
+        break
+      case 'vs050':
+        Object.assign(styles, { marginTop: unitSize * 0.5 })
+      default:
+        Object.assign(styles, {})
+    }
+  })
+  console.log(styles)
+  return styles
+}
 
 const background = (shape, type) => ({
   backgroundColor: shape.indexOf('steppedAfter') > -1 ? chroma(getColor(type).hex).darken().hex() : getColor(type).hex
@@ -77,8 +109,9 @@ const k275 = unitSize => ({
 
 const k200v = unitSize => ({
   width: unitSize,
-  height: unitSize * 2
-  // margin-bottom: -56px
+  height: unitSize * 2,
+  marginBottom: unitSize * -1,
+  borderRight: `${KEY_BORDER_SIZE}px solid ${KEY_BORDER_COLOR}`
 })
 
 const k625 = unitSize => ({

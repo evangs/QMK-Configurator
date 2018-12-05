@@ -70,7 +70,7 @@ export default class extends Component {
   }
 
   render () {
-    const { type, shape, value, secondary, activeKeyType, scaleFactor } = this.props
+    const { type, shape, value, secondary, activeKeyType, scaleFactor, spacer } = this.props
     const {
       hover,
       open,
@@ -94,7 +94,7 @@ export default class extends Component {
       case 'kISO':
       case 'kJIS':
       case 'k175stepped':
-        afterElement = <div style={getKeyStyle(`${shape}After`, type, hover, scaleFactor)} />
+        afterElement = <div style={getKeyStyle(`${shape}After`, type, hover, spacer, scaleFactor)} />
         break
       default:
         // NO-OP
@@ -107,19 +107,19 @@ export default class extends Component {
         open={open}
         trigger={
           <div
-            style={getKeyStyle(shape, type, hover, scaleFactor)}
+            style={getKeyStyle(shape, type, hover, spacer, scaleFactor)}
             onMouseEnter={() => this.onMouseEnter(shape)}
             onMouseMove={() => this.onMouseEnter(shape)}
             onMouseOut={() => this.onMouseOut(shape)}
             onClick={this.openModal}>
             <div style={{
-              lineHeight: `${KEY_UNIT_SIZE - (KEY_BORDER_SIZE * 2) - (KEY_MARGIN_SIZE * 2)}px`,
+              lineHeight: `${scaleFactor - (KEY_BORDER_SIZE * 2) - (KEY_MARGIN_SIZE * 2)}px`,
               margin: KEY_MARGIN_SIZE,
               pointerEvents: 'none'
             }}>
               <Textfit
                 mode='single'
-                max={28}
+                max={scaleFactor * 0.4}
                 min={8}>
                 {primaryDisplay[0] === '!' && primaryDisplay[1] === '!' ? <Icon name={primaryDisplay.replace('!!', '')} /> : primaryDisplay}
                 {secondaryDisplay && ' + ' }

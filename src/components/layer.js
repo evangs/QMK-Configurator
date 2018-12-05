@@ -51,6 +51,8 @@ export default class extends Component {
           return 125
         case 'kJISAfter':
           return 100
+        case 'k200v':
+          return 100
         default:
           return parseInt(shape.substr(1), 10)
       }
@@ -91,7 +93,7 @@ export default class extends Component {
                 const x =  oldPxFromLeft / scaleFactor
                 const y = (((i + 1) * 100) / scaleFactor)
                 const width = getShape(d.shape) / scaleFactor
-                const height = 100 / scaleFactor
+                const height = d.shape === 'k200v' ? 200 / scaleFactor : 100 / scaleFactor
                 const radius = 2
                 return roundedRect(x, y, width, height, radius)
               }
