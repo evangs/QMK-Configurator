@@ -7,6 +7,8 @@ export default ({ layers, zones, activeBoard, activeLayer, activeKeyType, setKey
 
   const keymap = config[activeBoard].keymap
   const keys = keymap(layers.find(l => l.id === activeLayer).keys, zones)
+  const trnsKeys = keymap(layers[0].keys, zones)
+  console.log(trnsKeys)
 
   return (
     <div style={{ maxWidth: 'fit-content' }}>
@@ -17,12 +19,15 @@ export default ({ layers, zones, activeBoard, activeLayer, activeKeyType, setKey
             position: 'relative'
           }}>
             {keys[i].map(k => {
+              const trnsValue = trnsKeys[i].find(l => l.id === k.id).value
+
               return k.type !== 'nodisplay' && (
                 <Key
                   key={k.id}
                   activeKeyType={activeKeyType}
                   setKey={setKey}
                   scaleFactor={config[activeBoard].ui.scale}
+                  trnsValue={trnsValue}
                   {...k} />
               )
             })}

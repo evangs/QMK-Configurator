@@ -30,7 +30,8 @@ export default ({
   cloneLayer,
   deleteLayer,
   editLayout,
-  editLayer
+  editLayer,
+  sortLayers
 }) => (
 
   <Sidebar.Pushable
@@ -64,7 +65,8 @@ export default ({
           selectLayer={selectLayer}
           cloneLayer={cloneLayer}
           deleteLayer={deleteLayer}
-          editLayer={editLayer} />
+          editLayer={editLayer}
+          sortLayers={sortLayers}/>
       </Container>
     </Sidebar>
 

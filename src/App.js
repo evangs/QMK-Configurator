@@ -48,6 +48,7 @@ export default class extends Component {
     this.cloneLayout = this._cloneLayout.bind(this)
     this.cloneLayer = this._cloneLayer.bind(this)
     this.deleteLayer = this._deleteLayer.bind(this)
+    this.sortLayers = this._sortLayers.bind(this)
     this.deleteLayout = this._deleteLayout.bind(this)
     this.updateSetting = this._updateSetting.bind(this)
     this.editLayer = this._editLayer.bind(this)
@@ -128,6 +129,7 @@ export default class extends Component {
               deleteLayer={this.deleteLayer}
               editLayout={this.editLayout}
               editLayer={this.editLayer}
+              sortLayers={this.sortLayers}
             />
            </Segment>
 
@@ -415,6 +417,10 @@ export default class extends Component {
     this.setState({ layers }, this.checkSaveState)
   }
 
+  _sortLayers (layers) {
+    this.setState({ layers })
+  }
+
   _editLayout (name, layout) {
     if (!name) return
     const layouts = this.state.layouts.slice(0).map(l => {
@@ -463,7 +469,7 @@ export default class extends Component {
   }
 
   _download () {
-    
+
   }
 
   _flash () {

@@ -167,6 +167,8 @@ export default class Layers extends Component {
   }
 
   _onDragEnd(result) {
+
+    const { sortLayers } = this.props
     // dropped outside the list
     if (!result.destination) {
       return
@@ -178,7 +180,9 @@ export default class Layers extends Component {
       result.destination.index
     )
 
-    this.setState({ layers })
+    sortLayers(layers)
+
+    // this.setState({ layers })
   }
 
 }
