@@ -21,11 +21,6 @@ export default ({
   revert
 }) => {
   const panes = [
-    { menuItem: 'Zones', render: () => (
-      <Zones
-        zones={zones}
-        updateZone={updateZone}/>
-    )},
     { menuItem: 'Advanced', render: () => (
       <Advanced
         settings={settings}
@@ -38,6 +33,15 @@ export default ({
         revert={revert} />
     )}
   ]
+
+  if (zones.length > 0) {
+    panes.unshift({ menuItem: 'Zones', render: () => (
+      <Zones
+        zones={zones}
+        updateZone={updateZone}/>
+    )})
+  }
+
   return (
     <Tab menu={{ fluid: true, vertical: true, tabular: true }} panes={panes} />
   )
@@ -76,7 +80,6 @@ const Advanced = props => {
       <Table.Body>
           {settings.map((s, i) => {
             let value
-            console.log(s)
             switch (s.type) {
               case 'config':
                 value = props.settings[s.value]

@@ -23,14 +23,14 @@ const reorder = (list, startIndex, endIndex) => {
 }
 
 // Get the layer style
-const getItemStyle = (isDragging, draggableStyle) => ({
+const getItemStyle = (isDragging, draggableStyle, active) => ({
   // some basic styles to make the layers look a bit nicer
   userSelect: 'none',
-  padding: '20px 10px 0 10px',
+  padding: '10px 10px 0 10px',
   margin: `0 0 10px 0`,
 
   // change background colour if dragging
-  background: isDragging ? 'lightgreen' : 'transparent',
+  background: isDragging ? colors.dark : active ? colors.dark : 'transparent',
 
   // styles we need to apply on draggables
   ...draggableStyle,
@@ -102,7 +102,8 @@ export default class Layers extends Component {
                       {...provided.dragHandleProps}
                       style={getItemStyle(
                         snapshot.isDragging,
-                        provided.draggableProps.style
+                        provided.draggableProps.style,
+                        layer.id === activeLayer
                       )}
                     >
                       <Layer
@@ -110,6 +111,7 @@ export default class Layers extends Component {
                         zones={zones}
                         keys={layer.keys}
                         layerId={layer.id}
+                        onClick={() => selectLayer(layer.id)}
                       />
                       <Container fluid>
                         <div style={{ float: 'left' }}>
@@ -151,7 +153,7 @@ export default class Layers extends Component {
                           </div>
                           <div style={{ clear: 'both' }} />
                         </Container>
-                      <Divider />
+                        <Divider hidden={layer.id === activeLayer} />
                     </div>
                   )}
                 </Draggable>

@@ -57,7 +57,6 @@ const margin = (unitSize, spacer) => {
         Object.assign(styles, {})
     }
   })
-  console.log(styles)
   return styles
 }
 

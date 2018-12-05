@@ -396,7 +396,7 @@ fullsize.keySections = [{
       spacer: 'vs050'
     },
     {
-      id: 'k1J',
+      id: 'k1K',
       value: 'PMNS',
       type: 'normal',
       secondary: null,

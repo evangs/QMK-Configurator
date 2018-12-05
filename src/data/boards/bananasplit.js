@@ -18,7 +18,7 @@ bananasplit.config = {
   productId: '0x8870',
   deviceVersion: '0x0001',
   manufacturer: 'TheVan Keyboards',
-  product: 'BananaSplit 60',
+  product: 'BananaSplit',
   description: 'The original 60% with split spacebar and dedicated arrows',
   matrixRowPins: ['B0', 'B2', 'B4', 'B5', 'B6'],
   matrixColumnPins: ['F5', 'B1', 'F0', 'F1', 'F4', 'B3', 'D7', 'D6', 'D4', 'D5', 'D3', 'D2', 'D1', 'D0'],

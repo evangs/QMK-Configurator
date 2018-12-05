@@ -23,8 +23,6 @@ export default class extends Component {
     const keymap = config[activeBoard].keymap
     let data = keymap(keys, zones)
 
-    console.log(data)
-
     // Filter unused keys
     data = data.map(d => {
       const clone = d.slice(0).filter(function(x){ return x.shape !== undefined })
@@ -58,15 +56,44 @@ export default class extends Component {
       }
     }
 
+    // Calculate row width
+    const rowLength = data[0].reduce((a, d, i) => {
+      a += getShape(d.shape)
+      if (d.spacer) {
+        switch (d.spacer) {
+          case 's025':
+            a += 100 / 4
+            break
+          case 's050':
+            a += 100 / 2
+            break
+          case 's100':
+            a += 100
+            break
+          case 's125':
+            a += 100 * 1.25
+            break
+          case 's350':
+            a += 100 * 3.5
+            break
+          default:
+          // NO-OP
+        }
+      }
+      return a
+    }, 0)
+
     // Create svg
-    let pxFromLeft = 0
     this.svg = svg.selectAll('rect')
       .data(data)
       .enter()
       .append('g')
       .each(function(d, i){
         // Reset pixels from left counter
-        pxFromLeft = 0
+        let pxFromLeft = ((200 * scaleFactor) - rowLength) / 2
+        let pxFromTop = 0
+
+        console.log(pxFromTop)
 
         d3.select(this)
           .selectAll('rect')
@@ -78,23 +105,80 @@ export default class extends Component {
             switch (d.shape) {
               case 'kISOAfter':
               case 'kJISAfter': {
-                const oldPxFromLeft = pxFromLeft - getShape(d.shape)
-                pxFromLeft += getShape(d.shape)
                 const width = getShape(d.shape) / scaleFactor
                 const height = (100 / scaleFactor) + 2
                 const radius = 2
-                const x =  (oldPxFromLeft / scaleFactor)
-                const y = (((i + 1) * 100) / scaleFactor) + (height - 4)
+
+                let x = ((pxFromLeft - getShape(d.shape)) / scaleFactor)
+                let y = (((i + 1) * 100) / scaleFactor) + (height - 4)
+
+                if (d.spacer) {
+                  d.spacer.split(' ').forEach(s => {
+                    switch (s) {
+                      case 's025':
+                        pxFromLeft += 100 / 4
+                        break
+                      case 's050':
+                        pxFromLeft += 100 / 2
+                        break
+                      case 's100':
+                        pxFromLeft += 100
+                        break
+                      case 's125':
+                        pxFromLeft += 100 * 1.25
+                        break
+                      case 's350':
+                        pxFromLeft += 100 * 3.5
+                        break
+                      case 'vs050':
+                        // pxFromTop += 100 * 0.5
+                        break
+                      default:
+                      // NO-OP
+                    }
+                  })
+                }
+
+                pxFromLeft += getShape(d.shape)
                 return bottomRoundedRect(x, y, width, height, radius)
               }
               default: {
-                const oldPxFromLeft = pxFromLeft
-                pxFromLeft += getShape(d.shape)
-                const x =  oldPxFromLeft / scaleFactor
-                const y = (((i + 1) * 100) / scaleFactor)
                 const width = getShape(d.shape) / scaleFactor
                 const height = d.shape === 'k200v' ? 200 / scaleFactor : 100 / scaleFactor
                 const radius = 2
+
+                let x =  pxFromLeft / scaleFactor
+                let y = (pxFromTop + (i * 100)) / scaleFactor
+
+                if (d.spacer) {
+                  d.spacer.split(' ').forEach(s => {
+                    switch (s) {
+                      case 's025':
+                      pxFromLeft += 100 / 4
+                      break
+                      case 's050':
+                        pxFromLeft += 100 / 2
+                        break
+                      case 's100':
+                        pxFromLeft += 100
+                        break
+                      case 's125':
+                        pxFromLeft += 100 * 1.25
+                        break
+                      case 's350':
+                        pxFromLeft += 100 * 3.5
+                        break
+                      case 'vs050':
+                        // pxFromTop += 100 * 0.5
+                        break
+                      default:
+                      // NO-OP
+                    }
+                  })
+                }
+
+                pxFromLeft += getShape(d.shape)
+
                 return roundedRect(x, y, width, height, radius)
               }
             }
@@ -137,12 +221,13 @@ export default class extends Component {
   }
 
   render () {
-    const { layerId } = this.props
+    const { layerId, onClick } = this.props
     return (
       <svg
         id={`layer-${layerId}`}
         width='200px'
-        height='100px'>
+        height='100px'
+        onClick={onClick}>
       </svg>
     )
   }
