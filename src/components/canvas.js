@@ -78,7 +78,7 @@ export default ({
         minHeight: 600,
         background: colors.dark
       }}>
-      <ToggleButton name={layers.find(l => l.id === activeLayer).name} onClick={toggleLayers} />
+      <ToggleButton name={layersVisible ? '' : layers.find(l => l.id === activeLayer).name} onClick={toggleLayers} />
       <Info
         manufacturer={config[activeBoard].config.manufacturer}
         product={config[activeBoard].config.product}
