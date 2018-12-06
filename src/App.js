@@ -67,8 +67,7 @@ export default class extends Component {
     this.save = this._save.bind(this)
     this.reset = this._reset.bind(this)
     this.revert = this._revert.bind(this)
-    this.download = this._flash.bind(this)
-    // this.download = this._download.bind(this)
+    this.download = this._download.bind(this)
     this.flash = this._flash.bind(this)
   }
 

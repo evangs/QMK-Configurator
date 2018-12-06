@@ -35,9 +35,7 @@ app.on('activate', () => {
 })
 
 
-// Attach listener in the main process with the given ID
 electron.ipcMain.on('flash-firmware', (event, arg) => {
   console.log(arg)
-  // Return some data to the renderer process with the mainprocess-response ID
   event.sender.send('flash-firmware-response', { hi: 'hi' })
 });

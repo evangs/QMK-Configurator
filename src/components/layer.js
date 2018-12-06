@@ -57,7 +57,7 @@ export default class extends Component {
     }
 
     // Calculate row width
-    const rowLength = data[0].reduce((a, d, i) => {
+    const rowLength = data[1].reduce((a, d, i) => {
       a += getShape(d.shape)
       if (d.spacer) {
         switch (d.spacer) {
@@ -84,14 +84,15 @@ export default class extends Component {
     }, 0)
 
     // Create svg
+    let pxFromTop = 0
     this.svg = svg.selectAll('rect')
       .data(data)
       .enter()
       .append('g')
       .each(function(d, i){
         // Reset pixels from left counter
+        let spacedRow = false
         let pxFromLeft = ((200 * scaleFactor) - rowLength) / 2
-        let pxFromTop = 0
 
         d3.select(this)
           .selectAll('rect')
@@ -107,8 +108,7 @@ export default class extends Component {
                 const height = (100 / scaleFactor) + 2
                 const radius = 2
 
-                let x = ((pxFromLeft - getShape(d.shape)) / scaleFactor)
-                let y = (((i + 1) * 100) / scaleFactor) + (height - 4)
+                const x = ((pxFromLeft - getShape(d.shape)) / scaleFactor)
 
                 if (d.spacer) {
                   d.spacer.split(' ').forEach(s => {
@@ -129,7 +129,10 @@ export default class extends Component {
                         pxFromLeft += 100 * 3.5
                         break
                       case 'vs050':
-                        // pxFromTop += 100 * 0.5
+                        if (!spacedRow) {
+                          pxFromTop += 100 * 0.5
+                          spacedRow = true
+                        }
                         break
                       default:
                       // NO-OP
@@ -137,7 +140,9 @@ export default class extends Component {
                   })
                 }
 
+                const y = ((pxFromTop + ((i + 1) * 100)) / scaleFactor) + (height - 4)
                 pxFromLeft += getShape(d.shape)
+
                 return bottomRoundedRect(x, y, width, height, radius)
               }
               default: {
@@ -145,9 +150,7 @@ export default class extends Component {
                 const height = d.shape === 'k200v' ? 200 / scaleFactor : 100 / scaleFactor
                 const radius = 2
 
-                let x =  pxFromLeft / scaleFactor
-                let y = (pxFromTop + (i * 100)) / scaleFactor
-
+                const x =  pxFromLeft / scaleFactor
                 if (d.spacer) {
                   d.spacer.split(' ').forEach(s => {
                     switch (s) {
@@ -167,7 +170,10 @@ export default class extends Component {
                         pxFromLeft += 100 * 3.5
                         break
                       case 'vs050':
-                        // pxFromTop += 100 * 0.5
+                        if (!spacedRow) {
+                          pxFromTop += 100 * 0.5
+                          spacedRow = true
+                        }
                         break
                       default:
                       // NO-OP
@@ -175,6 +181,7 @@ export default class extends Component {
                   })
                 }
 
+                const y = (pxFromTop + ((i + 1) * 100)) / scaleFactor
                 pxFromLeft += getShape(d.shape)
 
                 return roundedRect(x, y, width, height, radius)

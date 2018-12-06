@@ -38,7 +38,7 @@
     "dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "predist": "yarn build",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder --mwl"
+    "dist": "electron-builder -mwl"
   },
   "eslintConfig": {
     "extends": "react-app"

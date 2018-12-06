@@ -147,11 +147,11 @@ export default class extends Component {
           <style dangerouslySetInnerHTML={{__html: `
             .ui.dimmer { background-color: ${getColor(activeKeyType).hex}!important }
           `}} />
-          <div style={{ position: 'absolute', left: 0, top: 0, display: 'flex' }}>
+          <div style={{ position: 'absolute', left: 0, top: 20, display: 'flex' }}>
             <h1>{this.action.display}</h1>
             <p style={{ marginLeft: 10, lineHeight: '48px' }}>{this.action.tooltip}</p>
           </div>
-          <div style={{ position: 'absolute', right: '1rem', top: 0 }}>
+          <div style={{ position: 'absolute', right: '1rem', top: 20 }}>
             <Button icon inverted basic color='red' onClick={this.closeModal}>
               <Icon name='close' />
             </Button>

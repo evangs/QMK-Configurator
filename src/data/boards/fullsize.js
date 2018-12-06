@@ -9,7 +9,7 @@ fullsize.id = 'fullsize_rev2'
 // UI Config
 fullsize.ui = {
   scale: 50,
-  thumbScale: 10
+  thumbScale: 11.5
 }
 
 // config
