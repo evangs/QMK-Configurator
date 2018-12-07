@@ -97,7 +97,7 @@ export default class extends Component {
 
     let primaryDisplay = KEY_DISPLAY_MAP[value] || value
     let secondaryDisplay = KEY_DISPLAY_MAP[secondary] || secondary || ''
-    let trnsDisplay = KEY_DISPLAY_MAP[trnsValue] || ''
+    let trnsDisplay = KEY_DISPLAY_MAP[trnsValue] || trnsValue || ''
 
     let afterElement
     switch (shape) {

@@ -18,7 +18,7 @@ export const initialState = (activeBoard) => {
 
   const layouts = get(activeBoard, 'layouts') || config[activeBoard].layouts
   const layers = get(activeBoard, 'layers') || config[activeBoard].layers
-  
+
   const activeLayout = localStorage.getItem('activeLayout') || layouts[0].id
   const activeLayer = localStorage.getItem('activeLayer') || layers[0].id
   const activeKeyType = localStorage.getItem('activeKeyType') || 'normal'
@@ -26,6 +26,7 @@ export const initialState = (activeBoard) => {
   const zones = get(activeBoard, 'zones') || config[activeBoard].zones
   const settings = get(activeBoard, 'advanced') || config[activeBoard].config
   const rules = get(activeBoard, 'rules') || config[activeBoard].rules
+  const indicators = get(activeBoard, 'indicators') || config[activeBoard].indicators || []
 
   return {
     lastSave: getLastSave({
@@ -33,7 +34,8 @@ export const initialState = (activeBoard) => {
       layers,
       zones,
       settings,
-      rules
+      rules,
+      indicators
     }),
     boards: Object.keys(config),
     activeBoard,
@@ -44,7 +46,8 @@ export const initialState = (activeBoard) => {
     layers,
     zones,
     settings,
-    rules
+    rules,
+    indicators
   }
 }
 
@@ -55,14 +58,16 @@ export const getLastSave = (state) => {
     layers,
     zones,
     settings,
-    rules
+    rules,
+    indicators
   } = state
   return JSON.stringify({
     layouts,
     layers,
     zones,
     settings,
-    rules
+    rules,
+    indicators
   })
 }
 

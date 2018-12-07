@@ -20,6 +20,7 @@ export default ({
   layers,
   layouts,
   zones,
+  indicators,
   activeBoard,
   activeLayout,
   activeLayer,
@@ -31,7 +32,10 @@ export default ({
   deleteLayer,
   editLayout,
   editLayer,
-  sortLayers
+  sortLayers,
+  addIndicator,
+  updateIndicator,
+  deleteIndicator
 }) => (
 
   <Sidebar.Pushable
@@ -66,7 +70,8 @@ export default ({
           cloneLayer={cloneLayer}
           deleteLayer={deleteLayer}
           editLayer={editLayer}
-          sortLayers={sortLayers}/>
+          sortLayers={sortLayers}
+        />
       </Container>
     </Sidebar>
 
@@ -98,10 +103,14 @@ export default ({
         <Keyboard
           layers={layers}
           zones={zones}
+          indicators={indicators}
           activeBoard={activeBoard}
           activeLayer={activeLayer}
           activeKeyType={activeKeyType}
           setKey={setKey}
+          addIndicator={addIndicator}
+          updateIndicator={updateIndicator}
+          deleteIndicator={deleteIndicator}
         />
       </Container>
     </Sidebar.Pusher>

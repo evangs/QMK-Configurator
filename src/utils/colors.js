@@ -14,7 +14,8 @@ const colors = {
   brown          : '#A5673F',
   grey           : '#767676',
   black          : '#1B1C1D',
-  dark           : '#0f1010'
+  dark           : '#0f1010',
+  white          : '#fafafa'
 }
 
 export const getColor = activeKeyType => {

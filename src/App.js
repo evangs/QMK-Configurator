@@ -64,6 +64,9 @@ export default class extends Component {
     this.updateSetting = this._updateSetting.bind(this)
     this.editLayer = this._editLayer.bind(this)
     this.editLayout = this._editLayout.bind(this)
+    this.addIndicator = this._addIndicator.bind(this)
+    this.updateIndicator = this._updateIndicator.bind(this)
+    this.deleteIndicator = this._deleteIndicator.bind(this)
     this.save = this._save.bind(this)
     this.reset = this._reset.bind(this)
     this.revert = this._revert.bind(this)
@@ -86,7 +89,8 @@ export default class extends Component {
       zones,
       dirty,
       settings,
-      rules
+      rules,
+      indicators
     } = this.state
 
     return (
@@ -129,6 +133,7 @@ export default class extends Component {
               layers={layers}
               layouts={layouts}
               zones={zones}
+              indicators={indicators}
               activeBoard={activeBoard}
               activeLayout={activeLayout}
               activeLayer={activeLayer}
@@ -142,6 +147,9 @@ export default class extends Component {
               editLayout={this.editLayout}
               editLayer={this.editLayer}
               sortLayers={this.sortLayers}
+              addIndicator={this.addIndicator}
+              updateIndicator={this.updateIndicator}
+              deleteIndicator={this.deleteIndicator}
             />
            </Segment>
 
@@ -455,6 +463,17 @@ export default class extends Component {
 
     this.setState({ layouts, layers, activeLayout, activeLayer }, this.checkSaveState)
   }
+
+  _addIndicator (id, indicator) {
+    console.log(id, indicator)
+    const indicators = this.state.indicators.slice(0)
+    indicators[id].push(indicator)
+    this.setState({ indicators }, this.checkSaveState)
+  }
+
+  _updateIndicator (id, indicator) {}
+
+  _deleteIndicator (id) {}
 
   _save () {
     persistState(this.state)
