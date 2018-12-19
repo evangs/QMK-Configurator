@@ -1,4 +1,22 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# QMK-Configurator
+generic configurator for QMK intended to support via GUI all that QMK is capable of
+
+http://xahlee.info/comp/unicode_computing_symbols.html
+
+## Running the Application
+- Install Docker https://www.docker.com/products/overview
+- In the root directory run
+```
+docker build -t qmk .
+docker run -it --rm -p 8000:80 -e PORT=80 --name my-running-app qmk
+```
+- Navigate to http://localhost:8000 in your web browser
+
+If you start to get “No space left on device” error, run the following commands to remove unused images/containers.
+```
+docker rm $(docker ps -q -f 'status=exited')
+docker rmi $(docker images -q -f "dangling=true")
+```
 
 ## Available Scripts
 
@@ -27,18 +45,27 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## TODO
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Web Flash
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- [ ] port dfu-programmer to web assembly
+- [ ] implement chrome usb api
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+https://developer.chrome.com/apps/usb
+http://www.atmel.com/Images/doc7618.pdf
+https://github.com/evangs/chrome_tab_garbage_collector/tree/master/src
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+https://github.com/dfu-programmer/dfu-programmer/tree/master/src
+https://developers.google.com/web/updates/2018/03/emscripting-a-c-library
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### UI
+
+- [ ] Media queries
+- [ ] Icon sets, SEO and Open Graph
+
+### Desktop
+
+- [ ] Flash function for desktop

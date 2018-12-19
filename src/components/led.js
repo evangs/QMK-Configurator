@@ -58,7 +58,6 @@ export default class extends Component {
     let color = 'grey'
     const layerIndicator = data.filter(d => d.type === 'layer').find(d => {
       const str = d.action.substring(1)
-      console.log(str)
       return parseInt(str, 10) === activeLayerIndex + 1
     })
     const powerIndicator = data.find(d => d.type === 'power')
@@ -110,10 +109,21 @@ export default class extends Component {
           }}>
             {data.map(d => (
               <Color
+                id={id}
                 key={d.action}
                 action={d.action}
                 color={{ r: d.red, g: d.green, b: d.blue }}
                 availableActions={availableActions}
+                deleteIndicator={deleteIndicator}
+                onChange={c => {
+                  updateIndicator(id, {
+                    red: c.rgb.r,
+                    green: c.rgb.g,
+                    blue: c.rgb.b,
+                    action: d.action,
+                    type: indicatorMap[d.action].type
+                  })
+                }}
               />)
             )
           }
@@ -145,97 +155,172 @@ export default class extends Component {
               </div>
             }
           </Container>
-
-
         </Modal.Content>
       </Modal>
     )
   }
-
 }
 
 
-const Color = CustomPicker(({ action, availableActions, hex, hsl, onChange }) => {
+const Color = CustomPicker(class extends Component {
 
-  const handleChange = (hexCode, e) => {
-    color.isValidHex(hexCode) && onChange({
-      hex: hexCode,
-      source: 'hex',
-    }, e)
-  }
-
-  const styles = {
-    card: {
-      maxWidth: '170px',
-      flex: '1 0 0',
-      background: colors.white,
-      boxShadow: '0 1px rgba(0,0,0,.1)',
-      borderRadius: '6px',
-      position: 'relative',
-      marginRight: 20,
-      marginBottom: 20
-    },
-    head: {
-      height: '110px',
-      background: hex,
-      borderRadius: '6px 6px 0 0',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'relative',
-    },
-    body: {
-      padding: '10px',
-    },
-    label: {
-      fontSize: '18px',
-      color: color.getContrastingColor(hex),
-      position: 'relative',
-    },
-    input: {
-      width: '100%',
-      fontSize: '12px',
-      color: '#666',
-      border: '0px',
-      outline: 'none',
-      height: '22px',
-      boxShadow: `inset 0 0 0 1px ${colors.grey}`,
-      borderRadius: '4px',
-      padding: '0 7px',
-      boxSizing: 'border-box',
+  constructor (props) {
+    super(props)
+    this.state = {
+      open: false
     }
+    this.selectedColor = null
   }
 
-  const actions = availableActions.slice(0).map(a => ({
-    value: a,
-    text: indicatorMap[a].description
-  }))
+  render () {
+    const {
+      id,
+      action,
+      availableActions,
+      hex,
+      hsl,
+      onChange,
+      deleteIndicator
+    } = this.props
 
-  actions.push({ value: action, text: indicatorMap[action].description })
+    const { open } = this.state
 
-  return (
-    <div style={styles.card}>
+    const handleChange = (hexCode, e) => {
+      color.isValidHex(hexCode) && onChange({
+        hex: hexCode,
+        source: 'hex',
+      }, e)
+    }
 
-      <div style={styles.head}>
-        <div style={styles.label}>
-          <Dropdown
-            inline
-            scrolling
-            options={actions}
-            defaultValue={action}
-            placeholder={indicatorMap[action].description} />
+    const styles = {
+      card: {
+        maxWidth: '170px',
+        flex: '1 0 0',
+        background: colors.white,
+        boxShadow: '0 1px rgba(0,0,0,.1)',
+        borderRadius: '4px',
+        position: 'relative',
+        marginRight: 20,
+        marginBottom: 20
+      },
+      head: {
+        height: '110px',
+        background: hex,
+        borderRadius: '4px 4px 0 0',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+      },
+      body: {
+        padding: '10px',
+      },
+      label: {
+        fontSize: '18px',
+        color: color.getContrastingColor(hex),
+        position: 'relative',
+      },
+      input: {
+        width: '100%',
+        fontSize: '12px',
+        color: '#666',
+        border: '0px',
+        outline: 'none',
+        height: '22px',
+        boxShadow: `inset 0 0 0 1px ${colors.grey}`,
+        borderRadius: '4px',
+        padding: '0 7px',
+        boxSizing: 'border-box',
+      },
+      edit: {
+        position: 'absolute',
+        top: 5,
+        left: 5
+      }
+    }
+
+    const actions = availableActions.slice(0).map(a => ({
+      value: a,
+      text: indicatorMap[a].description
+    }))
+
+    actions.unshift({ value: action, text: indicatorMap[action].description })
+
+    return (
+      <div style={styles.card}>
+
+        <Modal
+          open={open}
+          style={{
+            background: 'none',
+            border: 'none',
+            boxShadow: 'none'
+          }}
+          trigger={
+          <div style={styles.head}>
+            <div style={styles.edit}>
+              <Icon
+                name='edit'
+                style={{
+                  cursor: 'pointer',
+                  position: 'absolute',
+                  left: 2
+                }}
+                onClick={() => this.setState({ open: true })} />
+              <Icon
+                name='close'
+                style={{
+                  cursor: 'pointer',
+                  position: 'absolute',
+                  top: 2,
+                  left: 142
+                }}
+                onClick={() => deleteIndicator(id)} />
+            </div>
+            <div style={styles.label}>
+              <Dropdown
+                inline
+                scrolling
+                options={actions}
+                defaultValue={action}
+                placeholder={indicatorMap[action].description} />
+            </div>
+          </div>
+        }>
+          <Modal.Content style={{
+            margin: '0 auto',
+            background: 'transparent',
+            width: 'fit-content'
+          }}>
+            <PhotoshopPicker
+              color={hsl}
+              onChange={(selectedColor, e) =>  {
+                this.selectedColor = selectedColor
+              }}
+              header={`Select color for ${indicatorMap[action].description} on Indicator LED ${id + 1}`}
+              onAccept={e => {
+                onChange(this.selectedColor)
+                this.selectedColor = null
+                this.setState({ open: false })
+              }}
+              onCancel={() => {
+                this.selectedColor = null
+                this.setState({ open: false })
+              }}
+              />
+          </Modal.Content>
+        </Modal>
+
+        <div style={styles.body}>
+          <EditableInput
+            style={styles.input}
+            value={hex}
+            onChange={handleChange}
+          />
         </div>
       </div>
-
-      <div style={styles.body}>
-        <EditableInput
-          style={styles.input}
-          value={hex}
-          onChange={handleChange}
-        />
-      </div>
-    </div>
-  )
+    )
+  }
 })
 
 function rgbToHex (r, g, b) {

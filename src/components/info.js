@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
-import { Table, Icon, Popup, Modal, Button, Header, Input } from 'semantic-ui-react'
+import {
+  Table,
+  Icon,
+  Popup,
+  Modal,
+  Button,
+  Header,
+  Input
+} from 'semantic-ui-react'
 
 export default class extends Component {
   constructor (props) {

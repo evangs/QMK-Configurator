@@ -80,7 +80,8 @@ export const persistState = state => {
     layers,
     zones,
     settings,
-    rules
+    rules,
+    indicators
   } = state
 
 
@@ -94,4 +95,5 @@ export const persistState = state => {
   set(activeBoard, 'zones', zones)
   set(activeBoard, 'advanced', settings)
   set(activeBoard, 'rules', rules)
+  set(activeBoard, 'indicators', indicators)
 }

@@ -30,7 +30,7 @@ if (isElectron()) {
   flashFirmware = () => {}
 }
 
-const API_URL = 'http://qmk.thevankeyboards.com'
+const API_URL = 'http://localhost:8000'
 
 export default class extends Component {
 
@@ -465,15 +465,30 @@ export default class extends Component {
   }
 
   _addIndicator (id, indicator) {
-    console.log(id, indicator)
     const indicators = this.state.indicators.slice(0)
     indicators[id].push(indicator)
     this.setState({ indicators }, this.checkSaveState)
   }
 
-  _updateIndicator (id, indicator) {}
+  _updateIndicator (id, indicator) {
+    let indicators = this.state.indicators.slice(0)
 
-  _deleteIndicator (id) {}
+    console.log(indicators, id, indicator)
+
+    indicators[id] = indicators[id].map(d => {
+      if (d.action === indicator.action) {
+        d = indicator
+      }
+      return d
+    })
+    this.setState({ indicators }, this.checkSaveState)
+  }
+
+  _deleteIndicator (id) {
+    const indicators = this.state.indicators.slice(0)
+    indicators[id].splice(id, 1)
+    this.setState({ indicators }, this.checkSaveState)
+  }
 
   _save () {
     persistState(this.state)

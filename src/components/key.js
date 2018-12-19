@@ -77,8 +77,7 @@ export default class extends Component {
       secondary,
       activeKeyType,
       scaleFactor,
-      spacer,
-      trnsValue
+      spacer
     } = this.props
     const {
       hover,
@@ -97,7 +96,6 @@ export default class extends Component {
 
     let primaryDisplay = KEY_DISPLAY_MAP[value] || value
     let secondaryDisplay = KEY_DISPLAY_MAP[secondary] || secondary || ''
-    let trnsDisplay = KEY_DISPLAY_MAP[trnsValue] || trnsValue || ''
 
     let afterElement
     switch (shape) {
@@ -132,7 +130,6 @@ export default class extends Component {
                 max={scaleFactor * 0.4}
                 min={8}>
                 {primaryDisplay[0] === '!' && primaryDisplay[1] === '!' ? <Icon name={primaryDisplay.replace('!!', '')} /> : primaryDisplay}
-                {primaryDisplay === 'TRNS' && <span style={{ color: colors.secondaryColor }}> {trnsDisplay[0] === '!' && trnsDisplay[1] === '!' ? <Icon style={{ color: colors.secondaryColor }} name={trnsDisplay.replace('!!', '')} /> : trnsDisplay}</span> }
                 {secondaryDisplay && ' + ' }
                 {secondaryDisplay && (
                    secondaryDisplay[0] === '!' && secondaryDisplay[1] === '!' ? <Icon name={secondaryDisplay.replace('!!', '')} /> : secondaryDisplay
