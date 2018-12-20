@@ -150,7 +150,7 @@ export default class Layers extends Component {
                               color='yellow'
                               size='small'
                               onClick={() => {
-                                exportLayer()
+                                exportLayer(layer.id)
                               }} />
                             } />
 
@@ -159,7 +159,7 @@ export default class Layers extends Component {
 
                             { /* DELETE LAYER */ }
                             <DeleteModal layer={layer} action={deleteLayer} disabled={filteredLayers.length <= 1} />
-                            
+
                           </div>
                           <div style={{ clear: 'both' }} />
                         </Container>

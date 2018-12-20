@@ -4,8 +4,7 @@ import {
   Icon,
   Sidebar,
   Segment,
-  Button,
-  Sticky
+  Button
 } from 'semantic-ui-react'
 
 import Keyboard from './keyboard'
@@ -17,18 +16,8 @@ import colors from '../utils/colors'
 
 export default class extends Component {
 
-  constructor (props) {
-    super(props)
-    this.state = {
-      contextRef: null
-    }
-
-    this.handleContextRef = this._handleContextRef.bind(this)
-  }
-
   render () {
     const {
-      mobile,
       layersVisible,
       layers,
       layouts,
@@ -51,8 +40,6 @@ export default class extends Component {
       updateIndicator,
       deleteIndicator
     } = this.props
-
-    const { contextRef } = this.state
 
     return (
       <Sidebar.Pushable
@@ -102,39 +89,39 @@ export default class extends Component {
             background: colors.dark,
             borderRadius: 0
           }}>
-          <div ref={this.handleContextRef}>
-            <Sticky context={contextRef}>
-              <ToggleButton name={layersVisible ? '' : layers.find(l => l.id === activeLayer).name} onClick={toggleLayers} />
-              <Info
-                manufacturer={config[activeBoard].config.manufacturer}
-                product={config[activeBoard].config.product}
-                description={config[activeBoard].config.description}
-                layout={layouts.find(l => l.id === activeLayout)}
-                layer={layers.find(l => l.id === activeLayer)}
-                editLayout={editLayout}
-                editLayer={editLayer}
-              />
-            </Sticky>
+            <ToggleButton
+              onCanvas
+              name={layersVisible ? '' : layers.find(l => l.id === activeLayer).name}
+              onClick={toggleLayers}
+            />
+            <Info
+              manufacturer={config[activeBoard].config.manufacturer}
+              product={config[activeBoard].config.product}
+              description={config[activeBoard].config.description}
+              layout={layouts.find(l => l.id === activeLayout)}
+              layer={layers.find(l => l.id === activeLayer)}
+              editLayout={editLayout}
+              editLayer={editLayer}
+            />
             <Container fluid style={{
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
               height: 490
             }}>
-              <Keyboard
-                layers={layers}
-                zones={zones}
-                indicators={indicators}
-                activeBoard={activeBoard}
-                activeLayer={activeLayer}
-                activeKeyType={activeKeyType}
-                setKey={setKey}
-                addIndicator={addIndicator}
-                updateIndicator={updateIndicator}
-                deleteIndicator={deleteIndicator}
-              />
-            </Container>
-          </div>
+            <Keyboard
+              layers={layers}
+              zones={zones}
+              indicators={indicators}
+              activeBoard={activeBoard}
+              activeLayer={activeLayer}
+              activeKeyType={activeKeyType}
+              setKey={setKey}
+              addIndicator={addIndicator}
+              updateIndicator={updateIndicator}
+              deleteIndicator={deleteIndicator}
+            />
+          </Container>
         </Sidebar.Pusher>
       </Sidebar.Pushable>
     )
@@ -146,7 +133,7 @@ export default class extends Component {
 
 }
 
-const ToggleButton = ({ onClick, name }) => (
+const ToggleButton = ({ onClick, name, onCanvas }) => (
   <div>
     <div style={{
       textAlign: 'left'
@@ -160,8 +147,8 @@ const ToggleButton = ({ onClick, name }) => (
         verticalAlign: 'middle',
         whiteSpace: 'nowrap',
         overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        width: 150,
+        textOverflow: onCanvas ? 'none' : 'ellipsis',
+        width: onCanvas ? 'auto' : 150,
         display: 'inline-block'
       }}>{name}</span>
     </div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { v4 } from 'uuid'
 import {
   Menu,
   Container,
@@ -29,7 +30,6 @@ export default class extends Component {
 
   render() {
     const {
-      fixed,
       boards,
       activeBoard,
       activeLayout,
@@ -42,8 +42,7 @@ export default class extends Component {
       deleteLayout,
       cloneLayout,
       newLayer,
-      importLayer,
-      importLayout,
+      importJson,
       exportLayout,
       save,
       download,
@@ -100,7 +99,6 @@ export default class extends Component {
                 selectLayout={selectLayout}
                 cloneLayout={cloneLayout}
                 deleteLayout={deleteLayout}
-                importLayout={importLayout}
                 exportLayout={exportLayout}
               />
             </Menu.Item>
@@ -146,24 +144,10 @@ export default class extends Component {
                   </Table>
                 </Modal.Content>
                 <Modal.Actions>
-                  <Button
-                    basic
-                    inverted
-                    color='olive'
-                    onClick={() => {
-                      importLayer()
-                    }}>
-                    <Icon name='download' /> Import Layer
-                  </Button>
-                  <Button
-                    basic
-                    inverted
-                    color='yellow'
-                    onClick={() => {
-                      importLayout()
-                    }}>
-                    <Icon name='download' /> Import Layout
-                  </Button>
+                  <UploadButton label='Import' icon='download' onUpload={file => {
+                    importJson(file)
+                    this.setState({ name: '', open: false })
+                  }} />
                   <Button
                     basic
                     color='grey'
@@ -193,4 +177,28 @@ export default class extends Component {
       </Menu>
     )
   }
+}
+
+const UploadButton = ({label, onUpload, id}) => {
+  let fileInput = null
+  // If no id was specified, generate a random one
+  const uid = v4()
+
+  return (
+    <span>
+      <label htmlFor={uid} className='ui button basic inverted olive'>
+        <i className='download icon'></i>
+        {label}
+      </label>
+      <input type='file' id={uid}
+        style={{display: 'none'}}
+        onChange={() => {
+          onUpload(fileInput.files[0])
+        }}
+        ref={input => {
+          fileInput = input
+        }}
+      />
+    </span>
+  )
 }

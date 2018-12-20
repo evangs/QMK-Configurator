@@ -65,7 +65,10 @@ Cleans the local docker server of dangling or stopped images
 
 ## TODO
 
+### Functionality
+
 - [ ] import/ export
+- [ ] Error handling
 
 ### UI
 

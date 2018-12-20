@@ -25,7 +25,6 @@ export default class extends Component {
     this.cloneLayout = this._cloneLayout.bind(this)
     this.removeLayout = this._removeLayout.bind(this)
     this.exportLayout = this._exportLayout.bind(this)
-    this.importLayout = this._importLayout.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -103,13 +102,6 @@ export default class extends Component {
             <Icon name='share square' /> Export
           </Button>
           <Button
-            basic
-            inverted
-            color='olive'
-            onClick={this.importLayout}>
-            <Icon name='download' /> Import
-          </Button>
-          <Button
             color='blue'
             basic={createMode !== 'clone'}
             inverted={createMode !== 'clone'}
@@ -176,8 +168,6 @@ export default class extends Component {
     exportLayout(selected.id)
     this.setState(initialState)
   }
-
-  _importLayout () {}
 
   _onRowSelect (layout) {
     this.setState({ selected: layout })

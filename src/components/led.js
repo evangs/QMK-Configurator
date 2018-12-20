@@ -142,7 +142,7 @@ export default class extends Component {
                   onClick={() => {
                     const num = Math.round(0xffffff * Math.random())
                     const red = num >> 16
-                    const green = num >> 8 & 255
+                    const green = (num >> 8) & 255
                     const blue = num & 255
                     const action = availableActions[0]
                     const type = indicatorMap[action].type

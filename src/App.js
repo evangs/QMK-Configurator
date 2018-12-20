@@ -3,9 +3,7 @@ import { config, initialState, getLastSave, persistState } from './data/config'
 import { v4 } from 'uuid'
 import {
   Container,
-  Responsive,
   Segment,
-  Visibility,
   Modal,
   Button,
   Icon,
@@ -69,9 +67,8 @@ export default class extends Component {
     this.updateIndicator = this._updateIndicator.bind(this)
     this.deleteIndicator = this._deleteIndicator.bind(this)
     this.exportLayout = this._exportLayout.bind(this)
-    this.importLayout = this._importLayout.bind(this)
     this.exportLayer = this._exportLayer.bind(this)
-    this.importLayer = this._importLayer.bind(this)
+    this.importJson = this._importJson.bind(this)
     this.save = this._save.bind(this)
     this.reset = this._reset.bind(this)
     this.revert = this._revert.bind(this)
@@ -104,115 +101,108 @@ export default class extends Component {
 
     return (
       <div>
-        <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-         <Visibility
-           once={false}
-           onBottomPassed={this.showFixedMenu}
-           onBottomPassedReverse={this.hideFixedMenu}
-         >
-           <Segment
-             inverted
-             textAlign='center'
-             style={{
-               padding: 0,
-               margin: 0
-             }}
-             vertical
-           >
-             <Nav
-              fixed={fixed}
-              boards={boards}
-              activeBoard={activeBoard}
-              activeLayout={activeLayout}
-              layouts={layouts}
-              layers={layers}
-              dirty={dirty}
-              newLayout={this.newLayout}
-              newLayer={this.newLayer}
-              selectBoard={this.selectBoard}
-              deleteLayout={this.deleteLayout}
-              selectLayout={this.selectLayout}
-              exportLayout={this.exportLayout}
-              importLayout={this.importLayout}
-              cloneLayout={this.cloneLayout}
-              save={this.save}
-              download={this.download}
-              flash={this.flash}
-              buildInProgress={buildInProgress}
-            />
-            <div style={{ marginTop: 60 }} />
-            <Canvas
-              layers={layers}
-              layouts={layouts}
-              zones={zones}
-              indicators={indicators}
-              activeBoard={activeBoard}
-              activeLayout={activeLayout}
-              activeLayer={activeLayer}
-              activeKeyType={activeKeyType}
-              layersVisible={layersVisible}
-              toggleLayers={this.toggleLayers}
-              setKey={this.setKey}
-              selectLayer={this.selectLayer}
-              cloneLayer={this.cloneLayer}
-              deleteLayer={this.deleteLayer}
-              editLayout={this.editLayout}
-              editLayer={this.editLayer}
-              exportLayer={this.exportLayer}
-              sortLayers={this.sortLayers}
-              addIndicator={this.addIndicator}
-              updateIndicator={this.updateIndicator}
-              deleteIndicator={this.deleteIndicator}
-            />
-           </Segment>
+        <Segment
+          inverted
+          textAlign='center'
+          style={{
+            padding: 0,
+            margin: 0
+          }}
+          vertical
+        >
+          <Nav
+            fixed={fixed}
+            boards={boards}
+            activeBoard={activeBoard}
+            activeLayout={activeLayout}
+            layouts={layouts}
+            layers={layers}
+            dirty={dirty}
+            newLayout={this.newLayout}
+            newLayer={this.newLayer}
+            selectBoard={this.selectBoard}
+            deleteLayout={this.deleteLayout}
+            selectLayout={this.selectLayout}
+            exportLayout={this.exportLayout}
+            importJson={this.importJson}
+            cloneLayout={this.cloneLayout}
+            save={this.save}
+            download={this.download}
+            flash={this.flash}
+            buildInProgress={buildInProgress}
+          />
+          <div style={{ paddingTop: 60 }} />
+          <Canvas
+            layers={layers}
+            layouts={layouts}
+            zones={zones}
+            indicators={indicators}
+            activeBoard={activeBoard}
+            activeLayout={activeLayout}
+            activeLayer={activeLayer}
+            activeKeyType={activeKeyType}
+            layersVisible={layersVisible}
+            toggleLayers={this.toggleLayers}
+            setKey={this.setKey}
+            selectLayer={this.selectLayer}
+            cloneLayer={this.cloneLayer}
+            deleteLayer={this.deleteLayer}
+            editLayout={this.editLayout}
+            editLayer={this.editLayer}
+            exportLayer={this.exportLayer}
+            sortLayers={this.sortLayers}
+            addIndicator={this.addIndicator}
+            updateIndicator={this.updateIndicator}
+            deleteIndicator={this.deleteIndicator}
+          />
+        </Segment>
 
-           <Container>
-            <KeyTypeMenu
-              setActiveKeyType={this.setActiveKeyType}
-              activeKeyType={activeKeyType}
-            />
-            <Settings
-              activeKeyType={activeKeyType}
-              zones={zones}
-              settings={settings}
-              rules={rules}
-              updateZone={this.updateZone}
-              updateSetting={this.updateSetting}
-              reset={this.reset}
-              revert={this.revert}/>
+        <Container>
+          <KeyTypeMenu
+            setActiveKeyType={this.setActiveKeyType}
+            activeKeyType={activeKeyType}
+          />
+          <Settings
+            activeKeyType={activeKeyType}
+            zones={zones}
+            settings={settings}
+            rules={rules}
+            updateZone={this.updateZone}
+            updateSetting={this.updateSetting}
+            reset={this.reset}
+            revert={this.revert}
+          />
 
-            <Modal open={Boolean(nextAction)} basic>
-              <Header
-                content='You have unsaved changes. Would you like to save or discard them?'
-                style={{ marginTop: 50 }} />
-              <div style={{ position: 'absolute', right: '1rem', top: 0 }}>
-                <Button icon inverted basic color='red' onClick={() => this.setState({ nextAction: null })}>
-                  <Icon name='close' />
-                </Button>
-              </div>
-              <Modal.Actions>
-                <Button
-                  basic
-                  inverted
-                  color='red'
-                  onClick={nextAction}>
-                  <Icon name='cancel' /> Discard
-                </Button>
-                <Button
-                  basic
-                  inverted
-                  color='green'
-                  onClick={() => {
-                    this.save()
-                    this.setState({ nextAction: null })
-                  }}>
-                  <Icon name='save' /> Save
-                </Button>
-              </Modal.Actions>
-            </Modal>
-           </Container>
-         </Visibility>
-       </Responsive>
+          <Modal open={Boolean(nextAction)} basic>
+            <Header
+              content='You have unsaved changes. Would you like to save or discard them?'
+              style={{ marginTop: 50 }} />
+            <div style={{ position: 'absolute', right: '1rem', top: 0 }}>
+              <Button icon inverted basic color='red' onClick={() => this.setState({ nextAction: null })}>
+                <Icon name='close' />
+              </Button>
+            </div>
+            <Modal.Actions>
+              <Button
+                basic
+                inverted
+                color='red'
+                onClick={nextAction}>
+                <Icon name='cancel' /> Discard
+              </Button>
+              <Button
+                basic
+                inverted
+                color='green'
+                onClick={() => {
+                  this.save()
+                  this.setState({ nextAction: null })
+                }}>
+                <Icon name='save' /> Save
+              </Button>
+            </Modal.Actions>
+          </Modal>
+        </Container>
       </div>
     )
   }
@@ -503,13 +493,68 @@ export default class extends Component {
     this.setState({ indicators }, this.checkSaveState)
   }
 
-  _exportLayout (id) {}
+  _exportLayout (id) {
+    const { activeBoard } = this.state
+    const layout = this.state.layouts.find(l => l.id === id)
+    const name = `${activeBoard}-${layout.name.toLowerCase()}-${new Date().getTime()}`
+    const data = {
+      type: 'layout',
+      data: layout
+    }
+    console.log(name, data)
+    // downloadObjectAsJson(name, data)
+  }
 
-  _importLayout (layout) {}
+  _exportLayer (id) {
+    const { activeBoard } = this.state
+    const layer = this.state.layers.find(l => l.id === id)
+    // Remove ids, they will be recreated on input
+    delete layer.layoutId
+    delete layer.id
+    // Create export
+    const name = `${activeBoard}-${layer.name.toLowerCase().replace(' ', '_')}-${new Date().getTime()}`
+    const data = {
+      board: activeBoard,
+      type: 'layer',
+      data: layer
+    }
+    downloadObjectAsJson(name, data)
+  }
 
-  _exportLayer (id) {}
+  _importJson (data) {
+    if (!data) return
 
-  _importLayer (layout) {}
+    const { activeBoard, activeLayout } = this.state
+    const fr = new FileReader()
+
+    fr.onload = (e) => {
+      const result = JSON.parse(e.target.result)
+      if (!result.type) return
+      if (activeBoard !== result.board) {
+        // TODO: Handle error here
+        return
+      }
+      switch (result.type) {
+        case 'layout':
+        case 'layer': {
+          const layer = result.data
+          // Add IDs
+          layer.layoutId = activeLayout
+          layer.id = v4()
+          // Push layer
+          const layers = this.state.layers.slice(0)
+          layers.push(layer)
+
+          this.setState({ layers, activeLayer: layer.id }, this.checkSaveState)
+          break
+        }
+        default:
+          // NO-OP
+      }
+    }
+
+    fr.readAsText(data)
+  }
 
   _save () {
     persistState(this.state)
@@ -592,4 +637,14 @@ export default class extends Component {
     }))
   }
 
+}
+
+function downloadObjectAsJson (exportName, exportObj) {
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj))
+  const downloadAnchorNode = document.createElement('a')
+  downloadAnchorNode.setAttribute("href",     dataStr)
+  downloadAnchorNode.setAttribute("download", exportName + ".json")
+  document.body.appendChild(downloadAnchorNode) // required for firefox
+  downloadAnchorNode.click()
+  downloadAnchorNode.remove()
 }
