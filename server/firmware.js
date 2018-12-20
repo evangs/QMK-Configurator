@@ -1,6 +1,7 @@
 const { join } = require('path')
-const { mkdir, writeFile } = require('fs')
+const { writeFile } = require('fs')
 const { exec } = require('child_process')
+const mkdirp = require('mkdirp')
 
 /**
  * Base firmware directory
@@ -433,7 +434,7 @@ const buildKeymap = (dir, keyData, indicators) => {
  */
 const createDir = dir => {
   return new Promise((resolve, reject) => {
-    mkdir(dir, { recursive: true }, err => {
+    mkdirp(dir, err => {
       if (err) {
         if (err.code == 'EEXIST') {
           return resolve()

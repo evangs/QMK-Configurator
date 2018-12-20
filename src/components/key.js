@@ -9,10 +9,9 @@ import { Container,
   Popup
 } from 'semantic-ui-react'
 import { KEYS, KEY_DISPLAY_MAP, KEY_ACTIONS, KEYBOARD_INPUT_MAP } from '../data/keys'
-import colors, { getColor } from '../utils/colors'
+import { getColor } from '../utils/colors'
 import getKeyStyle from '../utils/key-styles'
 
-const KEY_UNIT_SIZE = 75
 const KEY_BORDER_SIZE = 3
 const KEY_MARGIN_SIZE = 10
 
@@ -87,10 +86,8 @@ export default class extends Component {
       tmp
     } = this.state
 
-    const background = getColor(type).hex
     const activeColor = getColor(activeKeyType)
 
-    let activeKeyColor = activeColor.hex
     let selectedColor = activeColor.color
     let errorColor = activeColor.errorColor
 
@@ -281,7 +278,6 @@ export default class extends Component {
     const {
       id,
       shape,
-      value,
       activeKeyType,
       setKey
     } = this.props

@@ -2,7 +2,6 @@ import React from 'react'
 import Key from './key'
 import Led from './led'
 import { config } from '../data/config'
-import colors, { getColor } from '../utils/colors'
 
 export default ({
   layers,

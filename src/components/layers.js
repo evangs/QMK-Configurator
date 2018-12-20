@@ -65,14 +65,7 @@ export default class Layers extends Component {
   }
 
   render () {
-    const {
-      layers,
-      openEdit,
-      editName,
-      openClone,
-      cloneName,
-      openDelete,
-    } = this.state
+    const { layers } = this.state
     const {
       activeBoard,
       activeLayout,
@@ -282,7 +275,7 @@ class DeleteModal extends Component {
   }
 
   render () {
-    const { open, name } = this.state
+    const { open } = this.state
     const { disabled, layer, action } = this.props
     return (
       <Modal trigger={

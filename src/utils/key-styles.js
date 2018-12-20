@@ -53,6 +53,7 @@ const margin = (unitSize, spacer) => {
         break
       case 'vs050':
         Object.assign(styles, { marginTop: unitSize * 0.5 })
+        break
       default:
         Object.assign(styles, {})
     }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { config, initialState, getLastSave, persistState } from './data/config'
-import { get } from './utils/localstorage'
 import { v4 } from 'uuid'
 import {
   Container,
@@ -90,7 +89,8 @@ export default class extends Component {
       dirty,
       settings,
       rules,
-      indicators
+      indicators,
+      buildInProgress
     } = this.state
 
     return (
@@ -127,6 +127,7 @@ export default class extends Component {
               save={this.save}
               download={this.download}
               flash={this.flash}
+              buildInProgress={buildInProgress}
             />
             <div style={{ marginTop: 60 }} />
             <Canvas
@@ -273,7 +274,7 @@ export default class extends Component {
 
   _newLayout (name) {
     if (!name) return
-    const { activeBoard, zones, layouts, layers } = this.state
+    const { activeBoard, layouts, layers } = this.state
 
     const layoutId = v4()
     const layerId = v4()
@@ -304,7 +305,7 @@ export default class extends Component {
   }
 
   _updateZone (e, data) {
-    const { zones, activeBoard } = this.state
+    const { zones } = this.state
     let clone = zones.slice(0)
     clone = clone.map(z => {
       if (z.label === data.placeholder) {
@@ -338,6 +339,8 @@ export default class extends Component {
         this.setState({ rules }, this.checkSaveState)
         break
       }
+      default:
+        // NO-OP
     }
   }
 
@@ -360,7 +363,6 @@ export default class extends Component {
   }
 
   _cloneLayout (id, name) {
-    const { activeBoard } = this.state
     const layouts = this.state.layouts.slice(0)
     const layout = Object.assign({}, this.state.layouts.slice(0).find(l => l.id === id))
     const layoutId = v4()
@@ -446,14 +448,13 @@ export default class extends Component {
     const layouts = this.state.layouts.slice(0).map(l => {
       if (l.id === layout.id) {
         l.name = name
-        return l
       }
+      return l
     })
-    this.setState({ layout }, this.checkSaveState)
+    this.setState({ layouts }, this.checkSaveState)
   }
 
   _deleteLayout (layout) {
-    const { activeBoard } = this.state
     const layouts = this.state.layouts.slice(0).filter(l => l.id !== layout.id)
 
     const activeLayout = this.state.layouts.length - 2
@@ -522,28 +523,27 @@ export default class extends Component {
     layers.forEach(l => {
       fullMap.push(config[activeBoard].keymap(l.keys, zones))
     })
-
     fetch(API_URL, {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8'
-        },
-        redirect: 'follow',
-        referrer: 'no-referrer',
-        body: JSON.stringify({
-          config: settings,
-          rules,
-          configKeymap: config[activeBoard].configKeymap,
-          keymap: fullMap
-        })
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      },
+      redirect: 'follow',
+      referrer: 'no-referrer',
+      body: JSON.stringify({
+        config: settings,
+        rules,
+        configKeymap: config[activeBoard].configKeymap,
+        keymap: fullMap
+      })
     })
     .then(res => res.json())
     .then(res => {
       this.setState({ buildInProgress: false })
-      console.log(res)
+      document.location.href = res.hex
     })
     .catch(err => {
       console.log(err)
@@ -555,8 +555,19 @@ export default class extends Component {
   }
 
   _flash () {
-    console.log('here')
-    flashFirmware({  hello: 'hi' })
+    const { activeBoard, layers, zones, settings, rules } = this.state
+
+    const fullMap = []
+    layers.forEach(l => {
+      fullMap.push(config[activeBoard].keymap(l.keys, zones))
+    })
+
+    flashFirmware(JSON.stringify({
+      config: settings,
+      rules,
+      configKeymap: config[activeBoard].configKeymap,
+      keymap: fullMap
+    }))
   }
 
 }

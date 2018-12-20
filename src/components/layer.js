@@ -17,7 +17,6 @@ export default class extends Component {
   update (props) {
     const { layerId, keys, activeBoard, zones } = props
     const scaleFactor = config[activeBoard].ui.thumbScale
-    const padding = 0
     const svg = d3.select(`#layer-${layerId}`)
 
     const keymap = config[activeBoard].keymap
@@ -32,6 +31,9 @@ export default class extends Component {
           case 'kJIS':
           case 'kISO':
             afters.push(Object.assign({}, x, { shape: `${x.shape}After` }))
+            break
+          default:
+            // NO-OP
         }
       })
       return clone.concat(afters)

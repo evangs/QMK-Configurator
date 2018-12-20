@@ -8,8 +8,6 @@ import {
   Icon,
   Popup,
   Container,
-  Header,
-  Table,
   Dropdown
 } from 'semantic-ui-react'
 import colors from '../utils/colors'
@@ -326,7 +324,7 @@ const Color = CustomPicker(class extends Component {
 function rgbToHex (r, g, b) {
   const componentToHex = (c) => {
     var hex = c.toString(16);
-    return hex.length == 1 ? "0" + hex : hex;
+    return hex.length === 1 ? "0" + hex : hex;
   }
   return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b)
 }

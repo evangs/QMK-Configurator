@@ -8,10 +8,12 @@ import {
   Icon,
   Modal,
   Input,
-  Table
+  Table,
+  Loader
 } from 'semantic-ui-react'
 import Layouts from './layouts'
 import { config } from '../data/config'
+import { isElectron } from '../utils/env'
 import logo from '../logo.png'
 
 export default class extends Component {
@@ -41,7 +43,8 @@ export default class extends Component {
       newLayer,
       save,
       download,
-      flash
+      flash,
+      buildInProgress
     } = this.props
     const { name, open } = this.state
 
@@ -78,8 +81,10 @@ export default class extends Component {
             <Button
               inverted
               color={dirty ? 'green' : 'teal'}
-              onClick={dirty ? save : download}>
-                {dirty ? 'Save' : 'Download'}
+              disabled={buildInProgress}
+              onClick={dirty ? save : isElectron() ? flash : download}
+              style={{ cursor: 'pointer' }}>
+                {dirty ? 'Save' : buildInProgress ? <Loader inverted inline active size='mini' /> : isElectron() ? 'Flash' : 'Download'}
               </Button>
           </Menu.Item>
           <Menu.Item>
@@ -99,6 +104,7 @@ export default class extends Component {
                 inverted
                 basic
                 color='green'
+                style={{ cursor: 'pointer' }}
                 onClick={() => this.setState({ open: true })}>
                 <Icon name='plus' />
               </Button>
@@ -110,6 +116,7 @@ export default class extends Component {
                     inverted
                     basic
                     color='red'
+                    style={{ cursor: 'pointer' }}
                     onClick={() => this.setState({ open: false, name: '' })}>
                     <Icon name='close' />
                   </Button>

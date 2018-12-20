@@ -86,8 +86,9 @@ const Advanced = props => {
                 break
               case 'rule':
                 value = props.rules[s.value]
+                break
               default:
-                return
+                return ''
             }
             switch (s.component) {
               case 'input':
@@ -125,7 +126,7 @@ const Advanced = props => {
                   </Table.Row>
                 )
               default:
-                return
+                return ''
             }
           })}
       </Table.Body>

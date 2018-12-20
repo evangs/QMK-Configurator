@@ -38,7 +38,7 @@ export default class extends Component {
       activeLayout
     } = this.props
 
-    const { createMode, name, open, selected, confirmDelete } = this.state
+    const { createMode, open, selected, confirmDelete } = this.state
     return (
       <Modal open={open} trigger={<Button inverted onClick={() => this.setState({ open: true })}>My Layouts</Button>} basic size='small'>
         <Header content={`Layouts for ${config[activeBoard].config.product}`} textAlign='center' style={{ marginTop: 50 }} />
@@ -55,7 +55,7 @@ export default class extends Component {
                   key={`layout-${i}`}
                   onClick={() => this.onRowSelect(l)}
                   style={{ cursor: 'pointer' }}
-                  disabled={selected.id === l.id || activeLayout === l.id && !Object.keys(selected).length}>
+                  disabled={(selected.id === l.id || activeLayout === l.id) && !Object.keys(selected).length}>
                   <Table.Cell style={{
                     color: selected.id === l.id ? colors.primaryColor : 'inherit'
                   }}>{l.name}</Table.Cell>

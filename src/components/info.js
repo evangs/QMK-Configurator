@@ -9,75 +9,57 @@ import {
   Input
 } from 'semantic-ui-react'
 
-export default class extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      layoutModalOpen: false,
-      layerModalOpen: false
-    }
-  }
-  render () {
-    const {
-      manufacturer,
-      product,
-      description,
-      editLayer,
-      editLayout,
-      layer,
-      layout
-    } = this.props
-
-    const {
-      layoutModalOpen,
-      layerModalOpen
-    } = this.state
-
-    return (
-      <Table basic celled collapsing inverted style={{
-        position: 'absolute',
-        top: 0,
-        right: 14,
-        border: '1px solid rgba(255, 255, 255, 0.1)',
-        borderRadius: 0,
-        maxWidth: 350
-      }}>
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell>MANUFACTURER</Table.Cell>
-            <Table.Cell>{manufacturer}</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>PRODUCT</Table.Cell>
-            <Table.Cell>{product}</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>DESCRIPTION</Table.Cell>
-            <Table.Cell>{description}</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>LAYOUT</Table.Cell>
-            <Table.Cell>
-              {layout.name}
-              <span style={{ float: 'right', marginLeft: 10 }}>
-                <NameModal color='grey' icon='edit' action={editLayout} display='Rename Layout' data={layout} />
-              </span>
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>LAYER</Table.Cell>
-            <Table.Cell>
-              {layer.name}
-              <span style={{ float: 'right', marginLeft: 10 }}>
-                <NameModal color='grey' icon='edit' action={editLayer} display='Rename Layer' data={layer} />
-              </span>
-            </Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      </Table>
-    )
-  }
-}
+export default ({
+  manufacturer,
+  product,
+  description,
+  editLayer,
+  editLayout,
+  layer,
+  layout
+}) => (
+  <Table basic celled collapsing inverted style={{
+    position: 'absolute',
+    top: 0,
+    right: 14,
+    border: '1px solid rgba(255, 255, 255, 0.1)',
+    borderRadius: 0,
+    maxWidth: 350
+  }}>
+    <Table.Body>
+      <Table.Row>
+        <Table.Cell>MANUFACTURER</Table.Cell>
+        <Table.Cell>{manufacturer}</Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>PRODUCT</Table.Cell>
+        <Table.Cell>{product}</Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>DESCRIPTION</Table.Cell>
+        <Table.Cell>{description}</Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>LAYOUT</Table.Cell>
+        <Table.Cell>
+          {layout.name}
+          <span style={{ float: 'right', marginLeft: 10 }}>
+            <NameModal color='grey' icon='edit' action={editLayout} display='Rename Layout' data={layout} />
+          </span>
+        </Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>LAYER</Table.Cell>
+        <Table.Cell>
+          {layer.name}
+          <span style={{ float: 'right', marginLeft: 10 }}>
+            <NameModal color='grey' icon='edit' action={editLayer} display='Rename Layer' data={layer} />
+          </span>
+        </Table.Cell>
+      </Table.Row>
+    </Table.Body>
+  </Table>
+)
 
 class NameModal extends Component {
 
