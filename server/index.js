@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 const { setupFirmware, buildFirmware } = require('./firmware')
 
 const HTTP_PORT = process.env.NODE_ENV === 'production' ? 80 : 8000
-const FIRMWARE_BASE = join(__dirname, 'firmware', 'keyboards')
+const HEX_BASE = join(__dirname, 'qmk_firmware')
 
 const app = express()
 
@@ -23,9 +23,13 @@ app.get('/', (req, res, next) => {
 app.post('/', async (req, res, next) => {
   const { config, rules, configKeymap, keymap, indicators } = req.body
   try {
+    // Setup firmware source
     const dir = await setupFirmware(config, rules, configKeymap, keymap, indicators)
+    // Build firmware
     await buildFirmware(dir)
-    res.status(200).attachment(join(FIRMWARE_BASE, `${dir}_default.hex`))
+    // Send attachment
+    res.status(200).send({ hex: `/downloads/${dir}_default.hex` })
+    // Clean up
   } catch (err) {
     console.error(err)
     res.status(500).send({ error: err.message })
@@ -33,7 +37,7 @@ app.post('/', async (req, res, next) => {
 })
 
 app.get('/downloads/:file', async (req, res, next) => {
-  res.attachment()
+  res.download(join(HEX_BASE, req.params.file))
 })
 
 const server = http.createServer(app)

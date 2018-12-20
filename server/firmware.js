@@ -5,16 +5,16 @@ const { exec } = require('child_process')
 /**
  * Base firmware directory
 **/
-const FIRMWARE_BASE = join(__dirname, 'firmware', 'keyboards')
+const FIRMWARE_BASE = join(__dirname, 'qmk_firmware', 'keyboards')
 
 /**
  * Builds the firmware hex file
 **/
 exports.buildFirmware = dir => {
   return new Promise((resolve, reject) => {
-    exec(`make ${dir}:default`, {
-      cwd: FIRMWARE_BASE
-    }, (err, stdout) => {
+    exec(`make ${dir}`, {
+      cwd: join(__dirname, 'qmk_firmware')
+    }, (err, stdout, stderr) => {
       if (err) {
         return reject(err)
       }
@@ -71,8 +71,8 @@ const buildConfig = config => {
   template += `#define MATRIX_ROWS ${config.matrixRowPins.length}\n`
   template += `#define MATRIX_COLS ${config.matrixColumnPins.length}\n`
 
-  template += `#define MATRIX_ROW_PINS ${config.matrixRowPins.join(', ')}\n`
-  template += `#define MATRIX_COL_PINS ${config.matrixColumnPins.join(', ')}\n`
+  template += `#define MATRIX_ROW_PINS { ${config.matrixRowPins.join(', ')} }\n`
+  template += `#define MATRIX_COL_PINS { ${config.matrixColumnPins.join(', ')} }\n`
   template += '#define UNUSED_PINS\n'
 
   template += `#define DIODE_DIRECTION ${config.diodeDirection}\n`
@@ -205,10 +205,10 @@ const buildProductH = (dir, configKeymap) => {
   template += `#define ${dir.toUpperCase()}_H\n`
   template += '#include "quantum.h"\n'
 
-  template += `#define KEYMAP(${keys}) {{ \\\n`
+  template += `#define KEYMAP(${keys}) { \\\n`
 
   for (const row of configKeymap.positions) {
-    template += `${row.join(', ')}, \\\n`
+    template += `{ ${row.join(', ')} }, \\\n`
   }
 
   template += '}\n#endif\n'
@@ -353,79 +353,79 @@ const buildKeymap = (dir, keyData, indicators) => {
 
   template += '};\n'
 
-    if (indicators) {
-      // init
-      template += 'void matrix_init_user(void) {\n'
-      template += 'rgblight_init();\n'
-      template += '};\n'
-      template += 'void rgblight_init_leds(void) {\n'
-      template += 'process_indicator_update(layer_state, host_keyboard_leds());\n'
-      template += '};\n'
+  if (indicators) {
+    // init
+    template += 'void matrix_init_user(void) {\n'
+    template += 'rgblight_init();\n'
+    template += '};\n'
+    template += 'void rgblight_init_leds(void) {\n'
+    template += 'process_indicator_update(layer_state, host_keyboard_leds());\n'
+    template += '};\n'
 
-      // keyboard indicators trigger
-      template += 'void led_set_user(uint8_t usb_led) {\n'
-      template += 'process_indicator_update(layer_state, usb_led);\n'
-      template += '};\n'
+    // keyboard indicators trigger
+    template += 'void led_set_user(uint8_t usb_led) {\n'
+    template += 'process_indicator_update(layer_state, usb_led);\n'
+    template += '};\n'
 
-      // layer indicators trigger
-      template += 'uint32_t layer_state_set_user(uint32_t state) {\n'
-      template += 'process_indicator_update(state, host_keyboard_leds());\n'
-      template += 'return state;\n'
-      template += '};\n'
+    // layer indicators trigger
+    template += 'uint32_t layer_state_set_user(uint32_t state) {\n'
+    template += 'process_indicator_update(state, host_keyboard_leds());\n'
+    template += 'return state;\n'
+    template += '};\n'
 
-      // process indicator update
-      template += 'void process_indicator_update(uint32_t state, uint8_t usb_led) {\n'
-      template += `LED_TYPE indicators[${indicators.length}] = {{\n`
-      for (let i = 0; i < indicators.length; i++) {
-        template += '{.r = 0, .g = 0, .b = 0},\n'
-        template = template.slice(0, -2)
-        template += '\n};\n'
-      }
-      template += `uint8_t ies[${indicators}] = {{\n`
-
-      for (let i = 0; i < indicators.length; i++) {
-        template += `${i},\n`
-      }
-
+    // process indicator update
+    template += 'void process_indicator_update(uint32_t state, uint8_t usb_led) {\n'
+    template += `LED_TYPE indicators[${indicators.length}] = {{\n`
+    for (let i = 0; i < indicators.length; i++) {
+      template += '{.r = 0, .g = 0, .b = 0},\n'
       template = template.slice(0, -2)
       template += '\n};\n'
+    }
+    template += `uint8_t ies[${indicators}] = {{\n`
 
-      for (let i = 0; i < indicators.length; i++) {
-        for (trigger in indicators[i]) {
-          switch(trigger.type) {
-            case 'layer':
-              template += `if (state & (1<<${trigger.action.slice(1)})){{\n`
-              template += `indicators[{}].r = ${trigger.red};\n`
-              template += `indicators[{}].g = ${trigger.green};\n`
-              template += `indicators[{}].b = ${trigger.blue};\n`
-              template += '}\n'
-              break
-            case 'keyboard':
-              template += `if (usb_led & (1<<${trigger.action})){{\n`
-              template += `if (indicators[${i}].r > 0) {{indicators[${i}].r = (indicators[${i}].r + ${trigger.red}) / 2;}}\n`
-              template += `else {{indicators[${i}].r = ${trigger.red};}}\n`
-              template += `if (indicators[${i}].g > 0) {{indicators[${i}].g = (indicators[${i}].g + ${trigger.green}) / 2;}}\n`
-              template += `else {{indicators[${i}].g = ${trigger.green};}}\n`
-              template += `if (indicators[${i}].b > 0) {{indicators[${i}].b = (indicators[${i}].b + ${trigger.blue}) / 2;}}\n`
-              template += `else {{indicators[${i}].b = ${trigger.blue};}}\n`
-              template += '}\n'
-              break
-            case 'power':
-              template += 'indicators[{}].r = {};\n'.format(i, trigger.get('red'))
-              template += 'indicators[{}].g = {};\n'.format(i, trigger.get('green'))
-              template += 'indicators[{}].b = {};\n'.format(i, trigger.get('blue'))
-              break
-            default:
-              // NO-OP
-          }
-        }
-      }
-
-      template += 'rgblight_setrgb_many(indicators, ies, ${indicators.length});\n'
-      template += '};'
+    for (let i = 0; i < indicators.length; i++) {
+      template += `${i},\n`
     }
 
-    return template
+    template = template.slice(0, -2)
+    template += '\n};\n'
+
+    for (let i = 0; i < indicators.length; i++) {
+      for (trigger in indicators[i]) {
+        switch(trigger.type) {
+          case 'layer':
+            template += `if (state & (1<<${trigger.action.slice(1)})){{\n`
+            template += `indicators[{}].r = ${trigger.red};\n`
+            template += `indicators[{}].g = ${trigger.green};\n`
+            template += `indicators[{}].b = ${trigger.blue};\n`
+            template += '}\n'
+            break
+          case 'keyboard':
+            template += `if (usb_led & (1<<${trigger.action})){{\n`
+            template += `if (indicators[${i}].r > 0) {{indicators[${i}].r = (indicators[${i}].r + ${trigger.red}) / 2;}}\n`
+            template += `else {{indicators[${i}].r = ${trigger.red};}}\n`
+            template += `if (indicators[${i}].g > 0) {{indicators[${i}].g = (indicators[${i}].g + ${trigger.green}) / 2;}}\n`
+            template += `else {{indicators[${i}].g = ${trigger.green};}}\n`
+            template += `if (indicators[${i}].b > 0) {{indicators[${i}].b = (indicators[${i}].b + ${trigger.blue}) / 2;}}\n`
+            template += `else {{indicators[${i}].b = ${trigger.blue};}}\n`
+            template += '}\n'
+            break
+          case 'power':
+            template += 'indicators[{}].r = {};\n'.format(i, trigger.get('red'))
+            template += 'indicators[{}].g = {};\n'.format(i, trigger.get('green'))
+            template += 'indicators[{}].b = {};\n'.format(i, trigger.get('blue'))
+            break
+          default:
+            // NO-OP
+        }
+      }
+    }
+
+    template += 'rgblight_setrgb_many(indicators, ies, ${indicators.length});\n'
+    template += '};'
+  }
+
+  return template
 }
 
 /**

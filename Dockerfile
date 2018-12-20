@@ -5,7 +5,7 @@ RUN apt-get update && \
   binutils-avr \
   avr-libc \
   dfu-programmer
-RUN chown -R www-data server/firmware && \
-  chmod -R 774 server/firmware
+RUN chown -R www-data server/qmk && \
+  chmod -R 774 server/qmk
 USER $MOD_WSGI_USER:$MOD_WSGI_GROUP
 CMD [ "server/index.wsgi" ]
