@@ -12,7 +12,6 @@ import {
   Header
 } from 'semantic-ui-react'
 
-
 import Canvas from './components/canvas'
 import Nav from './components/nav'
 import KeyTypeMenu from './components/key-type-menu'
@@ -22,11 +21,14 @@ import './theme/semantic.less'
 import './shake.scss'
 
 let flashFirmware
+let bindEvents
 if (isElectron()) {
   const ipc = require('./utils/ipc')
   flashFirmware = ipc.flashFirmware
+  bindEvents = ipc.bindEvents
 } else {
   flashFirmware = () => {}
+  bindEvents = () => {}
 }
 
 const API_URL = 'http://localhost:8000'
@@ -66,11 +68,18 @@ export default class extends Component {
     this.addIndicator = this._addIndicator.bind(this)
     this.updateIndicator = this._updateIndicator.bind(this)
     this.deleteIndicator = this._deleteIndicator.bind(this)
+    this.exportLayout = this._exportLayout.bind(this)
+    this.importLayout = this._importLayout.bind(this)
+    this.exportLayer = this._exportLayer.bind(this)
+    this.importLayer = this._importLayer.bind(this)
     this.save = this._save.bind(this)
     this.reset = this._reset.bind(this)
     this.revert = this._revert.bind(this)
     this.download = this._download.bind(this)
     this.flash = this._flash.bind(this)
+
+    // Bind electron event handlers
+    bindEvents.call(this)
   }
 
   render () {
@@ -123,6 +132,8 @@ export default class extends Component {
               selectBoard={this.selectBoard}
               deleteLayout={this.deleteLayout}
               selectLayout={this.selectLayout}
+              exportLayout={this.exportLayout}
+              importLayout={this.importLayout}
               cloneLayout={this.cloneLayout}
               save={this.save}
               download={this.download}
@@ -147,6 +158,7 @@ export default class extends Component {
               deleteLayer={this.deleteLayer}
               editLayout={this.editLayout}
               editLayer={this.editLayer}
+              exportLayer={this.exportLayer}
               sortLayers={this.sortLayers}
               addIndicator={this.addIndicator}
               updateIndicator={this.updateIndicator}
@@ -491,6 +503,14 @@ export default class extends Component {
     this.setState({ indicators }, this.checkSaveState)
   }
 
+  _exportLayout (id) {}
+
+  _importLayout (layout) {}
+
+  _exportLayer (id) {}
+
+  _importLayer (layout) {}
+
   _save () {
     persistState(this.state)
     const lastSave = getLastSave(this.state)
@@ -556,6 +576,8 @@ export default class extends Component {
 
   _flash () {
     const { activeBoard, layers, zones, settings, rules } = this.state
+
+    this.setState({ buildInProgress: false })
 
     const fullMap = []
     layers.forEach(l => {

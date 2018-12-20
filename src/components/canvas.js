@@ -45,6 +45,7 @@ export default class extends Component {
       deleteLayer,
       editLayout,
       editLayer,
+      exportLayer,
       sortLayers,
       addIndicator,
       updateIndicator,
@@ -86,6 +87,7 @@ export default class extends Component {
               cloneLayer={cloneLayer}
               deleteLayer={deleteLayer}
               editLayer={editLayer}
+              exportLayer={exportLayer}
               sortLayers={sortLayers}
             />
           </Container>

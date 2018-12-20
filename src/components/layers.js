@@ -74,6 +74,7 @@ export default class Layers extends Component {
       deleteLayer,
       cloneLayer,
       editLayer,
+      exportLayer,
       zones
     } = this.props
     const filteredLayers = layers.filter(l => l.layoutId === activeLayout)
@@ -137,12 +138,28 @@ export default class Layers extends Component {
                             { /* EDIT LAYER */ }
                             <NameModal color='grey' icon='edit' action={editLayer} display='Edit' layer={layer} />
 
+                            { /* EXPORT LAYER */ }
+                            <Popup
+                            inverted
+                            content='Export Layer'
+                            position='top center'
+                            trigger={
+                              <Icon
+                              style={{ cursor: 'pointer' }}
+                              name='share square'
+                              color='yellow'
+                              size='small'
+                              onClick={() => {
+                                exportLayer()
+                              }} />
+                            } />
+
                             { /* CLONE LAYER */ }
                             <NameModal color='teal' icon='clone' disabled={layers.length >= 16} action={cloneLayer} display='Clone' layer={layer} />
 
                             { /* DELETE LAYER */ }
                             <DeleteModal layer={layer} action={deleteLayer} disabled={filteredLayers.length <= 1} />
-
+                            
                           </div>
                           <div style={{ clear: 'both' }} />
                         </Container>
@@ -175,7 +192,6 @@ export default class Layers extends Component {
 
     sortLayers(layers)
 
-    // this.setState({ layers })
   }
 
 }

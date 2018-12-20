@@ -1,22 +1,5 @@
 # QMK-Configurator
-generic configurator for QMK intended to support via GUI all that QMK is capable of
-
-http://xahlee.info/comp/unicode_computing_symbols.html
-
-## Running the Application
-- Install Docker https://www.docker.com/products/overview
-- In the root directory run
-```
-docker build -t qmk .
-docker run -it --rm -p 8000:80 -e PORT=80 --name my-running-app qmk
-```
-- Navigate to http://localhost:8000 in your web browser
-
-If you start to get “No space left on device” error, run the following commands to remove unused images/containers.
-```
-docker rm $(docker ps -q -f 'status=exited')
-docker rmi $(docker images -q -f "dangling=true")
-```
+Generic configurator for QMK intended to support via GUI all that QMK is capable of
 
 ## Available Scripts
 
@@ -45,21 +28,44 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `npm run server:dev`
+
+Starts the node server in development mode.<br>
+Runs on port `8000`
+
+### `npm run server:start`
+
+Starts the node server in production mode.<br>
+Runs on port `80`
+
+### `npm run electron:dev`
+
+Start electron in development mode.
+
+### `npm run electron:pack`
+
+Builds a test package for the platform you are working on.
+
+### `npm run electron:dist`
+
+Builds distribution packages for OSX, Windows and Linux,=.
+
+### `npm run docker:build`
+
+Builds the docker image
+
+### `npm run docker:run`
+
+Runs the docker image
+
+### `npm run docker:clean`
+
+Cleans the local docker server of dangling or stopped images
+
 
 ## TODO
 
-### Web Flash
-
-- [ ] port dfu-programmer to web assembly
-- [ ] implement chrome usb api
-
-https://developer.chrome.com/apps/usb
-http://www.atmel.com/Images/doc7618.pdf
-https://github.com/evangs/chrome_tab_garbage_collector/tree/master/src
-
-
-https://github.com/dfu-programmer/dfu-programmer/tree/master/src
-https://developers.google.com/web/updates/2018/03/emscripting-a-c-library
+- [ ] import/ export
 
 ### UI
 
@@ -68,4 +74,4 @@ https://developers.google.com/web/updates/2018/03/emscripting-a-c-library
 
 ### Desktop
 
-- [ ] Flash function for desktop
+- [ ] Test on linux and windows

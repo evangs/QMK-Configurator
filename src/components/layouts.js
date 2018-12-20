@@ -24,6 +24,8 @@ export default class extends Component {
     this.editLayout = this._editLayout.bind(this)
     this.cloneLayout = this._cloneLayout.bind(this)
     this.removeLayout = this._removeLayout.bind(this)
+    this.exportLayout = this._exportLayout.bind(this)
+    this.importLayout = this._importLayout.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -94,6 +96,20 @@ export default class extends Component {
             <Icon name='keyboard outline' /> Layout
           </Button>
           <Button
+            basic
+            inverted
+            color='yellow'
+            onClick={this.exportLayout}>
+            <Icon name='share square' /> Export
+          </Button>
+          <Button
+            basic
+            inverted
+            color='olive'
+            onClick={this.importLayout}>
+            <Icon name='download' /> Import
+          </Button>
+          <Button
             color='blue'
             basic={createMode !== 'clone'}
             inverted={createMode !== 'clone'}
@@ -153,6 +169,15 @@ export default class extends Component {
       this.setState({ confirmDelete: true })
     }
   }
+
+  _exportLayout () {
+    const { selected } = this.state
+    const { exportLayout } = this.props
+    exportLayout(selected.id)
+    this.setState(initialState)
+  }
+
+  _importLayout () {}
 
   _onRowSelect (layout) {
     this.setState({ selected: layout })
