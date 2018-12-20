@@ -44,6 +44,7 @@
     "react-dom": "^16.6.3",
     "react-scripts": "2.1.1",
     "react-textfit": "^1.1.0",
+    "rimraf": "^2.6.2",
     "semantic-ui-less": "^2.4.1",
     "semantic-ui-react": "^0.83.0",
     "shrink-ray": "^0.1.3",

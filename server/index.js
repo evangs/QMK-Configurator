@@ -5,6 +5,7 @@ const corser = require('corser')
 const shrinkRay = require('shrink-ray')
 const bodyParser = require('body-parser')
 const { setupFirmware, buildFirmware } = require('./firmware')
+const rimraf = require('rimraf')
 
 const HTTP_PORT = process.env.NODE_ENV === 'production' ? 80 : 8000
 const HEX_BASE = join(__dirname, 'qmk_firmware')
@@ -29,7 +30,9 @@ app.post('/', async (req, res, next) => {
     await buildFirmware(dir)
     // Send attachment
     res.status(200).send({ hex: `/downloads/${dir}_default.hex` })
-    // Clean up
+    // Clean up build files
+    rimraf(join(HEX_BASE, 'keyboards', dir), () => {})
+    rimraf(join(HEX_BASE, '.build', `*${dir}*`), () => {})
   } catch (err) {
     console.error(err)
     res.status(500).send({ error: err.message })
@@ -37,7 +40,12 @@ app.post('/', async (req, res, next) => {
 })
 
 app.get('/downloads/:file', async (req, res, next) => {
-  res.download(join(HEX_BASE, req.params.file))
+  // Send hex to client
+  res.download(join(HEX_BASE, req.params.file), err => {
+    res.status(404).send({ message: 'file does not exist' })
+  })
+  // Clean up hex file
+  rimraf(join(HEX_BASE, req.params.file), () => {})
 })
 
 const server = http.createServer(app)
