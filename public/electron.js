@@ -155,7 +155,12 @@ function eraseFirmware () {
         return resolve()
       })
     } else {
-
+      exec('dfu-programmer.exe atmega32u4 erase --force', { cwd: DFU_EXE }, (err, stdout) => {
+        if (err) {
+          return reject(err)
+        }
+        return resolve()
+      })
     }
   })
 }
@@ -170,7 +175,12 @@ function flashFirmware (hexFile) {
         return resolve()
       })
     } else {
-
+      exec(`dfu-programmer.exe atmega32u4 flash ${hexFile}`, { cwd: DFU_EXE }, (err, stdout) => {
+        if (err) {
+          return reject(err)
+        }
+        return resolve()
+      })
     }
   })
 }
@@ -186,7 +196,7 @@ function startFirmware () {
         return resolve()
       })
     } else {
-      exec(`dfu-programmer.exe atmega32u4 start`, { cwd: } (err, stdout) => {
+      exec(`dfu-programmer.exe atmega32u4 start`, { cwd: DFU_EXE }, (err, stdout) => {
         if (err) {
           return reject(err)
         }
