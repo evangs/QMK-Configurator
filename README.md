@@ -1,3 +1,5 @@
+<p align="center"><img height="100" src="public/icons/512x512.png" /></p>
+
 # QMK-Configurator
 Generic configurator for QMK intended to support via GUI all that QMK is capable of
 
@@ -78,7 +80,7 @@ Cleans the local docker server of dangling or stopped images
 - [x] App Icon sets
 - [ ] Electron build icons
 - [ ] Open Graph
-- [ ] Media queries
+- [ ] Media queries (higher order component for keyboard scale, info visibility)
 
 ### Desktop
 
