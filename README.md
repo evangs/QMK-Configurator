@@ -1,6 +1,14 @@
 # QMK-Configurator
 Generic configurator for QMK intended to support via GUI all that QMK is capable of
 
+## Development Requirements
+
+- [node.js](https://nodejs.org)
+- [yarn](https://yarnpkg.com)
+- [docker](https://www.docker.com/)
+
+> Use  (node version manager) to install node v10.14.2 `nvm install 10`
+
 ## Available Scripts
 
 In the project directory, you can run:

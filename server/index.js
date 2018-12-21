@@ -2,7 +2,7 @@ const http = require('http')
 const { join } = require('path')
 const express = require('express')
 const corser = require('corser')
-const shrinkRay = require('shrink-ray')
+const shrinkRay = require('shrink-ray-current')
 const bodyParser = require('body-parser')
 const { setupFirmware, buildFirmware } = require('./firmware')
 const rimraf = require('rimraf')
@@ -42,7 +42,9 @@ app.post('/', async (req, res, next) => {
 app.get('/downloads/:file', async (req, res, next) => {
   // Send hex to client
   res.download(join(HEX_BASE, req.params.file), err => {
-    res.status(404).send({ message: 'file does not exist' })
+    if (err) {
+      res.status(404).send({ message: 'file does not exist' })
+    }
   })
   // Clean up hex file
   rimraf(join(HEX_BASE, req.params.file), () => {})
