@@ -13,6 +13,6 @@ export function bindEvents () {
     } else {
       Alert.error(message)
     }
-    this.setState({ buildInProgress: false })
+    this.setState({ buildInProgress: false, buildMessage: '' })
   })
 }

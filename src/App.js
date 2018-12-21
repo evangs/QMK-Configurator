@@ -8,7 +8,9 @@ import {
   Modal,
   Button,
   Icon,
-  Header
+  Header,
+  Loader,
+  Dimmer
 } from 'semantic-ui-react'
 
 import Canvas from './components/canvas'
@@ -43,6 +45,7 @@ export default class extends Component {
       dirty: false,
       layersVisible: false,
       buildInProgress: false,
+      buildMessage: '',
       nextAction: null,
       exportLink: '',
       exportFileName: ''
@@ -99,11 +102,15 @@ export default class extends Component {
       settings,
       rules,
       indicators,
-      buildInProgress
+      buildInProgress,
+      buildMessage
     } = this.state
 
     return (
       <div>
+        <Dimmer active={buildInProgress}>
+          <Loader indeterminate>{buildMessage}</Loader>
+        </Dimmer>
         <Segment
           inverted
           textAlign='center'
@@ -678,7 +685,7 @@ export default class extends Component {
 
   _download () {
     const { activeBoard, layers, zones, settings, rules } = this.state
-    this.setState({ buildInProgress: true })
+    this.setState({ buildInProgress: true, buildMessage: 'Downloading Firmware' })
 
     const fullMap = []
     layers.forEach(l => {
@@ -703,12 +710,12 @@ export default class extends Component {
     })
     .then(res => res.json())
     .then(res => {
-      this.setState({ buildInProgress: false })
+      this.setState({ buildInProgress: false, buildMessage: '' })
       document.location.href = res.hex
       Alert.success(`${config[activeBoard].config.product} downloaded as ${res.hex.split('/')[2]}.`)
     })
     .catch(err => {
-      this.setState({ buildInProgress: false })
+      this.setState({ buildInProgress: false, buildMessage: '' })
       Alert.error(`Error downloading firmware. Check your internet connection and try again.`)
     })
   }
@@ -716,7 +723,7 @@ export default class extends Component {
   _flash () {
     const { activeBoard, layers, zones, settings, rules } = this.state
 
-    this.setState({ buildInProgress: false })
+    this.setState({ buildInProgress: true, buildMessage: 'Flashing Firmware' })
 
     const fullMap = []
     layers.forEach(l => {

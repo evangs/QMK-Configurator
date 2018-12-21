@@ -10,8 +10,7 @@ import {
   Icon,
   Modal,
   Input,
-  Table,
-  Loader
+  Table
 } from 'semantic-ui-react'
 import Layouts from './layouts'
 import { config } from '../data/config'
@@ -87,7 +86,7 @@ export default class extends Component {
                 disabled={buildInProgress}
                 onClick={dirty ? save : isElectron() ? flash : download}
                 style={{ cursor: 'pointer' }}>
-                  {dirty ? 'Save' : buildInProgress ? <Loader inverted inline active size='mini' /> : isElectron() ? 'Flash' : 'Download'}
+                  {dirty ? 'Save' : isElectron() ? 'Flash' : 'Download'}
                 </Button>
             </Menu.Item>
             <Menu.Item>
@@ -114,7 +113,11 @@ export default class extends Component {
                   <Icon name='plus' />
                 </Button>
               }>
-                <Header content={`New Layout or Layer for ${config[activeBoard].config.product}`} textAlign='center' style={{ marginTop: 50 }} />
+                <Header
+                  content={`New Layout or Layer for ${config[activeBoard].config.product}`}
+                  textAlign='center'
+                  style={{ marginTop: 50 }}
+                />
                 <Modal.Content>
                   <div style={{ position: 'absolute', right: '1rem', top: 0 }}>
                     <Button

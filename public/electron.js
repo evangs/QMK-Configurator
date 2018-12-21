@@ -91,7 +91,7 @@ electron.ipcMain.on('flash-firmware', async (event, arg) => {
     console.error(err.message)
     event.sender.send('flash-firmware-response', JSON.stringify({
       ok: false,
-      message: 'No device found. Did you push the reset button on your device?'
+      message: 'No device found. Did you push the reset button on your keyboard?'
     }))
     // Clean up build files
     rimraf(join(HEX_BASE, 'keyboards', dir), () => {})

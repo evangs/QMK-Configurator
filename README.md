@@ -68,7 +68,6 @@ Cleans the local docker server of dangling or stopped images
 ### Functionality
 
 - [ ] Dockerfile
-- [ ] Progress on flash and download
 
 ### UI
 
