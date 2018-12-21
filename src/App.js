@@ -495,14 +495,30 @@ export default class extends Component {
 
   _exportLayout (id) {
     const { activeBoard } = this.state
+
     const layout = this.state.layouts.find(l => l.id === id)
+    layout.immutable = false
+    delete layout.id
+
+    let layers = this.state.layers.slice(0)
+    const filtered = layers.filter(l => l.layoutId === id)
+    const mapped = filtered.map((l, i) => {
+      const layer = Object.assign({}, l)
+      delete layer.layoutId
+      delete layer.id
+      return layer
+    })
+
     const name = `${activeBoard}-${layout.name.toLowerCase()}-${new Date().getTime()}`
     const data = {
       type: 'layout',
-      data: layout
+      board: activeBoard,
+      data: {
+        layout: layout,
+        layers: mapped
+      }
     }
-    console.log(name, data)
-    // downloadObjectAsJson(name, data)
+    downloadObjectAsJson(name, data)
   }
 
   _exportLayer (id) {
@@ -521,7 +537,7 @@ export default class extends Component {
     downloadObjectAsJson(name, data)
   }
 
-  _importJson (data) {
+  _importJson (data, name) {
     if (!data) return
 
     const { activeBoard, activeLayout } = this.state
@@ -535,12 +551,54 @@ export default class extends Component {
         return
       }
       switch (result.type) {
-        case 'layout':
+        case 'layout': {
+          let { layers, layout } = result.data
+          layout.id = v4()
+          layers = layers.map(l => {
+            l.layoutId = layout.id
+            l.id = v4()
+            return l
+          })
+
+          if (name) {
+            layout.name = name
+          } else {
+            const nameExists = this.state.layouts.find(l => l.name === layout.name)
+            if (nameExists) {
+              layout.name = `${layout.name} (Copy)`
+            }
+          }
+
+          const layoutsClone = this.state.layouts.slice(0)
+          let layersClone = this.state.layers.slice(0)
+
+          layoutsClone.push(layout)
+          layersClone = layersClone.concat(layers)
+
+          this.setState({
+            layers: layersClone,
+            layouts: layoutsClone,
+            activeLayout: layout.id,
+            activeLayer: layers[0].id
+          }, this.checkSaveState)
+
+          break
+        }
         case 'layer': {
           const layer = result.data
           // Add IDs
           layer.layoutId = activeLayout
           layer.id = v4()
+
+          if (name) {
+            layer.name = name
+          } else {
+            const nameExists = this.state.layer.find(l => l.name === layer.name)
+            if (nameExists) {
+              layer.name = `${layer.name} (Copy)`
+            }
+          }
+
           // Push layer
           const layers = this.state.layers.slice(0)
           layers.push(layer)

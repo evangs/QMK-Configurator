@@ -67,13 +67,13 @@ Cleans the local docker server of dangling or stopped images
 
 ### Functionality
 
-- [ ] import/ export
-- [ ] Error handling
+- [ ] Error handling/ alerting
 
 ### UI
 
 - [ ] Media queries
 - [ ] Icon sets, SEO and Open Graph
+- [ ] fix d3 layers
 
 ### Desktop
 

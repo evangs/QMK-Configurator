@@ -145,7 +145,7 @@ export default class extends Component {
                 </Modal.Content>
                 <Modal.Actions>
                   <UploadButton label='Import' icon='download' onUpload={file => {
-                    importJson(file)
+                    importJson(file, name)
                     this.setState({ name: '', open: false })
                   }} />
                   <Button
