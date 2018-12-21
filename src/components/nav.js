@@ -15,7 +15,7 @@ import {
 import Layouts from './layouts'
 import { config } from '../data/config'
 import { isElectron } from '../utils/env'
-import logo from '../logo.png'
+import logo from '../logo.svg'
 
 export default class extends Component {
 
@@ -58,7 +58,7 @@ export default class extends Component {
         <Container>
 
           <Menu.Item as='div'>
-            <Image size='mini' src={logo} style={{ marginRight: '1.5em', filter: 'brightness(10)' }} />
+            <Image size='mini' src={logo} style={{ marginRight: '1.5em' }} />
           </Menu.Item>
 
           <Menu.Menu position='right'>

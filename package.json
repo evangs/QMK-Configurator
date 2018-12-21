@@ -33,6 +33,7 @@
     "@craco/craco": "^3.2.3",
     "body-parser": "^1.18.3",
     "corser": "^2.0.1",
+    "electron-updater": "^4.0.6",
     "express": "^4.16.4",
     "mkdirp": "^0.5.1",
     "rimraf": "^2.6.2",

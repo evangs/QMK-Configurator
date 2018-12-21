@@ -1,23 +1,58 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "The Van Keyboards: QMK Configurator",
+  "short_name": "QMK Configurator",
+  "theme_color": "#00B5AD",
+  "background_color": "#0f1010",
+  "display": "standalone",
+  "Scope": "/",
+  "start_url": "/",
+  "orientation": "any",
   "icons": [
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
+    },
+    {
+      "src": "icons/24x24.png",
+      "sizes": "24x24",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/48x48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/64x64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff",
-  "permissions": {
-    "usbDevices": [
-      {
-        "vendorId": 65198,
-        "productId": 34887
-      }
-    ]
-  }
+  "splash_pages": null
 }
