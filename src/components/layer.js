@@ -59,7 +59,13 @@ export default class extends Component {
     }
 
     // Calculate row width
-    const rowLength = data[1].reduce((a, d, i) => {
+    let longestRow = 0
+    data.forEach((r, i) => {
+      if (r.length > longestRow) {
+        longestRow = i
+      }
+    })
+    const rowLength = data[longestRow].reduce((a, d, i) => {
       a += getShape(d.shape)
       if (d.spacer) {
         switch (d.spacer) {

@@ -73,10 +73,6 @@ Cleans the local docker server of dangling or stopped images
 
 ## TODO
 
-### Functionality
-
-- [ ] Dockerfile
-
 ### UI
 
 - [ ] Media queries

@@ -8,7 +8,7 @@ roadkit.id = 'roadkit_rev3'
 // UI Config
 roadkit.ui = {
   scale: 75,
-  thumbScale: 5
+  thumbScale: 6
 }
 
 // config
