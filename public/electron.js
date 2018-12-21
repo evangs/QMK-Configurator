@@ -77,7 +77,10 @@ electron.ipcMain.on('flash-firmware', async (event, arg) => {
     await startFirmware()
     // Send success response
     console.log('firmware flashed successfully')
-    event.sender.send('flash-firmware-response', { ok: true })
+    event.sender.send('flash-firmware-response', JSON.stringify({
+      ok: true,
+      message: 'Firmware flashed successfully.'
+    }))
     // Clean up build files
     rimraf(join(HEX_BASE, 'keyboards', dir), () => {})
     rimraf(join(HEX_BASE, '.build', `*${dir}*`), () => {})
@@ -86,10 +89,10 @@ electron.ipcMain.on('flash-firmware', async (event, arg) => {
   } catch (err) {
     // Send down error
     console.error(err.message)
-    event.sender.send('flash-firmware-response', {
+    event.sender.send('flash-firmware-response', JSON.stringify({
       ok: false,
       message: 'No device found. Did you push the reset button on your device?'
-    })
+    }))
     // Clean up build files
     rimraf(join(HEX_BASE, 'keyboards', dir), () => {})
     rimraf(join(HEX_BASE, '.build', `*${dir}*`), () => {})

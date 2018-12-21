@@ -91,7 +91,7 @@ export default class extends Component {
       .data(data)
       .enter()
       .append('g')
-      .each(function(d, i){
+      .each(function (d, i) {
         // Reset pixels from left counter
         let spacedRow = false
         let pxFromLeft = ((200 * scaleFactor) - rowLength) / 2

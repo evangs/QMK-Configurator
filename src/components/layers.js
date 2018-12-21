@@ -5,7 +5,6 @@ import {
   Popup,
   Header,
   Modal,
-  Divider,
   Icon,
   Table,
   Input,
@@ -26,8 +25,7 @@ const reorder = (list, startIndex, endIndex) => {
 const getItemStyle = (isDragging, draggableStyle, active) => ({
   // some basic styles to make the layers look a bit nicer
   userSelect: 'none',
-  padding: '10px 10px 0 10px',
-  margin: `0 0 10px 0`,
+  padding: 10,
 
   // change background colour if dragging
   background: isDragging ? colors.dark : active ? colors.dark : 'transparent',
@@ -48,12 +46,7 @@ export default class Layers extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      layers: props.layers,
-      openEdit: false,
-      editName: '',
-      openClone: false,
-      cloneName: '',
-      openDelete: false
+      layers: props.layers
     }
     this.onDragEnd = this._onDragEnd.bind(this)
   }
@@ -118,7 +111,6 @@ export default class Layers extends Component {
                               textAlign: 'left',
                               cursor: 'pointer'
                             }}>
-
                               <p style={{
                                 whiteSpace: 'nowrap',
                                 overflow: 'hidden',
@@ -159,11 +151,9 @@ export default class Layers extends Component {
 
                             { /* DELETE LAYER */ }
                             <DeleteModal layer={layer} action={deleteLayer} disabled={filteredLayers.length <= 1} />
-
                           </div>
                           <div style={{ clear: 'both' }} />
-                        </Container>
-                        <Divider hidden={layer.id === activeLayer} />
+                      </Container>
                     </div>
                   )}
                 </Draggable>

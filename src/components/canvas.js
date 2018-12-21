@@ -48,7 +48,7 @@ export default class extends Component {
         style={{
           margin: 0,
           borderRadius: 0,
-          position: 'relative'
+          position: 'relative',
         }}>
         <Sidebar
           as={Segment}

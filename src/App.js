@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { config, initialState, getLastSave, persistState } from './data/config'
 import { v4 } from 'uuid'
+import Alert from 'react-s-alert'
 import {
   Container,
   Segment,
@@ -15,6 +16,8 @@ import Nav from './components/nav'
 import KeyTypeMenu from './components/key-type-menu'
 import Settings from './components/settings'
 import { isElectron } from './utils/env'
+import 'react-s-alert/dist/s-alert-default.css'
+import 'react-s-alert/dist/s-alert-css-effects/jelly.css'
 import './theme/semantic.less'
 import './shake.scss'
 
@@ -110,6 +113,12 @@ export default class extends Component {
           }}
           vertical
         >
+          <Alert
+            effect='jelly'
+            position='bottom-right'
+            timeout={7000}
+            stack={{ limit: 3 }}
+          />
           <Nav
             fixed={fixed}
             boards={boards}
@@ -220,7 +229,6 @@ export default class extends Component {
   }
 
   _selectBoard (e, data) {
-    // TODO: Check save state and fire modal
     const { lastSave } = this.state
     if (lastSave !== getLastSave(this.state)) {
       this.setState({ nextAction: () => {
@@ -275,7 +283,9 @@ export default class extends Component {
   }
 
   _newLayout (name) {
-    if (!name) return
+    if (!name) {
+      name = 'Layout (New)'
+    }
     const { activeBoard, layouts, layers } = this.state
 
     const layoutId = v4()
@@ -304,6 +314,8 @@ export default class extends Component {
       layouts: clonedLayouts,
       layers: clonedLayers
     }, this.checkSaveState)
+
+    Alert.success(`Layout ${layout.name} created successfully.`)
   }
 
   _updateZone (e, data) {
@@ -362,6 +374,7 @@ export default class extends Component {
     }
     layers.push(layer)
     this.setState({ layers, activeLayer: layerId }, this.checkSaveState)
+    Alert.success(`Layer ${layer.name} created successfully.`)
   }
 
   _cloneLayout (id, name) {
@@ -398,9 +411,9 @@ export default class extends Component {
       activeLayer: layerId,
       layouts,
       layers
-    })
+    }, this.checkSaveState)
 
-    this.checkSaveState()
+    Alert.success(`Layout ${layout.name} cloned successfully.`)
 
   }
 
@@ -413,10 +426,10 @@ export default class extends Component {
     const layer = Object.assign({}, data, { name, id })
     layers.push(layer)
     this.setState({ layers, activeLayer: id }, this.checkSaveState)
+    Alert.success(`Layer ${layer.name} cloned successfully.`)
   }
 
   _deleteLayer (layer) {
-    console.log(layer)
     let activeLayer = this.state.activeLayer
     const layers = this.state.layers
 
@@ -427,11 +440,17 @@ export default class extends Component {
     if (this.state.layers.length > 1) {
       const layers = this.state.layers.slice(0).filter(l => l.id !== layer.id)
       this.setState({ layers, activeLayer }, this.checkSaveState)
+      Alert.success(`Layer ${layer.name} deleted successfully.`)
+    } else {
+      Alert.error(`Can not delete last layer. Create a new one first.`)
     }
   }
 
   _editLayer (name, layer) {
-    if (!name) return
+    if (!name) {
+      Alert.error(`Name required to update layer.`)
+      return
+    }
     const layers = this.state.layers.slice(0).map(l => {
       if (l.id === layer.id) {
         l.name = name
@@ -439,6 +458,7 @@ export default class extends Component {
       return l
     })
     this.setState({ layers }, this.checkSaveState)
+    Alert.success(`Layer ${name} updated successfully.`)
   }
 
   _sortLayers (layers) {
@@ -446,7 +466,10 @@ export default class extends Component {
   }
 
   _editLayout (name, layout) {
-    if (!name) return
+    if (!name) {
+      Alert.error(`Name required to update layout.`)
+      return
+    }
     const layouts = this.state.layouts.slice(0).map(l => {
       if (l.id === layout.id) {
         l.name = name
@@ -454,6 +477,7 @@ export default class extends Component {
       return l
     })
     this.setState({ layouts }, this.checkSaveState)
+    Alert.success(`Layout ${name} updated successfully.`)
   }
 
   _deleteLayout (layout) {
@@ -465,6 +489,7 @@ export default class extends Component {
     const layers = this.state.layers.slice(0).filter(l => l.layoutId !== layout.id)
 
     this.setState({ layouts, layers, activeLayout, activeLayer }, this.checkSaveState)
+    Alert.success(`Layer ${layout.name} deleted successfully.`)
   }
 
   _addIndicator (id, indicator) {
@@ -519,6 +544,7 @@ export default class extends Component {
       }
     }
     downloadObjectAsJson(name, data)
+    Alert.success(`Layout ${layout.name} exported as ${name}.`)
   }
 
   _exportLayer (id) {
@@ -535,6 +561,7 @@ export default class extends Component {
       data: layer
     }
     downloadObjectAsJson(name, data)
+    Alert.success(`Layer ${layer.name} exported as ${name}.`)
   }
 
   _importJson (data, name) {
@@ -547,7 +574,7 @@ export default class extends Component {
       const result = JSON.parse(e.target.result)
       if (!result.type) return
       if (activeBoard !== result.board) {
-        // TODO: Handle error here
+        Alert.error(`This configuration is for ${result.board}. Currently selected keyboard is ${activeBoard}.`)
         return
       }
       switch (result.type) {
@@ -582,6 +609,8 @@ export default class extends Component {
             activeLayer: layers[0].id
           }, this.checkSaveState)
 
+          Alert.success(`Layout ${layout.name} imported successfully.`)
+
           break
         }
         case 'layer': {
@@ -593,7 +622,7 @@ export default class extends Component {
           if (name) {
             layer.name = name
           } else {
-            const nameExists = this.state.layer.find(l => l.name === layer.name)
+            const nameExists = this.state.layers.find(l => l.name === layer.name)
             if (nameExists) {
               layer.name = `${layer.name} (Copy)`
             }
@@ -604,6 +633,9 @@ export default class extends Component {
           layers.push(layer)
 
           this.setState({ layers, activeLayer: layer.id }, this.checkSaveState)
+
+          Alert.success(`Layer ${layer.name} imported successfully.`)
+
           break
         }
         default:
@@ -616,8 +648,10 @@ export default class extends Component {
 
   _save () {
     persistState(this.state)
+    const { activeBoard } = this.state
     const lastSave = getLastSave(this.state)
     this.setState({ lastSave }, this.checkSaveState)
+    Alert.success(`${config[activeBoard].config.product} configuration saved successfully.`)
   }
 
   _reset () {
@@ -626,15 +660,19 @@ export default class extends Component {
     localStorage.removeItem('activeLayer')
     localStorage.removeItem(activeBoard)
     this.setState(initialState(activeBoard))
+    Alert.success(`${config[activeBoard].config.product} reset to default factory configuration.`)
   }
 
   _revert () {
-    const { dirty, lastSave, layouts, layers } = this.state
+    const { dirty, lastSave, layouts, layers, activeBoard } = this.state
     if (dirty) {
       this.setState(Object.assign({}, {
         activeLayout: layouts[0].id,
         activeLayer: layers[0].id
       }, JSON.parse(lastSave)), this.checkSaveState)
+      Alert.success(`${config[activeBoard].config.product} reset to last save.`)
+    } else {
+      Alert.info(`${config[activeBoard].config.product} is already at last save.`)
     }
   }
 
@@ -667,13 +705,11 @@ export default class extends Component {
     .then(res => {
       this.setState({ buildInProgress: false })
       document.location.href = res.hex
+      Alert.success(`${config[activeBoard].config.product} downloaded as ${res.hex.split('/')[2]}.`)
     })
     .catch(err => {
-      console.log(err)
-      this.setState({
-        buildInProgress: false,
-        error: err
-      })
+      this.setState({ buildInProgress: false })
+      Alert.error(`Error downloading firmware. Check your internet connection and try again.`)
     })
   }
 
