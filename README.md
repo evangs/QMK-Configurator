@@ -78,8 +78,8 @@ Cleans the local docker server of dangling or stopped images
 ### UI
 
 - [x] App Icon sets
-- [ ] Electron build icons
-- [ ] Open Graph
+- [x] Electron build icons
+- [x] Open Graph
 - [ ] Media queries (higher order component for keyboard scale, info visibility)
 
 ### Desktop
