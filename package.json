@@ -1,17 +1,54 @@
 {
-  "name": "qmk",
+  "name": "qmk-configurator",
   "version": "0.1.0",
   "private": true,
   "main": "public/electron.js",
   "homepage": "./",
+  "author": "The Van Keyboards",
+  "description": "Configurator for the QMK keyboard firmware",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/evangs/configurator.git"
+  },
   "build": {
     "appId": "com.thevankeyboards.qmk",
+    "productName": "QMK Configurator",
     "files": [
       "build/**/*",
       "node_modules/**/*"
     ],
     "directories": {
       "buildResources": "assets"
+    },
+    "mac": {
+      "target": "dmg",
+      "category": "public.app-category.utility",
+      "publish": [ "github" ]
+    },
+    "win": {
+      "target": "nsis",
+      "publish": [ "github" ]
+    },
+    "linux": {
+      "target": "AppImage",
+      "publish": [ "github" ]
+    },
+    "dmg": {
+      "contents": {
+        "x": 270,
+        "y": 250
+      }
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "appImage": {
+      "license": "assets/license_en.txt",
+      "category": "Utility"
+    },
+    "github": {
+      "vPrefixedTagName": false
     }
   },
   "scripts": {
@@ -24,6 +61,7 @@
     "preelectron:dist": "yarn build",
     "electron:dist": "electron-builder -mwl",
     "electron:pack": "electron-builder --dir",
+    "electron:release": "build",
     "predocker:build": "yarn build",
     "docker:build": "docker build -t qmk .",
     "docker:run": "docker run -it --rm -p 8000:80 --name qmk qmk",

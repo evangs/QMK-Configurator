@@ -77,12 +77,9 @@ Cleans the local docker server of dangling or stopped images
 
 ### UI
 
-- [x] App Icon sets
-- [x] Electron build icons
-- [x] Open Graph
 - [ ] Media queries (higher order component for keyboard scale, info visibility)
 
 ### Desktop
 
-- [ ] auto-updater
+- [ ] Test auto-updater
 - [ ] Test on linux and windows
