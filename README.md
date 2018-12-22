@@ -58,7 +58,13 @@ Builds a test package for the platform you are working on.
 
 ### `npm run electron:dist`
 
-Builds distribution packages for OSX, Windows and Linux,=.
+Builds distribution packages for OSX, Windows and Linux.
+
+### `npm run electron:release`
+
+Release new electron version.
+
+> First you will need to update the version in `package.json` and create a [release](https://github.com/evangs/configurator/releases) with the same version on github.
 
 ### `npm run docker:build`
 

@@ -5,7 +5,7 @@ const { exec } = require('child_process')
 const { join } = require('path')
 const isDev = require('electron-is-dev')
 const firstRun = require('electron-first-run')
-const { setupFirmware, buildFirmware } = require('../server/firmware')
+const { setupFirmware, buildFirmware } = require('./server/firmware')
 
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
