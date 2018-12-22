@@ -10,7 +10,8 @@ import {
   Icon,
   Header,
   Loader,
-  Dimmer
+  Dimmer,
+  Responsive
 } from 'semantic-ui-react'
 
 import Canvas from './components/canvas'
@@ -109,117 +110,131 @@ export default class extends Component {
 
     return (
       <div>
-        <Dimmer active={buildInProgress}>
-          <Loader indeterminate>{buildMessage}</Loader>
-        </Dimmer>
-        <Segment
-          inverted
-          textAlign='center'
-          style={{
-            padding: 0,
-            margin: 0
-          }}
-          vertical
-        >
-          <Alert
-            effect='jelly'
-            position='bottom-right'
-            timeout={7000}
-            stack={{ limit: 3 }}
-          />
-          <Nav
-            fixed={fixed}
-            boards={boards}
-            activeBoard={activeBoard}
-            activeLayout={activeLayout}
-            layouts={layouts}
-            layers={layers}
-            dirty={dirty}
-            newLayout={this.newLayout}
-            newLayer={this.newLayer}
-            selectBoard={this.selectBoard}
-            deleteLayout={this.deleteLayout}
-            selectLayout={this.selectLayout}
-            exportLayout={this.exportLayout}
-            importJson={this.importJson}
-            cloneLayout={this.cloneLayout}
-            save={this.save}
-            download={this.download}
-            flash={this.flash}
-            buildInProgress={buildInProgress}
-          />
-          <div style={{ paddingTop: 60 }} />
-          <Canvas
-            layers={layers}
-            layouts={layouts}
-            zones={zones}
-            indicators={indicators}
-            activeBoard={activeBoard}
-            activeLayout={activeLayout}
-            activeLayer={activeLayer}
-            activeKeyType={activeKeyType}
-            layersVisible={layersVisible}
-            toggleLayers={this.toggleLayers}
-            setKey={this.setKey}
-            selectLayer={this.selectLayer}
-            cloneLayer={this.cloneLayer}
-            deleteLayer={this.deleteLayer}
-            editLayout={this.editLayout}
-            editLayer={this.editLayer}
-            exportLayer={this.exportLayer}
-            sortLayers={this.sortLayers}
-            addIndicator={this.addIndicator}
-            updateIndicator={this.updateIndicator}
-            deleteIndicator={this.deleteIndicator}
-          />
-        </Segment>
-
-        <Container>
-          <KeyTypeMenu
-            setActiveKeyType={this.setActiveKeyType}
-            activeKeyType={activeKeyType}
-          />
-          <Settings
-            activeKeyType={activeKeyType}
-            zones={zones}
-            settings={settings}
-            rules={rules}
-            updateZone={this.updateZone}
-            updateSetting={this.updateSetting}
-            reset={this.reset}
-            revert={this.revert}
-          />
-
-          <Modal open={Boolean(nextAction)} basic>
-            <Header
-              content='You have unsaved changes. Would you like to save or discard them?'
-              style={{ marginTop: 50 }} />
-            <div style={{ position: 'absolute', right: '1rem', top: 0 }}>
-              <Button icon inverted basic color='red' onClick={() => this.setState({ nextAction: null })}>
-                <Icon name='close' />
-              </Button>
+        <Responsive maxWidth={768}>
+          <Dimmer active>
+            <div style={{ textAlign: 'center', marginBottom: 20 }}>
+              <Icon.Group size='huge'>
+                <Icon size='big' name='expand' />
+                <Icon name='expand arrows alternate' />
+              </Icon.Group>
             </div>
-            <Modal.Actions>
-              <Button
-                basic
-                inverted
-                color='red'
-                onClick={nextAction}>
-                <Icon name='cancel' /> Discard
-              </Button>
-              <Button
-                basic
-                inverted
-                color='green'
-                onClick={() => {
-                  this.save()
-                  this.setState({ nextAction: null })
-                }}>
-                <Icon name='save' /> Save
-              </Button>
-            </Modal.Actions>
-          </Modal>
-        </Container>
+            <p style={{ marginBottom: 5 }}>This application requires a little more space.</p>
+            <p>Please expand your window.</p>
+          </Dimmer>
+        </Responsive>
+        <Responsive minWidth={769}>
+          <Dimmer active={buildInProgress}>
+            <Loader indeterminate>{buildMessage}</Loader>
+          </Dimmer>
+          <Segment
+            inverted
+            textAlign='center'
+            style={{
+              padding: 0,
+              margin: 0
+            }}
+            vertical
+          >
+            <Alert
+              effect='jelly'
+              position='bottom-right'
+              timeout={7000}
+              stack={{ limit: 3 }}
+            />
+            <Nav
+              fixed={fixed}
+              boards={boards}
+              activeBoard={activeBoard}
+              activeLayout={activeLayout}
+              layouts={layouts}
+              layers={layers}
+              dirty={dirty}
+              newLayout={this.newLayout}
+              newLayer={this.newLayer}
+              selectBoard={this.selectBoard}
+              deleteLayout={this.deleteLayout}
+              selectLayout={this.selectLayout}
+              exportLayout={this.exportLayout}
+              importJson={this.importJson}
+              cloneLayout={this.cloneLayout}
+              save={this.save}
+              download={this.download}
+              flash={this.flash}
+              buildInProgress={buildInProgress}
+            />
+            <div style={{ paddingTop: 60 }} />
+            <Canvas
+              layers={layers}
+              layouts={layouts}
+              zones={zones}
+              indicators={indicators}
+              activeBoard={activeBoard}
+              activeLayout={activeLayout}
+              activeLayer={activeLayer}
+              activeKeyType={activeKeyType}
+              layersVisible={layersVisible}
+              toggleLayers={this.toggleLayers}
+              setKey={this.setKey}
+              selectLayer={this.selectLayer}
+              cloneLayer={this.cloneLayer}
+              deleteLayer={this.deleteLayer}
+              editLayout={this.editLayout}
+              editLayer={this.editLayer}
+              exportLayer={this.exportLayer}
+              sortLayers={this.sortLayers}
+              addIndicator={this.addIndicator}
+              updateIndicator={this.updateIndicator}
+              deleteIndicator={this.deleteIndicator}
+            />
+          </Segment>
+
+          <Container>
+            <KeyTypeMenu
+              setActiveKeyType={this.setActiveKeyType}
+              activeKeyType={activeKeyType}
+            />
+            <Settings
+              activeKeyType={activeKeyType}
+              zones={zones}
+              settings={settings}
+              rules={rules}
+              updateZone={this.updateZone}
+              updateSetting={this.updateSetting}
+              reset={this.reset}
+              revert={this.revert}
+            />
+
+            <Modal open={Boolean(nextAction)} basic>
+              <Header
+                content='You have unsaved changes. Would you like to save or discard them?'
+                style={{ marginTop: 50 }} />
+              <div style={{ position: 'absolute', right: '1rem', top: 0 }}>
+                <Button icon inverted basic color='red' onClick={() => this.setState({ nextAction: null })}>
+                  <Icon name='close' />
+                </Button>
+              </div>
+              <Modal.Actions>
+                <Button
+                  basic
+                  inverted
+                  color='red'
+                  onClick={nextAction}>
+                  <Icon name='cancel' /> Discard
+                </Button>
+                <Button
+                  basic
+                  inverted
+                  color='green'
+                  onClick={() => {
+                    this.save()
+                    this.setState({ nextAction: null })
+                  }}>
+                  <Icon name='save' /> Save
+                </Button>
+              </Modal.Actions>
+            </Modal>
+          </Container>
+        </Responsive>
       </div>
     )
   }

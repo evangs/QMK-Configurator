@@ -22,7 +22,14 @@ export default class extends Component {
             name={k.value}
             active={activeKeyType === k.value}
             onClick={setActiveKeyType.bind(this, k.value)}>
-            {k.display}
+              <span style={{
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+                padding: '0 4px'
+              }}>
+                {k.display}
+              </span>
             </Menu.Item>
           )
           if (k.tooltip) {

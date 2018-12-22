@@ -44,7 +44,7 @@ export default class extends Component {
   render () {
     const {
       id,
-      scaleFactor,
+      scale,
       data,
       activeLayerIndex,
       addIndicator,
@@ -70,7 +70,7 @@ export default class extends Component {
       <Modal open={open} basic size='large' trigger={
         <Popup inverted content={`Indicator ${id + 1}`} trigger={
           <Button icon basic style={{
-            marginLeft: scaleFactor - (id === 0 ? 19 : 19 * 2),
+            marginLeft: scale - (id === 0 ? 19 : 19 * 2),
             marginRight: 0
           }}
           onClick={() => { this.setState({ open: true })}}>

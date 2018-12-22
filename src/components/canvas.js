@@ -4,11 +4,13 @@ import {
   Icon,
   Sidebar,
   Segment,
-  Button
+  Button,
+  Responsive
 } from 'semantic-ui-react'
 
 import Keyboard from './keyboard'
 import Layers from './layers'
+import Scale from './scale'
 import Info from './info'
 import { config } from '../data/config'
 
@@ -94,33 +96,38 @@ export default class extends Component {
               name={layersVisible ? '' : layers.find(l => l.id === activeLayer).name}
               onClick={toggleLayers}
             />
-            <Info
-              manufacturer={config[activeBoard].config.manufacturer}
-              product={config[activeBoard].config.product}
-              description={config[activeBoard].config.description}
-              layout={layouts.find(l => l.id === activeLayout)}
-              layer={layers.find(l => l.id === activeLayer)}
-              editLayout={editLayout}
-              editLayer={editLayer}
-            />
-            <Container fluid style={{
+            <Responsive {...Responsive.onlyWidescreen}>
+              <Info
+                manufacturer={config[activeBoard].config.manufacturer}
+                product={config[activeBoard].config.product}
+                description={config[activeBoard].config.description}
+                layout={layouts.find(l => l.id === activeLayout)}
+                layer={layers.find(l => l.id === activeLayer)}
+                editLayout={editLayout}
+                editLayer={editLayer}
+              />
+            </Responsive>
+            <Container id='scrollbar' fluid style={{
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              height: 490
+              height: 490,
+              overflowX: 'auto'
             }}>
-            <Keyboard
-              layers={layers}
-              zones={zones}
-              indicators={indicators}
-              activeBoard={activeBoard}
-              activeLayer={activeLayer}
-              activeKeyType={activeKeyType}
-              setKey={setKey}
-              addIndicator={addIndicator}
-              updateIndicator={updateIndicator}
-              deleteIndicator={deleteIndicator}
-            />
+            <Scale>
+              <Keyboard
+                zones={zones}
+                layers={layers}
+                setKey={setKey}
+                indicators={indicators}
+                activeBoard={activeBoard}
+                activeLayer={activeLayer}
+                addIndicator={addIndicator}
+                activeKeyType={activeKeyType}
+                updateIndicator={updateIndicator}
+                deleteIndicator={deleteIndicator}
+              />
+            </Scale>
           </Container>
         </Sidebar.Pusher>
       </Sidebar.Pushable>

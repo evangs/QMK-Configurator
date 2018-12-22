@@ -13,12 +13,13 @@ export default ({
   addIndicator,
   updateIndicator,
   deleteIndicator,
+  scaleFactor,
   setKey
 }) => {
 
   let activeLayerIndex = 0
   const keymap = config[activeBoard].keymap
-  const scaleFactor = config[activeBoard].ui.scale
+  const scale = config[activeBoard].ui.scale * scaleFactor
   const activeLayerData = layers.find((l, i) => {
     if (l.id === activeLayer) {
       activeLayerIndex = i
@@ -37,7 +38,7 @@ export default ({
               key={`led-${i}`}
               id={i}
               data={d}
-              scaleFactor={scaleFactor}
+              scale={scale}
               activeLayerIndex={activeLayerIndex}
               addIndicator={addIndicator}
               updateIndicator={updateIndicator}
@@ -46,7 +47,10 @@ export default ({
           )
         })}
       </div>
-      <div style={{ maxWidth: 'fit-content' }}>
+      <div style={{
+        maxWidth: 'fit-content',
+        minWidth: 'max-content'
+      }}>
         {keys.map((r, i) => {
           return (
             <div key={`r${i}`} style={{
@@ -59,8 +63,9 @@ export default ({
                     key={k.id}
                     activeKeyType={activeKeyType}
                     setKey={setKey}
-                    scaleFactor={config[activeBoard].ui.scale}
-                    {...k} />
+                    scale={scale}
+                    {...k}
+                  />
                 )
               })}
             </div>

@@ -20,7 +20,7 @@ export default ({
 }) => (
   <Table basic celled collapsing inverted style={{
     position: 'absolute',
-    top: 0,
+    top: 14,
     right: 14,
     border: '1px solid rgba(255, 255, 255, 0.1)',
     borderRadius: 0,
