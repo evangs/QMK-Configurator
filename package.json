@@ -22,16 +22,16 @@
       "buildResources": "assets"
     },
     "mac": {
-      "target": "dmg",
+      "target": ["zip", "dmg"],
       "category": "public.app-category.utility",
       "publish": [ "github" ]
     },
     "win": {
-      "target": "nsis",
+      "target": [ "zip", "nsis" ],
       "publish": [ "github" ]
     },
     "linux": {
-      "target": "AppImage",
+      "target": ["zip", "AppImage"],
       "publish": [ "github" ]
     },
     "nsis": {
@@ -54,7 +54,8 @@
     "preelectron:dist": "yarn build",
     "electron:dist": "electron-builder -mwl",
     "electron:pack": "electron-builder --dir",
-    "electron:release": "build",
+    "preelectron:release": "yarn build",
+    "electron:release": "electron-builder -mwl -p always",
     "predocker:build": "yarn build",
     "docker:build": "docker build -t qmk .",
     "docker:run": "docker run -it --rm -p 8000:80 --name qmk qmk",

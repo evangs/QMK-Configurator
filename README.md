@@ -9,7 +9,7 @@ Generic configurator for QMK intended to support via GUI all that QMK is capable
 - [yarn](https://yarnpkg.com)
 - [docker](https://www.docker.com/)
 
-> Use  (node version manager) to install node v10.14.2 `nvm install 10`
+> Use [node version manager](https://github.com/creationix/nvm) to install node v10.14.2 `nvm install 10`
 
 ## Available Scripts
 
@@ -64,7 +64,7 @@ Builds distribution packages for OSX, Windows and Linux.
 
 Release new electron version.
 
-> First you will need to update the version in `package.json` and create a [release](https://github.com/evangs/configurator/releases) with the same version on github.
+> You will need to generate a GitHub access token by going to [https://github.com/settings/tokens/new](https://github.com/settings/tokens/new). The access token should have the `repo` scope/permission. Once you have the token, add it to your `.bashrc`, `.zshrc` or similar. `export GH_TOKEN=<YOUR_TOKEN_HERE>`
 
 ### `npm run docker:build`
 
@@ -77,15 +77,3 @@ Runs the docker image
 ### `npm run docker:clean`
 
 Cleans the local docker server of dangling or stopped images
-
-
-## TODO
-
-### UI
-
-- [ ] Media queries (higher order component for keyboard scale, info visibility)
-
-### Desktop
-
-- [ ] Test auto-updater
-- [ ] Test on linux and windows

@@ -5,7 +5,8 @@ const { exec } = require('child_process')
 const { join } = require('path')
 const isDev = require('electron-is-dev')
 const firstRun = require('electron-first-run')
-const { setupFirmware, buildFirmware } = require('./server/firmware')
+const { autoUpdater } = require('electron-updater')
+const { setupFirmware, buildFirmware } = require('../server/firmware')
 
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
@@ -41,6 +42,7 @@ const WINDOW_CONFIG = {
 }
 
 function createWindow() {
+  autoUpdater.checkForUpdatesAndNotify()
   mainWindow = new BrowserWindow(WINDOW_CONFIG)
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${join(__dirname, '../build/index.html')}`)
   mainWindow.on('closed', () => mainWindow = null)
