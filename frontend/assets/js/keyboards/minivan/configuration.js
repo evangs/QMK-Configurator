@@ -466,7 +466,7 @@ minivan.keySections = [
                   zone: 'Left Hand'
                 },
                 {
-                  id: 'k34',
+                  id: 'k32',
                   value: 'LALT',
                   type: 'normal',
                   secondary: null,
@@ -475,7 +475,7 @@ minivan.keySections = [
                   zone: 'Left Hand'
                 },
                 {
-                  id: 'k32',
+                  id: 'k34',
                   value: 'LGUI',
                   type: 'normal',
                   secondary: null,
@@ -923,7 +923,7 @@ minivan.keySections = [
                   shape: 'k100'
                 },
                 {
-                  id: 'k34',
+                  id: 'k32',
                   value: 'TRNS',
                   type: 'normal',
                   secondary: null,
@@ -931,7 +931,7 @@ minivan.keySections = [
                   shape: 'k100'
                 },
                 {
-                  id: 'k32',
+                  id: 'k34',
                   value: 'TRNS',
                   type: 'normal',
                   secondary: null,
@@ -1371,7 +1371,7 @@ minivan.keySections = [
                   shape: 'k100'
                 },
                 {
-                  id: 'k34',
+                  id: 'k32',
                   value: 'TRNS',
                   type: 'normal',
                   secondary: null,
@@ -1379,7 +1379,7 @@ minivan.keySections = [
                   shape: 'k100'
                 },
                 {
-                  id: 'k32',
+                  id: 'k34',
                   value: 'TRNS',
                   type: 'normal',
                   secondary: null,
@@ -1819,7 +1819,7 @@ minivan.keySections = [
                   shape: 'k100'
                 },
                 {
-                  id: 'k34',
+                  id: 'k32',
                   value: 'TRNS',
                   type: 'normal',
                   secondary: null,
@@ -1827,7 +1827,7 @@ minivan.keySections = [
                   shape: 'k100'
                 },
                 {
-                  id: 'k32',
+                  id: 'k34',
                   value: 'TRNS',
                   type: 'normal',
                   secondary: null,
