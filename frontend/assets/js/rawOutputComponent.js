@@ -20,6 +20,9 @@ Vue.component('raw-output', {
       keyboard.config = JSON.parse(JSON.stringify(layout.config));
       keyboard.zones = JSON.parse(JSON.stringify(layout.zones));
       keyboard.keySections = JSON.parse(JSON.stringify(layout.keySections));
+			if (layout.indicators) {
+				keyboard.indicators = JSON.parse(JSON.stringify(layout.indicators));
+			}
     	this.$emit('updateactivekeyboard', keyboard);
     }
   }

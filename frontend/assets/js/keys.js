@@ -114,7 +114,12 @@ var KEYS = [
       {value: 'INT2', display: 'KANA', tooltip: 'JIS Katakana/Hiragana'},
       {value: 'INT3', display: 'JYEN', tooltip: 'JIS ¥'},
       {value: 'INT4', display: 'HENK', tooltip: 'JIS Henkan'},
-      {value: 'INT5', display: 'MHEN', tooltip: 'JIS Muhenkan'}
+      {value: 'INT5', display: 'MHEN', tooltip: 'JIS Muhenkan'},
+      {value: 'IME', display: 'IME', tooltip: 'IME'},
+      {value: 'LANG1', display: 'LANG1'},
+      {value: 'LANG2', display: 'LANG2'},
+      {value: 'LANG3', display: 'LANG3'},
+      {value: 'LANG4', display: 'LANG4'}
     ]
   },
   {
@@ -250,6 +255,8 @@ var KEYS = [
       {value: 'BL_STEP', display: 'Toggle Led'},
       {value: 'BL_INC', display: 'LED +', tooltip: 'Increase LED Brightness'},
       {value: 'BL_DEC', display: 'LED -', tooltip: 'Decrease LED Brightness'},
+      {value: 'RGB_VAI', display: 'RGB +', tooltip: 'Increase RGB Brightness'},
+      {value: 'RGB_VAD', display: 'RGB -', tooltip: 'Decrease RGB Brightness'},
       {value: 'RESET', display: 'Reset'},
       {value: 'NO', display: 'No Action'}
     ]
