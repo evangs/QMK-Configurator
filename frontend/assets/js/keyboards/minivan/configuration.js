@@ -10,7 +10,7 @@ minivan.config = {
     productId: '0x8847',
     deviceVersion: '0x0001',
     manufacturer: 'TheVan Keyboards',
-    product: 'MiniVan',
+    product: 'Kumo/MiniVan',
     description: 'Hotswap MiniVan 40%',
     matrixRowPins: ['D7', 'B5', 'F7', 'D4'],
     matrixColumnPins: ['D2', 'D3', 'D5', 'D6', 'B4', 'B6', 'F6', 'F5', 'F4', 'F1', 'F0', 'B3'],
@@ -72,7 +72,7 @@ minivan.configKeymap.keys = [
     "K00", "K01", "K02", "K03", "K04", "K05", "K06", "K07", "K08", "K09", "K0A", "K0B",
     "K10", "K11", "K12", "K13", "K14", "K15", "K16", "K17", "K18", "K19", "K1A", "K1B",
     "K20", "K21", "K22", "K23", "K24", "K25", "K26", "K27", "K28", "K29", "K2A", "K2B",
-    "K30", "K31", "K34", "K32", "K33", "K37", "K38", "K39", "K3A", "K3B"
+    "K30", "K31", "K32", "K34", "K33", "K37", "K38", "K39", "K3A", "K3B"
 ];
 
 minivan.configKeymap.positions = [
@@ -432,11 +432,6 @@ minivan.keySections = [
                   zone: 'Left Hand'
                 },
                 {
-                  id: 'k34',
-                  value: 'NO',
-                  type: 'nodisplay'
-                },
-                {
                   id: 'k32',
                   value: 'LGUI',
                   type: 'normal',
@@ -444,6 +439,11 @@ minivan.keySections = [
                   showMenu: false,
                   shape: 'k125',
                   zone: 'Left Hand'
+                },
+                {
+                  id: 'k34',
+                  value: 'NO',
+                  type: 'nodisplay'
                 }
             ],
             [
@@ -892,17 +892,17 @@ minivan.keySections = [
                   shape: 'k150'
                 },
                 {
-                  id: 'k34',
-                  value: 'NO',
-                  type: 'nodisplay'
-                },
-                {
                   id: 'k32',
                   value: 'TRNS',
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
                   shape: 'k125'
+                },
+                {
+                  id: 'k34',
+                  value: 'NO',
+                  type: 'nodisplay'
                 }
             ],
             [
@@ -1340,17 +1340,17 @@ minivan.keySections = [
                   shape: 'k150'
                 },
                 {
-                  id: 'k34',
-                  value: 'NO',
-                  type: 'nodisplay'
-                },
-                {
                   id: 'k32',
                   value: 'TRNS',
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
                   shape: 'k125'
+                },
+                {
+                  id: 'k34',
+                  value: 'NO',
+                  type: 'nodisplay'
                 }
             ],
             [
@@ -1788,17 +1788,17 @@ minivan.keySections = [
                   shape: 'k150'
                 },
                 {
-                  id: 'k34',
-                  value: 'NO',
-                  type: 'nodisplay'
-                },
-                {
                   id: 'k32',
                   value: 'B',
                   type: 'normal',
                   secondary: null,
                   showMenu: false,
                   shape: 'k125'
+                },
+                {
+                  id: 'k34',
+                  value: 'NO',
+                  type: 'nodisplay'
                 }
             ],
             [
