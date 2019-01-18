@@ -133,7 +133,7 @@ new Vue({
         this.layoutName = '';
       }
     	this.activeKeyboard.timestamp = new Date().getTime();
-    	Vue.set(this.savedLayouts, this.activeKeyboard.layoutName, this.activeKeyboard);
+    	Vue.set(this.savedLayouts, this.activeKeyboard.layoutName, JSON.parse(JSON.stringify(this.activeKeyboard)));
     	localStorage.setItem('savedKeyboardLayouts', JSON.stringify(this.savedLayouts));
     },
     deleteSavedLayout: function(layoutName) {
