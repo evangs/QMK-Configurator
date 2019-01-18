@@ -128,12 +128,13 @@ new Vue({
       });
     },
     saveLayout: function() {
+      var layoutCopy = JSON.parse(JSON.stringify(this.activeKeyboard));
       if (this.layoutName.trim()) {
-      	this.activeKeyboard.layoutName = this.layoutName.trim();
+      	layoutCopy.layoutName = this.layoutName.trim();
         this.layoutName = '';
       }
-    	this.activeKeyboard.timestamp = new Date().getTime();
-    	Vue.set(this.savedLayouts, this.activeKeyboard.layoutName, JSON.parse(JSON.stringify(this.activeKeyboard)));
+    	layoutCopy.timestamp = new Date().getTime();
+    	Vue.set(this.savedLayouts, layoutCopy.layoutName, layoutCopy);
     	localStorage.setItem('savedKeyboardLayouts', JSON.stringify(this.savedLayouts));
     },
     deleteSavedLayout: function(layoutName) {
