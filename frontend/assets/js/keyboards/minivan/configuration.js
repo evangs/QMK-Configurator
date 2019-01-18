@@ -10,7 +10,7 @@ minivan.config = {
     productId: '0x8847',
     deviceVersion: '0x0001',
     manufacturer: 'TheVan Keyboards',
-    product: 'Kumo-MiniVan',
+    product: 'MiniVan',
     description: 'Hotswap MiniVan 40%',
     matrixRowPins: ['D7', 'B5', 'F7', 'D4'],
     matrixColumnPins: ['D2', 'D3', 'D5', 'D6', 'B4', 'B6', 'F6', 'F5', 'F4', 'F1', 'F0', 'B3'],
