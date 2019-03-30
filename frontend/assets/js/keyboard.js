@@ -11,7 +11,8 @@ new Vue({
     layoutName: '',
     buildInProgress: false,
     exportLink: '',
-    exportFileName: ''
+    exportFileName: '',
+    urls: {}
   },
   created: function() {
     this.exportLink = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.activeKeyboard));
@@ -96,6 +97,13 @@ new Vue({
       })
       .then(function (response) {
         window.location.href = response.data.hex_url;
+        context.urls = {
+          config: response.data.config_url,
+          rules: response.data.rules_url,
+          keyboardC: response.data.keyboard_c_url,
+          keyboardH: response.data.keyboard_h_url,
+          keymap: response.data.keymap_url
+        };
         context.buildInProgress = false;
       })
       .catch(function (error) {
@@ -142,6 +150,9 @@ new Vue({
       	Vue.delete(this.savedLayouts, layoutName);
         localStorage.setItem('savedKeyboardLayouts', JSON.stringify(this.savedLayouts));
       }
+    },
+    downloadFile: function(url) {
+      window.location.href = url;
     }
   },
   watch: {

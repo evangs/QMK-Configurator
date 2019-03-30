@@ -46,13 +46,16 @@
       <raw-output :active-keyboard="activeKeyboard" :keyboards="keyboards" v-on:updateactivekeyboard="updateActiveKeyboard"></raw-output>
 
       <button :disabled="buildInProgress" v-on:click="buildFirmware()" class="btn-primary"><i class="fa fa-download" aria-hidden="true"></i> Build Firmware</button>
+      <button v-if="urls.config" v-on:click="downloadFile(urls.config)" class="btn-secondary">config.h</button>
+      <button v-if="urls.rules" v-on:click="downloadFile(urls.rules)" class="btn-secondary">rules.mk</button>
+      <button v-if="urls.keyboardC" v-on:click="downloadFile(urls.keyboardC)" class="btn-secondary">keyboard.c</button>
+      <button v-if="urls.keyboardH" v-on:click="downloadFile(urls.keyboardH)" class="btn-secondary">keyboard.h</button>
+      <button v-if="urls.keymap" v-on:click="downloadFile(urls.keymap)" class="btn-secondary">keymap.c</button>
     </div>
 
     <script src="assets/js/keyboards/bananasplit/configuration.js"></script>
     <script src="assets/js/keyboards/lowwriter/configuration.js"></script>
     <script src="assets/js/keyboards/roadkit/configuration.js"></script>
-    <script src="assets/js/keyboards/fullsize/configuration.js"></script>
-    <script src="assets/js/keyboards/provanv2/configuration.js"></script>
     <script src="assets/js/keyboards/minivan/configuration.js"></script>
     <script src="assets/js/eventHub.js"></script>
     <script src="assets/js/keys.js"></script>

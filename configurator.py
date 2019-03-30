@@ -12,6 +12,14 @@ app = Flask(__name__)
 def download_file(filename):
     return send_from_directory("/app/qmk_firmware", filename, as_attachment=True)
 
+@app.route('/downloads/keyboards/<firmware_directory>/<filename>')
+def download_firmware_file(firmware_directory, filename):
+    return send_from_directory("/app/qmk_firmware/keyboards/{}".format(firmware_directory), filename, as_attachment=True)
+
+@app.route('/downloads/keyboards/<firmware_directory>/keymaps/default/<filename>')
+def download_firmware_keymap_file(firmware_directory, filename):
+    return send_from_directory("/app/qmk_firmware/keyboards/{}/keymaps/default".format(firmware_directory), filename, as_attachment=True)
+
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -44,7 +52,15 @@ def main():
         buildFirmware(firmware_directory)
 
         #return redirect(url_for('download_file', filename='{}_default.hex'.format(firmware_directory)))
-        return jsonify({'hex_url': '/downloads/{}_default.hex'.format(firmware_directory)})
+        firmware_files_path = '/downloads/keyboards/{}'.format(firmware_directory)
+        return jsonify({
+            'hex_url': '/downloads/{}_default.hex'.format(firmware_directory),
+            'config_url': '{}/config.h'.format(firmware_files_path),
+            'rules_url': '{}/rules.mk'.format(firmware_files_path),
+            'keyboard_c_url': '{}/{}.c'.format(firmware_files_path, firmware_directory),
+            'keyboard_h_url': '{}/{}.h'.format(firmware_files_path, firmware_directory),
+            'keymap_url': '{}/keymaps/default/keymap.c'.format(firmware_files_path)
+        })
 
     #this is what happens on a GET request, we just send the index.htm file.
     else:
@@ -264,7 +280,7 @@ def prepKeyForTemplate(key):
     if key_type == 'normal':
         if key_value in EXEMPT_CODES:
             return key_value
-        
+
         if key_value == 'IME':
             return 'M_IME'
 
