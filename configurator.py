@@ -44,7 +44,7 @@ def main():
         buildFirmware(firmware_directory)
 
         #return redirect(url_for('download_file', filename='{}_default.hex'.format(firmware_directory)))
-        firmware_files_path = '/app/qmk_firmware/keyboards/{}'.format(firmware_directory)
+        firmware_files_path = '/downloads/keyboards/{}'.format(firmware_directory)
         return jsonify({
             'hex_url': '/downloads/{}_default.hex'.format(firmware_directory),
             'config_url': '{}/config.h'.format(firmware_files_path),
