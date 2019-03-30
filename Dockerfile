@@ -49,7 +49,6 @@ ENV MOD_WSGI_USER=whiskey MOD_WSGI_GROUP=root
 
 WORKDIR /app
 
-RUN apt-get update
 RUN apt-get install -y \
   gcc-avr \
   binutils-avr \
