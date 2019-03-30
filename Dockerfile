@@ -10,7 +10,7 @@ ENV PYTHON_VERSION=3.5.4 \
     TINI_VERSION=0.16.1
 
 COPY install.sh /usr/local/bin/mod_wsgi-docker-install
-
+USER root
 RUN /usr/local/bin/mod_wsgi-docker-install
 
 COPY setup.sh /usr/local/bin/mod_wsgi-docker-setup
