@@ -17,7 +17,7 @@ def download_firmware_file(firmware_directory, filename):
     return send_from_directory("/app/qmk_firmware/keyboards/{}".format(firmware_directory), filename, as_attachment=True)
 
 @app.route('/downloads/keyboards/<firmware_directory>/keymaps/default/<filename>')
-def download_firmware_file(firmware_directory, filename):
+def download_firmware_keymap_file(firmware_directory, filename):
     return send_from_directory("/app/qmk_firmware/keyboards/{}/keymaps/default".format(firmware_directory), filename, as_attachment=True)
 
 def allowed_file(filename):
