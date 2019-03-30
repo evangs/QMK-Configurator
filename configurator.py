@@ -12,6 +12,10 @@ app = Flask(__name__)
 def download_file(filename):
     return send_from_directory("/app/qmk_firmware", filename, as_attachment=True)
 
+@app.route('/downloads/keyboards/<firmware_directory>/<filename>')
+def download_firmware_file(firmware_directory, filename):
+    return send_from_directory("/app/qmk_firmware/keyboards/{}".format(firmware_directory), filename, as_attachment=True)
+
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
