@@ -16,6 +16,10 @@ def download_file(filename):
 def download_firmware_file(firmware_directory, filename):
     return send_from_directory("/app/qmk_firmware/keyboards/{}".format(firmware_directory), filename, as_attachment=True)
 
+@app.route('/downloads/keyboards/<firmware_directory>/keymaps/default/<filename>')
+def download_firmware_file(firmware_directory, filename):
+    return send_from_directory("/app/qmk_firmware/keyboards/{}/keymaps/default".format(firmware_directory), filename, as_attachment=True)
+
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -55,7 +59,7 @@ def main():
             'rules_url': '{}/rules.mk'.format(firmware_files_path),
             'keyboard_c_url': '{}/{}.c'.format(firmware_files_path, firmware_directory),
             'keyboard_h_url': '{}/{}.h'.format(firmware_files_path, firmware_directory),
-            'keymap_url': '{}/keymap.c'.format(firmware_files_path)
+            'keymap_url': '{}/keymaps/default/keymap.c'.format(firmware_files_path)
         })
 
     #this is what happens on a GET request, we just send the index.htm file.
