@@ -247,7 +247,7 @@ var KEYS = [
   },
   {
     label: 'Mouse Keys',
-    cssClass: 'large-context-key',
+    cssClass: 'extra-large-context-key',
     updateType: 'primary',
     visible: ['normal'],
     keys: [
