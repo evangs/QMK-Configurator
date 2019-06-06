@@ -10,7 +10,7 @@ fortysevenhundred.config = {
     productId: '0x8860',
     deviceVersion: '0x0001',
     manufacturer: 'TheVan Keyboards',
-    product: '40700',
+    product: 'FortySevenHundred',
     description: '40700 40%',
     matrixRowPins: ['F0', 'F4', 'F5', 'F6'],
     matrixColumnPins: ['F1', 'D1', 'D2', 'D3', 'D5', 'D4', 'D6', 'D7', 'B4', 'B5', 'B6', 'F7'],
