@@ -246,6 +246,30 @@ var KEYS = [
     ]
   },
   {
+    label: 'Mouse Keys',
+    cssClass: 'extra-large-context-key',
+    updateType: 'primary',
+    visible: ['normal'],
+    keys: [
+      {value: 'MS_U', display: 'C UP', tooltip: 'Mouse Cursor Up'},
+      {value: 'MS_D', display: 'C Down', tooltip: 'Mouse Curson Down'},
+      {value: 'MS_L', display: 'C Left', tooltip: 'Mouse Cursor Left'},
+      {value: 'MS_R', display: 'C Right', tooltip: 'Mouse Cursor Right'},
+      {value: 'BTN1', display: 'B1', tooltip: 'Button 1'},
+      {value: 'BTN2', display: 'B2', tooltip: 'Button 2'},
+      {value: 'BTN3', display: 'B3', tooltip: 'Button 3'},
+      {value: 'BTN4', display: 'B4', tooltip: 'Button 4'},
+      {value: 'BTN5', display: 'B5', tooltip: 'Button 5'},
+      {value: 'WH_U', display: 'W Up', tootltip: 'Wheel Up'},
+      {value: 'WH_D', display: 'W Down', tooltip: 'Wheel Down'},
+      {value: 'WH_L', display: 'W Left', tooltip: 'Wheel Left'},
+      {value: 'WH_R', display: 'W Right', tooltip: 'Wheel Right'},
+      {value: 'ACL0', display: 'Accel 0', tooltip: 'Set Acceleration 0'},
+      {value: 'ACL1', display: 'Accel 1', tooltip: 'Set Acceleration 1'},
+      {value: 'ACL2', display: 'Accel 2', tooltip: 'Set Acceleration 2'}
+    ]
+  },
+  {
       label: 'Keyboard',
     cssClass: 'large-context-key',
     updateType: 'primary',

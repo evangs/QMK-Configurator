@@ -600,7 +600,11 @@ button[disabled], button[disabled]:hover {
   color: #eee;
 }
 .btn-primary:hover {
-  background-color: #3a7cb2
+  background-color: #3a7cb2;
+}
+
+.btn-secondary:hover {
+  background-color: #bbb;
 }
 
 .btn-warning {
