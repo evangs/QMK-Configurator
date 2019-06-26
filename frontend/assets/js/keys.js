@@ -270,6 +270,18 @@ var KEYS = [
     ]
   },
   {
+    label: 'Power Keys',
+    cssClass: 'extra-large-context-key',
+    updateType: 'primary',
+    visible: ['normal'],
+    keys: [
+      {value: 'POWER', display: 'Power (Mac)', tooltip: 'System Power Mac OS'},
+      {value: 'PWR', display: 'Power', tooltip: 'System Power Down'},
+      {value: 'SLEP', display: 'Sleep', tooltip: 'System Sleep'},
+      {value: 'WAKE', display: 'Wake', tooltip: 'System Wake'}
+    ]
+  },
+  {
       label: 'Keyboard',
     cssClass: 'large-context-key',
     updateType: 'primary',
