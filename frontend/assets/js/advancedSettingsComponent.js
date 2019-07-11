@@ -21,6 +21,10 @@ Vue.component('advanced-settings-component', {
             <input type="number" v-model="activeKeyboard.config.tappingTerm" />
         </div>
         <div class="form-control">
+            <label>Permissive Hold:</label>
+            <toggle v-model="activeKeyboard.config.permissiveHold"></toggle>
+        </div>
+        <div class="form-control">
             <label>Locking Support:</label>
             <toggle v-model="activeKeyboard.config.lockingSupportEnabled"></toggle>
         </div>

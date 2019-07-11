@@ -32,7 +32,8 @@ minivan.config = {
     actionMacroEnabled: true,
     actionFunctionEnabled: true,
     rgbDiPin: 'D0',
-    rgbLedNum: 3
+    rgbLedNum: 3,
+    permissiveHold: true
 };
 
 // rules

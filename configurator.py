@@ -185,6 +185,9 @@ def buildConfig(config):
     if not config.get('actionFunctionEnabled'):
         template += '#define NO_ACTION_FUNCTION\n'
 
+    if config.get('permissiveHold'):
+        template += '#define PERMISSIVE_HOLD\n'
+
     if config.get('rgbDiPin'):
         template += '#define RGB_DI_PIN {}\n'.format(config.get('rgbDiPin'))
 
