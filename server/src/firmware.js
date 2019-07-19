@@ -7,10 +7,15 @@ const buildProductC = require('./buildProductC')
 const buildKeyboardHeader = require('./buildKeyboardHeader')
 const buildKeymap = require('./buildKeymap')
 
-// const FIRMWARE_BASE = resolve(__dirname, '..', '..', '..', 'server', 'qmk_firmware', 'keyboards')
-// const FIRMWARE_BUILD_DIR = resolve(__dirname, '..', '..', '..', 'server', 'qmk_firmware')
-const FIRMWARE_BUILD_DIR = path.resolve(__dirname, '..', 'qmk_firmware')
-const FIRMWARE_BASE = path.resolve(FIRMWARE_BUILD_DIR, 'keyboards')
+let FIRMWARE_BASE
+let FIRMWARE_BUILD_DIR
+if (process.versions['electron']) {
+  FIRMWARE_BUILD_DIR = path.resolve(__dirname, '..', '..', '..', 'server', 'qmk_firmware')
+  FIRMWARE_BASE = path.resolve(FIRMWARE_BUILD_DIR, 'keyboards')
+} else {
+  FIRMWARE_BUILD_DIR = path.resolve(__dirname, '..', 'qmk_firmware')
+  FIRMWARE_BASE = path.resolve(FIRMWARE_BUILD_DIR, 'keyboards')
+}
 
 const makefileContent = (
 `ifndef MAKEFILE_INCLUDED

@@ -7,14 +7,14 @@
   "author": "The Van Keyboards",
   "description": "Configurator for the QMK keyboard firmware",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/evangs/configurator.git"
+    "type": "git",
+    "url": "https://github.com/evangs/configurator.git"
   },
   "build": {
     "appId": "com.thevankeyboards.qmk",
     "productName": "QMK Configurator",
     "files": [
-      "server/firmware.js",
+      "server/src/*",
       "build/**/*",
       "node_modules/**/*"
     ],
@@ -22,17 +22,33 @@
       "buildResources": "assets"
     },
     "mac": {
-      "target": ["zip", "dmg"],
+      "identity": null,
+      "target": [
+        "zip",
+        "dmg"
+      ],
       "category": "public.app-category.utility",
-      "publish": [ "github" ]
+      "publish": [
+        "github"
+      ]
     },
     "win": {
-      "target": [ "zip", "nsis" ],
-      "publish": [ "github" ]
+      "target": [
+        "zip",
+        "nsis"
+      ],
+      "publish": [
+        "github"
+      ]
     },
     "linux": {
-      "target": ["zip", "AppImage"],
-      "publish": [ "github" ]
+      "target": [
+        "zip",
+        "AppImage"
+      ],
+      "publish": [
+        "github"
+      ]
     },
     "nsis": {
       "oneClick": false,
@@ -66,9 +82,11 @@
     "body-parser": "^1.18.3",
     "corser": "^2.0.1",
     "electron-first-run": "^2.0.0",
-    "electron-is-dev": "^1.0.1",
-    "electron-updater": "^4.0.6",
+    "electron-is-dev": "^1.1.0",
+    "electron-log": "^3.0.6",
+    "electron-updater": "^4.1.2",
     "express": "^4.16.4",
+    "fix-path": "^2.1.0",
     "mkdirp": "^0.5.1",
     "rimraf": "^2.6.2",
     "shrink-ray-current": "^3.0.2"
@@ -77,8 +95,8 @@
     "chroma-js": "^2.0.2",
     "concurrently": "^4.1.0",
     "d3": "^5.7.0",
-    "electron": "^3.0.13",
-    "electron-builder": "^20.38.4",
+    "electron": "^3.1.12",
+    "electron-builder": "^20.44.4",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "node-sass": "^4.11.0",
@@ -88,7 +106,7 @@
     "react-color": "^2.14.1",
     "react-dom": "^16.7.0",
     "react-s-alert": "^1.4.1",
-    "react-scripts": "2.1.1",
+    "react-scripts": "2.1.2",
     "react-textfit": "^1.1.0",
     "semantic-ui-less": "^2.4.1",
     "semantic-ui-react": "^0.84.0",
