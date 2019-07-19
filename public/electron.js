@@ -1,5 +1,5 @@
 const rimraf = require('rimraf')
-const { resolve } = require('path')
+const { resolve, join } = require('path')
 const fixPath = require('fix-path')
 const log = require('electron-log')
 const electron = require('electron')
@@ -118,10 +118,10 @@ electron.ipcMain.on('flash-firmware', async (event, arg) => {
           message: 'Firmware flashed successfully.'
         }))
         // TODO: Clean up build files
-        // rimraf(resolve(HEX_BASE, 'keyboards', dir), () => {})
-        // rimraf(resolve(HEX_BASE, '.build', `*${dir}*`), () => {})
-        // // Clean up hex file
-        // rimraf(resolve(HEX_BASE, hexFile), () => {})
+        log.info(join(HEX_BASE, 'keyboards', dir))
+        log.info(join(HEX_BASE, '.build', `*${dir}*`))
+        // Clean up hex file
+        log.info(join(HEX_BASE, hexFile))
       } catch (err) {
         // Send down error
         log.error(err)
@@ -130,10 +130,10 @@ electron.ipcMain.on('flash-firmware', async (event, arg) => {
           message: 'No device found. Did you push the reset button on your keyboard?'
         }))
         // TODO: Clean up build files
-        // rimraf(resolve(HEX_BASE, 'keyboards', dir), () => {})
-        // rimraf(resolve(HEX_BASE, '.build', `*${dir}*`), () => {})
+        log.info(join(HEX_BASE, 'keyboards', dir))
+        log.info(join(HEX_BASE, '.build', `*${dir}*`))
         // // Clean up hex file
-        // rimraf(resolve(HEX_BASE, hexFile), () => {})
+        log.info(join(HEX_BASE, hexFile))
       }
       break
     }

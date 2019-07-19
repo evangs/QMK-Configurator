@@ -10,7 +10,7 @@ const buildKeymap = require('./buildKeymap')
 let FIRMWARE_BASE
 let FIRMWARE_BUILD_DIR
 if (process.versions['electron']) {
-  FIRMWARE_BUILD_DIR = path.resolve(__dirname, '..', '..', '..', 'server', 'qmk_firmware')
+  FIRMWARE_BUILD_DIR = path.resolve(__dirname, '..', '..', 'server', 'qmk_firmware')
   FIRMWARE_BASE = path.resolve(FIRMWARE_BUILD_DIR, 'keyboards')
 } else {
   FIRMWARE_BUILD_DIR = path.resolve(__dirname, '..', 'qmk_firmware')
