@@ -289,7 +289,10 @@ const Color = CustomPicker(class extends Component {
                 options={actions}
                 defaultValue={action}
                 onChange={(e, { value }) => {
-                  updateIndicator(indicatorId, id, { action: value })
+                  updateIndicator(indicatorId, id, {
+                    action: value,
+                    type: indicatorMap[value].type
+                  })
                 }}
                 placeholder={indicatorMap[action].description} />
             </div>
