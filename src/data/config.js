@@ -19,8 +19,10 @@ export const initialState = (activeBoard) => {
   const layouts = get(activeBoard, 'layouts') || config[activeBoard].layouts
   const layers = get(activeBoard, 'layers') || config[activeBoard].layers
 
-  const activeLayout = localStorage.getItem('activeLayout') || layouts[0].id
-  const activeLayer = localStorage.getItem('activeLayer') || layers[0].id
+  const activeLayout = layouts.find(l => l.id === localStorage.getItem('activeLayout')) ?
+    localStorage.getItem('activeLayout') : layouts[0].id
+  const activeLayer = layers.find(l => l.id === localStorage.getItem('activeLayer')) ?
+    localStorage.getItem('activeLayer') : layers[0].id  
   const activeKeyType = localStorage.getItem('activeKeyType') || 'normal'
 
   const zones = get(activeBoard, 'zones') || config[activeBoard].zones

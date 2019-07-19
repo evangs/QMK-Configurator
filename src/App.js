@@ -50,7 +50,8 @@ export default class extends Component {
       buildMessage: '',
       nextAction: null,
       exportLink: '',
-      exportFileName: ''
+      exportFileName: '',
+      hoveredZone: ''
     }, initialState())
 
     // Bind event handlers
@@ -77,6 +78,7 @@ export default class extends Component {
     this.exportLayout = this._exportLayout.bind(this)
     this.exportLayer = this._exportLayer.bind(this)
     this.importJson = this._importJson.bind(this)
+    this.hoverZone = this._hoverZone.bind(this)
     this.save = this._save.bind(this)
     this.reset = this._reset.bind(this)
     this.revert = this._revert.bind(this)
@@ -105,7 +107,8 @@ export default class extends Component {
       rules,
       indicators,
       buildInProgress,
-      buildMessage
+      buildMessage,
+      hoveredZone
     } = this.state
 
     return (
@@ -172,6 +175,7 @@ export default class extends Component {
               activeLayout={activeLayout}
               activeLayer={activeLayer}
               activeKeyType={activeKeyType}
+              hoveredZone={hoveredZone}
               layersVisible={layersVisible}
               toggleLayers={this.toggleLayers}
               setKey={this.setKey}
@@ -202,6 +206,7 @@ export default class extends Component {
               updateSetting={this.updateSetting}
               reset={this.reset}
               revert={this.revert}
+              hoverZone={this.hoverZone}
             />
 
             <Modal open={Boolean(nextAction)} basic>
@@ -287,7 +292,8 @@ export default class extends Component {
     } = this.state
 
     let clone = layers.slice(0)
-    const keys = clone[activeLayer].keys
+    const layer = clone.find(l => l.id === activeLayer)
+    const keys = layer.keys
     const newKeys = {}
 
     Object.keys(keys).forEach(r => {
@@ -300,7 +306,7 @@ export default class extends Component {
       })
     })
 
-    clone[activeLayer].keys = newKeys
+    layer.keys = newKeys
 
     this.setState({ layers: clone }, this.checkSaveState)
   }
@@ -404,7 +410,6 @@ export default class extends Component {
     const layouts = this.state.layouts.slice(0)
     const layout = Object.assign({}, this.state.layouts.slice(0).find(l => l.id === id))
     const layoutId = v4()
-    const layerId = v4()
 
     if (!name) {
       name = `${layout.name} (Clone)`
@@ -418,9 +423,17 @@ export default class extends Component {
 
     layouts.push(layout)
 
+
+    let activeLayer
     let layers = this.state.layers.slice(0)
     const filtered = layers.filter(l => l.layoutId === id)
     const mapped = filtered.map((l, i) => {
+      const layerId = v4()
+
+      if (i === 0) {
+        activeLayer = layerId
+      }
+
       const layer = Object.assign({}, l)
       layer.layoutId = layoutId
       layer.id = layerId
@@ -431,7 +444,7 @@ export default class extends Component {
 
     this.setState({
       activeLayout: layoutId,
-      activeLayer: layerId,
+      activeLayer,
       layouts,
       layers
     }, this.checkSaveState)
@@ -485,7 +498,7 @@ export default class extends Component {
   }
 
   _sortLayers (layers) {
-    this.setState({ layers })
+    this.setState({ layers }, this.checkSaveState)
   }
 
   _editLayout (name, layout) {
@@ -504,12 +517,12 @@ export default class extends Component {
   }
 
   _deleteLayout (layout) {
-    const layouts = this.state.layouts.slice(0).filter(l => l.id !== layout.id)
 
-    const activeLayout = this.state.layouts.length - 2
-    const activeLayer = this.state.layers[0].id
+    const layouts = this.state.layouts.slice(0).filter(l => l.id !== layout.id)
+    const activeLayout = layouts[0].id
 
     const layers = this.state.layers.slice(0).filter(l => l.layoutId !== layout.id)
+    const activeLayer = layers[0].id
 
     this.setState({ layouts, layers, activeLayout, activeLayer }, this.checkSaveState)
     Alert.success(`Layer ${layout.name} deleted successfully.`)
@@ -521,30 +534,29 @@ export default class extends Component {
     this.setState({ indicators }, this.checkSaveState)
   }
 
-  _updateIndicator (id, indicator) {
+  _updateIndicator (id, indicator, update) {
     let indicators = this.state.indicators.slice(0)
-
-    console.log(indicators, id, indicator)
-
-    indicators[id] = indicators[id].map(d => {
-      if (d.action === indicator.action) {
-        d = indicator
-      }
-      return d
+    Object.keys(update).forEach(key => {
+      indicators[id][indicator][key] = update[key]
     })
     this.setState({ indicators }, this.checkSaveState)
   }
 
-  _deleteIndicator (id) {
+  _deleteIndicator (id, indicator) {
     const indicators = this.state.indicators.slice(0)
-    indicators[id].splice(id, 1)
+    indicators[id].splice(indicator, 1)
     this.setState({ indicators }, this.checkSaveState)
+  }
+
+  _hoverZone (hoveredZone) {
+    this.setState({ hoveredZone })
   }
 
   _exportLayout (id) {
     const { activeBoard } = this.state
 
-    const layout = this.state.layouts.find(l => l.id === id)
+    const layout = Object.assign({}, this.state.layouts.find(l => l.id === id))
+
     layout.immutable = false
     delete layout.id
 
@@ -700,11 +712,11 @@ export default class extends Component {
   }
 
   _download () {
-    const { activeBoard, layers, zones, settings, rules } = this.state
+    const { activeBoard, activeLayout, layers, zones, settings, rules } = this.state
     this.setState({ buildInProgress: true, buildMessage: 'Downloading Firmware' })
 
     const fullMap = []
-    layers.forEach(l => {
+    layers.filter(l => l.layoutId === activeLayout).forEach(l => {
       fullMap.push(config[activeBoard].keymap(l.keys, zones))
     })
     fetch(API_URL, {
@@ -737,18 +749,19 @@ export default class extends Component {
   }
 
   _flash () {
-    const { activeBoard, layers, zones, settings, rules } = this.state
+    const { activeBoard, activeLayout, layers, zones, settings, rules, indicators } = this.state
 
     this.setState({ buildInProgress: true, buildMessage: 'Flashing Firmware' })
 
     const fullMap = []
-    layers.forEach(l => {
+    layers.filter(l => l.layoutId === activeLayout).forEach(l => {
       fullMap.push(config[activeBoard].keymap(l.keys, zones))
     })
 
     flashFirmware(JSON.stringify({
       config: settings,
       rules,
+      indicators,
       configKeymap: config[activeBoard].configKeymap,
       keymap: fullMap
     }))

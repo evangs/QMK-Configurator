@@ -4,13 +4,14 @@ import colors, { getColor } from './colors'
 const KEY_BORDER_SIZE = 3
 const KEY_BORDER_COLOR = colors.dark
 const KEY_BORDER_ACTIVE = colors.secondaryColor
+const ZONE_HIGHLIGHT_COLOR = chroma(colors.grey).darken().hex()
 
-export default function (shape, type, hover, spacer, unitSize = 75) {
+export default function (shape, type, hover, spacer, unitSize, highlighted = false) {
   return Object.assign(
     {},
     key(),
     shapes[shape](unitSize),
-    background(shape, type),
+    background(shape, type, highlighted),
     keyHover(hover),
     margin(unitSize, spacer)
   )
@@ -61,9 +62,12 @@ const margin = (unitSize, spacer) => {
   return styles
 }
 
-const background = (shape, type) => ({
-  backgroundColor: shape.indexOf('steppedAfter') > -1 ? chroma(getColor(type).hex).darken().hex() : getColor(type).hex
-})
+const background = (shape, type, highlighted) => {
+  const color = highlighted ? ZONE_HIGHLIGHT_COLOR : getColor(type).hex
+  return {
+    backgroundColor: shape.indexOf('steppedAfter') > -1 ? chroma(color).darken().hex() : color
+  }
+}
 
 const k100 = unitSize => ({
   width: unitSize,

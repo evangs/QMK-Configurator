@@ -40,6 +40,18 @@ export default class extends Component {
     } = this.props
 
     const { createMode, open, selected, confirmDelete } = this.state
+    const createModeComponent = createMode ? (
+      <Table.Row>
+        <Table.Cell>
+          <Input
+            fluid
+            inverted
+            transparent
+            placeholder='Enter a layout name'
+            onChange={(e, data) => this.setState({ name: data.value })}/>
+          </Table.Cell>
+      </Table.Row>
+    ) : null
     return (
       <Modal open={open} trigger={<Button inverted onClick={() => this.setState({ open: true })}>My Layouts</Button>} basic size='small'>
         <Header content={`Layouts for ${config[activeBoard].config.product}`} textAlign='center' style={{ marginTop: 50 }} />
@@ -62,18 +74,7 @@ export default class extends Component {
                   }}>{l.name}</Table.Cell>
                 </Table.Row>
               ))}
-              {createMode && (
-                <Table.Row>
-                  <Table.Cell>
-                    <Input
-                      fluid
-                      inverted
-                      transparent
-                      placeholder='Enter a layout name'
-                      onChange={(e, data) => this.setState({ name: data.value })}/>
-                    </Table.Cell>
-                </Table.Row>
-              )}
+              {createModeComponent}
             </Table.Body>
           </Table>
         </Modal.Content>

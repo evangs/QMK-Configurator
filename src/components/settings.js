@@ -14,6 +14,7 @@ export default ({
   activeKeyType,
   zones,
   updateZone,
+  hoverZone,
   updateSetting,
   settings,
   rules,
@@ -38,7 +39,9 @@ export default ({
     panes.unshift({ menuItem: 'Zones', render: () => (
       <Zones
         zones={zones}
-        updateZone={updateZone}/>
+        updateZone={updateZone}
+        hoverZone={hoverZone}
+      />
     )})
   }
 
@@ -47,7 +50,7 @@ export default ({
   )
 }
 
-const Zones = ({ zones, updateZone }) => {
+const Zones = ({ zones, updateZone, hoverZone }) => {
   return (
     <Table>
       <Table.Body>
@@ -58,12 +61,17 @@ const Zones = ({ zones, updateZone }) => {
                 <Table.Cell>
                   {z.label}
                 </Table.Cell>
-                <Table.Cell textAlign='right'>
+                <Table.Cell
+                  textAlign='right'
+                >
                   <Select
                     placeholder={z.label}
                     options={opts}
                     value={z.value}
-                    onChange={updateZone}/>
+                    onChange={updateZone}
+                    onMouseEnter={() => { hoverZone(z.label) }}
+                    onMouseLeave={() => { hoverZone('') }}
+                  />
                 </Table.Cell>
               </Table.Row>
             )
@@ -76,7 +84,7 @@ const Zones = ({ zones, updateZone }) => {
 const Advanced = props => {
   const { updateSetting } = props
   return (
-    <Table>
+    <Table colums={6}>
       <Table.Body>
           {settings.map((s, i) => {
             let value
@@ -94,8 +102,8 @@ const Advanced = props => {
               case 'input':
                 return (
                   <Table.Row key={`row-${i}`}>
-                    <Table.Cell>{s.description}</Table.Cell>
-                    <Table.Cell>
+                    <Table.Cell width={3}>{s.description}</Table.Cell>
+                    <Table.Cell width={3}>
                       <Input
                         label={s.display}
                         placeholder={s.default}
@@ -113,8 +121,8 @@ const Advanced = props => {
               case 'checkbox':
                 return (
                   <Table.Row key={`row-${i}`}>
-                    <Table.Cell>{s.description}</Table.Cell>
-                    <Table.Cell>
+                    <Table.Cell width={3}>{s.description}</Table.Cell>
+                    <Table.Cell width={3}>
                       <Checkbox
                         label={s.display}
                         default={s.default}

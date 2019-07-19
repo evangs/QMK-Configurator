@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Textfit } from 'react-textfit'
-import { Container,
+import {
+  Container,
   Segment,
   Modal,
   Header,
@@ -8,8 +9,9 @@ import { Container,
   Icon,
   Popup
 } from 'semantic-ui-react'
+import Glyph from './glyph'
 import { KEYS, KEY_DISPLAY_MAP, KEY_ACTIONS, KEYBOARD_INPUT_MAP } from '../data/keys'
-import { getColor } from '../utils/colors'
+import colors, { getColor } from '../utils/colors'
 import getKeyStyle from '../utils/key-styles'
 
 const KEY_BORDER_SIZE = 3
@@ -76,8 +78,11 @@ export default class extends Component {
       secondary,
       activeKeyType,
       scale,
-      spacer
+      spacer,
+      zone,
+      hoveredZone
     } = this.props
+
     const {
       hover,
       open,
@@ -91,6 +96,8 @@ export default class extends Component {
     let selectedColor = activeColor.color
     let errorColor = activeColor.errorColor
 
+    let highlighted = zone && hoveredZone === zone
+
     let primaryDisplay = KEY_DISPLAY_MAP[value] || value
     let secondaryDisplay = KEY_DISPLAY_MAP[secondary] || secondary || ''
 
@@ -99,11 +106,15 @@ export default class extends Component {
       case 'kISO':
       case 'kJIS':
       case 'k175stepped':
-        afterElement = <div style={getKeyStyle(`${shape}After`, type, hover, spacer, scale)} />
+        afterElement = <div style={getKeyStyle(`${shape}After`, type, hover, spacer, scale, highlighted)} />
         break
       default:
         // NO-OP
     }
+
+    const keyStyle = getKeyStyle(shape, type, hover, spacer, scale, highlighted)
+    const lineHeight = scale - (KEY_BORDER_SIZE * 2) - (KEY_MARGIN_SIZE * 2)
+    const marginTop = (keyStyle.height - lineHeight - (KEY_BORDER_SIZE * 2)) / 2
 
     return (
       <Modal
@@ -112,25 +123,26 @@ export default class extends Component {
         open={open}
         trigger={
           <div
-            style={getKeyStyle(shape, type, hover, spacer, scale)}
+            style={keyStyle}
             onMouseEnter={() => this.onMouseEnter(shape)}
             onMouseMove={() => this.onMouseEnter(shape)}
             onMouseOut={() => this.onMouseOut(shape)}
             onClick={this.openModal}>
             <div style={{
-              lineHeight: `${scale - (KEY_BORDER_SIZE * 2) - (KEY_MARGIN_SIZE * 2)}px`,
-              margin: KEY_MARGIN_SIZE,
+              lineHeight: `${lineHeight}px`,
+              margin: `${marginTop}px ${KEY_MARGIN_SIZE}px`,
               pointerEvents: 'none'
             }}>
               <Textfit
                 mode='single'
+                forceSingleModeWidth={false}
                 max={scale * 0.4}
                 min={8}>
-                {primaryDisplay[0] === '!' && primaryDisplay[1] === '!' ? <Icon name={primaryDisplay.replace('!!', '')} /> : primaryDisplay}
-                {secondaryDisplay && ' + ' }
-                {secondaryDisplay && (
-                   secondaryDisplay[0] === '!' && secondaryDisplay[1] === '!' ? <Icon name={secondaryDisplay.replace('!!', '')} /> : secondaryDisplay
-                )}
+                  {getKeyDisplay(primaryDisplay, colors.white)}
+                  {secondaryDisplay && ' + ' }
+                  {secondaryDisplay && (
+                     getKeyDisplay(secondaryDisplay, colors.white)
+                  )}
               </Textfit>
             </div>
             {afterElement && afterElement}
@@ -334,6 +346,7 @@ const Column = ({
   disabled,
   color,
   value,
+  secondary,
   tmp
 }) => {
   return (
@@ -346,17 +359,19 @@ const Column = ({
           <h3>{g.label}</h3>
             {g.keys.map((k, j) => {
               // Calculate button color
-              let buttonColor = (value === k.value && !tmp) || tmp === k.value ? color : undefined
+              let buttonColor = type === 'secondary' ?
+                (value === k.value) ? color : undefined :
+                (value === k.value && !tmp) || tmp === k.value ? color : undefined
               const button = (
                 <Button icon
-                key={`key-${j}`}
-                disabled={disabled || value === k.value}
-                color={buttonColor}
-                style={{
-                  minWidth: 50,
-                  marginBottom: 5
-                }} onClick={(e) => onClick(e, k)}>
-                  {k.display[0] === '!' && k.display[1] === '!' ? <Icon name={k.display.replace('!!', '')} color='black' /> : k.display}
+                  key={`key-${j}`}
+                  disabled={disabled}
+                  color={buttonColor}
+                  style={{
+                    minWidth: 50,
+                    marginBottom: 5
+                  }} onClick={(e) => onClick(e, k)}>
+                    {getKeyDisplay(k.display, colors.dark)}
                 </Button>
               )
               if (k.tooltip) {
@@ -369,4 +384,14 @@ const Column = ({
         ))}
     </div>
   )
+}
+
+function getKeyDisplay (key, color) {
+  if (key[0] === '!' && key[1] === '!') {
+    return <Icon name={key.replace('!!', '')} />
+  } else if (key[0] === '%' && key[1] === '%') {
+    return <Glyph name={`${key.replace('%%', '')}`} color={color} />
+  } else {
+    return key
+  }
 }

@@ -45,20 +45,10 @@ export default class Layers extends Component {
 
   constructor (props) {
     super(props)
-    this.state = {
-      layers: props.layers
-    }
     this.onDragEnd = this._onDragEnd.bind(this)
   }
 
-  componentWillReceiveProps (nextProps) {
-    if(JSON.stringify(this.props.layers) !== JSON.stringify(nextProps.layers)) {
-      this.setState({ layers: nextProps.layers })
-    }
-  }
-
   render () {
-    const { layers } = this.state
     const {
       activeBoard,
       activeLayout,
@@ -68,6 +58,7 @@ export default class Layers extends Component {
       cloneLayer,
       editLayer,
       exportLayer,
+      layers,
       zones
     } = this.props
     const filteredLayers = layers.filter(l => l.layoutId === activeLayout)
@@ -167,17 +158,23 @@ export default class Layers extends Component {
   }
 
   _onDragEnd(result) {
-
-    const { sortLayers } = this.props
+    const { sortLayers, activeLayout } = this.props
     // dropped outside the list
     if (!result.destination) {
       return
     }
 
+    const filteredLayers = this.props.layers.filter(l => l.layoutId === activeLayout)
+    const sourceId = filteredLayers[result.source.index].id
+    const destId = filteredLayers[result.destination.index].id
+
+    const sourceIndex = this.props.layers.findIndex(l => l.id === sourceId)
+    const destIndex = this.props.layers.findIndex(l => l.id === destId)
+
     const layers = reorder(
-      this.state.layers,
-      result.source.index,
-      result.destination.index
+      this.props.layers,
+      sourceIndex,
+      destIndex
     )
 
     sortLayers(layers)
@@ -244,10 +241,10 @@ class NameModal extends Component {
                     transparent
                     fluid
                     inverted
+                    placeholder='Enter a name'
                     onChange={(e, data) => {
                       this.setState({ name: data.value })
-                    }}
-                    placeholder='Enter a name' />
+                    }} />
                 </Table.Cell>
               </Table.Row>
             </Table.Body>

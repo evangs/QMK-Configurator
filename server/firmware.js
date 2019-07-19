@@ -1,26 +1,31 @@
-const { join } = require('path')
+const { resolve } = require('path')
 const { writeFile } = require('fs')
 const { exec } = require('child_process')
 const mkdirp = require('mkdirp')
+const log = require('electron-log')
 
 /**
  * Base firmware directory
 **/
-const FIRMWARE_BASE = join(__dirname, 'qmk_firmware', 'keyboards')
+// const FIRMWARE_BASE = resolve(__dirname, '..', '..', '..', 'server', 'qmk_firmware', 'keyboards')
+// const FIRMWARE_BUILD_DIR = resolve(__dirname, '..', '..', '..', 'server', 'qmk_firmware')
+const FIRMWARE_BUILD_DIR = resolve(__dirname, 'qmk_firmware')
+const FIRMWARE_BASE = resolve(FIRMWARE_BUILD_DIR, 'keyboards')
 
 /**
  * Builds the firmware hex file
 **/
 exports.buildFirmware = dir => {
+  log.info('building firmware')
   return new Promise((resolve, reject) => {
     exec(`make ${dir}`, {
-      cwd: join(__dirname, 'qmk_firmware')
+      cwd: FIRMWARE_BUILD_DIR
     }, (err, stdout, stderr) => {
       if (err) {
         return reject(err)
       }
-      console.log(stdout)
-      resolve()
+      log.info(`firware built ${dir}`)
+      return resolve()
     })
   })
 }
@@ -31,25 +36,27 @@ exports.buildFirmware = dir => {
 exports.setupFirmware = async (config, rules, configKeymap, keymap, indicators) => {
   const now = new Date().getTime()
   const dir = `${config.product.replace(' ', '')}${now}`
+  log.info('setting up firmware')
 
   try {
     // Create directory if it does not exist
-    await createDir(join(FIRMWARE_BASE, dir, 'keymaps', 'default'))
+    await createDir(resolve(FIRMWARE_BASE, dir, 'keymaps', 'default'))
     // Create config file
-    await createFile(join(FIRMWARE_BASE, dir, 'config.h'), buildConfig(config))
+    await createFile(resolve(FIRMWARE_BASE, dir, 'config.h'), buildConfig(config))
     // Create makefile
-    await createFile(join(FIRMWARE_BASE, dir, 'makefile'), 'ifndef MAKEFILE_INCLUDED\ninclude ../../Makefile\nendif')
+    await createFile(resolve(FIRMWARE_BASE, dir, 'makefile'), 'ifndef MAKEFILE_INCLUDED\ninclude ../../Makefile\nendif')
     // Create rules file
-    await createFile(join(FIRMWARE_BASE, dir, 'rules.mk'), buildRules(rules))
+    await createFile(resolve(FIRMWARE_BASE, dir, 'rules.mk'), buildRules(rules))
     // Build product c
-    await createFile(join(FIRMWARE_BASE, dir, `${dir}.c`), buildProductC(dir))
+    await createFile(resolve(FIRMWARE_BASE, dir, `${dir}.c`), buildProductC(dir))
     // Build product h
-    await createFile(join(FIRMWARE_BASE, dir, `${dir}.h`), buildProductH(dir, configKeymap))
+    await createFile(resolve(FIRMWARE_BASE, dir, `${dir}.h`), buildProductH(dir, configKeymap))
     // Build keymap
-    await createFile(join(FIRMWARE_BASE, dir, 'keymaps', 'default', 'keymap.c'), buildKeymap(dir, keymap, indicators))
+    await createFile(resolve(FIRMWARE_BASE, dir, 'keymaps', 'default', 'keymap.c'), buildKeymap(dir, keymap, indicators))
     // Return the directory
     return dir
   } catch (err) {
+    log.error(err)
     return err
   }
 }
@@ -293,7 +300,7 @@ const prepKeyForTemplate = key => {
       if (isDigit(secondary.slice(1))) {
         return `LT(${secondary.slice(1)}, KC_${value})`
       }
-      return `{secondary}_T(KC_{value})`
+      return `${secondary}_T(KC_${value})`
     }
     case 'oneshotmod':
     case 'oneshotlayer': {
@@ -379,26 +386,25 @@ const buildKeymap = (dir, keyData, indicators) => {
     template += `LED_TYPE indicators[${indicators.length}] = {{\n`
     for (let i = 0; i < indicators.length; i++) {
       template += '{.r = 0, .g = 0, .b = 0},\n'
-      template = template.slice(0, -2)
-      template += '\n};\n'
     }
-    template += `uint8_t ies[${indicators}] = {{\n`
+    template = template.slice(0, -2)
+    template += '\n};\n'
 
+    template += `uint8_t indexes[${indicators}] = {{\n`
     for (let i = 0; i < indicators.length; i++) {
       template += `${i},\n`
     }
-
     template = template.slice(0, -2)
     template += '\n};\n'
 
     for (let i = 0; i < indicators.length; i++) {
-      for (trigger in indicators[i]) {
+      for (let trigger in indicators[i]) {
         switch(trigger.type) {
           case 'layer':
             template += `if (state & (1<<${trigger.action.slice(1)})){{\n`
-            template += `indicators[{}].r = ${trigger.red};\n`
-            template += `indicators[{}].g = ${trigger.green};\n`
-            template += `indicators[{}].b = ${trigger.blue};\n`
+            template += `indicators[${i}].r = ${trigger.red};\n`
+            template += `indicators[${i}].g = ${trigger.green};\n`
+            template += `indicators[${i}].b = ${trigger.blue};\n`
             template += '}\n'
             break
           case 'keyboard':
@@ -412,9 +418,9 @@ const buildKeymap = (dir, keyData, indicators) => {
             template += '}\n'
             break
           case 'power':
-            template += 'indicators[{}].r = {};\n'.format(i, trigger.get('red'))
-            template += 'indicators[{}].g = {};\n'.format(i, trigger.get('green'))
-            template += 'indicators[{}].b = {};\n'.format(i, trigger.get('blue'))
+            template += `indicators[${i}].r = ${trigger.red};\n`
+            template += `indicators[${i}].g = ${trigger.green};\n`
+            template += `indicators[${i}].b = ${trigger.blue};\n`
             break
           default:
             // NO-OP
@@ -422,7 +428,7 @@ const buildKeymap = (dir, keyData, indicators) => {
       }
     }
 
-    template += 'rgblight_setrgb_many(indicators, ies, ${indicators.length});\n'
+    template += `rgblight_setrgb_many(indicators, indexes, ${indicators.length});\n`
     template += '};'
   }
 
@@ -436,7 +442,7 @@ const createDir = dir => {
   return new Promise((resolve, reject) => {
     mkdirp(dir, err => {
       if (err) {
-        if (err.code == 'EEXIST') {
+        if (err.code === 'EEXIST') {
           return resolve()
         }
         return reject(err)

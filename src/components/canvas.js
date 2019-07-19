@@ -18,6 +18,13 @@ import colors from '../utils/colors'
 
 export default class extends Component {
 
+  constructor (props) {
+    super(props)
+    this.state = {
+      infoVisible: false
+    }
+  }
+
   render () {
     const {
       layersVisible,
@@ -40,8 +47,11 @@ export default class extends Component {
       sortLayers,
       addIndicator,
       updateIndicator,
-      deleteIndicator
+      deleteIndicator,
+      hoveredZone
     } = this.props
+
+    const { infoVisible } = this.state
 
     return (
       <Sidebar.Pushable
@@ -107,12 +117,25 @@ export default class extends Component {
                 editLayer={editLayer}
               />
             </Responsive>
-            <Container id='scrollbar' fluid style={{
+            <Responsive maxWidth={1919}>
+              <InfoButton name='Info' onClick={() => {
+                this.setState({ infoVisible: !infoVisible })
+              }} />
+              {infoVisible && <Info overlay
+                manufacturer={config[activeBoard].config.manufacturer}
+                product={config[activeBoard].config.product}
+                description={config[activeBoard].config.description}
+                layout={layouts.find(l => l.id === activeLayout)}
+                layer={layers.find(l => l.id === activeLayer)}
+                editLayout={editLayout}
+                editLayer={editLayer}
+              />}
+            </Responsive>
+            <Container fluid style={{
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              height: 490,
-              overflowX: 'auto'
+              height: 490
             }}>
             <Scale>
               <Keyboard
@@ -126,6 +149,7 @@ export default class extends Component {
                 activeKeyType={activeKeyType}
                 updateIndicator={updateIndicator}
                 deleteIndicator={deleteIndicator}
+                hoveredZone={hoveredZone}
               />
             </Scale>
           </Container>
@@ -159,5 +183,17 @@ const ToggleButton = ({ onClick, name, onCanvas }) => (
         display: 'inline-block'
       }}>{name}</span>
     </div>
+  </div>
+)
+
+const InfoButton = ({ onClick, name }) => (
+  <div style={{
+    position: 'absolute',
+    top: 14,
+    right: 14
+  }}>
+    <Button icon inverted basic onClick={onClick}>
+      <Icon name='info' />
+    </Button>
   </div>
 )

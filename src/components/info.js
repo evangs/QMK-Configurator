@@ -8,6 +8,7 @@ import {
   Header,
   Input
 } from 'semantic-ui-react'
+import colors from '../utils/colors'
 
 export default ({
   manufacturer,
@@ -16,15 +17,18 @@ export default ({
   editLayer,
   editLayout,
   layer,
-  layout
+  layout,
+  overlay
 }) => (
   <Table basic celled collapsing inverted style={{
     position: 'absolute',
-    top: 14,
+    top: overlay ? 50 : 14,
     right: 14,
     border: '1px solid rgba(255, 255, 255, 0.1)',
     borderRadius: 0,
-    maxWidth: 350
+    maxWidth: 350,
+    zIndex: 9,
+    background: colors.dark
   }}>
     <Table.Body>
       <Table.Row>

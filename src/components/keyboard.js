@@ -14,7 +14,8 @@ export default ({
   updateIndicator,
   deleteIndicator,
   scaleFactor,
-  setKey
+  setKey,
+  hoveredZone
 }) => {
 
   let activeLayerIndex = 0
@@ -64,6 +65,7 @@ export default ({
                     activeKeyType={activeKeyType}
                     setKey={setKey}
                     scale={scale}
+                    hoveredZone={hoveredZone}
                     {...k}
                   />
                 )

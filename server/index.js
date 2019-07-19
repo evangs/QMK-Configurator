@@ -4,7 +4,7 @@ const express = require('express')
 const corser = require('corser')
 const shrinkRay = require('shrink-ray-current')
 const bodyParser = require('body-parser')
-const { setupFirmware, buildFirmware } = require('./firmware')
+const { setupFirmware, buildFirmware } = require('./src/firmware')
 const rimraf = require('rimraf')
 
 const HTTP_PORT = process.env.NODE_ENV === 'production' ? 80 : 8000
@@ -18,7 +18,7 @@ app.use(bodyParser.json())
 app.use(express.static('build'))
 
 app.get('/', (req, res, next) => {
-  res.sendFile(path.join('build', 'index.html'))
+  res.sendFile(join('build', 'index.html'))
 })
 
 app.post('/', async (req, res, next) => {

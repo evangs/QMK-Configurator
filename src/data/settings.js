@@ -13,7 +13,7 @@ export default [
       type:'config',
       component:'input',
       default:'100',
-      description: 'Maximum USB power consumption'
+      description: 'Maximum USB power consumption.'
    },
    {
       value:'debouncingDelay',
@@ -21,7 +21,7 @@ export default [
       type:'config',
       component:'input',
       default:'5',
-      description: ''
+      description: 'Delay when reading the value of the pin.'
    },
    {
       value:'tappingTerm',
@@ -29,7 +29,7 @@ export default [
       type:'config',
       component:'input',
       default:'175',
-      description: ''
+      description: 'How long before a tap becomes a hold. If set above 500, a key tapped during the tapping term will turn it into a hold too.'
    },
    {
       value:'lockingSupportEnabled',
@@ -37,7 +37,7 @@ export default [
       type:'config',
       component:'checkbox',
       default:true,
-      description: ''
+      description: 'Mechanical locking support.'
    },
    {
       value:'lockingResyncEnabled',
@@ -45,7 +45,7 @@ export default [
       type:'config',
       component:'checkbox',
       default:true,
-      description: ''
+      description: 'Tries to keep switch state consistent with keyboard LED state.'
    },
    {
       value:'debugEnabled',
@@ -53,7 +53,7 @@ export default [
       type:'config',
       component:'checkbox',
       default:true,
-      description: 'Enable debug mode'
+      description: 'Enable debug mode.'
    },
    {
       value:'printEnabled',
@@ -61,7 +61,7 @@ export default [
       type:'config',
       component:'checkbox',
       default:true,
-      description: ''
+      description: 'Enable/disable printing/debugging.'
    },
    {
       value:'actionLayerEnabled',
@@ -69,7 +69,7 @@ export default [
       type:'config',
       component:'checkbox',
       default:true,
-      description: ''
+      description: 'Enable/disable layers.'
    },
    {
       value:'actionTappingEnabled',
@@ -77,7 +77,7 @@ export default [
       type:'config',
       component:'checkbox',
       default:true,
-      description: ''
+      description: 'Enable/disable tapping features.'
    },
    {
       value:'actionOneShotEnabled',
@@ -85,7 +85,7 @@ export default [
       type:'config',
       component:'checkbox',
       default:true,
-      description: ''
+      description: 'Enable/disable one shot modifiers.'
    },
    {
       value:'actionMacroEnabled',
@@ -93,7 +93,7 @@ export default [
       type:'config',
       component:'checkbox',
       default:true,
-      description: ''
+      description: 'Enable/disable all macro handling.'
    },
    {
       value:'actionFunctionEnabled',
@@ -101,7 +101,7 @@ export default [
       type:'config',
       component:'checkbox',
       default:true,
-      description: ''
+      description: 'Enable/disable the action function.'
    },
    {
       value:'matrixHasGhost',
@@ -109,7 +109,7 @@ export default [
       type:'config',
       component:'checkbox',
       default:false,
-      description: ''
+      description: 'Prevent ghosting on hand wired boards.'
    },
    {
       value:'bootmagicEnabled',
@@ -117,7 +117,7 @@ export default [
       type:'rule',
       component:'checkbox',
       default:true,
-      description: ''
+      description: 'Enable/disable virtual DIP switch configuration(+1000).'
    },
    {
       value:'mousekeyEnabled',
@@ -125,7 +125,7 @@ export default [
       type:'rule',
       component:'checkbox',
       default:true,
-      description: ''
+      description: 'Enable/disable mouse keys(+4700).'
    },
    {
       value:'extrakeyEnabled',
@@ -133,7 +133,7 @@ export default [
       type:'rule',
       component:'checkbox',
       default:true,
-      description: ''
+      description: 'Enable/disable audio control and System control(+450).'
    },
    {
       value:'consoleEnabled',
@@ -141,7 +141,7 @@ export default [
       type:'rule',
       component:'checkbox',
       default:true,
-      description: ''
+      description: 'Enable/disable console for debug(+400).'
    },
    {
       value:'commandEnabled',
@@ -149,7 +149,7 @@ export default [
       type:'rule',
       component:'checkbox',
       default:true,
-      description: ''
+      description: 'Enable/disable commands for debug and configuration.'
    },
    {
       value:'sleepLedEnabled',
@@ -157,7 +157,7 @@ export default [
       type:'rule',
       component:'checkbox',
       default:true,
-      description: ''
+      description: 'Enable/disable LED toggle on sleep.'
    },
    {
       value:'nkroEnabled',
@@ -165,7 +165,7 @@ export default [
       type:'rule',
       component:'checkbox',
       default:false,
-      description: ''
+      description: 'Enable/disable n-key rollover. Register as many keys as you can press at once without "dropping" any characters.'
    },
    {
       value:'backlightEnabled',
@@ -173,6 +173,6 @@ export default [
       type:'rule',
       component:'checkbox',
       default:true,
-      description: ''
+      description: 'Enable/disable LED backlight.'
    }
 ]

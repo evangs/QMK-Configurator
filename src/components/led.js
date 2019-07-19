@@ -32,7 +32,7 @@ export default class extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    const availableActions = this.state.availableActions.slice(0)
+    const availableActions = indicatorActions.slice(0)
     nextProps.data.forEach(d => {
       if (availableActions.indexOf(d.action) > -1) {
         availableActions.splice(availableActions.indexOf(d.action), 1)
@@ -56,7 +56,7 @@ export default class extends Component {
     let color = 'grey'
     const layerIndicator = data.filter(d => d.type === 'layer').find(d => {
       const str = d.action.substring(1)
-      return parseInt(str, 10) === activeLayerIndex + 1
+      return parseInt(str, 10) === activeLayerIndex
     })
     const powerIndicator = data.find(d => d.type === 'power')
 
@@ -105,16 +105,18 @@ export default class extends Component {
             marginTop: 50,
             marginBottom: 50
           }}>
-            {data.map(d => (
+            {data.map((d, i) => (
               <Color
-                id={id}
+                indicatorId={id}
+                id={i}
                 key={d.action}
                 action={d.action}
                 color={{ r: d.red, g: d.green, b: d.blue }}
                 availableActions={availableActions}
                 deleteIndicator={deleteIndicator}
+                updateIndicator={updateIndicator}
                 onChange={c => {
-                  updateIndicator(id, {
+                  updateIndicator(id, i, {
                     red: c.rgb.r,
                     green: c.rgb.g,
                     blue: c.rgb.b,
@@ -173,11 +175,13 @@ const Color = CustomPicker(class extends Component {
   render () {
     const {
       id,
+      indicatorId,
       action,
       availableActions,
       hex,
       hsl,
       onChange,
+      updateIndicator,
       deleteIndicator
     } = this.props
 
@@ -193,6 +197,7 @@ const Color = CustomPicker(class extends Component {
     const styles = {
       card: {
         maxWidth: '170px',
+        minWidth: '170px',
         flex: '1 0 0',
         background: colors.white,
         boxShadow: '0 1px rgba(0,0,0,.1)',
@@ -219,16 +224,18 @@ const Color = CustomPicker(class extends Component {
         position: 'relative',
       },
       input: {
-        width: '100%',
-        fontSize: '12px',
-        color: '#666',
-        border: '0px',
-        outline: 'none',
-        height: '22px',
-        boxShadow: `inset 0 0 0 1px ${colors.grey}`,
-        borderRadius: '4px',
-        padding: '0 7px',
-        boxSizing: 'border-box',
+        input: {
+          width: '100%',
+          fontSize: '12px',
+          color: colors.dark,
+          border: '0px',
+          outline: 'none',
+          height: '22px',
+          boxShadow: `inset 0 0 0 1px ${colors.secondaryColor}`,
+          borderRadius: '4px',
+          padding: '0 7px',
+          boxSizing: 'border-box'
+        }
       },
       edit: {
         position: 'absolute',
@@ -273,7 +280,7 @@ const Color = CustomPicker(class extends Component {
                   top: 2,
                   left: 142
                 }}
-                onClick={() => deleteIndicator(id)} />
+                onClick={() => deleteIndicator(indicatorId, id)} />
             </div>
             <div style={styles.label}>
               <Dropdown
@@ -281,6 +288,9 @@ const Color = CustomPicker(class extends Component {
                 scrolling
                 options={actions}
                 defaultValue={action}
+                onChange={(e, { value }) => {
+                  updateIndicator(indicatorId, id, { action: value })
+                }}
                 placeholder={indicatorMap[action].description} />
             </div>
           </div>
@@ -312,8 +322,9 @@ const Color = CustomPicker(class extends Component {
         <div style={styles.body}>
           <EditableInput
             style={styles.input}
+            label='hexCode'
             value={hex}
-            onChange={handleChange}
+            onChange={({ hexCode }) => handleChange(hexCode)}
           />
         </div>
       </div>
