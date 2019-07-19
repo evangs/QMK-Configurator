@@ -49,6 +49,7 @@ export default class extends Component {
       buildInProgress
     } = this.props
     const { name, open } = this.state
+    const filteredLayers = layers.filter(l => l.layoutId === activeLayout)
 
     return (
       <Menu inverted fixed='top' style={{
@@ -163,7 +164,7 @@ export default class extends Component {
                   </Button>
                   <Button
                     basic
-                    disabled={layers.length >= 16}
+                    disabled={filteredLayers.length >= 16}
                     color='teal'
                     inverted
                     onClick={() => {

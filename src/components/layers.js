@@ -138,7 +138,7 @@ export default class Layers extends Component {
                             } />
 
                             { /* CLONE LAYER */ }
-                            <NameModal color='teal' icon='clone' disabled={layers.length >= 16} action={cloneLayer} display='Clone' layer={layer} />
+                            <NameModal color='teal' icon='clone' disabled={filteredLayers.length >= 16} action={cloneLayer} display='Clone' layer={layer} />
 
                             { /* DELETE LAYER */ }
                             <DeleteModal layer={layer} action={deleteLayer} disabled={filteredLayers.length <= 1} />
