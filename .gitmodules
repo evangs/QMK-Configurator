@@ -1,3 +1,0 @@
-[submodule "server/qmk_firmware"]
-	path = server/qmk_firmware
-	url = https://github.com/evangs/qmk_firmware
