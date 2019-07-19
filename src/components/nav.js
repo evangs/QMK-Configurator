@@ -14,7 +14,7 @@ import {
 } from 'semantic-ui-react'
 import Layouts from './layouts'
 import { config } from '../data/config'
-import { isElectron } from '../utils/env'
+import { isElectron, isWindows } from '../utils/env'
 import logo from '../logo.svg'
 
 export default class extends Component {
@@ -85,9 +85,9 @@ export default class extends Component {
                 inverted
                 color={dirty ? 'green' : 'teal'}
                 disabled={buildInProgress}
-                onClick={dirty ? save : isElectron() ? flash : download}
+                onClick={dirty ? save : isElectron() && !isWindows() ? flash : download}
                 style={{ cursor: 'pointer' }}>
-                  {dirty ? 'Save' : isElectron() ? 'Flash' : 'Download'}
+                  {dirty ? 'Save' : isElectron() && !isWindows() ? 'Flash' : 'Download'}
                 </Button>
             </Menu.Item>
             <Menu.Item>

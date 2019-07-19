@@ -1,7 +1,7 @@
-export const isElectron = () => window && window.process && window.process.type;
-export const isWindows = () => window && window.navigator && window.navigator.platform.indexOf('Win') > -1;
-export const isMac = () => window && window.navigator && window.navigator.platform.indexOf('Mac') > -1;
-export const isLinux = () => window && window.navigator && window.navigator.platform.indexOf('Linux') > -1;
+export const isElectron = () => window && window.process && window.process.type
+export const isWindows = () => window && window.process && window.process.platform === 'win32'
+export const isMac = () => window && window.process && window.process.platform === 'darwin'
+export const isLinux = () => window && window.process && window.process.platform === 'linux'
 
 export const Electron = (props) => {
   return isElectron() ? props.children : ''
