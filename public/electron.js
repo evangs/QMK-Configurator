@@ -118,10 +118,10 @@ electron.ipcMain.on('flash-firmware', async (event, arg) => {
           message: 'Firmware flashed successfully.'
         }))
         // TODO: Clean up build files
-        log.info(join(HEX_BASE, 'keyboards', dir))
-        log.info(join(HEX_BASE, '.build', `*${dir}*`))
+        rimraf(join(HEX_BASE, 'keyboards', dir), () => {})
+        rimraf(join(HEX_BASE, '.build', `*${dir}*`), () => {})
         // Clean up hex file
-        log.info(join(HEX_BASE, hexFile))
+        rimraf(join(HEX_BASE, hexFile), () => {})
       } catch (err) {
         // Send down error
         log.error(err)
@@ -129,11 +129,6 @@ electron.ipcMain.on('flash-firmware', async (event, arg) => {
           ok: false,
           message: 'No device found. Did you push the reset button on your keyboard?'
         }))
-        // TODO: Clean up build files
-        log.info(join(HEX_BASE, 'keyboards', dir))
-        log.info(join(HEX_BASE, '.build', `*${dir}*`))
-        // // Clean up hex file
-        log.info(join(HEX_BASE, hexFile))
       }
       break
     }
