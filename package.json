@@ -18,6 +18,10 @@
       "build/**/*",
       "node_modules/**/*"
     ],
+    "extraFiles": [
+      "server/dfu-programmer",
+      "server/qmk_firmware"
+    ],
     "directories": {
       "buildResources": "assets"
     },
@@ -78,20 +82,20 @@
     "docker:clean": "docker rm $(docker ps -q -f 'status=exited') && docker rmi $(docker images -q -f 'dangling=true')"
   },
   "dependencies": {
-    "@craco/craco": "^3.2.3",
-    "body-parser": "^1.18.3",
-    "corser": "^2.0.1",
     "electron-first-run": "^2.0.0",
     "electron-is-dev": "^1.1.0",
     "electron-log": "^3.0.6",
     "electron-updater": "^4.1.2",
-    "express": "^4.16.4",
     "fix-path": "^2.1.0",
-    "mkdirp": "^0.5.1",
-    "rimraf": "^2.6.2",
-    "shrink-ray-current": "^3.0.2"
+    "mkdirp": "^0.5.1"
   },
   "devDependencies": {
+    "express": "^4.16.4",
+    "body-parser": "^1.18.3",
+    "corser": "^2.0.1",
+    "rimraf": "^2.6.2",
+    "shrink-ray-current": "^3.0.2",
+    "@craco/craco": "^3.2.3",
     "chroma-js": "^2.0.2",
     "concurrently": "^4.1.0",
     "d3": "^5.7.0",

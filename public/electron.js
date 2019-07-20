@@ -1,5 +1,4 @@
-const rimraf = require('rimraf')
-const { resolve, join } = require('path')
+const { resolve } = require('path')
 const fixPath = require('fix-path')
 const log = require('electron-log')
 const electron = require('electron')
@@ -20,8 +19,9 @@ const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 
 // DFU
-const HEX_BASE = resolve(__dirname, '..', 'server', 'qmk_firmware')
-const DFU_SOURCE = resolve(__dirname, '..', 'server', 'dfu-programmer')
+const HEX_BASE = resolve(__dirname, '..', '..', '..', 'server', 'qmk_firmware')
+const DFU_SOURCE = resolve(__dirname, '..', '..', '..', 'server', 'dfu-programmer')
+
 
 if (firstRun()) {
   const { platform } = process
@@ -89,6 +89,7 @@ electron.ipcMain.on('flash-firmware', async (event, arg) => {
     case 'darwin':
     case 'linux': {
 
+      log.info(HEX_BASE)
       let dir = ''
       let hexFile = ''
       try {
@@ -117,11 +118,6 @@ electron.ipcMain.on('flash-firmware', async (event, arg) => {
           ok: true,
           message: 'Firmware flashed successfully.'
         }))
-        // TODO: Clean up build files
-        rimraf(join(HEX_BASE, 'keyboards', dir), () => {})
-        rimraf(join(HEX_BASE, '.build', `*${dir}*`), () => {})
-        // Clean up hex file
-        rimraf(join(HEX_BASE, hexFile), () => {})
       } catch (err) {
         // Send down error
         log.error(err)
