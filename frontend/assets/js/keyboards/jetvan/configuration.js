@@ -70,6 +70,8 @@ jetvan.configKeymap.positions = [
     ["K30", "K31", "K32", "KC_NO", "KC_NO", "KC_NO", "KC_NO", "K37", "KC_NO", "K39", "K3A", "K3B"]
 ];
 
+jetvan.zones = [];
+
 // ui keymap
 jetvan.keySections = [
     { // DEFAULT LAYER ==========================================
