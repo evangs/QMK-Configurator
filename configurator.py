@@ -411,4 +411,8 @@ def buildKeymap(keyData, fn_indicators, firmware_directory):
         template += 'rgblight_setrgb_many(indicators, indexes, {});\n'.format(len(fn_indicators))
         template += '};'
 
+    else:
+        template += 'void rgblight_init_leds(void) {\n'
+        template += '};'
+
     return template
