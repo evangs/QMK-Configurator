@@ -1490,14 +1490,14 @@ jetvan.keySections = [
     }
 ];
 
-minivan.keymap = function() {
+jetvan.keymap = function() {
     var keymap = [];
     var layer = [];
     var ks;
     var i;
 
-    for (i in minivan.keySections) {
-        ks = minivan.keySections[i];
+    for (i in jetvan.keySections) {
+        ks = jetvan.keySections[i];
         layer = new Array();
         layer.push(ks.row1);
         layer.push(ks.row2);
