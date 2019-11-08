@@ -73,40 +73,17 @@ const generateTriggerTemplate = (trigger, index) => {
     case 'layer':
       return (
 `if (state & (1<<${trigger.action.slice(1)})) {
-  indicators[${index}].r = ${trigger.red};
-  indicators[${index}].g = ${trigger.green};
-  indicators[${index}].b = ${trigger.blue};
+  setrgb(${trigger.red}, ${trigger.green}, ${trigger.blue}, (LED_TYPE *)&led[${index}]);
 }
 `);
     case 'keyboard':
       return (
 `if (usb_led & (1<<${trigger.action})) {
-  if (indicators[${index}].r > 0) {
-    indicators[${index}].r = (indicators[${index}].r + ${trigger.red}) / 2;
-  }
-  else {
-    indicators[${index}].r = ${trigger.red};
-  }
-  if (indicators[${index}].g > 0) {
-    indicators[${index}].g = (indicators[${index}].g + ${trigger.green}) / 2;
-  }
-  else {
-    indicators[${index}].g = ${trigger.green};
-  }
-  if (indicators[${index}].b > 0) {
-    indicators[${index}].b = (indicators[${index}].b + ${trigger.blue}) / 2;
-  }
-  else {
-    indicators[${index}].b = ${trigger.blue};
-  }
+  setrgb(${trigger.red}, ${trigger.green}, ${trigger.blue}, (LED_TYPE *)&led[${index}]);
 }
 `);
     case 'power':
-      return (
-`indicators[${index}].r = ${trigger.red}
-indicators[${index}].g = ${trigger.green}
-indicators[${index}].b = ${trigger.blue}
-`);
+      return `setrgb(${trigger.red}, ${trigger.green}, ${trigger.blue}, (LED_TYPE *)&led[${index}]);`;
     default: return '';
   }
 };
@@ -117,11 +94,7 @@ const generateIndicatorTemplate = (indicators) => {
   }
 
   return (
-`void matrix_init_user(void) {
-  rgblight_init();
-};
-
-void rgblight_init_leds(void) {
+`void keyboard_post_init_user(void) {
   process_indicator_update(layer_state, host_keyboard_leds());
 };
 
@@ -131,23 +104,13 @@ void led_set_user(uint8_t usb_led) {
 };
 
 void process_indicator_update(uint32_t state, uint8_t usb_led) {
-  LED_TYPE indicators[${indicators.length}] = {
-    ${indicators.map(() => '{.r = 0, .g = 0, .b = 0}').join(`,
-    `)}
-  };
-
-  uint8_t indexes[${indicators.length}] = {
-    ${indicators.map((indicator, indicatorIndex) => `${indicatorIndex}`).join(`,
-    `)}
-  };
-
   ${indicators.map((led, ledIndex) => {
     return led.map((trigger) => generateTriggerTemplate(trigger, ledIndex)).join(`
     `);
   }).join(`
   `)}
 
-  rgblight_setrgb_many(indicators, indexes, ${indicators.length});
+  rgblight_set();
 };`);
 };
 
