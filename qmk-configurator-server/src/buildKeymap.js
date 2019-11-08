@@ -22,7 +22,7 @@ const exemptCodes = [
   'RGB_SAI',
   'RGB_SAD',
   'RGB_MODE_PLAIN',
-  'RGB_MODE_RAINBOW',
+  'RGB_MODE_BREATHE',
   'RGB_MODE_RAINBOW',
   'RGB_MODE_KNIGHT',
   'RGB_MODE_GRADIENT',
