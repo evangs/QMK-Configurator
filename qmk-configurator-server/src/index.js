@@ -32,24 +32,29 @@ app.get('/firmware/:firmwareDirectory/keymaps/:fileName', (req, res) => {
 
 app.post('/build', (req, res) => {
   const keyboard = req.body;
-  f.setupFirmware(keyboard.config, keyboard.rules, keyboard.configKeymap, keyboard.keymap, keyboard.indicators, (fd) => {
-    f.buildFirmware(fd, (error) => {
-      if (error) {
-        res.json({
-          error: error
-        });
-      } else {
-        res.json({
-          'hex_url': `/hex/${fd}_default.hex`,
-          'config_url': `/firmware/${fd}/config.h`,
-          'rules_url': `/firmware/${fd}/rules.mk`,
-          'keyboard_c_url': `/firmware/${fd}/${fd}.c`,
-          'keyboard_h_url': `/firmware/${fd}/${fd}.h`,
-          'keymap_url': `/firmware/${fd}/keymaps/default/keymap.c`
-        });
-      }
+  try {
+    f.setupFirmware(keyboard.config, keyboard.rules, keyboard.configKeymap, keyboard.keymap, keyboard.indicators, (fd) => {
+      f.buildFirmware(fd, (error) => {
+        if (error) {
+          res.json({
+            error: error
+          });
+        } else {
+          res.json({
+            'hex_url': `/hex/${fd}_default.hex`,
+            'config_url': `/firmware/${fd}/config.h`,
+            'rules_url': `/firmware/${fd}/rules.mk`,
+            'keyboard_c_url': `/firmware/${fd}/${fd}.c`,
+            'keyboard_h_url': `/firmware/${fd}/${fd}.h`,
+            'keymap_url': `/firmware/${fd}/keymaps/default/keymap.c`
+          });
+        }
+      });
     });
-  });
+  } catch (e) {
+    console.log(e);
+    res.json({error: e});
+  }
 });
 
 app.listen(port, () => {
