@@ -46,7 +46,7 @@ app.post('/build', (req, res) => {
             'rules_url': `/firmware/${fd}/rules.mk`,
             'keyboard_c_url': `/firmware/${fd}/${fd}.c`,
             'keyboard_h_url': `/firmware/${fd}/${fd}.h`,
-            'keymap_url': `/firmware/${fd}/keymaps/default/keymap.c`
+            'keymap_url': `/firmware/${fd}/keymaps/keymap.c`
           });
         }
       });
