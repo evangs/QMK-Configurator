@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const f = require('./firmware.js');
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 9000;
 
 app.use(express.static(path.join(__dirname, '/../../frontend')));
 app.use(express.static(path.join(__dirname, '/../../qmk_firmware')));
