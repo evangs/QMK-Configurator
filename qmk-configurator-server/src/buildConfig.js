@@ -16,6 +16,9 @@ const populateDefines = (config) => {
   if (config.rgbLedNum) { defines.push( `#define RGBLED_NUM ${config.rgbLedNum}
 #define RGBLIGHT_CUSTOM_LED_INIT
 #define RGBLIGHT_SLEEP`); }
+  defines.push(`#define IS_COMMAND() ( \
+${config.commandKeyCombination || 'keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT))'} \
+)`);
 
   return `${defines.join(`
 `)}`;
