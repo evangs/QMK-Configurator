@@ -88,7 +88,7 @@ new Vue({
     buildFirmware: function() {
     	var context = this;
     	context.buildInProgress = true;
-      this.$http.post('/', {
+      this.$http.post('/build', {
         config: this.activeKeyboard.config,
         rules: this.activeKeyboard.rules,
         configKeymap: this.activeKeyboard.configKeymap,
