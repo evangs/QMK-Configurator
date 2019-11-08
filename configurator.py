@@ -277,7 +277,20 @@ def prepKeyForTemplate(key):
         'BL_INC': True,
         'BL_DEC': True,
         'RGB_VAI': True,
-        'RGB_VAD': True
+        'RGB_VAD': True,
+        'RGB_TOG': True,
+        'RGB_MODE_FORWARD': True,
+        'RGB_MODE_REVERSE': True,
+        'RGB_HUI': True,
+        'RGB_HUD': True,
+        'RGB_SAI': True,
+        'RGB_SAD': True,
+        'RGB_MODE_PLAIN': True,
+        'RGB_MODE_BREATHE': True,
+        'RGB_MODE_RAINBOW': True,
+        'RGB_MODE_KNIGHT': True,
+        'RGB_MODE_GRADIENT': True,
+        'RGB_MODE_SWIRL': True
     }
 
     if key_type == 'normal':
