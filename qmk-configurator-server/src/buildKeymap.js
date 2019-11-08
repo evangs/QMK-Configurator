@@ -94,16 +94,10 @@ const generateIndicatorTemplate = (indicators) => {
   }
 
   return (
-`void keyboard_post_init_user(void) {
-  process_indicator_update(layer_state, host_keyboard_leds());
-};
-
-void led_set_user(uint8_t usb_led) {
-  process_indicator_update(state, host_keyboard_leds());
-  return state;
-};
-
-void process_indicator_update(uint32_t state, uint8_t usb_led) {
+`void process_indicator_update(uint32_t state, uint8_t usb_led) {
+  for (int i = 0; i < ${indicators.length}; i++) {
+    setrgb(0, 0, 0, (LED_TYPE *)&led[i]);
+  }
   ${indicators.map((led, ledIndex) => {
     return led.map((trigger) => generateTriggerTemplate(trigger, ledIndex)).join(`
     `);
@@ -111,6 +105,19 @@ void process_indicator_update(uint32_t state, uint8_t usb_led) {
   `)}
 
   rgblight_set();
+};
+
+void keyboard_post_init_user(void) {
+  process_indicator_update(layer_state, host_keyboard_leds());
+};
+
+void led_set_user(uint8_t usb_led) {
+  process_indicator_update(layer_state, host_keyboard_leds());
+};
+
+uint32_t layer_state_set_user(uint32_t state) {
+  process_indicator_update(state, host_keyboard_leds());
+  return state;
 };`);
 };
 

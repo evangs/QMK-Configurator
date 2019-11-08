@@ -5,8 +5,8 @@ const populateDefines = (config) => {
   if (config.lockingSupportEnabled) { defines.push('#define LOCKING_SUPPORT_ENABLE'); }
   if (config.lockingResyncEnabled) { defines.push('#define LOCKING_RESYNC_ENABLE'); }
   if (config.permissiveHold) { defines.push('#define PERMISSIVE_HOLD'); }
-  if (!config.debugEnabled) { defines.push('#define NO_DEBUG'); }
-  if (!config.printEnabled) { defines.push('#define NO_PRINT'); }
+  // if (!config.debugEnabled) { defines.push('#define NO_DEBUG'); }
+  // if (!config.printEnabled) { defines.push('#define NO_PRINT'); }
   if (!config.actionLayerEnabled) { defines.push('#define NO_ACTION_LAYER'); }
   if (!config.actionTappingEnabled) { defines.push('#define NO_ACTION_TAPPING'); }
   if (!config.actionOneShotEnabled) { defines.push('#define NO_ACTION_ONESHOT'); }
