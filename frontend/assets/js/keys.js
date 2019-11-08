@@ -283,7 +283,7 @@ var KEYS = [
   },
   {
       label: 'RGB',
-    cssClass: 'large-context-key',
+    cssClass: 'extra-large-context-key',
     updateType: 'primary',
     visible: ['normal'],
     keys: [
@@ -306,7 +306,7 @@ var KEYS = [
   },
   {
       label: 'Misc',
-    cssClass: 'large-context-key',
+    cssClass: 'extra-large-context-key',
     updateType: 'primary',
     visible: ['normal'],
     keys: [
