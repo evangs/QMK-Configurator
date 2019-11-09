@@ -40,7 +40,7 @@ module.exports.buildFirmware = (firmwareDirectory, callback) => {
     if (error) {
       console.log('error', error);
       console.log('stdout', stdout);
-      callback(stderr);
+      callback(error);
     }
     callback();
   });
