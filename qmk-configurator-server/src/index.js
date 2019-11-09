@@ -30,36 +30,27 @@ app.get('/firmware/:firmwareDirectory/keymaps/:fileName', (req, res) => {
   res.sendFile(path.join(__dirname, `/../../qmk_firmware/keyboards/${fmd}/keymaps/default`, req.params.fileName));
 });
 
-const buildCallback = error => {
-  if (error) {
-    console.log('build firmware error', error);
-    res.json({
-      error: error
-    });
-  } else {
-    res.json({
-      'hex_url': `/hex/${fd}_default.hex`,
-      'config_url': `/firmware/${fd}/config.h`,
-      'rules_url': `/firmware/${fd}/rules.mk`,
-      'keyboard_c_url': `/firmware/${fd}/${fd}.c`,
-      'keyboard_h_url': `/firmware/${fd}/${fd}.h`,
-      'keymap_url': `/firmware/${fd}/keymaps/keymap.c`
-    });
-  }
-};
-
-const setupCallback = fd => {
-  f.buildFirmware(fd, buildCallback);
-};
-
 app.post('/build', (req, res) => {
   const keyboard = req.body;
-  try {
-    f.setupFirmware(keyboard.config, keyboard.rules, keyboard.configKeymap, keyboard.keymap, keyboard.indicators, setupCallback);
-  } catch (e) {
-    console.log('try error', e);
-    res.json({error: e});
-  }
+  f.setupFirmware(keyboard.config, keyboard.rules, keyboard.configKeymap, keyboard.keymap, keyboard.indicators, fd => {
+    f.buildFirmware(fd, error => {
+      if (error) {
+        console.log('build firmware error', error);
+        res.json({
+          'error': error
+        });
+      } else {
+        res.json({
+          'hex_url': `/hex/${fd}_default.hex`,
+          'config_url': `/firmware/${fd}/config.h`,
+          'rules_url': `/firmware/${fd}/rules.mk`,
+          'keyboard_c_url': `/firmware/${fd}/${fd}.c`,
+          'keyboard_h_url': `/firmware/${fd}/${fd}.h`,
+          'keymap_url': `/firmware/${fd}/keymaps/keymap.c`
+        });
+      }
+    });
+  });
 });
 
 app.listen(port, () => {
