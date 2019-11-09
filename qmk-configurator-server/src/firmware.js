@@ -36,16 +36,12 @@ module.exports.setupFirmware = (config, rules, configKeymap, keymap, indicators,
 };
 
 module.exports.buildFirmware = (firmwareDirectory, callback) => {
-  try {
-    child_process.exec(`make ${firmwareDirectory}`, {cwd: '/app/qmk_firmware/'}, (error, stdout, stderr) => {
-      if (error) {
-        console.log('error', error);
-        console.log('stdout', stdout);
-        callback(stderr);
-      }
-      callback();
-    });
-  } catch (e) {
-    callback(e);
-  }
+  child_process.exec(`make ${firmwareDirectory}`, {cwd: '/app/qmk_firmware/'}, (error, stdout, stderr) => {
+    if (error) {
+      console.log('error', error);
+      console.log('stdout', stdout);
+      callback(stderr);
+    }
+    callback();
+  });
 };
