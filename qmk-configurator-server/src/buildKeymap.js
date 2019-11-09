@@ -30,42 +30,47 @@ const exemptCodes = [
 ];
 
 const prepKeyForTemplate = (key) => {
-  switch (key.type) {
-    case 'normal':
-      if (exemptCodes.includes(key.value)) {
-        return key.value;
-      }
+  try {
+    switch (key.type) {
+      case 'normal':
+        if (exemptCodes.includes(key.value)) {
+          return key.value;
+        }
 
-      if (key.value === 'IME') {
-        return 'M_IME'
-      }
+        if (key.value === 'IME') {
+          return 'M_IME'
+        }
 
-      return `KC_${key.value}`;
-    case 'modkey':
-    case 'combokey':
-      return `${key.secondary}(KC_${key.value})`;
-    case 'tapkey':
-      if (isNaN(key.secondary.slice(1))) {
-        return `${key.secondary}_T(KC_${key.value})`;
-      }
+        return `KC_${key.value}`;
+      case 'modkey':
+      case 'combokey':
+        return `${key.secondary}(KC_${key.value})`;
+      case 'tapkey':
+        if (isNaN(key.secondary.slice(1))) {
+          return `${key.secondary}_T(KC_${key.value})`;
+        }
 
-      return `LT(${key.secondary.slice(1)}, KC_${key.value})`;
-    case 'oneshotmod':
-    case 'oneshotlayer':
-      if (isNaN(key.secondary.slice(1))) {
-        return `OSM(${key.value})`;
-      }
+        return `LT(${key.secondary.slice(1)}, KC_${key.value})`;
+      case 'oneshotmod':
+      case 'oneshotlayer':
+        if (isNaN(key.secondary.slice(1))) {
+          return `OSM(${key.value})`;
+        }
 
-      return `OSL(${key.value})`;
-    case 'unicode':
-      return `UC(${key.value})`;
-    default:
-      if (layerTypeMap[key.type]) {
-        return `${layerTypeMap[key.type]}(${key.value.slice(1)})`;
-      }
+        return `OSL(${key.value})`;
+      case 'unicode':
+        return `UC(${key.value})`;
+      default:
+        if (layerTypeMap[key.type]) {
+          return `${layerTypeMap[key.type]}(${key.value.slice(1)})`;
+        }
+    }
+
+    return 'KC_NO';
+  } catch (e) {
+    console.log(e);
+    return 'KC_NO';
   }
-
-  return 'KC_NO';
 };
 
 const generateTriggerTemplate = (trigger, index) => {

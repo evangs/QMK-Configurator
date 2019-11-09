@@ -37,9 +37,9 @@ app.post('/build', (req, res) => {
       console.log('error is equal to ', error);
       if (error) {
         console.log('build firmware error', error);
-        res.json({
-          'error': error
-        });
+        // res.json({
+        //   'error': error
+        // });
       } else {
         res.json({
           'hex_url': `/hex/${fd}_default.hex`,
