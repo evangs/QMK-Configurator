@@ -152,7 +152,7 @@ new Vue({
       }
     },
     downloadFile: function(url) {
-      window.location.href = url;
+      window.open(url, '_blank');
     }
   },
   watch: {
