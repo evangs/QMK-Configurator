@@ -36,6 +36,7 @@ app.post('/build', (req, res) => {
     f.setupFirmware(keyboard.config, keyboard.rules, keyboard.configKeymap, keyboard.keymap, keyboard.indicators, (fd) => {
       f.buildFirmware(fd, (error) => {
         if (error) {
+          console.log('build firmware error', error);
           res.json({
             error: error
           });
@@ -52,7 +53,7 @@ app.post('/build', (req, res) => {
       });
     });
   } catch (e) {
-    console.log(e);
+    console.log('try error', e);
     res.json({error: e});
   }
 });
