@@ -302,6 +302,7 @@ var KEYS = [
       {value: 'RGB_MODE_KNIGHT', display: 'Knight'},
       {value: 'RGB_MODE_GRADIENT', display: 'Gradient'},
       {value: 'RGB_MODE_SWIRL', display: 'SWIRL'},
+      {value: 'RGB_MODE_RGBTEST', display: 'RGB Test'}
     ]
   },
   {

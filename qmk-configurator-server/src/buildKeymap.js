@@ -26,7 +26,8 @@ const exemptCodes = [
   'RGB_MODE_RAINBOW',
   'RGB_MODE_KNIGHT',
   'RGB_MODE_GRADIENT',
-  'RGB_MODE_SWIRL'
+  'RGB_MODE_SWIRL',
+  'RGB_MODE_RGBTEST'
 ];
 
 const prepKeyForTemplate = (key) => {
