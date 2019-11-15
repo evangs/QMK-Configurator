@@ -120,7 +120,8 @@ prime_e.keySections = [
             type: 'normal',
             secondary: null,
             showMenu: false,
-            shape: 'k100'
+            shape: 'k100',
+            spacer: 's200'
           },
           {
             id: 'k06',
@@ -226,7 +227,8 @@ prime_e.keySections = [
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              spacer: 's200'
             },
             {
               id: 'k16',
@@ -324,7 +326,8 @@ prime_e.keySections = [
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              spacer: 's100'
             },
             {
               id: 'k26',
@@ -398,7 +401,8 @@ prime_e.keySections = [
             type: 'momentary',
             secondary: null,
             showMenu: false,
-            shape: 'k125'
+            shape: 'k125',
+            spacer: 's100'
           },
           {
             id: 'k32',
@@ -414,7 +418,8 @@ prime_e.keySections = [
             type: 'normal',
             secondary: null,
             showMenu: false,
-            shape: 'k200'
+            shape: 'k200',
+            spacer: 's100'
           },
           {
             id: 'k38',
@@ -430,7 +435,8 @@ prime_e.keySections = [
             type: 'normal',
             secondary: null,
             showMenu: false,
-            shape: 'k125'
+            shape: 'k125',
+            spacer: 's100'
           },
           {
             id: 'k3A',
@@ -498,7 +504,8 @@ prime_e.keySections = [
             type: 'normal',
             secondary: null,
             showMenu: false,
-            shape: 'k100'
+            shape: 'k100',
+            spacer: 's200'
           },
           {
             id: 'k06',
@@ -604,7 +611,8 @@ prime_e.keySections = [
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              spacer: 's200'
             },
             {
               id: 'k16',
@@ -702,7 +710,8 @@ prime_e.keySections = [
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              spacer: 's100'
             },
             {
               id: 'k26',
@@ -776,7 +785,8 @@ prime_e.keySections = [
             type: 'normal',
             secondary: null,
             showMenu: false,
-            shape: 'k125'
+            shape: 'k125',
+            spacer: 's100'
           },
           {
             id: 'k32',
@@ -792,7 +802,8 @@ prime_e.keySections = [
             type: 'normal',
             secondary: null,
             showMenu: false,
-            shape: 'k200'
+            shape: 'k200',
+            spacer: 's100'
           },
           {
             id: 'k38',
@@ -808,7 +819,8 @@ prime_e.keySections = [
             type: 'normal',
             secondary: null,
             showMenu: false,
-            shape: 'k125'
+            shape: 'k125',
+            spacer: 's100'
           },
           {
             id: 'k3A',
@@ -876,7 +888,8 @@ prime_e.keySections = [
             type: 'normal',
             secondary: null,
             showMenu: false,
-            shape: 'k100'
+            shape: 'k100',
+            spacer: 's200'
           },
           {
             id: 'k06',
@@ -982,7 +995,8 @@ prime_e.keySections = [
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              spacer: 's200'
             },
             {
               id: 'k16',
@@ -1080,7 +1094,8 @@ prime_e.keySections = [
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              spacer: 's100'
             },
             {
               id: 'k26',
@@ -1154,7 +1169,8 @@ prime_e.keySections = [
             type: 'normal',
             secondary: null,
             showMenu: false,
-            shape: 'k125'
+            shape: 'k125',
+            spacer: 's100'
           },
           {
             id: 'k32',
@@ -1170,7 +1186,8 @@ prime_e.keySections = [
             type: 'normal',
             secondary: null,
             showMenu: false,
-            shape: 'k200'
+            shape: 'k200',
+            spacer: 's100'
           },
           {
             id: 'k38',
@@ -1186,7 +1203,8 @@ prime_e.keySections = [
             type: 'normal',
             secondary: null,
             showMenu: false,
-            shape: 'k125'
+            shape: 'k125',
+            spacer: 's100'
           },
           {
             id: 'k3A',
@@ -1254,7 +1272,8 @@ prime_e.keySections = [
             type: 'normal',
             secondary: null,
             showMenu: false,
-            shape: 'k100'
+            shape: 'k100',
+            spacer: 's200'
           },
           {
             id: 'k06',
@@ -1360,7 +1379,8 @@ prime_e.keySections = [
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              spacer: 's200'
             },
             {
               id: 'k16',
@@ -1458,7 +1478,8 @@ prime_e.keySections = [
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              spacer: 's100'
             },
             {
               id: 'k26',
@@ -1532,7 +1553,8 @@ prime_e.keySections = [
             type: 'normal',
             secondary: null,
             showMenu: false,
-            shape: 'k125'
+            shape: 'k125',
+            spacer: 's100'
           },
           {
             id: 'k32',
@@ -1548,7 +1570,8 @@ prime_e.keySections = [
             type: 'normal',
             secondary: null,
             showMenu: false,
-            shape: 'k200'
+            shape: 'k200',
+            spacer: 's100'
           },
           {
             id: 'k38',
@@ -1564,7 +1587,8 @@ prime_e.keySections = [
             type: 'normal',
             secondary: null,
             showMenu: false,
-            shape: 'k125'
+            shape: 'k125',
+            spacer: 's100'
           },
           {
             id: 'k3A',
