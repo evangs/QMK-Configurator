@@ -53,7 +53,7 @@ app.post('/build', (req, res) => {
   });
 });
 
-app.put('/import', (req, res) => {
+app.post('/import', (req, res) => {
   new formidable.IncomingForm().parse(req, (err, fields, files) => {
     if (err) {
       console.error('Error', err);

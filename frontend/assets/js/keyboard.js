@@ -116,8 +116,9 @@ new Vue({
       var formData = new FormData();
       formData.append('file', fileList[0]);
 
-      this.$http.put('/import', formData)
+      this.$http.post('/import', formData)
       .then(function(response) {
+        console.log(response);
         var layout = response.data;
 
         context.activeKeyboard = context.keyboards.find(function(keeb) {
