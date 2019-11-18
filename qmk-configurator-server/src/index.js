@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const formidable = require('formidable');
 const f = require('./firmware.js');
 const app = express();
 const port = process.env.PORT || 9000;
@@ -37,9 +38,6 @@ app.post('/build', (req, res) => {
       console.log('error is equal to ', error);
       if (error) {
         console.log('build firmware error', error);
-        // res.json({
-        //   'error': error
-        // });
       } else {
         res.json({
           'hex_url': `/hex/${fd}_default.hex`,
@@ -52,6 +50,20 @@ app.post('/build', (req, res) => {
       }
     });
   });
+});
+
+app.post('/import', (req, res) => {
+  new formidable.IncomingForm().parse(req, (err, fields, files) => {
+    if (err) {
+      console.error('Error', err)
+      throw err
+    }
+    console.log('Fields', fields)
+    console.log('Files', files)
+    for (const file of Object.entries(files)) {
+      console.log(file)
+    }
+  })
 });
 
 app.listen(port, () => {
