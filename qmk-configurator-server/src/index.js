@@ -61,8 +61,10 @@ app.post('/import', (req, res) => {
     }
 
     for (const file of Object.entries(files)) {
+      console.log(file);
       fs.readFile(`${file.path}/${file.name}`, (err, data) => {
         if (err) console.log(err);
+        console.log(data);
         res.json(data);
       });
     }
