@@ -54,11 +54,15 @@ app.post('/build', (req, res) => {
 });
 
 app.post('/import', (req, res) => {
-  new formidable.IncomingForm().parse(req, (err, fields, files) => {
+  var form = new formidable.IncomingForm();
+
+  form.parse(req, (err, fields, files) => {
     if (err) {
       console.error('Error', err);
       throw err;
     }
+
+    console.log(files[0].name);
 
     for (const file of Object.entries(files)) {
       console.log(file.name);
