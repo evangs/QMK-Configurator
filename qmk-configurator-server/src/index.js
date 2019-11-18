@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const formidable = require('formidable');
+const fs = require('fs');
 const f = require('./firmware.js');
 const app = express();
 const port = process.env.PORT || 9000;
@@ -53,16 +54,17 @@ app.post('/build', (req, res) => {
 });
 
 app.put('/import', (req, res) => {
-  console.log(req);
   new formidable.IncomingForm().parse(req, (err, fields, files) => {
     if (err) {
       console.error('Error', err);
       throw err;
     }
-    console.log('Fields', fields);
-    console.log('Files', files);
+
     for (const file of Object.entries(files)) {
-      console.log(file);
+      fs.readFile(`${file.path}/${file.name}`, (err, data) => {
+        if (err) console.log(err);
+        res.json(data);
+      });
     }
   });
 });
