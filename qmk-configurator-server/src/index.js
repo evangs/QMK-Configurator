@@ -52,7 +52,7 @@ app.post('/build', (req, res) => {
   });
 });
 
-app.post('/import', (req, res) => {
+app.put('/import', (req, res) => {
   console.log(req);
   new formidable.IncomingForm().parse(req, (err, fields, files) => {
     if (err) {
