@@ -118,8 +118,7 @@ new Vue({
 
       this.$http.post('/import', formData)
       .then(function(response) {
-        console.log(response);
-        var layout = response.data;
+        var layout = JSON.parse(response.data);
 
         context.activeKeyboard = context.keyboards.find(function(keeb) {
         	return keeb.id === layout.id;
