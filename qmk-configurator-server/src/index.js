@@ -53,17 +53,18 @@ app.post('/build', (req, res) => {
 });
 
 app.post('/import', (req, res) => {
+  console.log(req);
   new formidable.IncomingForm().parse(req, (err, fields, files) => {
     if (err) {
-      console.error('Error', err)
-      throw err
+      console.error('Error', err);
+      throw err;
     }
-    console.log('Fields', fields)
-    console.log('Files', files)
+    console.log('Fields', fields);
+    console.log('Files', files);
     for (const file of Object.entries(files)) {
-      console.log(file)
+      console.log(file);
     }
-  })
+  });
 });
 
 app.listen(port, () => {
