@@ -66,7 +66,6 @@ app.post('/import', (req, res) => {
       console.log(file.name);
       fs.readFile(file.path, 'utf8', (err, data) => {
         if (err) console.log(err);
-        console.log(data);
         res.json(data);
       });
     }
