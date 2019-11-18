@@ -64,7 +64,7 @@ app.post('/import', (req, res) => {
 
     for (const [name, file] of Object.entries(files)) {
       console.log(file.name);
-      fs.readFile(file.path, (err, data) => {
+      fs.readFile(file.path, 'utf8', (err, data) => {
         if (err) console.log(err);
         console.log(data);
         res.json(data);
