@@ -165,7 +165,7 @@ void keyboard_post_init_user(void) {
   ${led.action === 'power' ? `writePinHigh(${led.pin});` : ''}
   ${led.action === 'off' ? `writePinLow(${led.pin});` : ''}`
   }).join(`
-`)};
+`)}
 
   process_indicator_update(layer_state, host_keyboard_leds());
 };
