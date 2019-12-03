@@ -93,7 +93,8 @@ new Vue({
         rules: this.activeKeyboard.rules,
         configKeymap: this.activeKeyboard.configKeymap,
         keymap: this.layers,
-        indicators: this.activeKeyboard.indicators
+        indicators: this.activeKeyboard.indicators,
+        staticIndicators: this.activeKeyboard.static_indicators
       })
       .then(function (response) {
         window.location.href = response.data.hex_url;
@@ -129,6 +130,9 @@ new Vue({
         context.activeKeyboard.keySections = layout.keySections;
         if (layout.indicators) {
           context.activeKeyboard.indicators = layout.indicators;
+        }
+        if (layout.static_indicators) {
+          context.activeKeyboard.static_indicators = layout.static_indicators;
         }
       })
       .catch(function(error) {

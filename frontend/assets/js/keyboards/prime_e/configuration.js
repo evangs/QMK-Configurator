@@ -70,6 +70,24 @@ prime_e.configKeymap.positions = [
 
 prime_e.zones = [];
 
+prime_e.static_indicators = [
+  {
+    pin: 'B1',
+    type: 'power',
+    action: 'power'
+  },
+  {
+    pin: 'B2',
+    type: 'layer',
+    action: 'L3'
+  },
+  {
+    pin: 'B3',
+    type: 'layer',
+    action: 'L3'
+  }
+];
+
 // ui keymap
 prime_e.keySections = [
     { // DEFAULT LAYER ==========================================
