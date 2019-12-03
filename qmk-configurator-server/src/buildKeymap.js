@@ -127,7 +127,60 @@ uint32_t layer_state_set_user(uint32_t state) {
 };`);
 };
 
-module.exports = (keyData, indicators, firmwareDirectory) => {
+const generateStaticIndicatorTemplate = (indicators) => {
+  if (!indicators || indicators.length === 0) {
+    return '';
+  }
+
+  return (
+`void process_indicator_update(uint32_t state, uint8_t usb_led) {
+  ${indicators.map((led, ledIndex) => {
+    switch (led.type) {
+      case 'layer':
+        return (
+`if (state & (1<<${led.action.slice(1)})) {
+  writePinHigh(${led.pin});
+} else {
+  writePinLow(${led.pin});
+}
+`);
+      case 'keyboard':
+        return (
+`if (usb_led & (1<<${led.action})) {
+  writePinHigh(${led.pin});
+} else {
+  writePinLow(${led.pin});
+}
+`);
+      default: return '';
+    }
+  }).join(`
+  `)}
+};
+
+void keyboard_post_init_user(void) {
+  ${indicators.map((led, ledIndex) => {
+    return `
+  setPinOutput(${led.pin});
+  ${led.action === 'power' ? `writePinHigh(${led.pin});` : ''}
+  ${led.action === 'off' ? `writePinLow(${led.pin});` : ''}`
+  }).join(`
+`)}
+
+  process_indicator_update(layer_state, host_keyboard_leds());
+};
+
+void led_set_user(uint8_t usb_led) {
+  process_indicator_update(layer_state, host_keyboard_leds());
+};
+
+uint32_t layer_state_set_user(uint32_t state) {
+  process_indicator_update(state, host_keyboard_leds());
+  return state;
+};`);
+};
+
+module.exports = (keyData, indicators, staticIndicators, firmwareDirectory) => {
   const layers = keyData.map((layer) => {
     return layer.map((row) => {
       return row.map((key) => {
@@ -164,5 +217,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   `)}
 };
 
-${generateIndicatorTemplate(indicators)}`);
+${generateIndicatorTemplate(indicators)}
+${generateStaticIndicatorTemplate(staticIndicators)}`);
 };
