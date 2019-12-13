@@ -36,7 +36,6 @@ app.post('/build', (req, res) => {
   const keyboard = req.body;
   f.setupFirmware(keyboard.config, keyboard.rules, keyboard.configKeymap, keyboard.keymap, keyboard.indicators, keyboard.staticIndicators, fd => {
     f.buildFirmware(fd, error => {
-      console.log('error is equal to ', error);
       if (error) {
         console.log('build firmware error', error);
       } else {
