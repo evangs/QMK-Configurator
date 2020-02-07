@@ -1,17 +1,17 @@
 var KEYBOARDS = KEYBOARDS || [];
-trickshot = {};
-KEYBOARDS.push(trickshot);
+v4n4g0n = {};
+KEYBOARDS.push(v4n4g0n);
 
-trickshot.id = 'trickshot_rev1';
+v4n4g0n.id = 'v4n4g0n_rev1';
 
 // config
-trickshot.config = {
+v4n4g0n.config = {
     vendorId: '0xFEAE',
     productId: '0x8847',
     deviceVersion: '0x0001',
     manufacturer: 'TheVan Keyboards',
-    product: 'trickshot',
-    description: 'trickshot',
+    product: 'V4N4G0N',
+    description: 'V4N4G0N',
     matrixRowPins: ['F0', 'F1', 'F4', 'F6', 'F7'],
     matrixColumnPins: ['F5', 'B0', 'B1', 'B2', 'B3', 'B7', 'D2', 'D3', 'D5', 'D4', 'D6', 'D7'],
     diodeDirection: 'COL2ROW',
@@ -35,7 +35,7 @@ trickshot.config = {
 };
 
 // rules
-trickshot.rules = {
+v4n4g0n.rules = {
     mcu: 'atmega32u4',
     processorFrequency: 16000000,
     architecture: 'AVR8',
@@ -52,7 +52,7 @@ trickshot.rules = {
     rgbLightEnabled: false
 };
 
-trickshot.static_indicators = [
+v4n4g0n.static_indicators = [
   {
     pin: 'B6',
     type: 'power',
@@ -71,8 +71,8 @@ trickshot.static_indicators = [
 ];
 
 // keymap
-trickshot.configKeymap = {};
-trickshot.configKeymap.keys = [
+v4n4g0n.configKeymap = {};
+v4n4g0n.configKeymap.keys = [
     "K00", "K02", "K03", "K04", "K05", "K06",
     "K10", "K11", "K12", "K13", "K14", "K15", "K16", "K17", "K18", "K19", "K1A", "K1B",
     "K20", "K21", "K22", "K23", "K24", "K25", "K26", "K27", "K28", "K29", "K2A", "K2B",
@@ -80,7 +80,7 @@ trickshot.configKeymap.keys = [
     "K40", "K41", "K42", "K43", "K44", "K47", "K48", "K49", "K4A", "K4B"
 ];
 
-trickshot.configKeymap.positions = [
+v4n4g0n.configKeymap.positions = [
     ["K00", "KC_NO", "K02", "K03", "K04", "K05", "K06", "KC_NO", "KC_NO", "KC_NO", "KC_NO", "KC_NO"],
     ["K10", "K11", "K12", "K13", "K14", "K15", "K16", "K17", "K18", "K19", "K1A", "K1B"],
     ["K20", "K21", "K22", "K23", "K24", "K25", "K26", "K27", "K28", "K29", "K2A", "K2B"],
@@ -89,7 +89,7 @@ trickshot.configKeymap.positions = [
 ];
 
 // zones
-trickshot.zones = [
+v4n4g0n.zones = [
     {
         label: 'Bottom Row',
         value: 0,
@@ -107,7 +107,7 @@ trickshot.zones = [
 ]
 
 // ui keymap
-trickshot.keySections = [
+v4n4g0n.keySections = [
     { // DEFAULT LAYER ==========================================
       row1: [
         {
@@ -2143,15 +2143,15 @@ trickshot.keySections = [
     }
 ];
 
-trickshot.keymap = function() {
+v4n4g0n.keymap = function() {
     var keymap = [];
     var layer = [];
     var ks;
-    var zones = trickshot.zones;
+    var zones = v4n4g0n.zones;
     var i;
 
-    for (i in trickshot.keySections) {
-        ks = trickshot.keySections[i];
+    for (i in v4n4g0n.keySections) {
+        ks = v4n4g0n.keySections[i];
         layer = new Array();
         layer.push(ks.row1);
         layer.push(ks.row2);
