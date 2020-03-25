@@ -6,12 +6,12 @@ Vue.component('rotary-encoders', {
     <div v-if="visible">
       <div v-for="(encoder, index) in encoders" class="col-4">
         <h4>Encoder {{index + 1}} Pins {{encoder.pinA}}, {{encoder.pinB}}</h4>
-        <select v-model="encoder.left">
+        <select v-model="encoder.actions[0].left">
           <option v-for="option in actions" :value="option">
             {{ actionsMap[option] }}
           </option>
         </select>
-        <select v-model="encoder.right">
+        <select v-model="encoder.actions[0].right">
           <option v-for="option in actions" :value="option">
             {{ actionsMap[option] }}
           </option>
