@@ -180,7 +180,21 @@ uint32_t layer_state_set_user(uint32_t state) {
 };`);
 };
 
-module.exports = (keyData, indicators, staticIndicators, firmwareDirectory) => {
+const generateRotaryEncoderTemplate = rotaryEncoders => {
+  if (!rotaryEncoders || rotaryEncoders.length === 0) {
+    return;
+  }
+
+  return `void encoder_update(bool clockwise) {
+  if (clockwise) {
+    register_code(${rotaryEncoders[0].actions[0].right});
+  } else {
+    register_code(${rotaryEncoders[0].actions[0].left});
+  }
+}`;
+};
+
+module.exports = (keyData, indicators, staticIndicators, rotaryEncoders, firmwareDirectory) => {
   const layers = keyData.map((layer) => {
     return layer.map((row) => {
       return row.map((key) => {
@@ -218,5 +232,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 ${generateIndicatorTemplate(indicators)}
-${generateStaticIndicatorTemplate(staticIndicators)}`);
+${generateStaticIndicatorTemplate(staticIndicators)}
+${generateRotaryEncoderTemplate(rotaryEncoders)}`);
 };
