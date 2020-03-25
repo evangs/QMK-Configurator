@@ -185,11 +185,13 @@ const generateRotaryEncoderTemplate = rotaryEncoders => {
     return;
   }
 
-  return `void encoder_update(bool clockwise) {
-  if (clockwise) {
-    register_code(${rotaryEncoders[0].actions[0].right});
-  } else {
-    register_code(${rotaryEncoders[0].actions[0].left});
+  return `void encoder_update_user(uint8_t index, bool clockwise) {
+  if (index == 0) {
+    if (clockwise) {
+      tap_code(${rotaryEncoders[0].actions[0].right});
+    } else {
+      tap_code(${rotaryEncoders[0].actions[0].left});
+    }
   }
 }`;
 };
