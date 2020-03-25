@@ -28,7 +28,7 @@ module.exports.setupFirmware = (config, rules, configKeymap, keymap, indicators,
     if (err) throw err;
     fs.writeFile(`${firmwareLocation}/${fd}/config.h`, buildConfig(config, rotaryEncoders), done);
     fs.writeFile(`${firmwareLocation}/${fd}/makefile`, makefileContent, done);
-    fs.writeFile(`${firmwareLocation}/${fd}/rules.mk`, buildRules(rules), done);
+    fs.writeFile(`${firmwareLocation}/${fd}/rules.mk`, buildRules(rules, rotaryEncoders), done);
     fs.writeFile(`${firmwareLocation}/${fd}/${fd}.c`, buildProductC(fd), done);
     fs.writeFile(`${firmwareLocation}/${fd}/${fd}.h`, buildKeyboardHeader(configKeymap, fd), done);
     fs.writeFile(`${firmwareLocation}/${fd}/keymaps/default/keymap.c`, buildKeymap(keymap, indicators, staticIndicators, rotaryEncoders, fd), done);
