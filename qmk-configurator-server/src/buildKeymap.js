@@ -186,13 +186,18 @@ const generateRotaryEncoderTemplate = rotaryEncoders => {
   }
 
   return `void encoder_update_user(uint8_t index, bool clockwise) {
-  if (index == 0) {
-    if (clockwise) {
-      tap_code(${rotaryEncoders[0].actions[0].right});
-    } else {
-      tap_code(${rotaryEncoders[0].actions[0].left});
-    }
-  }
+  ${rotaryEncoders.map((encoder, index) => {
+    return `if (index == ${index}) {
+${encoder.actions.map((action, index) => {
+    return `    if (layer_state & (1<<${index})) {
+      if (clockwise) {
+        tap_code(${action.right});
+      } else {
+        tap_code(${action.left});
+      }
+    }`}).join('\n')}
+  }`
+}).join('\n')}
 }`;
 };
 
