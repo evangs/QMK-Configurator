@@ -523,15 +523,14 @@ garbage_truck.keySections = [
               shape: 'k100'
             }
         ],
-        row4: [
+        row4l: [
           {
             id: 'k30',
             value: 'LCTL',
             type: 'normal',
             secondary: null,
             showMenu: false,
-            shape: 'k125',
-            zone: 'Bottom Row'
+            shape: 'k125'
           },
           {
             id: 'k31',
@@ -539,45 +538,118 @@ garbage_truck.keySections = [
             type: 'momentary',
             secondary: null,
             showMenu: false,
-            shape: 'k125',
-            zone: 'Bottom Row'
-          },
-          {
-            id: 'k32',
-            value: 'LGUI',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k125',
-            zone: 'Bottom Row'
-          },
-          {
-            id: 'k35',
-            value: 'SPC',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k625',
-            zone: 'Bottom Row'
-          },
-          {
-            id: 'k76',
-            value: 'LALT',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k100',
-            zone: 'Bottom Row'
-          },
-          {
-            id: 'k75',
-            value: 'RSFT',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k100',
-            zone: 'Bottom Row'
-          },
+            shape: 'k125'
+          }
+        ],
+        spacebar: [
+            [
+              {
+                id: 'k32',
+                value: 'LGUI',
+                type: 'normal',
+                secondary: null,
+                showMenu: false,
+                shape: 'k125',
+                zone: 'Bottom Row'
+              },
+              {
+                id: 'k35',
+                value: 'SPC',
+                type: 'normal',
+                secondary: null,
+                showMenu: false,
+                shape: 'k700',
+                zone: 'Bottom Row'
+              },
+              {
+                id: 'k76',
+                value: 'NO',
+                type: 'nodisplay'
+              },
+              {
+                id: 'k75',
+                value: 'LALT',
+                type: 'normal',
+                secondary: null,
+                showMenu: false,
+                shape: 'k125',
+                zone: 'Bottom Row'
+              },
+            ],
+            [
+              {
+                id: 'k32',
+                value: 'NO',
+                type: 'nodisplay'
+              },
+              {
+                id: 'k35',
+                value: 'SPC',
+                type: 'normal',
+                secondary: null,
+                showMenu: false,
+                shape: 'k700',
+                zone: 'Bottom Row'
+              },
+              {
+                id: 'k76',
+                value: 'LGUI',
+                type: 'normal',
+                secondary: null,
+                showMenu: false,
+                shape: 'k125',
+                zone: 'Bottom Row'
+              },
+              {
+                id: 'k75',
+                value: 'LALT',
+                type: 'normal',
+                secondary: null,
+                showMenu: false,
+                shape: 'k125',
+                zone: 'Bottom Row'
+              },
+            ],
+            [
+              {
+                id: 'k32',
+                value: 'LGUI',
+                type: 'normal',
+                secondary: null,
+                showMenu: false,
+                shape: 'k125',
+                zone: 'Bottom Row'
+              },
+              {
+                id: 'k35',
+                value: 'SPC',
+                type: 'normal',
+                secondary: null,
+                showMenu: false,
+                shape: 'k625',
+                zone: 'Bottom Row'
+              },
+              {
+                id: 'k76',
+                value: 'LALT',
+                type: 'normal',
+                secondary: null,
+                showMenu: false,
+                shape: 'k100',
+                zone: 'Bottom Row'
+              },
+              {
+                id: 'k75',
+                value: 'RSFT',
+                type: 'normal',
+                secondary: null,
+                showMenu: false,
+                shape: 'k100',
+                zone: 'Bottom Row'
+              },
+            ]
+        ],
+        row4r: [
           {
             id: 'k74',
             value: 'LEFT',
@@ -585,7 +657,6 @@ garbage_truck.keySections = [
             secondary: null,
             showMenu: false,
             shape: 'k100',
-            zone: 'Bottom Row',
             spacer: 'ls050 vs050'
           },
           {
@@ -595,7 +666,6 @@ garbage_truck.keySections = [
             secondary: null,
             showMenu: false,
             shape: 'k100',
-            zone: 'Bottom Row',
             spacer: 'vs050'
           },
           {
@@ -605,7 +675,6 @@ garbage_truck.keySections = [
             secondary: null,
             showMenu: false,
             shape: 'k100',
-            zone: 'Bottom Row',
             spacer: 'vs050'
           },
           {
@@ -615,7 +684,6 @@ garbage_truck.keySections = [
             secondary: null,
             showMenu: false,
             shape: 'k100',
-            zone: 'Bottom Row',
             spacer: 'ls050'
           },
           {
@@ -624,8 +692,7 @@ garbage_truck.keySections = [
             type: 'normal',
             secondary: null,
             showMenu: false,
-            shape: 'k100',
-            zone: 'Bottom Row'
+            shape: 'k100'
           }
         ]
     }
@@ -644,7 +711,7 @@ garbage_truck.keymap = function() {
         layer.push(ks.row1);
         layer.push(ks.row2);
         layer.push(ks.row3);
-        layer.push(ks.row4);
+        layer.push(ks.row4l.concat(ks.spacebar[zones[0].value], ks.row4r));
         keymap.push(layer);
     }
 
