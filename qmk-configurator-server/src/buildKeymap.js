@@ -192,18 +192,22 @@ const processEncoderActions = actions => {
       }`;
   }
   let defaultAction = actions.splice(0, 1);
+  let start = true;
   let convertedActions = actions.map((action, index) => {
     if (action.right === 'TRNS' || action.left === 'TRNS') {
       return '';
     }
 
-    return `    ${index === 0 ? 'if' : 'else if'} (layer_state & (1<<${index + 1})) {
+    let retVal = `    ${start ? 'if' : 'else if'} (layer_state & (1<<${index + 1})) {
       if (clockwise) {
         tap_code(${action.right});
       } else {
         tap_code(${action.left});
       }
-    }` });
+    }`;
+    start = false;
+    return retVal;
+  });
   convertedActions.push(`    else {
       if (clockwise) {
         tap_code(${defaultAction[0].right});
@@ -216,11 +220,9 @@ const processEncoderActions = actions => {
 };
 
 const processEncoder = (encoder, index) => {
-    let enc = `if (index == ${index}) {
+    return `if (index == ${index}) {
   ${processEncoderActions(encoder.actions)}
 }`;
-  console.log(enc);
-  return enc;
 };
 
 const generateRotaryEncoderTemplate = rotaryEncoders => {
