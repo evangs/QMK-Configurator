@@ -51,7 +51,11 @@ Vue.component('rotary-encoders', {
         'KC_BRIGHTNESS_DOWN': 'Brightness -',
         'BL_INC': 'Backlight +',
         'BL_DEC': 'Backlight -',
-				'TRNS': 'TRNS'
+				'TRNS': 'TRNS',
+				'KC_LEFT': 'Left',
+				'KC_RIGHT': 'Right',
+				'KC_UP': 'Up',
+				'KC_DOWN': 'Down'
       },
       actions: [
         'KC_VOLU',
@@ -66,6 +70,10 @@ Vue.component('rotary-encoders', {
         'KC_MS_D',
         'KC_MS_L',
         'KC_MS_R',
+				'KC_LEFT',
+				'KC_RIGHT',
+				'KC_UP',
+				'KC_DOWN',
         'RGB_MODE_FORWARD',
         'RGB_MODE_REVERSE',
         'RGB_HUI',

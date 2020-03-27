@@ -180,24 +180,56 @@ uint32_t layer_state_set_user(uint32_t state) {
 };`);
 };
 
+const processEncoderActions = actions => {
+  if (actions.length < 1) {
+    return '';
+  }
+  if (actions.length === 1) {
+    return `    if (clockwise) {
+        tap_code(${actions[0].right});
+      } else {
+        tap_code(${actions[0].left});
+      }`;
+  }
+  let defaultAction = actions.splice(0, 1);
+  let convertedActions = actions.map((action, index) => {
+    if (action.right === 'TRNS' || action.left === 'TRNS') {
+      return '';
+    }
+
+    return `    ${index === 0 ? 'if' : 'else if'} (layer_state & (1<<${index + 1})) {
+      if (clockwise) {
+        tap_code(${action.right});
+      } else {
+        tap_code(${action.left});
+      }
+    }` });
+  convertedActions.push(`    else {
+      if (clockwise) {
+        tap_code(${defaultAction[0].right});
+      } else {
+        tap_code(${defaultAction[0].left});
+      }
+    }`);
+
+  return convertedActions.join('\n');
+};
+
+const processEncoder = (encoder, index) => {
+    let enc = `if (index == ${index}) {
+  ${processEncoderActions(encoder.actions)}
+}`;
+  console.log(enc);
+  return enc;
+};
+
 const generateRotaryEncoderTemplate = rotaryEncoders => {
   if (!rotaryEncoders || rotaryEncoders.length === 0) {
     return;
   }
 
   return `void encoder_update_user(uint8_t index, bool clockwise) {
-  ${rotaryEncoders.map((encoder, index) => {
-    return `if (index == ${index}) {
-${encoder.actions.map((action, index) => {
-    return `    if (layer_state & (1<<${index})) {
-      if (clockwise) {
-        tap_code(${action.right});
-      } else {
-        tap_code(${action.left});
-      }
-    }`}).join('\n')}
-  }`
-}).join('\n')}
+  ${rotaryEncoders.map(processEncoder).join('\n')}
 }`;
 };
 
