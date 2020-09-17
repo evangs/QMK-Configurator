@@ -5,17 +5,21 @@ const buildRules = require('./buildRules.js');
 const buildProductC = require('./buildProductC.js');
 const buildKeyboardHeader = require('./buildKeyboardHeader');
 const buildKeymap = require('./buildKeymap');
+const columnMultiplexMatrix = require('./columnMultiplexMatrix');
 
 const makefileContent = (
 `ifndef MAKEFILE_INCLUDED
 include ../../Makefile
 endif`);
 
-module.exports.setupFirmware = (config, rules, configKeymap, keymap, indicators, staticIndicators, callback) => {
+module.exports.setupFirmware = ({config, rules, configKeymap, keymap, indicators, staticIndicators}, callback) => {
   const now = new Date().toISOString().replace(/[-T:]*/g, '').split('.')[0];
   const fd = `${config.product.replace(/ /, '')}${now}`;
   const firmwareLocation = '/app/qmk_firmware/keyboards';
   let filesToWrite = 6;
+  if (rules.multiplexColumns) {
+    filesToWrite++;
+  }
   const done = () => {
     filesToWrite--;
     if (!filesToWrite) {
@@ -29,6 +33,9 @@ module.exports.setupFirmware = (config, rules, configKeymap, keymap, indicators,
     fs.writeFile(`${firmwareLocation}/${fd}/config.h`, buildConfig(config), done);
     fs.writeFile(`${firmwareLocation}/${fd}/makefile`, makefileContent, done);
     fs.writeFile(`${firmwareLocation}/${fd}/rules.mk`, buildRules(rules), done);
+    if (rules.multiplexColumns) {
+      fs.writeFile(`${firmwareLocation}/${fd}/matrix.c`, columnMultiplexMatrix(), done);
+    }
     fs.writeFile(`${firmwareLocation}/${fd}/${fd}.c`, buildProductC(fd), done);
     fs.writeFile(`${firmwareLocation}/${fd}/${fd}.h`, buildKeyboardHeader(configKeymap, fd), done);
     fs.writeFile(`${firmwareLocation}/${fd}/keymaps/default/keymap.c`, buildKeymap(keymap, indicators, staticIndicators, fd), done);

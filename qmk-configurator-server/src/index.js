@@ -34,7 +34,7 @@ app.get('/firmware/:firmwareDirectory/keymaps/:fileName', (req, res) => {
 
 app.post('/build', (req, res) => {
   const keyboard = req.body;
-  f.setupFirmware(keyboard.config, keyboard.rules, keyboard.configKeymap, keyboard.keymap, keyboard.indicators, keyboard.staticIndicators, fd => {
+  f.setupFirmware(keyboard, fd => {
     f.buildFirmware(fd, error => {
       if (error) {
         console.log('build firmware error', error);

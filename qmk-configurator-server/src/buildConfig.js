@@ -12,6 +12,10 @@ const populateDefines = (config) => {
   if (!config.actionOneShotEnabled) { defines.push('#define NO_ACTION_ONESHOT'); }
   if (!config.actionMacroEnabled) { defines.push('#define NO_ACTION_MACRO'); }
   if (!config.actionFunctionEnabled) { defines.push('#define NO_ACTION_FUNCTION'); }
+  if (!config.colSelPins) {
+    defines.push(`#define COL_SEL_PINS { ${config.colSelPins.join(', ')} }`);
+    defines.push(`#define COL_SEL ${config.colSelPins.length}`);
+  }
   if (config.rgbDiPin) { defines.push(`#define RGB_DI_PIN ${config.rgbDiPin}`); }
   if (config.rgbLedNum) { defines.push( `#define RGBLED_NUM ${config.rgbLedNum}
 #define RGBLIGHT_ANIMATIONS
