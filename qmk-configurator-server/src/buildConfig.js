@@ -12,9 +12,13 @@ const populateDefines = (config) => {
   if (!config.actionOneShotEnabled) { defines.push('#define NO_ACTION_ONESHOT'); }
   if (!config.actionMacroEnabled) { defines.push('#define NO_ACTION_MACRO'); }
   if (!config.actionFunctionEnabled) { defines.push('#define NO_ACTION_FUNCTION'); }
-  if (!config.colSelPins) {
-    defines.push(`#define COL_SEL_PINS { ${config.colSelPins.join(', ')} }`);
-    defines.push(`#define COL_SEL ${config.colSelPins.length}`);
+  if (config.portscan) {
+    defines.push(`#define PORTSCAN ${config.portscan}`);
+    defines.push(`#define PORTSCAN_PINS ${config.portscanPins || 255}`);
+  }
+  if (config.multiplexPins) {
+    defines.push(`#define MULTIPLEX_PINS { ${config.multiplexPins.join(', ')} }`);
+    defines.push(`#define MULTIPLEX ${config.multiplexPins.length}`);
   }
   if (config.rgbDiPin) { defines.push(`#define RGB_DI_PIN ${config.rgbDiPin}`); }
   if (config.rgbLedNum) { defines.push( `#define RGBLED_NUM ${config.rgbLedNum}

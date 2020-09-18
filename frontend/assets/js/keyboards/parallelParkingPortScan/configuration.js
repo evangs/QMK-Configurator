@@ -1,21 +1,23 @@
 var KEYBOARDS = KEYBOARDS || [];
-parallelParking = {};
-KEYBOARDS.push(parallelParking);
+parallelParkingPortScan = {};
+KEYBOARDS.push(parallelParkingPortScan);
 
-parallelParking.id = 'parallelParking_rev1';
+parallelParkingPortScan.id = 'parallelParkingPortScan_rev1';
 
 // config
-parallelParking.config = {
+parallelParkingPortScan.config = {
     vendorId: '0xFEAE',
     productId: '0x88AA',
     deviceVersion: '0x0001',
     manufacturer: 'Trash Man',
-    product: 'parallelParking',
+    product: 'ParallelParkingPortScan',
     description: 'Parallel Parking Macropad',
-    matrixRowPins: ['B0', 'B1'],
-    matrixColumnPins: [7, 6, 5, 4, 3, 2, 1, 0],
-    multiplexPins: ['B2', 'B3', 'B4'],
-    diodeDirection: 'ROW2COL',
+    matrixColumnPins: ['B0', 'B1'],
+    portscan: 'B0',
+    portscanPins: 3,
+    matrixRowPins: [7, 6, 5, 4, 3, 2, 1, 0],
+    multiplexPins: ['D0', 'D1', 'D2'],
+    diodeDirection: 'COL2ROW',
     matrixHasGhost: false,
     backlightLevels: 1,
     backlightPin: 'B7',
@@ -36,7 +38,7 @@ parallelParking.config = {
 };
 
 // rules
-parallelParking.rules = {
+parallelParkingPortScan.rules = {
     mcu: 'atmega32u4',
     processorFrequency: 16000000,
     architecture: 'AVR8',
@@ -54,21 +56,27 @@ parallelParking.rules = {
 };
 
 // keymap
-parallelParking.configKeymap = {};
-parallelParking.configKeymap.keys = [
-    "K00", "K01", "K02", "K03", "K04", "K05", "K06", "K07",
-    "K10", "K11", "K12", "K13", "K14", "K15", "K16", "K17"
+parallelParkingPortScan.configKeymap = {};
+parallelParkingPortScan.configKeymap.keys = [
+    "K00", "K10", "K20", "K30", "K40", "K50", "K60", "K70",
+    "K01", "K11", "K21", "K31", "K41", "K51", "K61", "K71"
 ];
 
-parallelParking.configKeymap.positions = [
-    ["K00", "K01", "K02", "K03", "K04", "K05", "K06", "K07"],
-    ["K10", "K11", "K12", "K13", "K14", "K15", "K16", "K17"]
+parallelParkingPortScan.configKeymap.positions = [
+    ["K00", "K01"],
+    ["K10", "K11"],
+    ["K20", "K21"],
+    ["K30", "K31"],
+    ["K40", "K41"],
+    ["K50", "K51"],
+    ["K60", "K61"],
+    ["K70", "K71"]
 ];
 
-parallelParking.zones = [];
+parallelParkingPortScan.zones = [];
 
 // ui keymap
-parallelParking.keySections = [
+parallelParkingPortScan.keySections = [
     { // DEFAULT LAYER ==========================================
         row1: [
           {
@@ -205,14 +213,14 @@ parallelParking.keySections = [
     }
 ];
 
-parallelParking.keymap = function() {
+parallelParkingPortScan.keymap = function() {
     var keymap = [];
     var layer = [];
     var ks;
     var i;
 
-    for (i in parallelParking.keySections) {
-        ks = parallelParking.keySections[i];
+    for (i in parallelParkingPortScan.keySections) {
+        ks = parallelParkingPortScan.keySections[i];
         layer = new Array();
         layer.push(ks.row1);
         layer.push(ks.row2);
