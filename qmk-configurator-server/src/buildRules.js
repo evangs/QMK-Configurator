@@ -20,5 +20,6 @@ ${rules.rgbLightEnabled ? 'RGBLIGHT_ENABLE = yes' : ''}
 CUSTOM_MATRIX = lite
 MIDI_ENABLE = no
 AUDIO_ENABLE = no
-BLUETOOTH_ENABLE = no`);
+BLUETOOTH_ENABLE = no
+SRC += matrix.c`);
 };

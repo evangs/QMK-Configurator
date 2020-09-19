@@ -1,19 +1,5 @@
 module.exports = () => {
-  return (`
-/*
-Copyright 2012-2018 Jun Wako, Jack Humbert, Yiancar
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or
-(at your option) any later version.
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-#include <stdint.h>
+  return(`#include <stdint.h>
 #include <stdbool.h>
 #include "util.h"
 #include "matrix.h"
@@ -22,18 +8,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef DIRECT_PINS
 static pin_t direct_pins[MATRIX_ROWS][MATRIX_COLS] = DIRECT_PINS;
-#elif (DIODE_DIRECTION == ROW2COL) || (DIODE_DIRECTION == COL2ROW)
+#elif ((DIODE_DIRECTION == ROW2COL) || (DIODE_DIRECTION == COL2ROW)) && !defined(MULTIPLEX_PINS)
 static const pin_t row_pins[MATRIX_ROWS] = MATRIX_ROW_PINS;
 static const pin_t col_pins[MATRIX_COLS] = MATRIX_COL_PINS;
 #endif
 
 #ifdef MULTIPLEX_PINS
 static const uint8_t select_pins[MULTIPLEX] = MULTIPLEX_PINS;
+#if (DIODE_DIRECTION == ROW2COL)
+static const pin_t row_pins[MATRIX_ROWS] = MATRIX_ROW_PINS;
+static const uint8_t col_pins[MATRIX_COLS] = MATRIX_COL_PINS;
+#else
+static const uint8_t row_pins[MATRIX_ROWS] = MATRIX_ROW_PINS;
+static const pin_t col_pins[MATRIX_COLS] = MATRIX_COL_PINS;
 #endif
-
-/* matrix state(1:on, 0:off) */
-extern matrix_row_t raw_matrix[MATRIX_ROWS];  // raw values
-extern matrix_row_t matrix[MATRIX_ROWS];      // debounced values
+#endif
 
 // matrix code
 
@@ -72,10 +61,10 @@ static bool read_cols_on_row(matrix_row_t current_matrix[], uint8_t current_row)
 #elif defined(DIODE_DIRECTION)
 #    if (DIODE_DIRECTION == COL2ROW)
 
-#ifdef MULTIPLEX_PINS
+#        if defined(MULTIPLEX_PINS)
 static void select_row(uint8_t row) {
     for (uint8_t select = 0; select < MULTIPLEX; select++) {
-       writePin(select_pins[select], row_pins[row] & (1 << select));
+       writePin(select_pins[select], (row_pins[row] & (1 << select)));
     }
 }
 
@@ -87,7 +76,7 @@ static void init_pins(void) {
         setPinInputHigh(col_pins[x]);
     }
 }
-#else
+#        else
 static void select_row(uint8_t row) {
     setPinOutput(row_pins[row]);
     writePinLow(row_pins[row]);
@@ -107,24 +96,24 @@ static void init_pins(void) {
         setPinInputHigh(col_pins[x]);
     }
 }
-#endif
+#        endif
 
 static bool read_cols_on_row(matrix_row_t current_matrix[], uint8_t current_row) {
     // Select row and wait for row selecton to stabilize
     select_row(current_row);
     matrix_io_delay();
 
-    #ifdef PORTSCAN
-    uint8_t port_state = PINx_ADDRESS(pin) & PORTSCAN_PINS;
-    #ifndef MULTIPLEX_PINS
+    #        if defined(PORTSCAN)
+    uint8_t port_state = ~PINx_ADDRESS(PORTSCAN) & PORTSCAN_PINS;
+    #            ifndef MULTIPLEX_PINS
     unselect_row(current_row);
-    #endif
+    #            endif
     if (current_matrix[current_row] != port_state) {
       current_matrix[current_row] = port_state;
       return true;
     }
     return false;
-    #else
+    #        else
     matrix_row_t current_row_value = 0;
     // For each col...
     for (uint8_t col_index = 0; col_index < MATRIX_COLS; col_index++) {
@@ -135,10 +124,10 @@ static bool read_cols_on_row(matrix_row_t current_matrix[], uint8_t current_row)
         current_row_value |= pin_state ? 0 : (MATRIX_ROW_SHIFTER << col_index);
     }
 
-    #ifndef MULTIPLEX_PINS
+    #            ifndef MULTIPLEX_PINS
     // Unselect row
     unselect_row(current_row);
-    #endif
+    #            endif
 
     // If the row has changed, store the row and return the changed flag.
     if (current_matrix[current_row] != current_row_value) {
@@ -146,27 +135,27 @@ static bool read_cols_on_row(matrix_row_t current_matrix[], uint8_t current_row)
         return true;
     }
     return false;
-    #endif
+    #        endif
 }
 
 #    elif (DIODE_DIRECTION == ROW2COL)
 
-#ifdef MULTIPLEX_PINS
+#        if defined(MULTIPLEX_PINS)
 static void select_col(uint8_t col) {
     for (uint8_t select = 0; select < MULTIPLEX; select++) {
-       writePin(select_pins[select], row_pins[row] & (1 << select));
+       writePin(select_pins[select], col_pins[col] & (1 << select));
     }
 }
 
 static void init_pins(void) {
     for (uint8_t sel_index = 0; sel_index < MULTIPLEX; sel_index++) {
-       setPinOutput(slect_pins[sel_index]);
+       setPinOutput(select_pins[sel_index]);
     }
     for (uint8_t x = 0; x < MATRIX_ROWS; x++) {
         setPinInputHigh(row_pins[x]);
     }
 }
-#else
+#        else
 static void select_col(uint8_t col) {
   setPinOutput(col_pins[col]);
   writePinLow(col_pins[col]);
@@ -186,7 +175,7 @@ static void init_pins(void) {
         setPinInputHigh(row_pins[x]);
     }
 }
-#endif
+#        endif
 
 static bool read_rows_on_col(matrix_row_t current_matrix[], uint8_t current_col) {
     bool matrix_changed = false;
@@ -218,9 +207,9 @@ static bool read_rows_on_col(matrix_row_t current_matrix[], uint8_t current_col)
     }
 
     // Unselect col
-    #ifndef MULTIPLEX_PINS
+    #        ifndef MULTIPLEX_PINS
     unselect_col(current_col);
-    #endif
+    #        endif
 
     return matrix_changed;
 }
@@ -232,39 +221,26 @@ static bool read_rows_on_col(matrix_row_t current_matrix[], uint8_t current_col)
 #    error DIODE_DIRECTION is not defined!
 #endif
 
-void matrix_init(void) {
+void matrix_init_custom(void) {
     // initialize key pins
     init_pins();
-
-    // initialize matrix state: all keys off
-    for (uint8_t i = 0; i < MATRIX_ROWS; i++) {
-        raw_matrix[i] = 0;
-        matrix[i]     = 0;
-    }
-
-    debounce_init(MATRIX_ROWS);
-
-    matrix_init_quantum();
 }
 
-uint8_t matrix_scan(void) {
+uint8_t matrix_scan_custom(matrix_row_t current_matrix[]) {
     bool changed = false;
 
 #if defined(DIRECT_PINS) || (DIODE_DIRECTION == COL2ROW)
     // Set row, read cols
     for (uint8_t current_row = 0; current_row < MATRIX_ROWS; current_row++) {
-        changed |= read_cols_on_row(raw_matrix, current_row);
+        changed |= read_cols_on_row(current_matrix, current_row);
     }
 #elif (DIODE_DIRECTION == ROW2COL)
     // Set col, read rows
     for (uint8_t current_col = 0; current_col < MATRIX_COLS; current_col++) {
-        changed |= read_rows_on_col(raw_matrix, current_col);
+        changed |= read_rows_on_col(current_matrix, current_col);
     }
 #endif
 
-    debounce(raw_matrix, matrix, MATRIX_ROWS, changed);
-
-    matrix_scan_quantum();
-    return (uint8_t)changed;
+    return changed;
 }`);
 };
