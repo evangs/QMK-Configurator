@@ -12,9 +12,9 @@ parallelParking.config = {
     manufacturer: 'Trash Man',
     product: 'parallelParking',
     description: 'Parallel Parking Macropad',
-    matrixRowPins: ['B0', 'B1'],
+    matrixRowPins: ['F0', 'F1'],
     matrixColumnPins: [7, 6, 5, 4, 3, 2, 1, 0],
-    multiplexPins: ['B2', 'B3', 'B4'],
+    multiplexPins: ['F5', 'D7', 'B4'],
     diodeDirection: 'ROW2COL',
     matrixHasGhost: false,
     backlightLevels: 1,
@@ -27,11 +27,11 @@ parallelParking.config = {
     commandKeyCombination: 'keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT))',
     debugEnabled: false,
     printEnabled: false,
-    actionLayerEnabled: true,
-    actionTappingEnabled: true,
-    actionOneShotEnabled: true,
-    actionMacroEnabled: true,
-    actionFunctionEnabled: true,
+    actionLayerEnabled: false,
+    actionTappingEnabled: false,
+    actionOneShotEnabled: false,
+    actionMacroEnabled: false,
+    actionFunctionEnabled: false,
     permissiveHold: true
 };
 

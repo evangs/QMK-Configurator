@@ -12,11 +12,10 @@ parallelParkingPortScan.config = {
     manufacturer: 'Trash Man',
     product: 'ParallelParkingPortScan',
     description: 'Parallel Parking Macropad',
-    matrixColumnPins: ['B0', 'B1'],
+    matrixColumnPins: ['B0', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7'],
     portscan: 'B0',
-    portscanPins: 3,
-    matrixRowPins: [7, 6, 5, 4, 3, 2, 1, 0],
-    multiplexPins: ['D0', 'D1', 'D2'],
+    portscanPins: 15,
+    matrixRowPins: ['D4', 'D0'],
     diodeDirection: 'COL2ROW',
     matrixHasGhost: false,
     backlightLevels: 1,
@@ -29,11 +28,11 @@ parallelParkingPortScan.config = {
     commandKeyCombination: 'keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT))',
     debugEnabled: false,
     printEnabled: false,
-    actionLayerEnabled: true,
-    actionTappingEnabled: true,
-    actionOneShotEnabled: true,
-    actionMacroEnabled: true,
-    actionFunctionEnabled: true,
+    actionLayerEnabled: false,
+    actionTappingEnabled: false,
+    actionOneShotEnabled: false,
+    actionMacroEnabled: false,
+    actionFunctionEnabled: false,
     permissiveHold: true
 };
 
@@ -58,19 +57,13 @@ parallelParkingPortScan.rules = {
 // keymap
 parallelParkingPortScan.configKeymap = {};
 parallelParkingPortScan.configKeymap.keys = [
-    "K00", "K10", "K20", "K30", "K40", "K50", "K60", "K70",
-    "K01", "K11", "K21", "K31", "K41", "K51", "K61", "K71"
+    "K00", "K01", "K02", "K03", "K04", "K05", "K06", "K07",
+    "K10", "K11", "K12", "K13", "K14", "K15", "K16", "K17"
 ];
 
 parallelParkingPortScan.configKeymap.positions = [
-    ["K00", "K01"],
-    ["K10", "K11"],
-    ["K20", "K21"],
-    ["K30", "K31"],
-    ["K40", "K41"],
-    ["K50", "K51"],
-    ["K60", "K61"],
-    ["K70", "K71"]
+    ["K00", "K01", "K02", "K03", "K04", "K05", "K06", "K07"],
+    ["K10", "K11", "K12", "K13", "K14", "K15", "K16", "K17"]
 ];
 
 parallelParkingPortScan.zones = [];

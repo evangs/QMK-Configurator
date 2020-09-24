@@ -1,28 +1,28 @@
 var KEYBOARDS = KEYBOARDS || [];
-jetvan = {};
-KEYBOARDS.push(jetvan);
+caravan = {};
+KEYBOARDS.push(caravan);
 
-jetvan.id = 'jetvan_rev1';
+caravan.id = 'caravan_rev2';
 
 // config
-jetvan.config = {
+caravan.config = {
     vendorId: '0xFEAE',
-    productId: '0x8858',
+    productId: '0x8847',
     deviceVersion: '0x0001',
-    manufacturer: 'evangs',
-    product: 'JetVan',
-    description: 'JetVan 40%',
-    matrixRowPins: ['D7', 'B5', 'F7', 'D4'],
-    matrixColumnPins: ['D2', 'D3', 'D5', 'D6', 'B4', 'B6', 'F6', 'F5', 'F4', 'F1', 'F0', 'B3'],
-    diodeDirection: 'COL2ROW',
+    manufacturer: 'TheVan Keyboards',
+    product: 'CaraVan 2',
+    description: 'CaraVan Split 40%',
+    matrixRowPins: ['D0', 'D1', 'D2'],
+    matrixColumnPins: [1, 2, 3, 4, 5, 6, 0, 7, 13, 12, 11, 10, 9, 14, 15, 8],
+    multiplexPins: ['D4', 'D6', 'D7', 'B4'],
+    diodeDirection: 'ROW2COL',
     matrixHasGhost: false,
     backlightLevels: 1,
-    backlightPin: 'B7',
     usbMaxPowerConsumption: 100,
     debouncingDelay: 5,
     tappingTerm: 175,
-    lockingSupportEnabled: true,
-    lockingResyncEnabled: true,
+    lockingSupportEnabled: false,
+    lockingResyncEnabled: false,
     commandKeyCombination: 'keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT))',
     debugEnabled: false,
     printEnabled: false,
@@ -31,23 +31,23 @@ jetvan.config = {
     actionOneShotEnabled: false,
     actionMacroEnabled: false,
     actionFunctionEnabled: false,
-    rgbDiPin: 'D0',
-    rgbLedNum: 10,
-    permissiveHold: true
+    permissiveHold: true,
+    rgbDiPin: 'F0',
+    rgbLedNum: 20,
 };
 
 // rules
-jetvan.rules = {
+caravan.rules = {
     mcu: 'atmega32u4',
     processorFrequency: 16000000,
     architecture: 'AVR8',
     inputClockFrequency: 16000000,
     bootloaderSize: 4096,
-    bootmagicEnabled: false,
+    bootmagicEnabled: true,
     mousekeyEnabled: true,
     extrakeyEnabled: true,
-    consoleEnabled: false,
-    commandEnabled: false,
+    consoleEnabled: true,
+    commandEnabled: true,
     sleepLedEnabled: false,
     nkroEnabled: true,
     backlightEnabled: false,
@@ -55,25 +55,54 @@ jetvan.rules = {
 };
 
 // keymap
-jetvan.configKeymap = {};
-jetvan.configKeymap.keys = [
-    "K00", "K01", "K02", "K03", "K04", "K05", "K06", "K07", "K08", "K09", "K0A", "K0B",
-    "K10", "K11", "K12", "K13", "K14", "K15", "K16", "K17", "K18", "K19", "K1A", "K1B",
-    "K20", "K21", "K22", "K23", "K24", "K25", "K26", "K27", "K28", "K29", "K2A", "K2B",
-    "K30", "K31", "K32", "K37", "K39", "K3A", "K3B"
+caravan.configKeymap = {};
+caravan.configKeymap.keys = [
+    "K00", "K01", "K02", "K03", "K04", "K05", "K08", "K09", "K0A", "K0B", "K0C", "K0D",
+    "K10", "K11", "K12", "K13", "K14", "K15", "K18", "K19", "K1A", "K1B", "K1C", "K1D",
+    "K20", "K21", "K22", "K23", "K24", "K25", "K28", "K29", "K2A", "K2B", "K2C", "K2D",
+    "K06", "K16", "K26", "K27", "K17", "K0E", "K1E", "K2E", "K2F", "K1F"
 ];
 
-jetvan.configKeymap.positions = [
-    ["K00", "K01", "K02", "K03", "K04", "K05", "K06", "K07", "K08", "K09", "K0A", "K0B"],
-    ["K10", "K11", "K12", "K13", "K14", "K15", "K16", "K17", "K18", "K19", "K1A", "K1B"],
-    ["K20", "K21", "K22", "K23", "K24", "K25", "K26", "K27", "K28", "K29", "K2A", "K2B"],
-    ["K30", "K31", "K32", "KC_NO", "KC_NO", "KC_NO", "KC_NO", "K37", "KC_NO", "K39", "K3A", "K3B"]
+caravan.configKeymap.positions = [
+    ["K00", "K01", "K02", "K03", "K04", "K05", "K06", "KC_NO", "K08", "K09", "K0A", "K0B", "K0C", "K0D", "K0E", "KC_NO"],
+    ["K10", "K11", "K12", "K13", "K14", "K15", "K16", "K17", "K18", "K19", "K1A", "K1B", "K1C", "K1D", "K1E", "K1F"],
+    ["K20", "K21", "K22", "K23", "K24", "K25", "K26", "K27", "K28", "K29", "K2A", "K2B", "K2C", "K2D", "K2E", "K2F"]
 ];
 
-jetvan.zones = [];
+// zones
+caravan.zones = [
+    {
+        label: 'Left Hand',
+        value: 0,
+        choices: [
+            {
+                code: 0,
+                name: 'Standard'
+            },
+            {
+                code: 1,
+                name: 'South Paw'
+            }
+        ]
+    },
+    {
+        label: 'Right Hand',
+        value: 0,
+        choices: [
+            {
+                code: 0,
+                name: 'Standard'
+            },
+            {
+                code: 1,
+                name: 'Arrow'
+            }
+        ]
+    }
+]
 
 // ui keymap
-jetvan.keySections = [
+caravan.keySections = [
     { // DEFAULT LAYER ==========================================
         row1: [
           {
@@ -122,7 +151,8 @@ jetvan.keySections = [
             type: 'normal',
             secondary: null,
             showMenu: false,
-            shape: 'k100'
+            shape: 'k100',
+            spacer: 's100'
           },
           {
             id: 'k06',
@@ -220,7 +250,8 @@ jetvan.keySections = [
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              spacer: 's100'
             },
             {
               id: 'k16',
@@ -318,7 +349,8 @@ jetvan.keySections = [
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              spacer: 's100'
             },
             {
               id: 'k26',
@@ -369,63 +401,172 @@ jetvan.keySections = [
               shape: 'k100'
             }
         ],
+        leftHand: [
+            [
+                {
+                  id: 'k30',
+                  value: 'LCTL',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k125',
+                  zone: 'Left Hand'
+                },
+                {
+                  id: 'k31',
+                  value: 'L2',
+                  type: 'momentary',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k150',
+                  zone: 'Left Hand'
+                },
+                {
+                  id: 'k34',
+                  value: 'NO',
+                  type: 'nodisplay'
+                },
+                {
+                  id: 'k32',
+                  value: 'LGUI',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k125',
+                  zone: 'Left Hand'
+                }
+            ],
+            [
+                {
+                  id: 'k30',
+                  value: 'LCTL',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100',
+                  zone: 'Left Hand'
+                },
+                {
+                  id: 'k31',
+                  value: 'L2',
+                  type: 'momentary',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100',
+                  zone: 'Left Hand'
+                },
+                {
+                  id: 'k34',
+                  value: 'LALT',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100',
+                  zone: 'Left Hand'
+                },
+                {
+                  id: 'k32',
+                  value: 'LGUI',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100',
+                  zone: 'Left Hand'
+                }
+            ]
+        ],
         row4: [
-          {
-            id: 'k30',
-            value: 'LCTL',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k125'
-          },
-          {
-            id: 'k31',
-            value: 'L2',
-            type: 'momentary',
-            secondary: null,
-            showMenu: false,
-            shape: 'k100'
-          },
-          {
-            id: 'k32',
-            value: 'LGUI',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k125'
-          },
-          {
-            id: 'k37',
-            value: 'SPC',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k625'
-          },
-          {
-            id: 'k39',
-            value: 'RALT',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k100'
-          },
-          {
-            id: 'k3A',
-            value: 'RSFT',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k100'
-          },
-          {
-            id: 'k3B',
-            value: 'L3',
-            type: 'toggle',
-            secondary: null,
-            showMenu: false,
-            shape: 'k100'
-          }
+            {
+              id: 'k33',
+              value: 'ENT',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k225',
+              spacer: 's100'
+            },
+            {
+              id: 'k37',
+              value: 'SPC',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k200'
+            }
+        ],
+        rightHand: [
+            [
+                {
+                  id: 'k38',
+                  value: 'RALT',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k125',
+                  zone: 'Right Hand'
+                },
+                {
+                  id: 'k39',
+                  value: 'RSFT',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k150',
+                  zone: 'Right Hand'
+                },
+                {
+                  id: 'k3A',
+                  value: 'NO',
+                  type: 'nodisplay'
+                },
+                {
+                  id: 'k3B',
+                  value: 'L3',
+                  type: 'toggle',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k175',
+                  zone: 'Right Hand'
+                }
+            ],
+            [
+                {
+                  id: 'k38',
+                  value: 'RALT',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k150',
+                  zone: 'Right Hand'
+                },
+                {
+                  id: 'k39',
+                  value: 'RSFT',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100',
+                  zone: 'Right Hand'
+                },
+                {
+                  id: 'k3A',
+                  value: 'RCTL',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100',
+                  zone: 'Right Hand'
+                },
+                {
+                  id: 'k3B',
+                  value: 'L3',
+                  type: 'toggle',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100',
+                  zone: 'Right Hand'
+                }
+            ],
         ]
     },
     {  // LAYER 1 ===============================================
@@ -476,7 +617,8 @@ jetvan.keySections = [
             type: 'normal',
             secondary: null,
             showMenu: false,
-            shape: 'k100'
+            shape: 'k100',
+            spacer: 's100'
           },
           {
             id: 'k06',
@@ -574,7 +716,8 @@ jetvan.keySections = [
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              spacer: 's100'
             },
             {
               id: 'k16',
@@ -672,7 +815,8 @@ jetvan.keySections = [
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              spacer: 's100'
             },
             {
               id: 'k26',
@@ -723,63 +867,158 @@ jetvan.keySections = [
               shape: 'k100'
             }
         ],
+        leftHand: [
+            [
+                {
+                  id: 'k30',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k125'
+                },
+                {
+                  id: 'k31',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k150'
+                },
+                {
+                  id: 'k34',
+                  value: 'NO',
+                  type: 'nodisplay'
+                },
+                {
+                  id: 'k32',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k125'
+                }
+            ],
+            [
+                {
+                  id: 'k30',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                },
+                {
+                  id: 'k31',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                },
+                {
+                  id: 'k34',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                },
+                {
+                  id: 'k32',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                }
+            ]
+        ],
         row4: [
-          {
-            id: 'k30',
-            value: 'TRNS',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k125'
-          },
-          {
-            id: 'k31',
-            value: 'TRNS',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k100'
-          },
-          {
-            id: 'k32',
-            value: 'TRNS',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k125'
-          },
-          {
-            id: 'k37',
-            value: 'TRNS',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k625'
-          },
-          {
-            id: 'k39',
-            value: 'TRNS',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k100'
-          },
-          {
-            id: 'k3A',
-            value: 'TRNS',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k100'
-          },
-          {
-            id: 'k3B',
-            value: 'RESET',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k100'
-          }
+            {
+              id: 'k33',
+              value: 'TRNS',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k225',
+              spacer: 's100'
+            },
+            {
+              id: 'k37',
+              value: 'TRNS',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k200'
+            }
+        ],
+        rightHand: [
+            [
+                {
+                  id: 'k38',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k125'
+                },
+                {
+                  id: 'k39',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k150'
+                },
+                {
+                  id: 'k3A',
+                  value: 'NO',
+                  type: 'nodisplay'
+                },
+                {
+                  id: 'k3B',
+                  value: 'RESET',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k175'
+                }
+            ],
+            [
+                {
+                  id: 'k38',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k150'
+                },
+                {
+                  id: 'k39',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                },
+                {
+                  id: 'k3A',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                },
+                {
+                  id: 'k3B',
+                  value: 'RESET',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                }
+            ],
         ]
     },
     {  // LAYER 2 ===============================================
@@ -830,7 +1069,8 @@ jetvan.keySections = [
             type: 'normal',
             secondary: null,
             showMenu: false,
-            shape: 'k100'
+            shape: 'k100',
+            spacer: 's100'
           },
           {
             id: 'k06',
@@ -928,7 +1168,8 @@ jetvan.keySections = [
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              spacer: 's100'
             },
             {
               id: 'k16',
@@ -1026,7 +1267,8 @@ jetvan.keySections = [
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              spacer: 's100'
             },
             {
               id: 'k26',
@@ -1077,63 +1319,158 @@ jetvan.keySections = [
               shape: 'k100'
             }
         ],
+        leftHand: [
+            [
+                {
+                  id: 'k30',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k125'
+                },
+                {
+                  id: 'k31',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k150'
+                },
+                {
+                  id: 'k34',
+                  value: 'NO',
+                  type: 'nodisplay'
+                },
+                {
+                  id: 'k32',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k125'
+                }
+            ],
+            [
+                {
+                  id: 'k30',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                },
+                {
+                  id: 'k31',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                },
+                {
+                  id: 'k34',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                },
+                {
+                  id: 'k32',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                }
+            ]
+        ],
         row4: [
-          {
-            id: 'k30',
-            value: 'TRNS',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k125'
-          },
-          {
-            id: 'k31',
-            value: 'TRNS',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k100'
-          },
-          {
-            id: 'k32',
-            value: 'TRNS',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k125'
-          },
-          {
-            id: 'k37',
-            value: 'TRNS',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k625'
-          },
-          {
-            id: 'k39',
-            value: 'TRNS',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k100'
-          },
-          {
-            id: 'k3A',
-            value: 'TRNS',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k100'
-          },
-          {
-            id: 'k3B',
-            value: 'TRNS',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k100'
-          }
+            {
+              id: 'k33',
+              value: 'TRNS',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k225',
+              spacer: 's100'
+            },
+            {
+              id: 'k37',
+              value: 'TRNS',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k200'
+            }
+        ],
+        rightHand: [
+            [
+                {
+                  id: 'k38',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k125'
+                },
+                {
+                  id: 'k39',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k150'
+                },
+                {
+                  id: 'k3A',
+                  value: 'NO',
+                  type: 'nodisplay'
+                },
+                {
+                  id: 'k3B',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k175'
+                }
+            ],
+            [
+                {
+                  id: 'k38',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k150'
+                },
+                {
+                  id: 'k39',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                },
+                {
+                  id: 'k3A',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                },
+                {
+                  id: 'k3B',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                }
+            ],
         ]
     },
     {  // LAYER 3 LOCK ===============================================
@@ -1184,7 +1521,8 @@ jetvan.keySections = [
             type: 'normal',
             secondary: null,
             showMenu: false,
-            shape: 'k100'
+            shape: 'k100',
+            spacer: 's100'
           },
           {
             id: 'k06',
@@ -1282,7 +1620,8 @@ jetvan.keySections = [
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              spacer: 's100'
             },
             {
               id: 'k16',
@@ -1380,7 +1719,8 @@ jetvan.keySections = [
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k100'
+              shape: 'k100',
+              spacer: 's100'
             },
             {
               id: 'k26',
@@ -1431,80 +1771,176 @@ jetvan.keySections = [
               shape: 'k100'
             }
         ],
+        leftHand: [
+            [
+                {
+                  id: 'k30',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k125'
+                },
+                {
+                  id: 'k31',
+                  value: 'LALT',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k150'
+                },
+                {
+                  id: 'k34',
+                  value: 'NO',
+                  type: 'nodisplay'
+                },
+                {
+                  id: 'k32',
+                  value: 'B',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k125'
+                }
+            ],
+            [
+                {
+                  id: 'k30',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                },
+                {
+                  id: 'k31',
+                  value: 'LSFT',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                },
+                {
+                  id: 'k34',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                },
+                {
+                  id: 'k32',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                }
+            ]
+        ],
         row4: [
-          {
-            id: 'k30',
-            value: 'TRNS',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k125'
-          },
-          {
-            id: 'k31',
-            value: 'LALT',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k100'
-          },
-          {
-            id: 'k32',
-            value: 'B',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k125'
-          },
-          {
-            id: 'k37',
-            value: 'TRNS',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k625'
-          },
-          {
-            id: 'k39',
-            value: 'TRNS',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k100'
-          },
-          {
-            id: 'k3A',
-            value: 'TRNS',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k100'
-          },
-          {
-            id: 'k3B',
-            value: 'TRNS',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k100'
-          }
+            {
+              id: 'k33',
+              value: 'SPC',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k225',
+              spacer: 's100'
+            },
+            {
+              id: 'k37',
+              value: 'C',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k200'
+            }
+        ],
+        rightHand: [
+            [
+                {
+                  id: 'k38',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k125'
+                },
+                {
+                  id: 'k39',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k150'
+                },
+                {
+                  id: 'k3A',
+                  value: 'NO',
+                  type: 'nodisplay'
+                },
+                {
+                  id: 'k3B',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k175'
+                }
+            ],
+            [
+                {
+                  id: 'k38',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k150'
+                },
+                {
+                  id: 'k39',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                },
+                {
+                  id: 'k3A',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                },
+                {
+                  id: 'k3B',
+                  value: 'TRNS',
+                  type: 'normal',
+                  secondary: null,
+                  showMenu: false,
+                  shape: 'k100'
+                }
+            ],
         ]
     }
 ];
 
-jetvan.keymap = function() {
+caravan.keymap = function() {
     var keymap = [];
     var layer = [];
     var ks;
+    var zones = caravan.zones;
     var i;
 
-    for (i in jetvan.keySections) {
-        ks = jetvan.keySections[i];
+    for (i in caravan.keySections) {
+        ks = caravan.keySections[i];
         layer = new Array();
         layer.push(ks.row1);
         layer.push(ks.row2);
         layer.push(ks.row3);
-        layer.push(ks.row4);
+        layer.push(ks.leftHand[zones[0].value].concat(ks.row4).concat(ks.rightHand[zones[1].value]));
         keymap.push(layer);
     }
 

@@ -26,11 +26,11 @@ bananasplit.config = {
     commandKeyCombination: 'keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT))',
     debugEnabled: true,
     printEnabled: true,
-    actionLayerEnabled: true,
-    actionTappingEnabled: true,
-    actionOneShotEnabled: true,
-    actionMacroEnabled: true,
-    actionFunctionEnabled: true,
+    actionLayerEnabled: false,
+    actionTappingEnabled: false,
+    actionOneShotEnabled: false,
+    actionMacroEnabled: false,
+    actionFunctionEnabled: false,
     permissiveHold: true
 };
 
