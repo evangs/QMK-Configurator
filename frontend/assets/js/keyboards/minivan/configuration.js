@@ -24,15 +24,16 @@ minivan.config = {
     lockingSupportEnabled: true,
     lockingResyncEnabled: true,
     commandKeyCombination: 'keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT))',
-    debugEnabled: true,
-    printEnabled: true,
+    debugEnabled: false,
+    printEnabled: false,
     actionLayerEnabled: true,
     actionTappingEnabled: true,
     actionOneShotEnabled: true,
     actionMacroEnabled: true,
     actionFunctionEnabled: true,
     rgbDiPin: 'D0',
-    rgbLedNum: 3
+    rgbLedNum: 3,
+    permissiveHold: true
 };
 
 // rules
@@ -42,10 +43,10 @@ minivan.rules = {
     architecture: 'AVR8',
     inputClockFrequency: 16000000,
     bootloaderSize: 4096,
-    bootmagicEnabled: true,
+    bootmagicEnabled: false,
     mousekeyEnabled: true,
     extrakeyEnabled: true,
-    consoleEnabled: true,
+    consoleEnabled: false,
     commandEnabled: true,
     sleepLedEnabled: false,
     nkroEnabled: true,

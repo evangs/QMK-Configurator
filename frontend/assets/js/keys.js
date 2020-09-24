@@ -270,6 +270,53 @@ var KEYS = [
     ]
   },
   {
+    label: 'Power Keys',
+    cssClass: 'extra-large-context-key',
+    updateType: 'primary',
+    visible: ['normal'],
+    keys: [
+      {value: 'POWER', display: 'Power (Mac)', tooltip: 'System Power Mac OS'},
+      {value: 'PWR', display: 'Power', tooltip: 'System Power Down'},
+      {value: 'SLEP', display: 'Sleep', tooltip: 'System Sleep'},
+      {value: 'WAKE', display: 'Wake', tooltip: 'System Wake'}
+    ]
+  },
+  {
+      label: 'RGB',
+    cssClass: 'extra-large-context-key',
+    updateType: 'primary',
+    visible: ['normal'],
+    keys: [
+      {value: 'RGB_TOG', display: 'RGB Toggle'},
+      {value: 'RGB_MODE_FORWARD', display: 'Mode +'},
+      {value: 'RGB_MODE_REVERSE', display: 'Mode -'},
+      {value: 'RGB_HUI', display: 'Hue +'},
+      {value: 'RGB_HUD', display: 'Hue -'},
+      {value: 'RGB_SAI', display: 'Sat +'},
+      {value: 'RGB_SAD', display: 'Sat -'},
+      {value: 'RGB_VAI', display: 'Value +', tooltip: 'Increase RGB Brightness'},
+      {value: 'RGB_VAD', display: 'Value -', tooltip: 'Decrease RGB Brightness'},
+      {value: 'RGB_MODE_PLAIN', display: 'Plain'},
+      {value: 'RGB_MODE_BREATHE', display: 'Breath'},
+      {value: 'RGB_MODE_RAINBOW', display: 'Rainbow'},
+      {value: 'RGB_MODE_KNIGHT', display: 'Knight'},
+      {value: 'RGB_MODE_GRADIENT', display: 'Gradient'},
+      {value: 'RGB_MODE_SWIRL', display: 'SWIRL'},
+      {value: 'RGB_MODE_RGBTEST', display: 'RGB Test'}
+    ]
+  },
+  {
+      label: 'Misc',
+    cssClass: 'extra-large-context-key',
+    updateType: 'primary',
+    visible: ['normal'],
+    keys: [
+      {value: 'CALCULATOR', display: 'Calculator'},
+      {value: 'BRIGHTNESS_UP', display: 'Brightness +', tooltip: 'Screen Brightness Increase'},
+      {value: 'BRIGHTNESS_DOWN', display: 'Brightness -', tooltip: 'Screen Brightness Decrease'}
+    ]
+  },
+  {
       label: 'Keyboard',
     cssClass: 'large-context-key',
     updateType: 'primary',
@@ -279,8 +326,6 @@ var KEYS = [
       {value: 'BL_STEP', display: 'Toggle Led'},
       {value: 'BL_INC', display: 'LED +', tooltip: 'Increase LED Brightness'},
       {value: 'BL_DEC', display: 'LED -', tooltip: 'Decrease LED Brightness'},
-      {value: 'RGB_VAI', display: 'RGB +', tooltip: 'Increase RGB Brightness'},
-      {value: 'RGB_VAD', display: 'RGB -', tooltip: 'Decrease RGB Brightness'},
       {value: 'RESET', display: 'Reset'},
       {value: 'NO', display: 'No Action'}
     ]

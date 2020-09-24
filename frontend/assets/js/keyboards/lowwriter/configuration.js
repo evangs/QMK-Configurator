@@ -30,7 +30,8 @@ lowwriter.config = {
     actionTappingEnabled: true,
     actionOneShotEnabled: true,
     actionMacroEnabled: true,
-    actionFunctionEnabled: true
+    actionFunctionEnabled: true,
+    permissiveHold: true
 };
 
 // rules
