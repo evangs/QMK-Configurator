@@ -26,9 +26,9 @@ mb44.config = {
     commandKeyCombination: 'keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT))',
     debugEnabled: false,
     printEnabled: false,
-    actionLayerEnabled: true,
-    actionTappingEnabled: true,
-    actionOneShotEnabled: true,
+    actionLayerEnabled: false,
+    actionTappingEnabled: false,
+    actionOneShotEnabled: false,
     actionMacroEnabled: false,
     actionFunctionEnabled: false,
     permissiveHold: true
