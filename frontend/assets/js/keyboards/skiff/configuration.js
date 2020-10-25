@@ -28,7 +28,7 @@ skiff.config = {
     commandKeyCombination: 'keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT))',
     debugEnabled: true,
     printEnabled: true,
-    actionLayerEnabled: false,
+    actionLayerEnabled: true,
     actionTappingEnabled: false,
     actionOneShotEnabled: false,
     actionMacroEnabled: false,
