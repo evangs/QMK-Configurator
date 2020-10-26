@@ -258,7 +258,14 @@ body {
   height: 50px;
   border-radius: 10px 10px 0 10px;
 }
-.kJIS::after {
+.kJISb {
+  width: 75px;
+  height: 50px;
+  border-radius: 10px 10px 0 10px;
+  top: -50px;
+  left: -25px;
+}
+.kJIS::after, .kJISb::after {
   content: ' ';
   width: 44px;
   height: 50px;
@@ -269,70 +276,70 @@ body {
   right: 0px;
   z-index: 0;
 }
-.error.kJIS:after {
-    border: 3px solid #f45342;
-    border-top: none;
-    right: -3px;
-    height: 47px;
+.error.kJIS:after, .error.kJISb:after {
+  border: 3px solid #f45342;
+  border-top: none;
+  right: -3px;
+  height: 47px;
 }
 
-.kISO:hover:after, .kJIS:hover:after {
+.kISO:hover:after, .kJIS:hover:after, .kJISb:hover:after {
     background-color: #d9d9d9;
 }
-.momentary.kISO:hover:after, .momentary.kJIS:hover:after {
+.momentary.kISO:hover:after, .momentary.kJIS:hover:after, .momentary.kJISb:hover:after {
     background-color: #D9A3AD;
 }
-.toggle.kISO:hover:after, .toggle.kJIS:hover:after {
+.toggle.kISO:hover:after, .toggle.kJIS:hover:after, .toggle.kJISb:hover:after {
     background-color: #D9D9BF;
 }
-.modkey.kISO:hover:after, .modkey.kJIS:hover:after {
+.modkey.kISO:hover:after, .modkey.kJIS:hover:after, .modkey.kJISb:hover:after {
     background-color: #C4C4D5;
 }
-.tapkey.kISO:hover:after, .tapkey.kJIS:hover:after {
+.tapkey.kISO:hover:after, .tapkey.kJIS:hover:after, .tapkey.kJISb:hover:after {
     background-color: #7BCB7B;
 }
-.combokey.kISO:hover:after, .combokey.kJIS:hover:after {
+.combokey.kISO:hover:after, .combokey.kJIS:hover:after, .combokey.kJISb:hover:after {
     background-color: #93B8C4;
 }
-.direct.kISO:hover:after, .direct.kJIS:hover:after {
+.direct.kISO:hover:after, .direct.kJIS:hover:after, .direct.kJISb:hover:after {
     background-color: #CC6D6D;
 }
-.taptoggle.kISO:hover:after, .taptoggle.kJIS:hover:after {
+.taptoggle.kISO:hover:after, .taptoggle.kJIS:hover:after, .taptoggle.kJISb:hover:after {
     background-color: #6CD9B4;
 }
-.setdefaultlayer.kISO:hover:after, .setdefaultlayer.kJIS:hover:after {
+.setdefaultlayer.kISO:hover:after, .setdefaultlayer.kJIS:hover:after, .setdefaultlayer.kJISb:hover:after {
     background-color: #D9BA9D;
 }
 
-.active.kISO:after, .active.kJIS:after {
+.active.kISO:after, .active.kJIS:after, .active.kJISb:after {
     background-color: #BFBFBF;
 }
-.active.momentary.kISO:after, .active.momentary.kJIS:after {
+.active.momentary.kISO:after, .active.momentary.kJIS:after, .active.momentary.kJISb:after {
     background-color: #BF9098;
 }
-.active.toggle.kISO:after, .active.toggle.kJIS:after {
+.active.toggle.kISO:after, .active.toggle.kJIS:after, .active.toggle.kJISb:after {
     background-color: #BFBFA8;
 }
-.active.modkey.kISO:after, .active.modkey.kJIS:after {
+.active.modkey.kISO:after, .active.modkey.kJIS:after, .active.modkey.kJISb:after {
     background-color: #ACACBB;
 }
-.active.tapkey.kISO:after, .active.tapkey.kJIS:after {
+.active.tapkey.kISO:after, .active.tapkey.kJIS:after, .active.tapkey.kJISb:after {
     background-color: #6CB26C;
 }
-.active.combokey.kISO:after, .active.combokey.kJIS:after {
+.active.combokey.kISO:after, .active.combokey.kJIS:after, .active.combokey.kJISb:after {
     background-color: #82A2AC;
 }
-.active.direct.kISO:after, .active.direct.kJIS:after {
+.active.direct.kISO:after, .active.direct.kJIS:after, .active.direct.kJISb:after {
     background-color: #B46060;
 }
-.active.taptoggle.kISO:after, .active.taptoggle.kJIS:after {
+.active.taptoggle.kISO:after, .active.taptoggle.kJIS:after, .active.taptoggle.kJISb:after {
     background-color: #5FBF9F;
 }
-.active.setdefaultlayer.kISO:after, .active.setdefaultlayer.kJIS:after {
+.active.setdefaultlayer.kISO:after, .active.setdefaultlayer.kJIS:after, .active.setdefaultlayer.kJISb:after {
     background-color: #BFA38B;
 }
 
-.kISO:hover:before, .active.kISO:before, .kJIS:hover:before, .active.kJIS:before {
+.kISO:hover:before, .active.kISO:before, .kJIS:hover:before, .active.kJIS:before, .kJISb:hover:before, .active.kJISb:before {
   border-radius: 7px 7px 0 7px;
 }
 
@@ -512,7 +519,7 @@ textarea:focus {
     width: 15%;
     display: inline-block;
 }
-.zone-hover, .zone-hover.kISO:after, .zone-hover.kJIS:after, .zone-hover.k175stepped:after {
+.zone-hover, .zone-hover.kISO:after, .zone-hover.kJIS:after, .zone-hover.k175stepped:after, .zone-hover.kJISb:after {
     background-color: #333;
 }
 .zonebox span {
