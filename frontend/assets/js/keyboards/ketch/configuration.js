@@ -365,12 +365,8 @@ ketch.keySections = [
       [
         {
           id: 'k1B',
-          value: 'QUOT',
-          type: 'tapkey',
-          secondary: 'L1',
-          showMenu: false,
-          shape: 'kJIS',
-          zone: 'Enter'
+          value: 'NO',
+          type: 'nodisplay',
         }
       ]
     ],
@@ -479,8 +475,12 @@ ketch.keySections = [
       [
         {
           id: 'k2B',
-          value: 'NO',
-          type: 'nodisplay',
+          value: 'QUOT',
+          type: 'tapkey',
+          secondary: 'L1',
+          showMenu: false,
+          shape: 'kJISb',
+          zone: 'Enter'
         }
       ]
     ],
@@ -1246,11 +1246,8 @@ ketch.keySections = [
       [
         {
           id: 'k1B',
-          value: 'TRNS',
-          type: 'normal',
-          secondary: null,
-          showMenu: false,
-          shape: 'kJIS'
+          value: 'NO',
+          type: 'nodisplay',
         }
       ]
     ],
@@ -1358,8 +1355,11 @@ ketch.keySections = [
       [
         {
           id: 'k2B',
-          value: 'NO',
-          type: 'nodisplay',
+          value: 'TRNS',
+          type: 'normal',
+          secondary: null,
+          showMenu: false,
+          shape: 'kJISb'
         }
       ]
     ],
@@ -2125,11 +2125,8 @@ ketch.keySections = [
       [
         {
           id: 'k1B',
-          value: 'TRNS',
-          type: 'normal',
-          secondary: null,
-          showMenu: false,
-          shape: 'kJIS'
+          value: 'NO',
+          type: 'nodisplay',
         }
       ]
     ],
@@ -2237,8 +2234,11 @@ ketch.keySections = [
       [
         {
           id: 'k2B',
-          value: 'NO',
-          type: 'nodisplay',
+          value: 'TRNS',
+          type: 'normal',
+          secondary: null,
+          showMenu: false,
+          shape: 'kJISb'
         }
       ]
     ],
@@ -3004,11 +3004,8 @@ ketch.keySections = [
       [
         {
           id: 'k1B',
-          value: 'TRNS',
-          type: 'normal',
-          secondary: null,
-          showMenu: false,
-          shape: 'kJIS'
+          value: 'NO',
+          type: 'nodisplay',
         }
       ]
     ],
@@ -3116,8 +3113,11 @@ ketch.keySections = [
       [
         {
           id: 'k2B',
-          value: 'NO',
-          type: 'nodisplay',
+          value: 'TRNS',
+          type: 'normal',
+          secondary: null,
+          showMenu: false,
+          shape: 'kJISb'
         }
       ]
     ],
