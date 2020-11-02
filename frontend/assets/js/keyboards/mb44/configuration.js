@@ -26,11 +26,11 @@ mb44.config = {
     commandKeyCombination: 'keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT))',
     debugEnabled: false,
     printEnabled: false,
-    actionLayerEnabled: false,
-    actionTappingEnabled: false,
-    actionOneShotEnabled: false,
-    actionMacroEnabled: false,
-    actionFunctionEnabled: false,
+    actionLayerEnabled: true,
+    actionTappingEnabled: true,
+    actionOneShotEnabled: true,
+    actionMacroEnabled: true,
+    actionFunctionEnabled: true,
     permissiveHold: true
 };
 
@@ -44,8 +44,8 @@ mb44.rules = {
     bootmagicEnabled: false,
     mousekeyEnabled: true,
     extrakeyEnabled: true,
-    consoleEnabled: true,
-    commandEnabled: true,
+    consoleEnabled: false,
+    commandEnabled: false,
     sleepLedEnabled: false,
     nkroEnabled: false,
     backlightEnabled: false,

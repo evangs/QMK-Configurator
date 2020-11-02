@@ -26,11 +26,11 @@ neuron.config = {
     commandKeyCombination: 'keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT))',
     debugEnabled: false,
     printEnabled: false,
-    actionLayerEnabled: false,
-    actionTappingEnabled: false,
-    actionOneShotEnabled: false,
-    actionMacroEnabled: false,
-    actionFunctionEnabled: false,
+    actionLayerEnabled: true,
+    actionTappingEnabled: true,
+    actionOneShotEnabled: true,
+    actionMacroEnabled: true,
+    actionFunctionEnabled: true,
     permissiveHold: true
 };
 
@@ -45,7 +45,7 @@ neuron.rules = {
     mousekeyEnabled: true,
     extrakeyEnabled: true,
     consoleEnabled: false,
-    commandEnabled: true,
+    commandEnabled: false,
     sleepLedEnabled: false,
     nkroEnabled: true,
     backlightEnabled: true,

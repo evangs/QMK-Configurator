@@ -49,7 +49,6 @@ module.exports = (config) => {
 #define MATRIX_COLS ${config.matrixColumnPins.length}
 #define MATRIX_ROW_PINS { ${config.matrixRowPins.join(', ')} }
 #define MATRIX_COL_PINS { ${config.matrixColumnPins.join(', ')} }
-#define UNUSED_PINS
 
 #define DIODE_DIRECTION ${config.diodeDirection}
 
