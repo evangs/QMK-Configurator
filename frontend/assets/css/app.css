@@ -49,6 +49,11 @@ body {
   z-index: 1;
 }
 
+.k75 {
+  width: 37.5px;
+  height: 50px;
+}
+
 .k100 {
   width: 50px;
   height: 50px;
@@ -198,10 +203,25 @@ body {
   height: 50px;
 }
 
+.k300 {
+  width: 150px;
+  height: 50px;
+}
+
 .k200v {
   width: 50px;
   height: 100px;
   margin-bottom: -56px
+}
+
+.k500 {
+  width: 250px;
+  height: 50px;
+}
+
+.k600 {
+  width: 300px;
+  height: 50px;
 }
 
 .k625 {
@@ -517,6 +537,10 @@ textarea:focus {
     margin-right: 25px;
 }
 
+.ls025 {
+  margin-left: 12.5px;
+}
+
 .ls050 {
   margin-left: 25px;
 }
@@ -557,7 +581,7 @@ textarea:focus {
   top: -25px;
 }
 
-.encoder: {
+.encoder {
   border-radius: 25px;
 }
 
