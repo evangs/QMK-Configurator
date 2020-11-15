@@ -302,6 +302,11 @@ m3n3van.keySections = [
           shape: 'k175',
           zone: 'Backspace'
         },
+        {
+          id: 'k0C',
+          value: 'NO',
+          type: 'nodisplay'
+        }
       ],
       [
         {
@@ -467,6 +472,11 @@ m3n3van.keySections = [
           shape: 'k175',
           zone: 'Shift'
         },
+        {
+          id: 'k21',
+          value: 'NO',
+          type: 'nodisplay'
+        }
       ],
       [
         {
@@ -612,6 +622,11 @@ m3n3van.keySections = [
           zone: 'Bottom Row'
         },
         {
+          id: 'k33',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
           id: 'k34',
           value: 'SPC',
           type: 'normal',
@@ -621,6 +636,11 @@ m3n3van.keySections = [
           zone: 'Bottom Row'
         },
         {
+          id: 'k35',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
           id: 'k37',
           value: 'SPC',
           type: 'normal',
@@ -628,6 +648,11 @@ m3n3van.keySections = [
           showMenu: false,
           shape: 'k300',
           zone: 'Bottom Row'
+        },
+        {
+          id: 'k39',
+          value: 'NO',
+          type: 'nodisplay'
         },
         {
           id: 'k3A',
@@ -687,6 +712,16 @@ m3n3van.keySections = [
           zone: 'Bottom Row'
         },
         {
+          id: 'k33',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
+          id: 'k34',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
           id: 'k35',
           value: 'SPC',
           type: 'normal',
@@ -694,6 +729,16 @@ m3n3van.keySections = [
           showMenu: false,
           shape: 'k600',
           zone: 'Bottom Row'
+        },
+        {
+          id: 'k37',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
+          id: 'k39',
+          value: 'NO',
+          type: 'nodisplay'
         },
         {
           id: 'k3A',
@@ -751,6 +796,11 @@ m3n3van.keySections = [
           showMenu: false,
           shape: 'k100',
           zone: 'Bottom Row'
+        },
+        {
+          id: 'k33',
+          value: 'NO',
+          type: 'nodisplay'
         },
         {
           id: 'k34',
@@ -855,6 +905,11 @@ m3n3van.keySections = [
           zone: 'Bottom Row'
         },
         {
+          id: 'k34',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
           id: 'k35',
           value: 'SPC',
           type: 'normal',
@@ -862,6 +917,11 @@ m3n3van.keySections = [
           showMenu: false,
           shape: 'k300',
           zone: 'Bottom Row'
+        },
+        {
+          id: 'k37',
+          value: 'NO',
+          type: 'nodisplay'
         },
         {
           id: 'k38',
@@ -939,6 +999,16 @@ m3n3van.keySections = [
           zone: 'Bottom Row'
         },
         {
+          id: 'k33',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
+          id: 'k34',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
           id: 'k35',
           value: 'SPC',
           type: 'normal',
@@ -947,6 +1017,11 @@ m3n3van.keySections = [
           shape: 'k500',
           zone: 'Bottom Row'
         }, 
+        {
+          id: 'k37',
+          value: 'NO',
+          type: 'nodisplay'
+        },
         {
           id: 'k39',
           value: 'L1',
@@ -1021,6 +1096,11 @@ m3n3van.keySections = [
           showMenu: false,
           shape: 'k100',
           zone: 'Bottom Row'
+        },
+        {
+          id: 'k34',
+          value: 'NO',
+          type: 'nodisplay'
         },
         {
           id: 'k35',
@@ -1286,6 +1366,11 @@ m3n3van.keySections = [
           shape: 'k175',
           zone: 'Backspace'
         },
+        {
+          id: 'k0C',
+          value: 'NO',
+          type: 'nodisplay'
+        },
       ],
       [
         {
@@ -1451,6 +1536,11 @@ m3n3van.keySections = [
           shape: 'k175',
           zone: 'Shift'
         },
+        {
+          id: 'k21',
+          value: 'NO',
+          type: 'nodisplay'
+        },
       ],
       [
         {
@@ -1596,6 +1686,11 @@ m3n3van.keySections = [
           zone: 'Bottom Row'
         },
         {
+          id: 'k33',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
           id: 'k34',
           value: 'TRNS',
           type: 'normal',
@@ -1605,6 +1700,11 @@ m3n3van.keySections = [
           zone: 'Bottom Row'
         },
         {
+          id: 'k35',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
           id: 'k37',
           value: 'TRNS',
           type: 'normal',
@@ -1612,6 +1712,11 @@ m3n3van.keySections = [
           showMenu: false,
           shape: 'k300',
           zone: 'Bottom Row'
+        },
+        {
+          id: 'k39',
+          value: 'NO',
+          type: 'nodisplay'
         },
         {
           id: 'k3A',
@@ -1671,6 +1776,16 @@ m3n3van.keySections = [
           zone: 'Bottom Row'
         },
         {
+          id: 'k33',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
+          id: 'k34',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
           id: 'k35',
           value: 'TRNS',
           type: 'normal',
@@ -1678,6 +1793,16 @@ m3n3van.keySections = [
           showMenu: false,
           shape: 'k600',
           zone: 'Bottom Row'
+        },
+        {
+          id: 'k37',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
+          id: 'k39',
+          value: 'NO',
+          type: 'nodisplay'
         },
         {
           id: 'k3A',
@@ -1735,6 +1860,11 @@ m3n3van.keySections = [
           showMenu: false,
           shape: 'k100',
           zone: 'Bottom Row'
+        },
+        {
+          id: 'k33',
+          value: 'NO',
+          type: 'nodisplay'
         },
         {
           id: 'k34',
@@ -1839,6 +1969,11 @@ m3n3van.keySections = [
           zone: 'Bottom Row'
         },
         {
+          id: 'k34',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
           id: 'k35',
           value: 'TRNS',
           type: 'normal',
@@ -1846,6 +1981,11 @@ m3n3van.keySections = [
           showMenu: false,
           shape: 'k300',
           zone: 'Bottom Row'
+        },
+        {
+          id: 'k37',
+          value: 'NO',
+          type: 'nodisplay'
         },
         {
           id: 'k38',
@@ -1923,6 +2063,16 @@ m3n3van.keySections = [
           zone: 'Bottom Row'
         },
         {
+          id: 'k33',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
+          id: 'k34',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
           id: 'k35',
           value: 'TRNS',
           type: 'normal',
@@ -1930,7 +2080,12 @@ m3n3van.keySections = [
           showMenu: false,
           shape: 'k500',
           zone: 'Bottom Row'
-        }, 
+        },
+        {
+          id: 'k37',
+          value: 'NO',
+          type: 'nodisplay'
+        },
         {
           id: 'k39',
           value: 'TRNS',
@@ -2005,6 +2160,11 @@ m3n3van.keySections = [
           showMenu: false,
           shape: 'k100',
           zone: 'Bottom Row'
+        },
+        {
+          id: 'k34',
+          value: 'NO',
+          type: 'nodisplay'
         },
         {
           id: 'k35',
@@ -2270,6 +2430,11 @@ m3n3van.keySections = [
           shape: 'k175',
           zone: 'Backspace'
         },
+        {
+          id: 'k0C',
+          value: 'NO',
+          type: 'nodisplay'
+        },
       ],
       [
         {
@@ -2435,6 +2600,11 @@ m3n3van.keySections = [
           shape: 'k175',
           zone: 'Shift'
         },
+        {
+          id: 'k21',
+          value: 'NO',
+          type: 'nodisplay'
+        },
       ],
       [
         {
@@ -2580,6 +2750,11 @@ m3n3van.keySections = [
           zone: 'Bottom Row'
         },
         {
+          id: 'k33',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
           id: 'k34',
           value: 'TRNS',
           type: 'normal',
@@ -2589,6 +2764,11 @@ m3n3van.keySections = [
           zone: 'Bottom Row'
         },
         {
+          id: 'k35',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
           id: 'k37',
           value: 'TRNS',
           type: 'normal',
@@ -2596,6 +2776,11 @@ m3n3van.keySections = [
           showMenu: false,
           shape: 'k300',
           zone: 'Bottom Row'
+        },
+        {
+          id: 'k39',
+          value: 'NO',
+          type: 'nodisplay'
         },
         {
           id: 'k3A',
@@ -2655,6 +2840,16 @@ m3n3van.keySections = [
           zone: 'Bottom Row'
         },
         {
+          id: 'k33',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
+          id: 'k34',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
           id: 'k35',
           value: 'TRNS',
           type: 'normal',
@@ -2662,6 +2857,16 @@ m3n3van.keySections = [
           showMenu: false,
           shape: 'k600',
           zone: 'Bottom Row'
+        },
+        {
+          id: 'k37',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
+          id: 'k39',
+          value: 'NO',
+          type: 'nodisplay'
         },
         {
           id: 'k3A',
@@ -2719,6 +2924,11 @@ m3n3van.keySections = [
           showMenu: false,
           shape: 'k100',
           zone: 'Bottom Row'
+        },
+        {
+          id: 'k33',
+          value: 'NO',
+          type: 'nodisplay'
         },
         {
           id: 'k34',
@@ -2823,6 +3033,11 @@ m3n3van.keySections = [
           zone: 'Bottom Row'
         },
         {
+          id: 'k34',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
           id: 'k35',
           value: 'TRNS',
           type: 'normal',
@@ -2830,6 +3045,11 @@ m3n3van.keySections = [
           showMenu: false,
           shape: 'k300',
           zone: 'Bottom Row'
+        },
+        {
+          id: 'k37',
+          value: 'NO',
+          type: 'nodisplay'
         },
         {
           id: 'k38',
@@ -2907,6 +3127,16 @@ m3n3van.keySections = [
           zone: 'Bottom Row'
         },
         {
+          id: 'k33',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
+          id: 'k34',
+          value: 'NO',
+          type: 'nodisplay'
+        },
+        {
           id: 'k35',
           value: 'TRNS',
           type: 'normal',
@@ -2914,7 +3144,12 @@ m3n3van.keySections = [
           showMenu: false,
           shape: 'k500',
           zone: 'Bottom Row'
-        }, 
+        },
+        {
+          id: 'k37',
+          value: 'NO',
+          type: 'nodisplay'
+        },
         {
           id: 'k39',
           value: 'TRNS',
@@ -2989,6 +3224,11 @@ m3n3van.keySections = [
           showMenu: false,
           shape: 'k100',
           zone: 'Bottom Row'
+        },
+        {
+          id: 'k34',
+          value: 'NO',
+          type: 'nodisplay'
         },
         {
           id: 'k35',
