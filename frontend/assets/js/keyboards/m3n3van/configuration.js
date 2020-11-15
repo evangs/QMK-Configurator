@@ -1869,7 +1869,7 @@ m3n3van.keySections = [
         {
           id: 'k34',
           value: 'TRNS',
-          type: 'momentary',
+          type: 'normal',
           secondary: null,
           showMenu: false,
           shape: 'k125',
@@ -1896,7 +1896,7 @@ m3n3van.keySections = [
         {
           id: 'k39',
           value: 'TRNS',
-          type: 'momentary',
+          type: 'normal',
           secondary: null,
           showMenu: false,
           shape: 'k125',
@@ -1962,7 +1962,7 @@ m3n3van.keySections = [
         {
           id: 'k33',
           value: 'TRNS',
-          type: 'momentary',
+          type: 'normal',
           secondary: null,
           showMenu: false,
           shape: 'k100',
@@ -1999,7 +1999,7 @@ m3n3van.keySections = [
         {
           id: 'k39',
           value: 'TRNS',
-          type: 'momentary',
+          type: 'normal',
           secondary: null,
           showMenu: false,
           shape: 'k100',
@@ -2089,7 +2089,7 @@ m3n3van.keySections = [
         {
           id: 'k39',
           value: 'TRNS',
-          type: 'momentary',
+          type: 'normal',
           secondary: null,
           showMenu: false,
           shape: 'k125',
@@ -2155,7 +2155,7 @@ m3n3van.keySections = [
         {
           id: 'k33',
           value: 'TRNS',
-          type: 'momentary',
+          type: 'normal',
           secondary: null,
           showMenu: false,
           shape: 'k100',
@@ -2187,7 +2187,7 @@ m3n3van.keySections = [
         {
           id: 'k39',
           value: 'TRNS',
-          type: 'momentary',
+          type: 'normal',
           secondary: null,
           showMenu: false,
           shape: 'k100',
@@ -2253,7 +2253,7 @@ m3n3van.keySections = [
         {
           id: 'k33',
           value: 'TRNS',
-          type: 'momentary',
+          type: 'normal',
           secondary: null,
           showMenu: false,
           shape: 'k100',
@@ -2290,7 +2290,7 @@ m3n3van.keySections = [
         {
           id: 'k39',
           value: 'TRNS',
-          type: 'momentary',
+          type: 'normal',
           secondary: null,
           showMenu: false,
           shape: 'k100',
@@ -2933,7 +2933,7 @@ m3n3van.keySections = [
         {
           id: 'k34',
           value: 'TRNS',
-          type: 'momentary',
+          type: 'normal',
           secondary: null,
           showMenu: false,
           shape: 'k125',
@@ -2960,7 +2960,7 @@ m3n3van.keySections = [
         {
           id: 'k39',
           value: 'TRNS',
-          type: 'momentary',
+          type: 'normal',
           secondary: null,
           showMenu: false,
           shape: 'k125',
@@ -3026,7 +3026,7 @@ m3n3van.keySections = [
         {
           id: 'k33',
           value: 'TRNS',
-          type: 'momentary',
+          type: 'normal',
           secondary: null,
           showMenu: false,
           shape: 'k100',
@@ -3063,7 +3063,7 @@ m3n3van.keySections = [
         {
           id: 'k39',
           value: 'TRNS',
-          type: 'momentary',
+          type: 'normal',
           secondary: null,
           showMenu: false,
           shape: 'k100',
@@ -3153,7 +3153,7 @@ m3n3van.keySections = [
         {
           id: 'k39',
           value: 'TRNS',
-          type: 'momentary',
+          type: 'normal',
           secondary: null,
           showMenu: false,
           shape: 'k125',
@@ -3219,7 +3219,7 @@ m3n3van.keySections = [
         {
           id: 'k33',
           value: 'TRNS',
-          type: 'momentary',
+          type: 'normal',
           secondary: null,
           showMenu: false,
           shape: 'k100',
@@ -3251,7 +3251,7 @@ m3n3van.keySections = [
         {
           id: 'k39',
           value: 'TRNS',
-          type: 'momentary',
+          type: 'normal',
           secondary: null,
           showMenu: false,
           shape: 'k100',
@@ -3317,7 +3317,7 @@ m3n3van.keySections = [
         {
           id: 'k33',
           value: 'TRNS',
-          type: 'momentary',
+          type: 'normal',
           secondary: null,
           showMenu: false,
           shape: 'k100',
@@ -3354,7 +3354,7 @@ m3n3van.keySections = [
         {
           id: 'k39',
           value: 'TRNS',
-          type: 'momentary',
+          type: 'normal',
           secondary: null,
           showMenu: false,
           shape: 'k100',
