@@ -1,4 +1,4 @@
-module.exports = (rules) => {
+module.exports = (rules, rotaryEncoders) => {
   return (
 `MCU = ${rules.mcu}
 F_CPU = ${rules.processorFrequency}
@@ -17,6 +17,7 @@ ${rules.sleepLedEnabled ? 'SLEEP_LED_ENABLE = yes' : ''}
 ${rules.nkroEnabled ? 'NKRO_ENABLE = yes' : ''}
 ${rules.backlightEnabled ? 'BACKLIGHT_ENABLE = yes' : ''}
 ${rules.rgbLightEnabled ? 'RGBLIGHT_ENABLE = yes' : ''}
+${rotaryEncoders ? 'ENCODER_ENABLE = yes' : ''}
 MIDI_ENABLE = no
 AUDIO_ENABLE = no
 BLUETOOTH_ENABLE = no`);

@@ -530,6 +530,10 @@ textarea:focus {
   margin-left: 50px;
 }
 
+.ls200 {
+  margin-left: 100px;
+}
+
 .s100 {
     margin-right: 50px;
 }
@@ -550,8 +554,20 @@ textarea:focus {
     margin-top: 25px;
 }
 
+.vp050 {
+  top: 25px;
+}
+
+.p050 {
+  top: -25px;
+}
+
+.encoder: {
+  border-radius: 25px;
+}
+
 .ls050 {
-    margin-left: 25px;
+  margin-left: 25px;
 }
 
 .saved-layouts li {

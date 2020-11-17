@@ -27,6 +27,12 @@ Vue.component('saved-layout-selector-component', {
       if (layout.indicators) {
         keyboard.indicators = JSON.parse(JSON.stringify(layout.indicators));
       }
+      if (layout.static_indicators) {
+        keyboard.static_indicators = JSON.parse(JSON.stringify(layout.static_indicators));
+      }
+      if (layout.rotary_encoders) {
+        keyboard.rotary_encoders = JSON.parse(JSON.stringify(layout.rotary_encoders));
+      }
       this.$emit('input', keyboard);
     },
     deleteLayout: function (layout) {
