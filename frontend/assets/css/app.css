@@ -585,6 +585,10 @@ textarea:focus {
   border-radius: 25px;
 }
 
+.ls050 {
+  margin-left: 25px;
+}
+
 .saved-layouts li {
   padding: 5px;
   width: 100%;
