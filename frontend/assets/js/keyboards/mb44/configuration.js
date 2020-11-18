@@ -29,8 +29,8 @@ mb44.config = {
     actionLayerEnabled: true,
     actionTappingEnabled: true,
     actionOneShotEnabled: true,
-    actionMacroEnabled: false,
-    actionFunctionEnabled: false,
+    actionMacroEnabled: true,
+    actionFunctionEnabled: true,
     permissiveHold: true
 };
 
@@ -44,8 +44,8 @@ mb44.rules = {
     bootmagicEnabled: false,
     mousekeyEnabled: true,
     extrakeyEnabled: true,
-    consoleEnabled: true,
-    commandEnabled: true,
+    consoleEnabled: false,
+    commandEnabled: false,
     sleepLedEnabled: false,
     nkroEnabled: false,
     backlightEnabled: false,

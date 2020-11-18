@@ -100,7 +100,7 @@ const generateIndicatorTemplate = (indicators) => {
   }
 
   return (
-`void process_indicator_update(uint32_t state, uint8_t usb_led) {
+`void process_indicator_update(layer_state_t state, uint8_t usb_led) {
   for (int i = 0; i < ${indicators.length}; i++) {
     setrgb(0, 0, 0, (LED_TYPE *)&led[i]);
   }
@@ -121,7 +121,7 @@ void led_set_user(uint8_t usb_led) {
   process_indicator_update(layer_state, host_keyboard_leds());
 };
 
-uint32_t layer_state_set_user(uint32_t state) {
+layer_state_t layer_state_set_user(layer_state_t state) {
   process_indicator_update(state, host_keyboard_leds());
   return state;
 };`);
@@ -133,7 +133,7 @@ const generateStaticIndicatorTemplate = (indicators) => {
   }
 
   return (
-`void process_indicator_update(uint32_t state, uint8_t usb_led) {
+`void process_indicator_update(layer_state_t state, uint8_t usb_led) {
   ${indicators.map((led, ledIndex) => {
     switch (led.type) {
       case 'layer':
@@ -174,7 +174,7 @@ void led_set_user(uint8_t usb_led) {
   process_indicator_update(layer_state, host_keyboard_leds());
 };
 
-uint32_t layer_state_set_user(uint32_t state) {
+layer_state_t layer_state_set_user(layer_state_t state) {
   process_indicator_update(state, host_keyboard_leds());
   return state;
 };`);
@@ -227,7 +227,7 @@ const processEncoder = (encoder, index) => {
 
 const generateRotaryEncoderTemplate = rotaryEncoders => {
   if (!rotaryEncoders || rotaryEncoders.length === 0) {
-    return;
+    return '';
   }
 
   return `void encoder_update_user(uint8_t index, bool clockwise) {

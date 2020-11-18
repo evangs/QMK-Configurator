@@ -45,7 +45,7 @@ neuron.rules = {
     mousekeyEnabled: true,
     extrakeyEnabled: true,
     consoleEnabled: false,
-    commandEnabled: true,
+    commandEnabled: false,
     sleepLedEnabled: false,
     nkroEnabled: true,
     backlightEnabled: true,
