@@ -32,7 +32,7 @@ ${config.commandKeyCombination || 'keyboard_report->mods == (MOD_BIT(KC_LSHIFT) 
 `)}`;
 };
 
-module.exports = (config) => {
+module.exports = (config, rotaryEncoders) => {
   return (
 `#ifndef CONFIG_H
 #define CONFIG_H
@@ -49,6 +49,9 @@ module.exports = (config) => {
 #define MATRIX_COLS ${config.matrixColumnPins.length}
 #define MATRIX_ROW_PINS { ${config.matrixRowPins.join(', ')} }
 #define MATRIX_COL_PINS { ${config.matrixColumnPins.join(', ')} }
+
+${rotaryEncoders ? `#define ENCODERS_PAD_A { ${rotaryEncoders.map(encoder => encoder.pinA).join(', ')} }` : ''}
+${rotaryEncoders ? `#define ENCODERS_PAD_B { ${rotaryEncoders.map(encoder => encoder.pinB).join(', ')} }` : ''}
 
 #define DIODE_DIRECTION ${config.diodeDirection}
 

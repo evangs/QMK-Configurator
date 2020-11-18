@@ -16,6 +16,7 @@
       <zone-selector-component v-on:zone="onZoneChange" :zones="zones"></zone-selector-component>
       <indicators :indicators="activeKeyboard.indicators"></indicators>
       <static-indicators :indicators="activeKeyboard.static_indicators"></static-indicators>
+      <rotary-encoders :encoders="activeKeyboard.rotary_encoders"></rotary-encoders>
       <saved-layout-selector-component v-model="activeKeyboard" :keyboards="keyboards" :saved-layouts="savedLayouts" v-on:delete-layout="deleteSavedLayout"></saved-layout-selector-component>
 
       <label>Layout Name</label>
@@ -63,6 +64,8 @@
     <script src="assets/js/keyboards/prime_e/configuration.js"></script>
     <script src="assets/js/keyboards/v4n4g0n/configuration.js"></script>
     <script src="assets/js/keyboards/neuron/configuration.js"></script>
+    <script src="assets/js/keyboards/garbageTruck/configuration.js"></script>
+    <script src="assets/js/keyboards/m3n3van/configuration.js"></script>
     <script src="assets/js/keyboards/mb44/configuration.js"></script>
     <script src="assets/js/keyboards/caravan2/configuration.js"></script>
     <script src="assets/js/keyboards/ketch/configuration.js"></script>
@@ -77,6 +80,7 @@
     <script src="assets/js/colorPickerComponent.js"></script>
     <script src="assets/js/indicatorsComponent.js"></script>
     <script src="assets/js/staticIndicatorsComponent.js"></script>
+    <script src="assets/js/encodersComponent.js"></script>
     <script src="assets/js/rawOutputComponent.js"></script>
     <script src="assets/js/keyComponent.js"></script>
     <script src="assets/js/contextMenuComponent.js"></script>

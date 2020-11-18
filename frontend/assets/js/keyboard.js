@@ -94,7 +94,8 @@ new Vue({
         configKeymap: this.activeKeyboard.configKeymap,
         keymap: this.layers,
         indicators: this.activeKeyboard.indicators,
-        staticIndicators: this.activeKeyboard.static_indicators
+        staticIndicators: this.activeKeyboard.static_indicators,
+        rotaryEncoders: this.activeKeyboard.rotary_encoders
       })
       .then(function (response) {
         window.location.href = response.data.hex_url;
@@ -133,6 +134,9 @@ new Vue({
         }
         if (layout.static_indicators) {
           context.activeKeyboard.static_indicators = layout.static_indicators;
+        }
+        if (layout.rotary_encoders) {
+          context.activeKeyboard.rotary_encoders = layout.rotary_encoders;
         }
       })
       .catch(function(error) {
