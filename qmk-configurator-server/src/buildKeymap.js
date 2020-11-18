@@ -227,7 +227,7 @@ const processEncoder = (encoder, index) => {
 
 const generateRotaryEncoderTemplate = rotaryEncoders => {
   if (!rotaryEncoders || rotaryEncoders.length === 0) {
-    return;
+    return '';
   }
 
   return `void encoder_update_user(uint8_t index, bool clockwise) {
