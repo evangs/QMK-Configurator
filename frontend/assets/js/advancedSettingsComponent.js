@@ -92,6 +92,9 @@ Vue.component('advanced-settings-component', {
             <label>Backlight:</label>
             <toggle v-model="activeKeyboard.rules.backlightEnabled"></toggle>
         </div>
+        <div class="form-control">
+          <label>RGB Max Value:</label>
+          <input type="range" min="0" max="255" v-model="activeKeyboard.config.rgblightLimitValue" />
     </div>
   </div>`,
   data: function() {

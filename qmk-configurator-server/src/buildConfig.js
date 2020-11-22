@@ -21,6 +21,7 @@ const populateDefines = (config) => {
     defines.push(`#define MULTIPLEX ${config.multiplexPins.length}`);
   }
   if (config.rgbDiPin) { defines.push(`#define RGB_DI_PIN ${config.rgbDiPin}`); }
+  if (config.rgbDiPin && config.rgblightLimitValue) { defines.push(`#define RGBLIGHT_LIMIT_VAL ${config.rgblightLimitValue}`); }
   if (config.rgbLedNum) { defines.push( `#define RGBLED_NUM ${config.rgbLedNum}
 #define RGBLIGHT_ANIMATIONS
 #define RGBLIGHT_SLEEP`); }
