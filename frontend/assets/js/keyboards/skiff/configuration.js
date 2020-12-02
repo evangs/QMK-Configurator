@@ -74,10 +74,10 @@ skiff.indicators = [
 // keymap
 skiff.configKeymap = {};
 skiff.configKeymap.keys = [
-  "K0", "K8", "K15", "K7",
-  "K1", "K9", "K14", "K6",
-  "K2", "K10", "K13", "K5",
-  "K3", "K11", "K12", "K4"
+  "K7", "K15", "K8", "K0",
+  "K6", "K14", "K9", "K1",
+  "K5", "K13", "K10", "K2",
+  "K4", "K12", "K11", "K3"
 ];
 
 skiff.configKeymap.positions = [
