@@ -9,6 +9,7 @@ WORKDIR /app/qmk-configurator-server
 COPY qmk-configurator-server/package.json /app/qmk-configurator-server
 RUN npm install
 COPY qmk_firmware /app/qmk_firmware
+RUN rm -rf /app/qmk_firmware/keyboards/*
 RUN chown -R node /app/qmk_firmware
 COPY qmk-configurator-server /app/qmk-configurator-server
 COPY frontend /app/frontend

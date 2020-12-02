@@ -9,6 +9,7 @@ OPT_DEFS += -DINTERRUPT_CONTROL_ENDPOINT
 OPT_DEFS += -DBOOTLOADER_SIZE=${rules.bootloaderSize}
 
 ${rules.bootmagicEnabled ? 'BOOTMAGIC_ENABLE = yes' : ''}
+NO_USB_STARTUP_CHECK = yes
 ${rules.mousekeyEnabled ? 'MOUSEKEY_ENABLE = yes' : ''}
 ${rules.extrakeyEnabled ? 'EXTRAKEY_ENABLE = yes' : ''}
 ${rules.consoleEnabled ? 'CONSOLE_ENABLE = yes' : ''}
