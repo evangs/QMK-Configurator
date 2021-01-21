@@ -34,7 +34,7 @@ caravan.config = {
     permissiveHold: true,
     rgbDiPin: 'F0',
     rgbLedNum: 20,
-    rgblightLimitValue: 200
+    rgblightLimitValue: 255
 };
 
 // rules
