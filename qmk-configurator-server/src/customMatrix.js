@@ -145,6 +145,7 @@ static void select_col(uint8_t col) {
     for (uint8_t select = 0; select < MULTIPLEX; select++) {
        writePin(select_pins[select], col_pins[col] & (1 << select));
     }
+    matrix_io_delay();
 }
 
 static void init_pins(void) {
@@ -162,7 +163,7 @@ static void select_col(uint8_t col) {
 }
 
 static void unselect_col(uint8_t col) { setPinInputHigh(col_pins[col]); }
-
+MULTIPLEX
 static void unselect_cols(void) {
     for (uint8_t x = 0; x < MATRIX_COLS; x++) {
         setPinInputHigh(col_pins[x]);
