@@ -10,7 +10,7 @@ fortysevenhundred.config = {
     productId: '0x8860',
     deviceVersion: '0x0001',
     manufacturer: 'TheVan Keyboards',
-    product: 'FortySevenHundred',
+    product: 'FortyKaySevenHundred',
     description: '40700 40%',
     matrixRowPins: ['F0', 'F4', 'F5', 'F6'],
     matrixColumnPins: ['F1', 'D1', 'D2', 'D3', 'D5', 'D4', 'D6', 'D7', 'B4', 'B5', 'B6', 'F7'],
@@ -24,13 +24,14 @@ fortysevenhundred.config = {
     lockingSupportEnabled: true,
     lockingResyncEnabled: true,
     commandKeyCombination: 'keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT))',
-    debugEnabled: true,
-    printEnabled: true,
+    debugEnabled: false,
+    printEnabled: false,
     actionLayerEnabled: true,
     actionTappingEnabled: true,
     actionOneShotEnabled: true,
     actionMacroEnabled: true,
-    actionFunctionEnabled: true
+    actionFunctionEnabled: true,
+    permissiveHold: true
 };
 
 // rules
@@ -47,8 +48,22 @@ fortysevenhundred.rules = {
     commandEnabled: true,
     sleepLedEnabled: false,
     nkroEnabled: true,
-    backlightEnabled: false
+    backlightEnabled: false,
+    rgbLightEnabled: false
 };
+
+fortysevenhundred.rotary_encoders = [
+  {
+    pinA: 'B2',
+    pinB: 'B3',
+    actions: [
+      {
+        right: 'KC_VOLU',
+        left: 'KC_VOLD'
+      }
+    ]
+  }
+];
 
 // keymap
 fortysevenhundred.configKeymap = {};
@@ -67,7 +82,24 @@ fortysevenhundred.configKeymap.positions = [
 ];
 
 // zones
-fortysevenhundred.zones = []
+fortysevenhundred.zones = [
+  {
+    label: 'Backspace',
+    value: 0,
+    choices: [
+      {code: 0, name: '150 100'},
+      {code: 1, name: '100 150'}
+    ]
+  },
+  {
+    label: 'Caps Lock',
+    value: 0,
+    choices: [
+      {code: 0, name: 'Standard'},
+      {code: 1, name: 'Stepped'}
+    ]
+  }
+]
 
 // ui keymap
 fortysevenhundred.keySections = [
@@ -160,33 +192,75 @@ fortysevenhundred.keySections = [
             secondary: null,
             showMenu: false,
             shape: 'k100'
-          },
-          {
-            id: 'k0B',
-            value: 'BSPC',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k150'
-          },
-          {
-            id: 'k3B',
-            value: 'DEL',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k100'
           }
         ],
-        row2: [
+        backspace: [
+          [
+            {
+              id: 'k0B',
+              value: 'BSPC',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k150',
+              zone: 'Backspace'
+            },
+            {
+              id: 'k3B',
+              value: 'DEL',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k100',
+              zone: 'Backspace'
+            }
+          ],
+          [
+            {
+              id: 'k0B',
+              value: 'BSPC',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k100',
+              zone: 'Backspace'
+            },
+            {
+              id: 'k3B',
+              value: 'DEL',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k150',
+              zone: 'Backspace'
+            }
+          ]
+        ],
+        capsLock: [
+          [
             {
               id: 'k10',
               value: 'ESC',
               type: 'tapkey',
               secondary: 'L1',
               showMenu: false,
-              shape: 'k175'
-            },
+              shape: 'k175',
+              zone: 'Caps Lock'
+            }
+          ],
+          [
+            {
+              id: 'k10',
+              value: 'ESC',
+              type: 'tapkey',
+              secondary: 'L1',
+              showMenu: false,
+              shape: 'k175stepped',
+              zone: 'Caps Lock'
+            }
+          ]
+        ],
+        row2: [
             {
               id: 'k11',
               value: 'A',
@@ -522,33 +596,75 @@ fortysevenhundred.keySections = [
             secondary: null,
             showMenu: false,
             shape: 'k100'
-          },
-          {
-            id: 'k0B',
-            value: 'DEL',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k150'
-          },
-          {
-            id: 'k3B',
-            value: 'MUTE',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k100'
           }
         ],
-        row2: [
+        backspace: [
+          [
+            {
+              id: 'k0B',
+              value: 'DEL',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k150',
+              zone: 'Backspace'
+            },
+            {
+              id: 'k3B',
+              value: 'MUTE',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k100',
+              zone: 'Backspace'
+            }
+          ],
+          [
+            {
+              id: 'k0B',
+              value: 'DEL',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k100',
+              zone: 'Backspace'
+            },
+            {
+              id: 'k3B',
+              value: 'MUTE',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k150',
+              zone: 'Backspace'
+            }
+          ]
+        ],
+        capsLock: [
+          [
             {
               id: 'k10',
               value: 'TRNS',
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k175'
-            },
+              shape: 'k175',
+              zone: 'Caps Lock'
+            }
+          ],
+          [
+            {
+              id: 'k10',
+              value: 'TRNS',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k175stepped',
+              zone: 'Caps Lock'
+            }
+          ]
+        ],
+        row2: [
             {
               id: 'k11',
               value: 'BSLS',
@@ -884,33 +1000,75 @@ fortysevenhundred.keySections = [
             secondary: null,
             showMenu: false,
             shape: 'k100'
-          },
-          {
-            id: 'k0B',
-            value: 'TRNS',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k150'
-          },
-          {
-            id: 'k3B',
-            value: 'TRNS',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k100'
           }
         ],
-        row2: [
+        backspace: [
+          [
+            {
+              id: 'k0B',
+              value: 'TRNS',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k150',
+              zone: 'Backspace'
+            },
+            {
+              id: 'k3B',
+              value: 'TRNS',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k100',
+              zone: 'Backspace'
+            }
+          ],
+          [
+            {
+              id: 'k0B',
+              value: 'TRNS',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k100',
+              zone: 'Backspace'
+            },
+            {
+              id: 'k3B',
+              value: 'TRNS',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k150',
+              zone: 'Backspace'
+            }
+          ]
+        ],
+        capsLock: [
+          [
             {
               id: 'k10',
               value: 'TRNS',
               type: 'normal',
               secondary: 'L1',
               showMenu: false,
-              shape: 'k175'
-            },
+              shape: 'k175',
+              zone: 'Caps Lock'
+            }
+          ],
+          [
+            {
+              id: 'k10',
+              value: 'TRNS',
+              type: 'normal',
+              secondary: 'L1',
+              showMenu: false,
+              shape: 'k175stepped',
+              zone: 'Caps Lock'
+            }
+          ]
+        ],
+        row2: [
             {
               id: 'k11',
               value: 'PIPE',
@@ -1246,33 +1404,75 @@ fortysevenhundred.keySections = [
             secondary: null,
             showMenu: false,
             shape: 'k100'
-          },
-          {
-            id: 'k0B',
-            value: 'TRNS',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k150'
-          },
-          {
-            id: 'k3B',
-            value: 'TRNS',
-            type: 'normal',
-            secondary: null,
-            showMenu: false,
-            shape: 'k100'
           }
         ],
-        row2: [
+        backspace: [
+          [
+            {
+              id: 'k0B',
+              value: 'TRNS',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k150',
+              zone: 'Backspace'
+            },
+            {
+              id: 'k3B',
+              value: 'TRNS',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k100',
+              zone: 'Backspace'
+            }
+          ],
+          [
+            {
+              id: 'k0B',
+              value: 'TRNS',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k100',
+              zone: 'Backspace'
+            },
+            {
+              id: 'k3B',
+              value: 'TRNS',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k150',
+              zone: 'Backspace'
+            }
+          ]
+        ],
+        capsLock: [
+          [
             {
               id: 'k10',
               value: 'ESC',
               type: 'normal',
               secondary: null,
               showMenu: false,
-              shape: 'k175'
-            },
+              shape: 'k175',
+              zone: 'Caps Lock'
+            }
+          ],
+          [
+            {
+              id: 'k10',
+              value: 'ESC',
+              type: 'normal',
+              secondary: null,
+              showMenu: false,
+              shape: 'k175stepped',
+              zone: 'Caps Lock'
+            }
+          ]
+        ],
+        row2: [
             {
               id: 'k11',
               value: 'TRNS',
@@ -1525,13 +1725,14 @@ fortysevenhundred.keymap = function() {
     var keymap = [];
     var layer = [];
     var ks;
+    var zones = fortysevenhundred.zones;
     var i;
 
     for (i in fortysevenhundred.keySections) {
         ks = fortysevenhundred.keySections[i];
         layer = new Array();
-        layer.push(ks.row1);
-        layer.push(ks.row2);
+        layer.push(ks.row1.concat(ks.backspace[zones[0].value]));
+        layer.push(ks.capsLock[zones[1].value].concat(ks.row2));
         layer.push(ks.row3);
         layer.push(ks.row4);
         keymap.push(layer);
