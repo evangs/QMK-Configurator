@@ -88,12 +88,14 @@ new Vue({
     buildFirmware: function() {
     	var context = this;
     	context.buildInProgress = true;
-      this.$http.post('/', {
+      this.$http.post('/build', {
         config: this.activeKeyboard.config,
         rules: this.activeKeyboard.rules,
         configKeymap: this.activeKeyboard.configKeymap,
         keymap: this.layers,
-        indicators: this.activeKeyboard.indicators
+        indicators: this.activeKeyboard.indicators,
+        staticIndicators: this.activeKeyboard.static_indicators,
+        rotaryEncoders: this.activeKeyboard.rotary_encoders
       })
       .then(function (response) {
         window.location.href = response.data.hex_url;
@@ -116,9 +118,9 @@ new Vue({
       var formData = new FormData();
       formData.append('file', fileList[0]);
 
-      this.$http.put('/import/', formData)
+      this.$http.post('/import', formData)
       .then(function(response) {
-        var layout = response.data;
+        var layout = JSON.parse(response.data);
 
         context.activeKeyboard = context.keyboards.find(function(keeb) {
         	return keeb.id === layout.id;
@@ -129,6 +131,12 @@ new Vue({
         context.activeKeyboard.keySections = layout.keySections;
         if (layout.indicators) {
           context.activeKeyboard.indicators = layout.indicators;
+        }
+        if (layout.static_indicators) {
+          context.activeKeyboard.static_indicators = layout.static_indicators;
+        }
+        if (layout.rotary_encoders) {
+          context.activeKeyboard.rotary_encoders = layout.rotary_encoders;
         }
       })
       .catch(function(error) {
@@ -152,7 +160,7 @@ new Vue({
       }
     },
     downloadFile: function(url) {
-      window.location.href = url;
+      window.open(url, '_blank');
     }
   },
   watch: {

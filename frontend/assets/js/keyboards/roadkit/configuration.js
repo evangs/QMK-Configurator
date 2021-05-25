@@ -24,13 +24,14 @@ roadkit.config = {
     lockingSupportEnabled: true,
     lockingResyncEnabled: true,
     commandKeyCombination: 'keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT))',
-    debugEnabled: true,
-    printEnabled: true,
+    debugEnabled: false,
+    printEnabled: false,
     actionLayerEnabled: true,
     actionTappingEnabled: true,
     actionOneShotEnabled: true,
     actionMacroEnabled: true,
-    actionFunctionEnabled: true
+    actionFunctionEnabled: true,
+    permissiveHold: true
 };
 
 // rules
@@ -43,8 +44,8 @@ roadkit.rules = {
     bootmagicEnabled: true,
     mousekeyEnabled: true,
     extrakeyEnabled: true,
-    consoleEnabled: true,
-    commandEnabled: true,
+    consoleEnabled: false,
+    commandEnabled: false,
     sleepLedEnabled: false,
     nkroEnabled: true,
     backlightEnabled: true
