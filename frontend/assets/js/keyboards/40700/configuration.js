@@ -54,8 +54,8 @@ fortysevenhundred.rules = {
 
 fortysevenhundred.rotary_encoders = [
   {
-    pinA: 'B2',
-    pinB: 'B3',
+    pinA: 'B3',
+    pinB: 'B2',
     actions: [
       {
         right: 'KC_VOLU',
