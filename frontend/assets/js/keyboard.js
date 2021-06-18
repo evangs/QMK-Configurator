@@ -105,7 +105,8 @@ new Vue({
           keyboardC: response.data.keyboard_c_url,
           keyboardH: response.data.keyboard_h_url,
           keymap: response.data.keymap_url,
-          matrix: response.data.matrix_url
+          matrix: response.data.matrix_url,
+          zip: response.data.zip_url
         };
         context.buildInProgress = false;
       })
