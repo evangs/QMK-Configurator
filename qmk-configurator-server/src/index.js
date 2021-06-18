@@ -41,6 +41,7 @@ app.post('/build', (req, res) => {
       } else {
         res.json({
           'hex_url': `/hex/${fd}_default.hex`,
+          'matrix_url': `/firmware/${fd}/matrix.c`,
           'config_url': `/firmware/${fd}/config.h`,
           'rules_url': `/firmware/${fd}/rules.mk`,
           'keyboard_c_url': `/firmware/${fd}/${fd}.c`,
