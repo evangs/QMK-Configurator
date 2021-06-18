@@ -35,7 +35,8 @@ ketch.config = {
     actionFunctionEnabled: true,
     rgbDiPin: 'F4',
     rgbLedNum: 10,
-    permissiveHold: true
+    permissiveHold: true,
+    retroTapping: false
 };
 
 // rules

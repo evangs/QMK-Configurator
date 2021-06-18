@@ -33,7 +33,8 @@ jetvan.config = {
     actionFunctionEnabled: true,
     rgbDiPin: 'D0',
     rgbLedNum: 10,
-    permissiveHold: true
+    permissiveHold: true,
+    retroTapping: false
 };
 
 // rules

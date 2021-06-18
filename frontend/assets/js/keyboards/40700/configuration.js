@@ -31,7 +31,8 @@ fortysevenhundred.config = {
     actionOneShotEnabled: true,
     actionMacroEnabled: true,
     actionFunctionEnabled: true,
-    permissiveHold: true
+    permissiveHold: true,
+    retroTapping: false
 };
 
 // rules

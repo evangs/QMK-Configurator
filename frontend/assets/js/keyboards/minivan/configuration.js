@@ -33,7 +33,8 @@ minivan.config = {
     actionFunctionEnabled: true,
     rgbDiPin: 'D0',
     rgbLedNum: 3,
-    permissiveHold: true
+    permissiveHold: true,
+    retroTapping: false
 };
 
 // rules
