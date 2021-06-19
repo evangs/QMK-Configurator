@@ -33,7 +33,8 @@ parallelParkingPortScan.config = {
     actionOneShotEnabled: false,
     actionMacroEnabled: false,
     actionFunctionEnabled: false,
-    permissiveHold: true
+    permissiveHold: true,
+    retroTapping: false
 };
 
 // rules

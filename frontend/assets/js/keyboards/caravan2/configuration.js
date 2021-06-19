@@ -32,6 +32,7 @@ caravan.config = {
     actionMacroEnabled: true,
     actionFunctionEnabled: true,
     permissiveHold: true,
+    retroTapping: false,
     rgbDiPin: 'F0',
     rgbLedNum: 20,
     rgblightLimitValue: 255

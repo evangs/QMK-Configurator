@@ -31,7 +31,8 @@ v4n4g0n.config = {
     actionOneShotEnabled: true,
     actionMacroEnabled: true,
     actionFunctionEnabled: true,
-    permissiveHold: true
+    permissiveHold: true,
+    retroTapping: false
 };
 
 // rules

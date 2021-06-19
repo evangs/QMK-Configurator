@@ -4,7 +4,8 @@ RUN apt-get install -y \
   gcc-avr \
   binutils-avr \
   avr-libc \
-  dfu-programmer
+  dfu-programmer \
+  zip
 WORKDIR /app/qmk-configurator-server
 COPY qmk-configurator-server/package.json /app/qmk-configurator-server
 RUN npm install

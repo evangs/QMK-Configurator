@@ -163,7 +163,6 @@ static void select_col(uint8_t col) {
 }
 
 static void unselect_col(uint8_t col) { setPinInputHigh(col_pins[col]); }
-MULTIPLEX
 static void unselect_cols(void) {
     for (uint8_t x = 0; x < MATRIX_COLS; x++) {
         setPinInputHigh(col_pins[x]);

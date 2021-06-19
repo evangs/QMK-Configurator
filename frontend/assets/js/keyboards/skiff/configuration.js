@@ -35,7 +35,8 @@ skiff.config = {
     actionFunctionEnabled: true,
     rgbDiPin: 'B0',
     rgbLedNum: 4,
-    permissiveHold: true
+    permissiveHold: true,
+    retroTapping: false
 };
 
 // rules

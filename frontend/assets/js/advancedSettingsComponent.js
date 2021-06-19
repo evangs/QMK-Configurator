@@ -25,6 +25,10 @@ Vue.component('advanced-settings-component', {
             <toggle v-model="activeKeyboard.config.permissiveHold"></toggle>
         </div>
         <div class="form-control">
+            <label>Retro Tapping:</label>
+            <toggle v-model="activeKeyboard.config.retroTapping"></toggle>
+        </div>
+        <div class="form-control">
             <label>Locking Support:</label>
             <toggle v-model="activeKeyboard.config.lockingSupportEnabled"></toggle>
         </div>

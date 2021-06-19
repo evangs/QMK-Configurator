@@ -48,6 +48,8 @@
       <raw-output :active-keyboard="activeKeyboard" :keyboards="keyboards" v-on:updateactivekeyboard="updateActiveKeyboard"></raw-output>
 
       <button :disabled="buildInProgress" v-on:click="buildFirmware()" class="btn-primary"><i class="fa fa-download" aria-hidden="true"></i> Build Firmware</button>
+      <button v-if="urls.zip" v-on:click="downloadFile(urls.zip)" class="btn-secondary">zip</button>
+      <button v-if="urls.matrix" v-on:click="downloadFile(urls.matrix)" class="btn-secondary">matrix.c</button>
       <button v-if="urls.config" v-on:click="downloadFile(urls.config)" class="btn-secondary">config.h</button>
       <button v-if="urls.rules" v-on:click="downloadFile(urls.rules)" class="btn-secondary">rules.mk</button>
       <button v-if="urls.keyboardC" v-on:click="downloadFile(urls.keyboardC)" class="btn-secondary">keyboard.c</button>

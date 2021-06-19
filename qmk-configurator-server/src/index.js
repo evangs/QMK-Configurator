@@ -22,6 +22,10 @@ app.get('/hex/:fileName', (req, res) => {
   res.sendFile(path.join(__dirname, '/../../qmk_firmware', req.params.fileName));
 });
 
+app.get('/zip/:fileName', (req, res) => {
+  res.sendFile(path.join(__dirname, '/../../qmk_firmware/keyboards/', req.params.fileName));
+});
+
 app.get('/firmware/:firmwareDirectory/:fileName', (req, res) => {
   const fmd = req.params.firmwareDirectory;
   res.sendFile(path.join(__dirname, `/../../qmk_firmware/keyboards/${fmd}`, req.params.fileName));
@@ -41,11 +45,13 @@ app.post('/build', (req, res) => {
       } else {
         res.json({
           'hex_url': `/hex/${fd}_default.hex`,
+          'matrix_url': `/firmware/${fd}/matrix.c`,
           'config_url': `/firmware/${fd}/config.h`,
           'rules_url': `/firmware/${fd}/rules.mk`,
           'keyboard_c_url': `/firmware/${fd}/${fd}.c`,
           'keyboard_h_url': `/firmware/${fd}/${fd}.h`,
-          'keymap_url': `/firmware/${fd}/keymaps/keymap.c`
+          'keymap_url': `/firmware/${fd}/keymaps/keymap.c`,
+          'zip_url': `/zip/${fd}.zip`
         });
       }
     });

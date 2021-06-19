@@ -16,7 +16,7 @@ module.exports.setupFirmware = ({config, rules, configKeymap, keymap, indicators
   const now = new Date().toISOString().replace(/[-T:]*/g, '').split('.')[0];
   const fd = `${config.product.replace(/ /, '')}${now}`;
   const firmwareLocation = '/app/qmk_firmware/keyboards';
-  let filesToWrite = 7;
+  let filesToWrite = 8;
 
   const done = () => {
     filesToWrite--;
@@ -35,6 +35,7 @@ module.exports.setupFirmware = ({config, rules, configKeymap, keymap, indicators
     fs.writeFile(`${firmwareLocation}/${fd}/${fd}.c`, buildProductC(fd), done);
     fs.writeFile(`${firmwareLocation}/${fd}/${fd}.h`, buildKeyboardHeader(configKeymap, fd), done);
     fs.writeFile(`${firmwareLocation}/${fd}/keymaps/default/keymap.c`, buildKeymap(keymap, indicators, staticIndicators, rotaryEncoders, fd), done);
+    makeZip(firmwareLocation, fd, done);
   });
 };
 
@@ -47,3 +48,13 @@ module.exports.buildFirmware = (firmwareDirectory, callback) => {
     callback();
   });
 };
+
+const makeZip = (firmwareLocation, firmwareDirectory, callback) => {
+  child_process.exec(`cd ${firmwareLocation}/${firmwareDirectory}; zip -r ../${firmwareDirectory}.zip *; cd ..`,(error, stdout, stderr) => {
+    if (error) {
+      console.log('stdout', stdout);
+      callback(error);
+    }
+    callback();
+  });
+}
