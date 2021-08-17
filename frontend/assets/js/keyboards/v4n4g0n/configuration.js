@@ -50,7 +50,7 @@ v4n4g0n.rules = {
     sleepLedEnabled: false,
     nkroEnabled: true,
     backlightEnabled: false,
-    rgbLightEnabled: false
+    rgbLightEnabled: true
 };
 
 v4n4g0n.static_indicators = [
