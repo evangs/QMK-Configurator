@@ -53,23 +53,61 @@ v4n4g0n.rules = {
     rgbLightEnabled: false
 };
 
-v4n4g0n.static_indicators = [
+v4n4g0n.indicator_types = [
   {
-    pin: 'B6',
-    type: 'power',
-    action: 'power'
-  },
-  {
-    pin: 'B5',
-    type: 'layer',
-    action: 'L3'
-  },
-  {
-    pin: 'B4',
-    type: 'layer',
-    action: 'L3'
+    label: 'Indicator Type',
+    value: 0,
+    choices: [
+      {
+        code: 0,
+        name: 'Static Indicators',
+        static_indicators: [
+          {
+            pin: 'B6',
+            type: 'power',
+            action: 'power'
+          },
+          {
+            pin: 'B5',
+            type: 'layer',
+            action: 'L3'
+          },
+          {
+            pin: 'B4',
+            type: 'layer',
+            action: 'L3'
+          }
+        ],
+        indicators: [],
+        rgbDiPin: undefined,
+        rgbLedNum: undefined,
+        rgbLightEnabled: undefined
+      },
+      {
+        code: 1,
+        name: 'RGB Indicators',
+        indicators: [
+          [
+            {red: 200, green: 23, blue: 23, action: 'power', type: 'power'}
+          ],
+          [
+            {red: 200, green: 23, blue: 23, action: 'power', type: 'power'}
+          ],
+          [
+            {red: 200, green: 23, blue: 23, action: 'power', type: 'power'}
+          ],
+        ],
+        static_indicators: [],
+        rgbDiPin: 'D0',
+        rgbLedNum: 3,
+        rgbLightEnabled: true
+      }
+    ]
   }
 ];
+
+v4n4g0n.indicators = v4n4g0n.indicator_types[0].choices[0].indicators;
+v4n4g0n.static_indicators = v4n4g0n.indicator_types[0].choices[0].static_indicators;
 
 // keymap
 v4n4g0n.configKeymap = {};
@@ -2143,6 +2181,17 @@ v4n4g0n.keySections = [
         ]
     }
 ];
+
+v4n4g0n.updateIndicators = function() {
+  var indicatorTypes = v4n4g0n.indicator_types;
+  var selected = indicatorTypes[0].choices[indicatorTypes[0].value];
+
+  v4n4g0n.indicators = selected.indicators;
+  v4n4g0n.static_indicators = selected.static_indicators;
+  v4n4g0n.config.rgbDiPin = selected.rgbDiPin;
+  v4n4g0n.config.rgbLedNum = selected.rgbLedNum;
+  v4n4g0n.rules.rgbLightEnabled = selected.rgbLightEnabled;
+}
 
 v4n4g0n.keymap = function() {
     var keymap = [];
