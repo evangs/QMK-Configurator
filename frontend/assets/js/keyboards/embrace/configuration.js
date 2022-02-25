@@ -156,6 +156,15 @@ embrace.keySections = [
           secondary: null,
           showMenu: false,
           shape: 'k100'
+        },
+        {
+          id: 'k08',
+          value: 'MUTE',
+          type: 'normal',
+          secondary: null,
+          showMenu: false,
+          shape: 'k100',
+          spacer: 'ls050'
         }
       ],
         row2: [
@@ -663,6 +672,15 @@ embrace.keySections = [
           secondary: null,
           showMenu: false,
           shape: 'k100'
+        },
+        {
+          id: 'k08',
+          value: 'TRNS',
+          type: 'normal',
+          secondary: null,
+          showMenu: false,
+          shape: 'k100',
+          spacer: 'ls050'
         }
       ],
         row2: [
@@ -1154,6 +1172,15 @@ embrace.keySections = [
           secondary: null,
           showMenu: false,
           shape: 'k100'
+        },
+        {
+          id: 'k08',
+          value: 'TRNS',
+          type: 'normal',
+          secondary: null,
+          showMenu: false,
+          shape: 'k100',
+          spacer: 'ls050'
         }
       ],
         row2: [
@@ -1645,6 +1672,15 @@ embrace.keySections = [
           secondary: null,
           showMenu: false,
           shape: 'k100'
+        },
+        {
+          id: 'k08',
+          value: 'TRNS',
+          type: 'normal',
+          secondary: null,
+          showMenu: false,
+          shape: 'k100',
+          spacer: 'ls050'
         }
       ],
         row2: [
