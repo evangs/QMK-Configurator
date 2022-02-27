@@ -14,7 +14,7 @@ embrace.config = {
     description: 'Embrace',
     matrixRowPins: ['B0', 'D4', 'D6', 'B7', 'B3'],
     matrixColumnPins: ['F1', 'F4', 'F5', 'B6', 'B5', 'B4', 'D7', 'D0', 'D5', 'D3', 'D2', 'D1'],
-    diodeDirection: 'COL2ROW',
+    diodeDirection: 'ROW2COL',
     matrixHasGhost: false,
     backlightLevels: 1,
     backlightPin: 'F6',
@@ -558,11 +558,11 @@ embrace.keySections = [
               },
               {
                 id: 'k42',
-                value: 'LALT',
+                value: 'LGUI',
                 type: 'normal',
                 secondary: null,
                 showMenu: false,
-                shape: 'k100',
+                shape: 'k125',
                 zone: 'Bottom Row'
               },
               {
@@ -571,7 +571,7 @@ embrace.keySections = [
                 type: 'normal',
                 secondary: null,
                 showMenu: false,
-                shape: 'k200',
+                shape: 'k275',
                 zone: 'Bottom Row'
               },
               {
@@ -580,7 +580,7 @@ embrace.keySections = [
                 type: 'normal',
                 secondary: null,
                 showMenu: false,
-                shape: 'k200',
+                shape: 'k225',
                 zone: 'Bottom Row'
               },
               {
@@ -1069,7 +1069,7 @@ embrace.keySections = [
                 type: 'normal',
                 secondary: null,
                 showMenu: false,
-                shape: 'k100'
+                shape: 'k125'
               },
               {
                 id: 'k44',
@@ -1077,7 +1077,7 @@ embrace.keySections = [
                 type: 'normal',
                 secondary: null,
                 showMenu: false,
-                shape: 'k200'
+                shape: 'k275'
               },
               {
                 id: 'k46',
@@ -1085,7 +1085,7 @@ embrace.keySections = [
                 type: 'normal',
                 secondary: null,
                 showMenu: false,
-                shape: 'k200'
+                shape: 'k225'
               },
               {
                 id: 'k47',
@@ -1569,7 +1569,7 @@ embrace.keySections = [
                 type: 'normal',
                 secondary: null,
                 showMenu: false,
-                shape: 'k100'
+                shape: 'k125'
               },
               {
                 id: 'k44',
@@ -1577,7 +1577,7 @@ embrace.keySections = [
                 type: 'normal',
                 secondary: null,
                 showMenu: false,
-                shape: 'k200'
+                shape: 'k275'
               },
               {
                 id: 'k46',
@@ -1585,7 +1585,7 @@ embrace.keySections = [
                 type: 'normal',
                 secondary: null,
                 showMenu: false,
-                shape: 'k200'
+                shape: 'k225'
               },
               {
                 id: 'k47',
@@ -2069,7 +2069,7 @@ embrace.keySections = [
                 type: 'normal',
                 secondary: null,
                 showMenu: false,
-                shape: 'k100'
+                shape: 'k125'
               },
               {
                 id: 'k44',
@@ -2077,7 +2077,7 @@ embrace.keySections = [
                 type: 'normal',
                 secondary: null,
                 showMenu: false,
-                shape: 'k200'
+                shape: 'k275'
               },
               {
                 id: 'k46',
@@ -2085,7 +2085,7 @@ embrace.keySections = [
                 type: 'normal',
                 secondary: null,
                 showMenu: false,
-                shape: 'k200'
+                shape: 'k225'
               },
               {
                 id: 'k47',
