@@ -14,6 +14,7 @@
       <keyboard-selector-component v-model="activeKeyboard" :keyboards="keyboards"></keyboard-selector-component>
       <advanced-settings-component :active-keyboard="activeKeyboard"></advanced-settings-component>
       <zone-selector-component v-on:zone="onZoneChange" :zones="zones"></zone-selector-component>
+      <indicator-type-selector-component v-on:indicator-type="onIndicatorTypeChange" :indicator-types="activeKeyboard.indicator_types"></indicator-type-selector-component>
       <indicators :indicators="activeKeyboard.indicators"></indicators>
       <static-indicators :indicators="activeKeyboard.static_indicators"></static-indicators>
       <rotary-encoders :encoders="activeKeyboard.rotary_encoders"></rotary-encoders>
@@ -85,6 +86,7 @@
     <script src="assets/js/keyboardSelectorComponent.js"></script>
     <script src="assets/js/savedLayoutSelectorComponent.js"></script>
     <script src="assets/js/colorPickerComponent.js"></script>
+    <script src="assets/js/indicatorTypeSelectorComponent.js"></script>
     <script src="assets/js/indicatorsComponent.js"></script>
     <script src="assets/js/staticIndicatorsComponent.js"></script>
     <script src="assets/js/encodersComponent.js"></script>

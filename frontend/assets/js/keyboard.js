@@ -85,6 +85,9 @@ new Vue({
     onZoneChange: function(zones) {
       this.layers = this.activeKeyboard.keymap();
     },
+    onIndicatorTypeChange: function() {
+      this.activeKeyboard.updateIndicators();
+    },
     buildFirmware: function() {
     	var context = this;
     	context.buildInProgress = true;
