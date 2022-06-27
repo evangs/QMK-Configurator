@@ -14,6 +14,9 @@ Vue.component('keyboard-selector-component', {
   methods: {
     changeKeyboard: function () {
       this.$emit('input', this.value);
+      const url = new URL(window.location);
+      url.searchParams.set('keyboard', this.value.id);
+      window.history.pushState({}, '', url);
     }
   },
 });

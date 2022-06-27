@@ -15,6 +15,15 @@ new Vue({
     urls: {}
   },
   created: function() {
+    let qp = new URLSearchParams(window.location.search);
+    let kidx = 0;
+    if (qp.get('keyboard')) {
+      kidx = KEYBOARDS.findIndex(k => k.id === qp.get('keyboard'))
+      if (kidx < 0) {
+        kidx = 0;
+      }
+    }
+    this.activeKeyboard = KEYBOARDS[kidx];
     this.exportLink = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.activeKeyboard));
     this.exportFileName = this.activeKeyboard.config.product + '-' + new Date().getTime() + ".json"
 
