@@ -99,11 +99,16 @@ Vue.component('advanced-settings-component', {
         <div class="form-control">
           <label>RGB Max Value:</label>
           <input type="range" min="0" max="255" v-model="activeKeyboard.config.rgblightLimitValue" />
+        </div>
+        <div class="form-control">
+          <label>RGB Test Firmware:</label>
+          <toggle v-model="activeKeyboard.config.rgbTest"></toggle>
+        </div>
     </div>
   </div>`,
   data: function() {
-      return {
-          visible: false,
-      }
+    return {
+      visible: false,
+    }
   }
 });

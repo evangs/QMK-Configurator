@@ -35,6 +35,7 @@ embrace.config = {
     retroTapping: false,
     rgbDiPin: 'F0',
     rgbLedNum: 52,
+    rgbTest: false
 };
 
 // rules

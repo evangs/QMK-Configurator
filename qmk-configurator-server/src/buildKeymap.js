@@ -78,13 +78,13 @@ const generateTriggerTemplate = (trigger, index) => {
   switch (trigger.type) {
     case 'layer':
       return (
-`if (state & (1<<${trigger.action.slice(1)})) {
+        `if (state & (1<<${trigger.action.slice(1)})) {
   setrgb(${trigger.red}, ${trigger.green}, ${trigger.blue}, (LED_TYPE *)&led[${index}]);
 }
 `);
     case 'keyboard':
       return (
-`if (usb_led & (1<<${trigger.action})) {
+        `if (usb_led & (1<<${trigger.action})) {
   setrgb(${trigger.red}, ${trigger.green}, ${trigger.blue}, (LED_TYPE *)&led[${index}]);
 }
 `);
@@ -94,20 +94,36 @@ const generateTriggerTemplate = (trigger, index) => {
   }
 };
 
-const generateIndicatorTemplate = (indicators) => {
-  if (!indicators || indicators.length === 0) {
+const rgbTestCode = () => {
+
+};
+
+const generateRgbTestTemplate = rgbTest => {
+  if (!rgbTest) {
     return '';
   }
 
   return (
-`void process_indicator_update(layer_state_t state, uint8_t usb_led) {
+    `void keyboard_post_init_user(void) {
+  rgblight_enable();
+  rgblight_mode(RGBLIGHT_MODE_RGB_TEST);
+};`);
+};
+
+const generateIndicatorTemplate = (indicators, rgbTest) => {
+  if (rgbTest || !indicators || indicators.length === 0) {
+    return '';
+  }
+
+  return (
+    `void process_indicator_update(layer_state_t state, uint8_t usb_led) {
   for (int i = 0; i < ${indicators.length}; i++) {
     setrgb(0, 0, 0, (LED_TYPE *)&led[i]);
   }
   ${indicators.map((led, ledIndex) => {
-    return led.map((trigger) => generateTriggerTemplate(trigger, ledIndex)).join(`
+      return led.map((trigger) => generateTriggerTemplate(trigger, ledIndex)).join(`
     `);
-  }).join(`
+    }).join(`
   `)}
 
   rgblight_set();
@@ -133,38 +149,38 @@ const generateStaticIndicatorTemplate = (indicators) => {
   }
 
   return (
-`void process_indicator_update(layer_state_t state, uint8_t usb_led) {
+    `void process_indicator_update(layer_state_t state, uint8_t usb_led) {
   ${indicators.map((led, ledIndex) => {
-    switch (led.type) {
-      case 'layer':
-        return (
-`if (state & (1<<${led.action.slice(1)})) {
+      switch (led.type) {
+        case 'layer':
+          return (
+            `if (state & (1<<${led.action.slice(1)})) {
   writePinHigh(${led.pin});
 } else {
   writePinLow(${led.pin});
 }
 `);
-      case 'keyboard':
-        return (
-`if (usb_led & (1<<${led.action})) {
+        case 'keyboard':
+          return (
+            `if (usb_led & (1<<${led.action})) {
   writePinHigh(${led.pin});
 } else {
   writePinLow(${led.pin});
 }
 `);
-      default: return '';
-    }
-  }).join(`
+        default: return '';
+      }
+    }).join(`
   `)}
 };
 
 void keyboard_post_init_user(void) {
   ${indicators.map((led, ledIndex) => {
-    return `
+      return `
   setPinOutput(${led.pin});
   ${led.action === 'power' ? `writePinHigh(${led.pin});` : ''}
   ${led.action === 'off' ? `writePinLow(${led.pin});` : ''}`
-  }).join(`
+    }).join(`
 `)}
 
   process_indicator_update(layer_state, host_keyboard_leds());
@@ -220,7 +236,7 @@ const processEncoderActions = actions => {
 };
 
 const processEncoder = (encoder, index) => {
-    return `if (index == ${index}) {
+  return `if (index == ${index}) {
   ${processEncoderActions(encoder.actions)}
 }`;
 };
@@ -235,7 +251,7 @@ const generateRotaryEncoderTemplate = rotaryEncoders => {
 }`;
 };
 
-module.exports = (keyData, indicators, staticIndicators, rotaryEncoders, firmwareDirectory) => {
+module.exports = (keyData, indicators, staticIndicators, rotaryEncoders, config, firmwareDirectory) => {
   const layers = keyData.map((layer) => {
     return layer.map((row) => {
       return row.map((key) => {
@@ -245,7 +261,7 @@ module.exports = (keyData, indicators, staticIndicators, rotaryEncoders, firmwar
   });
 
   return (
-`#include "${firmwareDirectory}.h"
+    `#include "${firmwareDirectory}.h"
 enum custom_keycodes {
   M_IME = SAFE_RANGE
 };
@@ -272,7 +288,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   `)}
 };
 
-${generateIndicatorTemplate(indicators)}
+${generateIndicatorTemplate(indicators, config.rgbTest)}
 ${generateStaticIndicatorTemplate(staticIndicators)}
-${generateRotaryEncoderTemplate(rotaryEncoders)}`);
+${generateRotaryEncoderTemplate(rotaryEncoders)}
+${generateRgbTestTemplate(config.rgbTest)}`);
 };

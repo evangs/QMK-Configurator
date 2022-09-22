@@ -23,9 +23,12 @@ const populateDefines = (config) => {
   }
   if (config.rgbDiPin) { defines.push(`#define RGB_DI_PIN ${config.rgbDiPin}`); }
   if (config.rgbDiPin && config.rgblightLimitValue) { defines.push(`#define RGBLIGHT_LIMIT_VAL ${config.rgblightLimitValue}`); }
-  if (config.rgbLedNum) { defines.push( `#define RGBLED_NUM ${config.rgbLedNum}
+  if (config.rgbDiPin && config.rgbTest) { defines.push(`#define RGBLIGHT_DEFAULT_MODE RGBLIGHT_MODE_RGB_TEST`); }
+  if (config.rgbLedNum) {
+    defines.push(`#define RGBLED_NUM ${config.rgbLedNum}
 #define RGBLIGHT_ANIMATIONS
-#define RGBLIGHT_SLEEP`); }
+#define RGBLIGHT_SLEEP`);
+  }
   defines.push(`#define IS_COMMAND() ( \
 ${config.commandKeyCombination || 'keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT))'} \
 )`);
@@ -36,7 +39,7 @@ ${config.commandKeyCombination || 'keyboard_report->mods == (MOD_BIT(KC_LSHIFT) 
 
 module.exports = (config, rotaryEncoders) => {
   return (
-`#ifndef CONFIG_H
+    `#ifndef CONFIG_H
 #define CONFIG_H
 #include "config_common.h"
 
