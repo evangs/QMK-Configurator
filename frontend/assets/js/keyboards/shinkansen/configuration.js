@@ -423,7 +423,8 @@ shinkansen.keySections = [
         type: 'normal',
         secondary: null,
         showMenu: false,
-        shape: 'k100'
+        shape: 'k100',
+        spacer: 'ls150'
       }
     ],
     row4: [
@@ -857,7 +858,8 @@ shinkansen.keySections = [
         type: 'normal',
         secondary: null,
         showMenu: false,
-        shape: 'k100'
+        shape: 'k100',
+        spacer: 'ls150'
       }
     ],
     row4: [
@@ -1291,7 +1293,8 @@ shinkansen.keySections = [
         type: 'normal',
         secondary: null,
         showMenu: false,
-        shape: 'k100'
+        shape: 'k100',
+        spacer: 'ls150'
       }
     ],
     row4: [
