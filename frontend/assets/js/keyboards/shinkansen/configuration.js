@@ -14,7 +14,7 @@ shinkansen.config = {
     description: 'Trust45',
     matrixRowPins: ['D3', 'D2', 'B1', 'D1'],
     matrixColumnPins: ['D7', 'B4', 'B5', 'B6', 'F6', 'F5', 'F4', 'F1', 'F0', 'B0', 'B2', 'B3', 'D0', 'D5', 'D4', 'D6'],
-    diodeDirection: 'COL2ROW',
+    diodeDirection: 'ROW2COL',
     matrixHasGhost: false,
     backlightLevels: 1,
     backlightPin: 'F7',
@@ -32,7 +32,10 @@ shinkansen.config = {
     actionMacroEnabled: true,
     actionFunctionEnabled: true,
     permissiveHold: true,
-    retroTapping: false
+    retroTapping: false,
+    rgbDiPin: 'B7',
+    rgbLedNum: 24,
+    rgbTest: false
 };
 
 // rules
