@@ -69,6 +69,8 @@ shinkansen.configKeymap.positions = [
     ["K30", "K31", "K32", "KC_NO", "KC_NO", "KC_NO", "KC_36", "KC_NO", "KC_NO", "KC_NO", "KC_NO", "K3B", "K3C", "K3D", "K3E", "K3F"]
 ];
 
+shinkansen.zones = [];
+
 // ui keymap
 shinkansen.keySections = [
   { // DEFAULT LAYER ==========================================
