@@ -176,7 +176,7 @@ shinkansen.keySections = [
         type: 'normal',
         secondary: null,
         showMenu: false,
-        shape: 'k100'
+        shape: 'k175'
       },
       {
         id: 'k0D',
@@ -610,7 +610,7 @@ shinkansen.keySections = [
         type: 'normal',
         secondary: null,
         showMenu: false,
-        shape: 'k100'
+        shape: 'k175'
       },
       {
         id: 'k0D',
@@ -1044,7 +1044,7 @@ shinkansen.keySections = [
         type: 'normal',
         secondary: null,
         showMenu: false,
-        shape: 'k100'
+        shape: 'k175'
       },
       {
         id: 'k0D',
