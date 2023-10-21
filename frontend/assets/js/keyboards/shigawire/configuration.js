@@ -14,7 +14,7 @@ shigawire.config = {
     description: 'xNinjas keyboard',
     matrixRowPins: ['B2', 'B1', 'F0', 'F1', 'F4', 'D5', 'D3', 'D2', 'D0', 'B3'],
     matrixColumnPins: ['B6', 'B5', 'B4', 'D7', 'D6', 'D4', 'D1', 'B0'],
-    diodeDirection: 'ROW2COL',
+    diodeDirection: 'COL2ROW',
     matrixHasGhost: false,
     backlightLevels: 1,
     backlightPin: 'B7',
