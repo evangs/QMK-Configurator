@@ -71,7 +71,8 @@ shigawire.configKeymap.positions = [
     ["K50", "K51", "K52", "K53", "K54", "K55", "KC_NO", "KC_NO"],
     ["K60", "K61", "K62", "K63", "K64", "K65", "K66", "KC_NO"],
     ["K70", "K71", "K72", "K73", "K74", "K75", "K76", "KC_NO"],
-    ["K80", "K81", "K82", "K83", "K84", "K85", "K86", "K87"]
+    ["K80", "K81", "K82", "K83", "K84", "K85", "K86", "K87"],
+    ["K90", "K91", "K92", "K93", "K94", "K95", "K96", "KC_NO"]
 ]
 
 shigawire.static_indicators = [
