@@ -562,8 +562,16 @@ textarea:focus {
   margin-left: 25px;
 }
 
+.ls075 {
+  margin-left: 37.5px;
+}
+
 .ls100 {
   margin-left: 50px;
+}
+
+.ls150 {
+  margin-left: 75px;
 }
 
 .ls200 {
